@@ -18,9 +18,9 @@ namespace ProbPotes.models
         public int creatorCode;
 
         public List<int> guests;
-        public List<Spent> expenses;
+        public List<Expense> expenses;
 
-        public EventClass(int code, string title, int creatorCode, bool soldeOn, string description, DateTime startDate, DateTime endDate, List<int> guests, List<Spent> expenses)
+        public EventClass(int code, string title, int creatorCode, bool soldeOn, string description, DateTime startDate, DateTime endDate, List<int> guests, List<Expense> expenses)
         {
             this.code = code;
             this.title = title;

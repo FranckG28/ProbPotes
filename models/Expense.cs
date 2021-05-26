@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProbPotes.models
 {
-    public class Spent
+    public class Expense
     {
 
         public int code;
@@ -19,7 +19,7 @@ namespace ProbPotes.models
         public DateTime date;
         public string comment;
 
-        public Spent(int code, int eventCode, string description, Decimal sum, List<int> recipients, int creatorCode, DateTime date, string comment)
+        public Expense(int code, int eventCode, string description, Decimal sum, List<int> recipients, int creatorCode, DateTime date, string comment)
         {
             this.code = code;
             this.eventCode = eventCode;
@@ -32,7 +32,7 @@ namespace ProbPotes.models
         }
         
         // RESTE A DEFINIR LA LISTE DES BENEFICIAIRE LORS DE L'UTILISATION DE CE CONSTRUCTEUR :
-        public Spent(DataRow row)
+        public Expense(DataRow row)
         {
             this.code = (int)row["numDepense"];
             this.description = (string)row["description"];

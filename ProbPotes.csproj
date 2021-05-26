@@ -103,7 +103,7 @@
     </Compile>
     <Compile Include="models\EventClass.cs" />
     <Compile Include="models\Participant.cs" />
-    <Compile Include="models\Spent.cs" />
+    <Compile Include="models\Expense.cs" />
     <Compile Include="services\NavigationTemplate.cs" />
     <Compile Include="pages\EventsPage.cs">
       <SubType>UserControl</SubType>
@@ -123,10 +123,10 @@
     <Compile Include="pages\HomePage.Designer.cs">
       <DependentUpon>HomePage.cs</DependentUpon>
     </Compile>
-    <Compile Include="pages\PageTemplate.cs">
+    <Compile Include="components\PageTemplate.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="pages\PageTemplate.Designer.cs">
+    <Compile Include="components\PageTemplate.Designer.cs">
       <DependentUpon>PageTemplate.cs</DependentUpon>
     </Compile>
     <Compile Include="pages\ParticipantsPage.cs">
@@ -176,7 +176,7 @@
     <EmbeddedResource Include="pages\HomePage.resx">
       <DependentUpon>HomePage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\PageTemplate.resx">
+    <EmbeddedResource Include="components\PageTemplate.resx">
       <DependentUpon>PageTemplate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\ParticipantsPage.resx">
@@ -236,6 +236,8 @@
     <Folder Include="components\expenses\" />
     <Folder Include="components\participants\" />
     <Folder Include="components\reports\" />
+    <Folder Include="managers\" />
+    <Folder Include="tests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
