@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1494DF34-28D2-41BC-9FCA-F3480CE2A0FC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ProbPotes</RootNamespace>
+    <AssemblyName>ProbPotes</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>probpotes.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="components\CloseBtn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="components\CloseBtn.Designer.cs">
+      <DependentUpon>CloseBtn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="components\events\EventPreview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="components\events\EventPreview.Designer.cs">
+      <DependentUpon>EventPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="components\home\StatTile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="components\home\StatTile.Designer.cs">
+      <DependentUpon>StatTile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="components\NavBarItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="components\NavBarItem.Designer.cs">
+      <DependentUpon>NavBarItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="components\PageTitle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="components\PageTitle.Designer.cs">
+      <DependentUpon>PageTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="models\ancien\Catégories.cs" />
+    <Compile Include="models\ancien\Depenses.cs" />
+    <Compile Include="models\ancien\Evenement.cs" />
+    <Compile Include="models\Participant.cs" />
+    <Compile Include="models\Spent.cs" />
+    <Compile Include="services\NavigationTemplate.cs" />
+    <Compile Include="pages\EventsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pages\EventsPage.Designer.cs">
+      <DependentUpon>EventsPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pages\ExpensesPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pages\ExpensesPage.Designer.cs">
+      <DependentUpon>ExpensesPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pages\HomePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pages\HomePage.Designer.cs">
+      <DependentUpon>HomePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pages\PageTemplate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pages\PageTemplate.Designer.cs">
+      <DependentUpon>PageTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pages\ParticipantsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pages\ParticipantsPage.Designer.cs">
+      <DependentUpon>ParticipantsPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pages\ReportsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pages\ReportsPage.Designer.cs">
+      <DependentUpon>ReportsPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="services\Colors.cs" />
+    <Compile Include="services\DropShadow.cs" />
+    <Compile Include="services\Fonts.cs" />
+    <Compile Include="services\HoverController.cs" />
+    <Compile Include="services\NavigationController.cs" />
+    <Compile Include="services\SelectableHoverController.cs" />
+    <EmbeddedResource Include="components\CloseBtn.resx">
+      <DependentUpon>CloseBtn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="components\events\EventPreview.resx">
+      <DependentUpon>EventPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="components\home\StatTile.resx">
+      <DependentUpon>StatTile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="components\NavBarItem.resx">
+      <DependentUpon>NavBarItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="components\PageTitle.resx">
+      <DependentUpon>PageTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\EventsPage.resx">
+      <DependentUpon>EventsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\ExpensesPage.resx">
+      <DependentUpon>ExpensesPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\HomePage.resx">
+      <DependentUpon>HomePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\PageTemplate.resx">
+      <DependentUpon>PageTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\ParticipantsPage.resx">
+      <DependentUpon>ParticipantsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\ReportsPage.resx">
+      <DependentUpon>ReportsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="fonts\SuisseIntl-Bold.otf" />
+    <EmbeddedResource Include="fonts\SuisseIntl-Book.otf" />
+    <EmbeddedResource Include="fonts\SuisseIntl-Medium.otf" />
+    <EmbeddedResource Include="fonts\SuisseIntl-Regular.otf" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="images\Navbar Background.png" />
+    <Content Include="probpotes.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="images\probpotes.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="components\expenses\" />
+    <Folder Include="components\participants\" />
+    <Folder Include="components\reports\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

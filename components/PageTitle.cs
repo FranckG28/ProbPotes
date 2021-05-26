@@ -1,0 +1,50 @@
+﻿using ProbPotes.services;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ProbPotes.components
+{
+    public partial class PageTitle : UserControl
+    {
+        public PageTitle()
+        {
+            InitializeComponent();
+
+            //  Définition du style des textes :
+            if (LicenseManager.UsageMode == LicenseUsageMode.Runtime)
+            {
+                txtTitle.Font = new Font(Fonts.bold, 30);
+            }
+            txtIcon.ForeColor = Colors.blue;
+            txtTitle.ForeColor = Colors.blue;
+
+        }
+
+        private int iconInt = 0xE899;
+
+        [Description("Titre de l'élément"), Category("Data")]
+        public string Title
+        {
+            get => txtTitle.Text;
+            set => txtTitle.Text = value;
+        }
+
+        [Description("Titre de l'élément"), Category("Data")]
+        public int Icon
+        {
+            get => iconInt;
+            set {
+                iconInt = value;
+                txtIcon.Text = char.ConvertFromUtf32(iconInt);
+            }
+        }
+
+    }
+}
