@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace ProbPotes.models
 {
-    class Spent
+    public class Spent
     {
 
-        int code;
-        int eventCode;
-        string description;
-        Decimal sum;
-        List<int> recipients;
-        int creatorCode;
-        DateTime date;
-        string comment;
+        public int code;
+        public int eventCode;
+        public string description;
+        public Decimal sum;
+        public List<int> recipients;
+        public int creatorCode;
+        public DateTime date;
+        public string comment;
 
         public Spent(int code, int eventCode, string description, Decimal sum, List<int> recipients, int creatorCode, DateTime date, string comment)
         {

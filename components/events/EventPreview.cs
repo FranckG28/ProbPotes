@@ -16,7 +16,7 @@ namespace ProbPotes.components
     public partial class EventPreview : UserControl
     {
 
-        private Evenement evenement;
+        private EventClass evenement;
 
         private HoverController hover;
 
@@ -51,7 +51,7 @@ namespace ProbPotes.components
             }
         }
 
-        public Evenement Evenement
+        public EventClass Evenement
         {
             get => evenement;
             set => evenement = value;

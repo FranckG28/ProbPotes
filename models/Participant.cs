@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace ProbPotes.models
 {
-    class Participant
+    public class Participant
     {
-        int code;
-        char name;
-        char firstName;
-        char phone;
-        int number;
-        double balance;
-        char mailAddress;
+        public int code;
+        public char name;
+        public char firstName;
+        public char phone;
+        public int number;
+        public double balance;
+        public char mailAddress;
 
         public Participant(int code, char phone, int number, double balance, char name,char firstName, char mailAddress)
         {
@@ -35,7 +35,7 @@ namespace ProbPotes.models
             this.firstName = (char)row["prenomPart"];
             this.phone = (char)row["mobile"];
             this.number = (int)row["nbParts"];
-            this.balance = (int)row["balancee"];
+            this.balance = (int)row["solde"];
             this.mailAddress = (char)row["adresseMail"];
         }
     }

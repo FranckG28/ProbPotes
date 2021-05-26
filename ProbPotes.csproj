@@ -101,9 +101,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="models\ancien\Catégories.cs" />
-    <Compile Include="models\ancien\Depenses.cs" />
-    <Compile Include="models\ancien\Evenement.cs" />
+    <Compile Include="models\EventClass.cs" />
     <Compile Include="models\Participant.cs" />
     <Compile Include="models\Spent.cs" />
     <Compile Include="services\NavigationTemplate.cs" />
