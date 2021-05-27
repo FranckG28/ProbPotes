@@ -36,13 +36,11 @@ namespace ProbPotes.components
             }
 
             // Initialisation de l'effet de survol
-            hover = new HoverController(new List<Control>() {this }, new List<Control>() { txtDate, txtParticipants, txtTitle, iconParticipants }, this);
-            hover.bg_default = Colors.lightBlue;
-            hover.bg_hover = Colors.blue;
-            hover.bg_pressed = Colors.green;
-            hover.fg_default = Colors.blue;
-            hover.fg_hover = Colors.white;
-            hover.fg_pressed = Colors.white;
+            HoverColor hoverBg = new HoverColor(new List<Control>() { this }, false, Colors.lightBlue, Colors.blue, Colors.green);
+            HoverColor hoverForeBlue = new HoverColor(new List<Control>() { txtTitle }, true, Colors.blue, Colors.white, Colors.white);
+            HoverColor hoverForeBlack = new HoverColor(new List<Control>() { txtParticipants, txtDate, iconParticipants }, true, Colors.black, Colors.white, Colors.white);
+
+            hover = new HoverController(new List<HoverColor>() { hoverBg, hoverForeBlack, hoverForeBlue }, this);
 
             // Ajout de l'évènement Click à tout les controles
             foreach(Control ctrl in Controls)
