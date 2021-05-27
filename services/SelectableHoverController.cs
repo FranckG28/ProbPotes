@@ -10,7 +10,7 @@ namespace ProbPotes.services
 {
     public class SelectableHoverController : HoverController
     {
-        public SelectableHoverController(List<Control> bg, List<Control> fg, UserControl parent) : base(bg, fg, parent)
+        public SelectableHoverController(List<HoverColor> colors, UserControl parent) : base(colors, parent)
         {
 
         }
@@ -30,21 +30,20 @@ namespace ProbPotes.services
 
         public override void Refresh()
         {
-            if (isPressed || isSelected)
+            foreach (HoverColor hoverColor in colors)
             {
-                SetForeground(fg_pressed);
-                SetBackground(bg_pressed);
-
-            }
-            else if (isHover)
-            {
-                SetForeground(fg_hover);
-                SetBackground(bg_hover);
-            }
-            else
-            {
-                SetForeground(fg_default);
-                SetBackground(bg_default);
+                if (isPressed || isSelected)
+                {
+                    hoverColor.SetPressed();
+                }
+                else if (isHover)
+                {
+                    hoverColor.SetHover();
+                }
+                else
+                {
+                    hoverColor.SetDefault();
+                }
             }
         }
 

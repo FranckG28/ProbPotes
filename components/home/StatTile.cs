@@ -29,18 +29,10 @@ namespace ProbPotes.components.home
             }
 
             // Initialisation des effets de survol :
-            List<Control> bg = new List<Control>() {this};
-            List<Control> fg = new List<Control>() { txtDescription, txtIcon, txtNumber };
+            HoverColor hoverBg = new HoverColor(new List<Control>() { this }, false, Colors.lightBlue, Colors.blue, Colors.green);
+            HoverColor hoverFg = new HoverColor(new List<Control>() { txtDescription, txtIcon, txtNumber }, true, Colors.blue, Colors.white, Colors.white); 
 
-            hover = new HoverController(bg, fg, this);
-
-            hover.bg_default = Colors.lightBlue;
-            hover.bg_hover = Colors.blue;
-            hover.bg_pressed = Colors.green;
-
-            hover.fg_default = Colors.blue;
-            hover.fg_hover = Colors.white;
-            hover.fg_pressed = Colors.white;
+            hover = new HoverController(new List<HoverColor>() { hoverBg, hoverFg }, this);
 
     }
 

@@ -20,15 +20,10 @@ namespace ProbPotes.components
         {
             InitializeComponent();
 
-            hover = new HoverController(new List<Control>() { this }, new List<Control>() { icon }, this);
+            HoverColor hoverBg = new HoverColor(new List<Control>() { this }, false, Color.Transparent, Colors.red, Colors.lightRed);
+            HoverColor hoverFg = new HoverColor(new List<Control>() { icon }, true, Colors.black, Colors.white, Colors.white);
 
-            hover.bg_default = Color.Transparent;
-            hover.bg_hover = Colors.red;
-            hover.bg_pressed = Colors.lightRed;
-
-            hover.fg_default = Colors.black;
-            hover.fg_hover = Color.White;
-            hover.fg_pressed = Color.White;
+            hover = new HoverController(new List<HoverColor>() { hoverBg, hoverFg }, this);
 
             icon.Text = Char.ConvertFromUtf32(0xE711);
         }

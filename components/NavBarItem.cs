@@ -21,21 +21,19 @@ namespace ProbPotes.components
         public NavBarItem()
         {
             InitializeComponent();
-            txtIcon.Text = Char.ConvertFromUtf32(0xE78B);
 
+            // Polices :
             if (LicenseManager.UsageMode == LicenseUsageMode.Runtime)
             {
                 txtTitle.Font = new Font(Fonts.book, 14);
             }
 
-            hover = new SelectableHoverController(new List<Control>() {this }, new List<Control>() {txtIcon, txtTitle }, this);
+            // Effet de survol :
+            HoverColor hoverBg = new HoverColor(new List<Control>() { this }, false, Color.Transparent, Colors.lightBlue, Colors.white);
+            HoverColor hoverFg = new HoverColor(new List<Control>() { txtIcon, txtTitle }, true, Colors.white, Colors.white, Colors.blue);
 
-            hover.bg_default = Color.Transparent;
-            hover.bg_hover = Colors.lightBlue;
-            hover.bg_pressed = Colors.white;
-            hover.fg_default = Colors.white;
-            hover.fg_hover = Colors.white;
-            hover.fg_pressed = Colors.blue;
+            hover = new SelectableHoverController(new List<HoverColor>() {hoverBg, hoverFg }, this);
+
         }
 
 

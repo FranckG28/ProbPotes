@@ -12,43 +12,51 @@ namespace ProbPotes.services
     public class HoverController
     {
 
-        protected List<Control> bgControls;
-        protected List<Control> fgControls;
-
-        public Color bg_default;
-        public Color bg_hover;
-        public Color bg_pressed;
-
-        public Color fg_default;
-        public Color fg_hover;
-        public Color fg_pressed;
+        protected List<HoverColor> colors;
 
         protected bool isHover = false;
         protected bool isPressed = false;
 
-        public HoverController(List<Control> bg, List<Control> fg, UserControl parent)
+        public HoverController(List<HoverColor> colors, UserControl parent)
         {
-            bgControls = bg;
-            fgControls = fg;
+            this.colors = colors;
 
-            foreach(Control ctrl in bg)
+            // Ajout des evènements de souris sur tous les controles :
+            foreach(HoverColor color in colors)
             {
-                ctrl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
-                ctrl.MouseEnter += new System.EventHandler(this.MouseEnter);
-                ctrl.MouseLeave += new System.EventHandler(this.MouseLeave);
-                ctrl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUp);
+                foreach (Control ctrl in color.Controls)
+                {
+                    AddEventsToChildrens(ctrl);
+                }
             }
 
-            foreach (Control ctrl in fg)
-            {
-                ctrl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
-                ctrl.MouseEnter += new System.EventHandler(this.MouseEnter);
-                ctrl.MouseLeave += new System.EventHandler(this.MouseLeave);
-                ctrl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUp);
-            }
-
+            // Initialisation des couleurs :
             parent.Load += new EventHandler(this.Load);
 
+        }
+
+        private void AddEventsToChildrens(Control ctrl)
+        {
+            // Ajout de l'évènement à ce controle
+            AddEvents(ctrl);
+
+            // Si ce controle a des enfants :
+            if (ctrl.Controls.Count != 0)
+            {
+                // Appel récursif de cette fonction pour tout ses enfants
+                foreach(Control ctrlChild in ctrl.Controls)
+                {
+                    AddEventsToChildrens(ctrlChild);
+                }
+            }
+        }
+
+        private void AddEvents(Control ctrl)
+        {
+            ctrl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            ctrl.MouseEnter += new System.EventHandler(this.MouseEnter);
+            ctrl.MouseLeave += new System.EventHandler(this.MouseLeave);
+            ctrl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUp);
         }
 
         private void Load(object sender, EventArgs e)
@@ -78,24 +86,22 @@ namespace ProbPotes.services
 
         public virtual void Refresh()
         {
-            if (isPressed)
+           foreach(HoverColor hoverColor in colors)
             {
-                SetForeground(fg_pressed);
-                SetBackground(bg_pressed);
-
-            }
-            else if (isHover)
-            {
-                SetForeground(fg_hover);
-                SetBackground(bg_hover);
-            }
-            else
-            {
-                SetForeground(fg_default);
-                SetBackground(bg_default);
+                if (isPressed)
+                {
+                    hoverColor.SetPressed();
+                }
+                else if (isHover)
+                {
+                    hoverColor.SetHover();
+                }
+                else
+                {
+                    hoverColor.SetDefault();
+                }
             }
         }
-
 
         #region Events
 
@@ -117,31 +123,6 @@ namespace ProbPotes.services
         private void MouseUp(object sender, MouseEventArgs e)
         {
             Pressed = false;
-        }
-
-        #endregion
-
-
-        #region Changement de couleur
-
-        protected void SetForeground(Color color)
-        {
-            foreach (Control ctrl in fgControls)
-            {
-                ctrl.ForeColor = color;
-            }
-        }
-
-        protected void SetBackground(Color color)
-        {
-            foreach(Control ctrl in bgControls)
-            {
-                ctrl.BackColor = color;
-            }
-            foreach(Control ctrl in fgControls)
-            {
-                ctrl.BackColor = Color.Transparent;
-            }
         }
 
         #endregion
