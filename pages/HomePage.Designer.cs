@@ -113,7 +113,6 @@ namespace ProbPotes.pages
             // eventPreview1
             // 
             this.eventPreview1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))), ((int)(((byte)(255)))));
-            this.eventPreview1.Evenement = null;
             this.eventPreview1.Location = new System.Drawing.Point(0, 368);
             this.eventPreview1.Name = "eventPreview1";
             this.eventPreview1.Size = new System.Drawing.Size(222, 120);

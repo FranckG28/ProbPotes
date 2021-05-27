@@ -16,7 +16,7 @@ namespace ProbPotes.components
     public partial class EventPreview : UserControl
     {
 
-        private EventClass evenement;
+        private EventClass eventClass;
 
         private HoverController hover;
 
@@ -49,10 +49,26 @@ namespace ProbPotes.components
             }
         }
 
-        public EventClass Evenement
+        public EventClass EventClass
         {
-            get => evenement;
-            set => evenement = value;
+            get => eventClass;
+            set
+            {
+                eventClass = value;
+                if (eventClass != null)
+                {
+                    txtTitle.Text = eventClass.title;
+                    txtDate.Text = eventClass.startDate.ToShortDateString() + " - " + eventClass.endDate.ToShortDateString();
+
+                    // Génération de la liste des participants :
+                    string participantList = "";
+                    foreach(int participant in eventClass.guests)
+                    {
+                        participantList += participant.ToString() + ", ";
+                    }
+                    txtParticipants.Text = participantList;
+                }
+            }
         }
 
         public delegate void Del();

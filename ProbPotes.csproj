@@ -113,6 +113,7 @@
     <Compile Include="models\EventClass.cs" />
     <Compile Include="models\Participant.cs" />
     <Compile Include="models\Expense.cs" />
+    <Compile Include="services\HoverColor.cs" />
     <Compile Include="services\NavigationTemplate.cs" />
     <Compile Include="pages\EventsPage.cs">
       <SubType>UserControl</SubType>
@@ -248,8 +249,6 @@
   <ItemGroup>
     <Folder Include="components\participants\" />
     <Folder Include="components\reports\" />
-    <Folder Include="managers\" />
-    <Folder Include="tests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

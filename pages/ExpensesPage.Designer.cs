@@ -38,7 +38,7 @@ namespace ProbPotes.pages
             this.expenseTile1.Expense = null;
             this.expenseTile1.Location = new System.Drawing.Point(0, 3);
             this.expenseTile1.Name = "expenseTile1";
-            this.expenseTile1.Size = new System.Drawing.Size(950, 163);
+            this.expenseTile1.Size = new System.Drawing.Size(950, 120);
             this.expenseTile1.TabIndex = 0;
             // 
             // ExpensesPage
