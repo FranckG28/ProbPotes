@@ -102,6 +102,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="managers\EventManager.cs" />
+    <Compile Include="managers\ExpensesManager.cs" />
     <Compile Include="managers\ParticipantManager.cs" />
     <Compile Include="models\EventClass.cs" />
     <Compile Include="models\Participant.cs" />

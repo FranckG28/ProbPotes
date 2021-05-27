@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProbPotes.models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,69 +10,42 @@ namespace ProbPotes.managers
     class EventManager
     {
 
-        //METHOD AJOUTER UNE DEPENSE
-/*        public Boolean insertSpent(OleDbConnection connect)
+        // Un évènement inclus les dépenses et la liste des participant
+        // --> A gérer lors de l'obtention, l'ajout et la suppression d'évènements
+
+        // Procédure d'ajout d'un évènement
+        // Retourne true si l'ajout a réussi
+        public Boolean AddEvent(EventClass eventclass) {
+            return false;
+        }
+
+        // Procédure de mise à jour d'un évènement
+        // --> Mettre à jour un évènement signifie aussi mettre à jour sa liste des participant
+        // --> Les modifications sur les dépenses ne sont pas gérés ici
+        // Retourne true si la mise à jour a réussi
+        public Boolean UpdateEvent(EventClass eventclass)
         {
-            //AJOUT DANS LES BASES DE DONNEES
-            try
-            {
-                //AJOUT DANS DEPENSE
-                OleDbCommand cdInsert = new OleDbCommand(@"INSERT INTO Depenses (numDepense,description,montant,dateDepense,commentaire,codeEvent,codePart)
-                                                         VALUES (?,?,?,?,?,?,?)", connect);
+            return false;
+        }
 
-                //RECHERCHE DE CODEEVENT AVEC LE NOM E L EVENT
-                *//*OleDbCommand cdCodeEvent = new OleDbCommand("SELECT codeEvent FROM Evenements WHERE titreEvent='" + this.codeEvent + "'", connect);
-                int codeEvent = Convert.ToInt32(cdCodeEvent.ExecuteScalar().ToString());*//*
+        // Procédure de suppression d'un évènement
+        // Retourne true si la suppression a reussi
+        public Boolean DeleteEvent(int id)
+        {
+            return false;
+        }
 
-                //RECHERCHE DE CODEPART AVEC LE NOM DU PART
-                *//*OleDbCommand cdCodePart = new OleDbCommand("SELECT codeParticipant FROM Participants WHERE nomPart='" + cboPayer.Text.Split(' ')[0] + "'", connect);*//*
+        // Fonction qui retourne la liste de tous les participants de la base :
+        public List<EventClass> GetEvents()
+        {
+            return null;
+        }
 
-
-                //RECHERCHE DU DERNIERE ID DE LA DERNIERE DEPENSE POUR PRENDRE CETTE ID+1 POUR CREER UNE NOUVELLE DEPENSE
-                OleDbCommand recupNumDepense = new OleDbCommand("SELECT numDepense FROM Depenses ORDER BY numDepense DESC", connect);
-
-                int numDepense = Convert.ToInt32(recupNumDepense.ExecuteScalar().ToString()) + 1;
-
-                cdInsert.Parameters.Add(new OleDbParameter("numDepense", OleDbType.Integer)).Value = this.code;
-                cdInsert.Parameters.Add(new OleDbParameter("description", OleDbType.WChar)).Value = this.description;
-                cdInsert.Parameters.Add(new OleDbParameter("montant", OleDbType.Currency)).Value = this.sum;
-                cdInsert.Parameters.Add(new OleDbParameter("dateDepense", OleDbType.Date)).Value = this.date;
-                cdInsert.Parameters.Add(new OleDbParameter("commentaire", OleDbType.WChar)).Value = this.comment;
-                cdInsert.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = this.eventCode;
-                cdInsert.Parameters.Add(new OleDbParameter("codePart", OleDbType.Integer)).Value = this.creatorCode;
-                cdInsert.ExecuteNonQuery();
-
-
-                //AJOUT DANS BENEFICIAIRE
-
-                OleDbCommand insertBenef = new OleDbCommand(@"INSERT INTO Beneficiaires(numDepense,codePart)
-                                                                    VALUES (?,?)", connect);
-
-                insertBenef.Parameters.Add(new OleDbParameter("numDepense", OleDbType.Integer));
-                insertBenef.Parameters.Add(new OleDbParameter("codePart", OleDbType.Integer));
-
-
-                foreach (int val in this.beneficiaire)
-                {
-                    //AJOUTS DES BENEFICIAIRES
-                    insertBenef.Parameters["numDepense"].Value = numDepense;
-                    insertBenef.Parameters["codePart"].Value = val;
-
-                    insertBenef.ExecuteNonQuery();
-                }
-                //AJOUT DU PAYEUR
-                insertBenef.Parameters["numDepense"].Value = numDepense;
-                insertBenef.Parameters["codePart"].Value = this.creatorCode;
-
-                insertBenef.ExecuteNonQuery();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-                Console.WriteLine(ex);
-            }
-        }*/
+        // Fonction qui retourne l'évènement correspondant au numéro demandé dans la base :
+        public EventClass GetEvent(int code)
+        {
+            return null;
+        }
 
     }
 }
