@@ -159,12 +159,6 @@
     <Compile Include="services\NavigationController.cs" />
     <Compile Include="services\SelectableHoverController.cs" />
     <Compile Include="tests\Class1.cs" />
-    <Compile Include="tests\testEventManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="tests\testEventManager.Designer.cs">
-      <DependentUpon>testEventManager.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="components\CloseBtn.resx">
       <DependentUpon>CloseBtn.cs</DependentUpon>
     </EmbeddedResource>
@@ -218,9 +212,6 @@
     <EmbeddedResource Include="fonts\SuisseIntl-Book.otf" />
     <EmbeddedResource Include="fonts\SuisseIntl-Medium.otf" />
     <EmbeddedResource Include="fonts\SuisseIntl-Regular.otf" />
-    <EmbeddedResource Include="tests\testEventManager.resx">
-      <DependentUpon>testEventManager.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -257,6 +248,8 @@
   <ItemGroup>
     <Folder Include="components\participants\" />
     <Folder Include="components\reports\" />
+    <Folder Include="managers\" />
+    <Folder Include="tests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
