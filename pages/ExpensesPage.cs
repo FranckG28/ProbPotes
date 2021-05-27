@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProbPotes.models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,10 @@ namespace ProbPotes.pages
         public ExpensesPage()
         {
             InitializeComponent();
+
+            expenseTile1.Expense = expense;
         }
+
+        Expense expense = new Expense(20, 30, "Ma dépense", new Decimal(29.26), new List<int>() { 28,10,2002}, 28, DateTime.Now, "Commentaire de test");
     }
 }

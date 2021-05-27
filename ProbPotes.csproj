@@ -77,6 +77,12 @@
     <Compile Include="components\events\EventPreview.Designer.cs">
       <DependentUpon>EventPreview.cs</DependentUpon>
     </Compile>
+    <Compile Include="components\expenses\ExpenseTile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="components\expenses\ExpenseTile.Designer.cs">
+      <DependentUpon>ExpenseTile.cs</DependentUpon>
+    </Compile>
     <Compile Include="components\home\StatTile.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -152,11 +158,15 @@
     <Compile Include="services\HoverController.cs" />
     <Compile Include="services\NavigationController.cs" />
     <Compile Include="services\SelectableHoverController.cs" />
+    <Compile Include="tests\Class1.cs" />
     <EmbeddedResource Include="components\CloseBtn.resx">
       <DependentUpon>CloseBtn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="components\events\EventPreview.resx">
       <DependentUpon>EventPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="components\expenses\ExpenseTile.resx">
+      <DependentUpon>ExpenseTile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="components\home\StatTile.resx">
       <DependentUpon>StatTile.cs</DependentUpon>
@@ -236,9 +246,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="components\expenses\" />
     <Folder Include="components\participants\" />
     <Folder Include="components\reports\" />
+    <Folder Include="managers\" />
     <Folder Include="tests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
