@@ -89,6 +89,12 @@
     <Compile Include="components\home\StatTile.Designer.cs">
       <DependentUpon>StatTile.cs</DependentUpon>
     </Compile>
+    <Compile Include="components\IconButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="components\IconButton.Designer.cs">
+      <DependentUpon>IconButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="components\NavBarItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -171,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="components\home\StatTile.resx">
       <DependentUpon>StatTile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="components\IconButton.resx">
+      <DependentUpon>IconButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="components\NavBarItem.resx">
       <DependentUpon>NavBarItem.cs</DependentUpon>

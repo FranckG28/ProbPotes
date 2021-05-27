@@ -30,7 +30,7 @@ namespace ProbPotes.services
 
         public override void Refresh()
         {
-            foreach (HoverColor hoverColor in colors)
+            foreach (HoverColor hoverColor in Colors)
             {
                 if (isPressed || isSelected)
                 {

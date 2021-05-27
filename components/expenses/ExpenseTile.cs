@@ -39,11 +39,18 @@ namespace ProbPotes.components.expenses
             HoverColor hoverForeBlack = new HoverColor(new List<Control>() { txtDescription, txtRecipients, iconRecipients }, true, Colors.black, Colors.white, Colors.white);
             HoverColor hoverPriceFg = new HoverColor(new List<Control>() { txtPrice }, true, Colors.white, Colors.white, Colors.white);
             HoverColor hoverPriceBg = new HoverColor(new List<Control>() { txtPrice }, false, Colors.blue, Colors.lightBlue, Colors.lightBlue);
+            //HoverColor hoverBtn = new HoverColor(new List<Control>() { btnDelete, btnEditRecipients }, false, Color.Transparent, Colors.white, Colors.white);
 
             hover = new HoverController(new List<HoverColor>() {hoverBg, hoverForeBlue, hoverForeBlack, hoverPriceFg, hoverPriceBg }, this);
 
             // Icones :
             iconRecipients.Text = char.ConvertFromUtf32(0xE716);
+
+            // Couleurs des boutons
+            btnEditRecipients.SetBgColor(Colors.lightBlue, Colors.white, Colors.green);
+            btnDelete.SetBgColor(Colors.lightBlue, Colors.white, Colors.green);
+            btnEditRecipients.SetFgColor(Colors.blue, Colors.blue, Colors.white);
+            btnDelete.SetFgColor(Colors.blue, Colors.blue, Colors.white);
 
             // Polices :
             if (LicenseManager.UsageMode == LicenseUsageMode.Runtime)
