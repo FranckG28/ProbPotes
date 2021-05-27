@@ -101,6 +101,8 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="managers\EventManager.cs" />
+    <Compile Include="managers\ParticipantManager.cs" />
     <Compile Include="models\EventClass.cs" />
     <Compile Include="models\Participant.cs" />
     <Compile Include="models\Expense.cs" />
@@ -236,7 +238,6 @@
     <Folder Include="components\expenses\" />
     <Folder Include="components\participants\" />
     <Folder Include="components\reports\" />
-    <Folder Include="managers\" />
     <Folder Include="tests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
