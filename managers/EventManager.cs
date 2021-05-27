@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.OleDb;
+using System.IO;
 
 namespace ProbPotes.managers
 {
     class EventManager
     {
+        private OleDbConnection connect=new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source="+ Directory.GetCurrentDirectory() + @"..\bdEvents.mdb");
 
         // Un évènement inclus les dépenses et la liste des participant
         // --> A gérer lors de l'obtention, l'ajout et la suppression d'évènements
@@ -44,6 +47,7 @@ namespace ProbPotes.managers
         // Fonction qui retourne l'évènement correspondant au numéro demandé dans la base :
         public EventClass GetEvent(int code)
         {
+
             return null;
         }
 
