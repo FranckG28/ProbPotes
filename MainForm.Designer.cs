@@ -31,13 +31,13 @@ namespace ProbPotes
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelNavbar = new System.Windows.Forms.Panel();
+            this.panelView = new System.Windows.Forms.Panel();
             this.navReports = new ProbPotes.components.NavBarItem();
             this.navParticipants = new ProbPotes.components.NavBarItem();
             this.navEvents = new ProbPotes.components.NavBarItem();
             this.navExpenses = new ProbPotes.components.NavBarItem();
             this.navHome = new ProbPotes.components.NavBarItem();
             this.closeBtn1 = new ProbPotes.components.CloseBtn();
-            this.panelView = new System.Windows.Forms.Panel();
             this.panelNavbar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,13 +57,21 @@ namespace ProbPotes
             this.panelNavbar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
             this.panelNavbar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseUp);
             // 
+            // panelView
+            // 
+            this.panelView.Location = new System.Drawing.Point(232, 45);
+            this.panelView.Name = "panelView";
+            this.panelView.Size = new System.Drawing.Size(950, 610);
+            this.panelView.TabIndex = 7;
+            // 
             // navReports
             // 
-            this.navReports.BackColor = System.Drawing.Color.Transparent;
+            this.navReports.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.navReports.Cursor = System.Windows.Forms.Cursors.Default;
-            this.navReports.Icon = 59153;
+            this.navReports.Icon = 59897;
             this.navReports.Location = new System.Drawing.Point(0, 448);
             this.navReports.Name = "navReports";
+            this.navReports.Selected = false;
             this.navReports.Size = new System.Drawing.Size(170, 47);
             this.navReports.TabIndex = 11;
             this.navReports.Title = "Bilans";
@@ -72,9 +80,10 @@ namespace ProbPotes
             // 
             this.navParticipants.BackColor = System.Drawing.Color.Transparent;
             this.navParticipants.Cursor = System.Windows.Forms.Cursors.Default;
-            this.navParticipants.Icon = 59153;
+            this.navParticipants.Icon = 59158;
             this.navParticipants.Location = new System.Drawing.Point(0, 396);
             this.navParticipants.Name = "navParticipants";
+            this.navParticipants.Selected = false;
             this.navParticipants.Size = new System.Drawing.Size(170, 47);
             this.navParticipants.TabIndex = 10;
             this.navParticipants.Title = "Participants";
@@ -83,9 +92,10 @@ namespace ProbPotes
             // 
             this.navEvents.BackColor = System.Drawing.Color.Transparent;
             this.navEvents.Cursor = System.Windows.Forms.Cursors.Default;
-            this.navEvents.Icon = 59153;
+            this.navEvents.Icon = 59271;
             this.navEvents.Location = new System.Drawing.Point(0, 344);
             this.navEvents.Name = "navEvents";
+            this.navEvents.Selected = false;
             this.navEvents.Size = new System.Drawing.Size(170, 47);
             this.navEvents.TabIndex = 9;
             this.navEvents.Title = "Évènements";
@@ -94,9 +104,10 @@ namespace ProbPotes
             // 
             this.navExpenses.BackColor = System.Drawing.Color.Transparent;
             this.navExpenses.Cursor = System.Windows.Forms.Cursors.Default;
-            this.navExpenses.Icon = 59153;
+            this.navExpenses.Icon = 59161;
             this.navExpenses.Location = new System.Drawing.Point(0, 292);
             this.navExpenses.Name = "navExpenses";
+            this.navExpenses.Selected = false;
             this.navExpenses.Size = new System.Drawing.Size(170, 47);
             this.navExpenses.TabIndex = 8;
             this.navExpenses.Title = "Dépenses";
@@ -105,9 +116,10 @@ namespace ProbPotes
             // 
             this.navHome.BackColor = System.Drawing.Color.Transparent;
             this.navHome.Cursor = System.Windows.Forms.Cursors.Default;
-            this.navHome.Icon = 59153;
+            this.navHome.Icon = 59407;
             this.navHome.Location = new System.Drawing.Point(0, 240);
             this.navHome.Name = "navHome";
+            this.navHome.Selected = false;
             this.navHome.Size = new System.Drawing.Size(170, 47);
             this.navHome.TabIndex = 7;
             this.navHome.Title = "Accueil";
@@ -119,13 +131,6 @@ namespace ProbPotes
             this.closeBtn1.Name = "closeBtn1";
             this.closeBtn1.Size = new System.Drawing.Size(47, 33);
             this.closeBtn1.TabIndex = 5;
-            // 
-            // panelView
-            // 
-            this.panelView.Location = new System.Drawing.Point(232, 45);
-            this.panelView.Name = "panelView";
-            this.panelView.Size = new System.Drawing.Size(950, 610);
-            this.panelView.TabIndex = 7;
             // 
             // MainForm
             // 
