@@ -60,14 +60,7 @@ namespace ProbPotes.managers
         // Retourne true si la mise à jour a réussi
         public Boolean UpdateEvent(EventClass eventclass)
         {
-            return false;
-        }
-
-        // Procédure de suppression d'un évènement
-        // Retourne true si la suppression a reussi
-        public Boolean DeleteEvent(int id)
-        {
-             try
+            try
             {
                 connect.Open();
                 OleDbCommand update = new OleDbCommand("UPDATE Evenements set titreEvent = @titreEvent,
@@ -92,7 +85,13 @@ namespace ProbPotes.managers
             {
                 connect.Close();
             }
+        }
 
+        // Procédure de suppression d'un évènement
+        // Retourne true si la suppression a reussi
+        public Boolean DeleteEvent(int id)
+        {
+            return false;
         }
 
         // Fonction qui retourne la liste de tous les participants de la base :
