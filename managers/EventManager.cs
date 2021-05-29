@@ -90,7 +90,24 @@ namespace ProbPotes.managers
         // Retourne true si la suppression a reussi
         public Boolean DeleteEvent(int id)
         {
-            return false;
+            try
+            {
+                connect.Open();
+                OleDbCommand delete = new OleDbCommand(@"DELETE FROM Evenements WHERE codeEvent = @codeEvent;", connect);
+
+                delete.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventclass.code;
+                delete.ExecuteNonQuery();
+                
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                connect.Close();
+            }
         }
 
         // Fonction qui retourne la liste de tous les participants de la base :
