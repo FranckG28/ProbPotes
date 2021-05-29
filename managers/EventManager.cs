@@ -73,6 +73,9 @@ namespace ProbPotes.managers
                 update.Parameters.Add(new OleDbParameter("@soldeON", OleDbType.Boolean)).Value = eventclass.startDate < DateTime.Today &&                                 eventclass.endDate > DateTime.Today;
                 update.Parameters.Add(new OleDbParameter("@codeCreateur", OleDbType.Integer)).Value = eventclass.creatorCode;
 
+                //manque la partie mettre à jour les participants donc utiliser la liste des participants
+                //mais je sais vraiment pas comment m'y procéder
+
                 update.ExecuteNonQuery();
                 return true;
             }
@@ -90,6 +93,7 @@ namespace ProbPotes.managers
         // Retourne true si la suppression a reussi
         public Boolean DeleteEvent(EventClass eventclass)
         {
+            //ici j'ai modifié le paramètre au lieu de int id j'ai juste mis eventclass (je sais pas si le id correspond au code de l'event!)
             try
             {
                 connect.Open();
