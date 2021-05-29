@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.OleDb;
 
 namespace ProbPotes.managers
 {
+
     class EventManager
     {
+        //METTEZ VOTRE SOURCE DE BDD SINON CA MARCHE PAS !
+        OleDbConnection connect = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\hsche\source\repos\probpotes\bdEvents.mdb");
 
         // Un évènement inclus les dépenses et la liste des participant
         // --> A gérer lors de l'obtention, l'ajout et la suppression d'évènements
@@ -16,7 +20,38 @@ namespace ProbPotes.managers
         // Procédure d'ajout d'un évènement
         // Retourne true si l'ajout a réussi
         public Boolean AddEvent(EventClass eventclass) {
-            return false;
+            try
+            {
+                connect.Open();
+
+                OleDbCommand insertEvent = new OleDbCommand(@"INSERT INTO Evenements(codeEvent,titreEvent,dateDebut,dateFin,description,soldeON,codeCreateur)
+                                                       	VALUES(?,?,?,?,?,?,?)", connect);
+
+                //CHERCHE LE PROCHAIN CODE EVENT LIBRE
+                /*OleDbCommand cdCodeEvent = new OleDbCommand("SELECT codeEvent FROM Evenements ORDER BY codeEvent DESC", connect);
+                int codeEvent = Convert.ToInt32(cdCodeEvent.ExecuteScalar().ToString()) + 1;*/
+
+                insertEvent.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = eventclass.code;
+                insertEvent.Parameters.Add(new OleDbParameter("titreEvent", OleDbType.WChar)).Value = eventclass.title;
+                insertEvent.Parameters.Add(new OleDbParameter("dateDebut", OleDbType.Date)).Value = eventclass.startDate;
+                insertEvent.Parameters.Add(new OleDbParameter("dateFin", OleDbType.Date)).Value = eventclass.endDate;
+                insertEvent.Parameters.Add(new OleDbParameter("description", OleDbType.WChar)).Value = eventclass.description;
+                insertEvent.Parameters.Add(new OleDbParameter("soldeON", OleDbType.Boolean)).Value = eventclass.startDate < DateTime.Today && eventclass.endDate > DateTime.Today;
+                insertEvent.Parameters.Add(new OleDbParameter("codeCreateur", OleDbType.Integer)).Value = eventclass.creatorCode;
+
+                insertEvent.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                connect.Close();
+            }
+
+
         }
 
         // Procédure de mise à jour d'un évènement
