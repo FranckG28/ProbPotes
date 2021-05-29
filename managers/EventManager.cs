@@ -1,4 +1,4 @@
-﻿using ProbPotes.models;
+using ProbPotes.models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,7 +67,32 @@ namespace ProbPotes.managers
         // Retourne true si la suppression a reussi
         public Boolean DeleteEvent(int id)
         {
-            return false;
+             try
+            {
+                connect.Open();
+                OleDbCommand update = new OleDbCommand("UPDATE Evenements set titreEvent = @titreEvent,
+                    dateDebut =@dateDebut, dateFin=@dateFin ,soldeON = @soldeON, codeCreateur =@codeCreateur where codeEvent =@codeEvent ;");
+
+                update.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventclass.code;
+                update.Parameters.Add(new OleDbParameter("@titreEvent", OleDbType.WChar)).Value = eventclass.title;
+                update.Parameters.Add(new OleDbParameter("@dateDebut", OleDbType.Date)).Value = eventclass.startDate;
+                update.Parameters.Add(new OleDbParameter("@dateFin", OleDbType.Date)).Value = eventclass.endDate;
+                update.Parameters.Add(new OleDbParameter("@description", OleDbType.WChar)).Value = eventclass.description;
+                update.Parameters.Add(new OleDbParameter("@soldeON", OleDbType.Boolean)).Value = eventclass.startDate < DateTime.Today &&                                 eventclass.endDate > DateTime.Today;
+                update.Parameters.Add(new OleDbParameter("@codeCreateur", OleDbType.Integer)).Value = eventclass.creatorCode;
+
+                update.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                connect.Close();
+            }
+
         }
 
         // Fonction qui retourne la liste de tous les participants de la base :
