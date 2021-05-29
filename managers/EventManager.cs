@@ -88,7 +88,7 @@ namespace ProbPotes.managers
 
         // Procédure de suppression d'un évènement
         // Retourne true si la suppression a reussi
-        public Boolean DeleteEvent(int id)
+        public Boolean DeleteEvent(EventClass eventclass)
         {
             try
             {
