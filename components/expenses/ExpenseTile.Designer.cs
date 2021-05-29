@@ -35,15 +35,15 @@ namespace ProbPotes.components.expenses
             this.iconRecipients = new System.Windows.Forms.Label();
             this.txtRecipients = new System.Windows.Forms.Label();
             this.txtCreator = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnDelete = new ProbPotes.components.IconButton();
+            this.btnEditRecipients = new ProbPotes.components.IconButton();
             this.SuspendLayout();
             // 
             // txtPrice
             // 
-            this.txtPrice.Location = new System.Drawing.Point(710, 14);
+            this.txtPrice.Location = new System.Drawing.Point(714, 14);
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(139, 38);
+            this.txtPrice.Size = new System.Drawing.Size(139, 35);
             this.txtPrice.TabIndex = 0;
             this.txtPrice.Text = "label1";
             this.txtPrice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -52,7 +52,7 @@ namespace ProbPotes.components.expenses
             // 
             this.txtTitle.Location = new System.Drawing.Point(13, 13);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(654, 39);
+            this.txtTitle.Size = new System.Drawing.Size(654, 35);
             this.txtTitle.TabIndex = 0;
             this.txtTitle.Text = "label1";
             this.txtTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -93,31 +93,33 @@ namespace ProbPotes.components.expenses
             this.txtCreator.Text = "label1";
             this.txtCreator.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
-            // button2
+            // btnDelete
             // 
-            this.button2.Location = new System.Drawing.Point(898, 13);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(37, 39);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button1";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnDelete.AutoSize = true;
+            this.btnDelete.BackColor = System.Drawing.Color.Transparent;
+            this.btnDelete.Icon = 57607;
+            this.btnDelete.Location = new System.Drawing.Point(900, 14);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(35, 35);
+            this.btnDelete.TabIndex = 1;
             // 
-            // button1
+            // btnEditRecipients
             // 
-            this.button1.Location = new System.Drawing.Point(855, 13);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(37, 39);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnEditRecipients.AutoSize = true;
+            this.btnEditRecipients.BackColor = System.Drawing.Color.Transparent;
+            this.btnEditRecipients.Icon = 57729;
+            this.btnEditRecipients.Location = new System.Drawing.Point(859, 14);
+            this.btnEditRecipients.Name = "btnEditRecipients";
+            this.btnEditRecipients.Size = new System.Drawing.Size(35, 35);
+            this.btnEditRecipients.TabIndex = 2;
             // 
             // ExpenseTile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnEditRecipients);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.txtPrice);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.iconRecipients);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtRecipients);
@@ -126,6 +128,7 @@ namespace ProbPotes.components.expenses
             this.Name = "ExpenseTile";
             this.Size = new System.Drawing.Size(950, 120);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -136,7 +139,7 @@ namespace ProbPotes.components.expenses
         private System.Windows.Forms.Label iconRecipients;
         private System.Windows.Forms.Label txtRecipients;
         private System.Windows.Forms.Label txtCreator;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private IconButton btnDelete;
+        private IconButton btnEditRecipients;
     }
 }

@@ -44,13 +44,6 @@ namespace ProbPotes
             // Initialisation de la navigation :
             navigation = new NavigationController(panelView);
 
-            // Initialisation de la barre de navigation
-            navHome.Icon = 0xE80F;
-            navExpenses.Icon = 0xE719;
-            navEvents.Icon = 0xE787;
-            navParticipants.Icon = 0xE716;
-            navReports.Icon = 0xE9F9;
-
             // Ajout des pages
             navigation.AddNavigation(navHome, new HomePage(), Pages.Home, "Bonjour");
             navigation.AddNavigation(navExpenses, new ExpensesPage(), Pages.Expenses);

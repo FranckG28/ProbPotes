@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProbPotes.components;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -12,14 +13,14 @@ namespace ProbPotes.services
     public class HoverController
     {
 
-        protected List<HoverColor> colors;
-
+        public List<HoverColor> Colors;
+        
         protected bool isHover = false;
         protected bool isPressed = false;
 
         public HoverController(List<HoverColor> colors, UserControl parent)
         {
-            this.colors = colors;
+            this.Colors = colors;
 
             // Ajout des evènements de souris sur tous les controles :
             foreach(HoverColor color in colors)
@@ -45,7 +46,7 @@ namespace ProbPotes.services
             {
                 // Appel récursif de cette fonction pour tout ses enfants
                 foreach(Control ctrlChild in ctrl.Controls)
-                {
+                { 
                     AddEventsToChildrens(ctrlChild);
                 }
             }
@@ -53,9 +54,9 @@ namespace ProbPotes.services
 
         private void AddEvents(Control ctrl)
         {
-            ctrl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
             ctrl.MouseEnter += new System.EventHandler(this.MouseEnter);
             ctrl.MouseLeave += new System.EventHandler(this.MouseLeave);
+            ctrl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
             ctrl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUp);
         }
 
@@ -86,7 +87,7 @@ namespace ProbPotes.services
 
         public virtual void Refresh()
         {
-           foreach(HoverColor hoverColor in colors)
+           foreach(HoverColor hoverColor in Colors)
             {
                 if (isPressed)
                 {

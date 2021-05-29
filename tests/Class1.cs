@@ -54,7 +54,7 @@ namespace ProbPotes.models
                 return true;
             }catch(Exception ex)
             {
-                Console.WriteLine(ex);
+                Console.WriteLine(ex+"Test");
                 return false;
             }
 

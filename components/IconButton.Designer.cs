@@ -1,7 +1,7 @@
 ﻿
-namespace ProbPotes.pages
+namespace ProbPotes.components
 {
-    partial class ExpensesPage
+    partial class IconButton
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -29,32 +29,36 @@ namespace ProbPotes.pages
         /// </summary>
         private void InitializeComponent()
         {
-            this.expenseTile1 = new ProbPotes.components.expenses.ExpenseTile();
+            this.icon = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // expenseTile1
+            // icon
             // 
-            this.expenseTile1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))), ((int)(((byte)(255)))));
-            this.expenseTile1.Expense = null;
-            this.expenseTile1.Location = new System.Drawing.Point(0, 3);
-            this.expenseTile1.Name = "expenseTile1";
-            this.expenseTile1.Size = new System.Drawing.Size(950, 120);
-            this.expenseTile1.TabIndex = 0;
+            this.icon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.icon.Font = new System.Drawing.Font("Segoe MDL2 Assets", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.icon.Location = new System.Drawing.Point(0, 0);
+            this.icon.Name = "icon";
+            this.icon.Size = new System.Drawing.Size(35, 35);
+            this.icon.TabIndex = 0;
+            this.icon.Text = "label1";
+            this.icon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.icon.Click += new System.EventHandler(this.IconButton_Click);
             // 
-            // ExpensesPage
+            // IconButton
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.expenseTile1);
-            this.Name = "ExpensesPage";
-            this.Size = new System.Drawing.Size(950, 520);
+            this.AutoSize = true;
+            this.Controls.Add(this.icon);
+            this.Name = "IconButton";
+            this.Size = new System.Drawing.Size(35, 35);
+            this.Click += new System.EventHandler(this.IconButton_Click);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private components.expenses.ExpenseTile expenseTile1;
+        private System.Windows.Forms.Label icon;
     }
 }

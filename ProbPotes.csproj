@@ -89,6 +89,12 @@
     <Compile Include="components\home\StatTile.Designer.cs">
       <DependentUpon>StatTile.cs</DependentUpon>
     </Compile>
+    <Compile Include="components\IconButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="components\IconButton.Designer.cs">
+      <DependentUpon>IconButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="components\NavBarItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -113,6 +119,7 @@
     <Compile Include="models\EventClass.cs" />
     <Compile Include="models\Participant.cs" />
     <Compile Include="models\Expense.cs" />
+    <Compile Include="services\HoverColor.cs" />
     <Compile Include="services\NavigationTemplate.cs" />
     <Compile Include="pages\EventsPage.cs">
       <SubType>UserControl</SubType>
@@ -170,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="components\home\StatTile.resx">
       <DependentUpon>StatTile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="components\IconButton.resx">
+      <DependentUpon>IconButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="components\NavBarItem.resx">
       <DependentUpon>NavBarItem.cs</DependentUpon>
@@ -248,8 +258,6 @@
   <ItemGroup>
     <Folder Include="components\participants\" />
     <Folder Include="components\reports\" />
-    <Folder Include="managers\" />
-    <Folder Include="tests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
