@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProbPotes.models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,10 @@ namespace ProbPotes.pages
         public ParticipantsPage()
         {
             InitializeComponent();
+
+            Participant p = new Participant(20, "06 51 91 82 86", 2, 26.5, "AL HAMMUTI", "Sabrina", "sabrina080802@hotmail.fr");
+
+            participantTile1.Participant = p;
         }
     }
 }

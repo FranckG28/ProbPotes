@@ -14,6 +14,8 @@ namespace ProbPotes.services
     {
 
         public List<HoverColor> Colors;
+
+        private UserControl parent;
         
         protected bool isHover = false;
         protected bool isPressed = false;
@@ -21,6 +23,7 @@ namespace ProbPotes.services
         public HoverController(List<HoverColor> colors, UserControl parent)
         {
             this.Colors = colors;
+            this.parent = parent;
 
             // Ajout des evènements de souris sur tous les controles :
             foreach(HoverColor color in colors)
@@ -108,7 +111,9 @@ namespace ProbPotes.services
 
         private void MouseDown(object sender, MouseEventArgs e)
         {
-            Pressed = true;
+            if (!(((Control)sender).Parent is IconButton && !(parent is IconButton))) {
+                Pressed = true;
+            }
         }
 
         private void MouseEnter(object sender, EventArgs e)
@@ -123,7 +128,10 @@ namespace ProbPotes.services
 
         private void MouseUp(object sender, MouseEventArgs e)
         {
-            Pressed = false;
+            if (!(((Control)sender).Parent is IconButton && !(parent is IconButton)))
+            {
+                Pressed = false;
+            }
         }
 
         #endregion

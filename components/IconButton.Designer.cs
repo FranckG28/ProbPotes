@@ -35,7 +35,7 @@ namespace ProbPotes.components
             // icon
             // 
             this.icon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.icon.Font = new System.Drawing.Font("Segoe MDL2 Assets", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.icon.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.icon.Location = new System.Drawing.Point(0, 0);
             this.icon.Name = "icon";
             this.icon.Size = new System.Drawing.Size(35, 35);

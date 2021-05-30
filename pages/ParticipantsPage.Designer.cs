@@ -29,13 +29,24 @@ namespace ProbPotes.pages
         /// </summary>
         private void InitializeComponent()
         {
+            this.participantTile1 = new ProbPotes.components.participants.ParticipantTile();
             this.SuspendLayout();
+            // 
+            // participantTile1
+            // 
+            this.participantTile1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))), ((int)(((byte)(255)))));
+            this.participantTile1.Location = new System.Drawing.Point(3, 3);
+            this.participantTile1.Name = "participantTile1";
+            this.participantTile1.Participant = null;
+            this.participantTile1.Size = new System.Drawing.Size(222, 341);
+            this.participantTile1.TabIndex = 0;
             // 
             // ParticipantsPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DarkOrange;
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.participantTile1);
             this.Name = "ParticipantsPage";
             this.Size = new System.Drawing.Size(950, 520);
             this.ResumeLayout(false);
@@ -43,5 +54,7 @@ namespace ProbPotes.pages
         }
 
         #endregion
+
+        private components.participants.ParticipantTile participantTile1;
     }
 }
