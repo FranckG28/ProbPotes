@@ -10,14 +10,14 @@ namespace ProbPotes.models
     public class Participant
     {
         public int code;
-        public char name;
-        public char firstName;
-        public char phone;
+        public string name;
+        public string firstName;
+        public string phone;
         public int number;
         public double balance;
-        public char mailAddress;
+        public string mailAddress;
 
-        public Participant(int code, char phone, int number, double balance, char name,char firstName, char mailAddress)
+        public Participant(int code, string phone, int number, double balance, string name, string firstName, string mailAddress)
         {
             this.code= code;
             this.phone = phone;
@@ -31,12 +31,12 @@ namespace ProbPotes.models
         public Participant(DataRow row)
         {
             this.code = (int)row["codeParticipant"];
-            this.name = (char)row["nomPart"];
-            this.firstName = (char)row["prenomPart"];
-            this.phone = (char)row["mobile"];
+            this.name = (string)row["nomPart"];
+            this.firstName = (string)row["prenomPart"];
+            this.phone = (string)row["mobile"];
             this.number = (int)row["nbParts"];
             this.balance = (int)row["solde"];
-            this.mailAddress = (char)row["adresseMail"];
+            this.mailAddress = (string)row["adresseMail"];
         }
     }
 }
