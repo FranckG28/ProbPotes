@@ -18,12 +18,15 @@ namespace ProbPotes.models
         public String title;
         public Pages id;
 
-        public NavigationTemplate(NavBarItem nav, Control content, Pages id, String title)
+        public PageTemplate.AddButtonDelegate addAction;
+
+        public NavigationTemplate(NavBarItem nav, Control content, Pages id, String title, PageTemplate.AddButtonDelegate addAction)
         {
             this.content = content;
             this.navItem = nav;
             this.title = title;
             this.id = id;
+            this.addAction = addAction;
         }
 
         public PageTemplate GetPage()
@@ -32,6 +35,9 @@ namespace ProbPotes.models
             page.Title = title;
             page.Icon = navItem.Icon;
             page.Content = content;
+            if (addAction != null) {
+                page.AddButtonAction = addAction;
+            }
             navItem.Selected = true;
             return page;
         }

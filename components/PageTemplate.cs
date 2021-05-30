@@ -42,6 +42,16 @@ namespace ProbPotes.pages
             set => pageTitle.Icon = value;
         }
 
+        public delegate void AddButtonDelegate();
+
+        public AddButtonDelegate AddButtonAction
+        {
+            set
+            {
+                pageTitle.AddButtonAction = value;
+            }
+        }
+
         private void PageTemplate_Load(object sender, EventArgs e)
         {
             // Implémentation du déplacement de la fenêtre sur le title de la page

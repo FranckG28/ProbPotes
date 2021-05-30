@@ -1,5 +1,6 @@
 ﻿using ProbPotes.components;
 using ProbPotes.models;
+using ProbPotes.pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,13 +36,13 @@ namespace ProbPotes.services
             view = panel;
         }
 
-        public void AddNavigation(NavBarItem nav, Control page, Pages id, string title = "") 
+        public void AddNavigation(NavBarItem nav, Control page, Pages id, string title = "", PageTemplate.AddButtonDelegate addButtonAction = null) 
         {
             if (title == "")
             {
                 title = nav.Title;
             }
-            NavigationTemplate navTemplate = new NavigationTemplate(nav, page, id, title);
+            NavigationTemplate navTemplate = new NavigationTemplate(nav, page, id, title, addButtonAction);
             nav.page = navTemplate;
             nav.action = NavigateTo;
             pages.Add(navTemplate);
