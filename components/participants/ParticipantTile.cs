@@ -58,6 +58,7 @@ namespace ProbPotes.components.participants
                     txtFirstName.Text = participant.firstName;
                     txtName.Text = participant.name;
                     txtPhone.Text = participant.phone;
+                    txtMail.Text = participant.mailAddress;
                     txtShares.Text = participant.shares.ToString();
                     txtBalance.Text = participant.balance.ToString() + " €";
                 }

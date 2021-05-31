@@ -30,47 +30,44 @@ namespace ProbPotes.components
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProbPotesDialog));
-            this.closeBtn1 = new ProbPotes.components.CloseBtn();
             this.iconTitle = new System.Windows.Forms.Label();
             this.txtTitle = new System.Windows.Forms.Label();
             this.pnlContent = new System.Windows.Forms.Panel();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
+            this.closeBtn1 = new ProbPotes.components.CloseBtn();
             this.SuspendLayout();
-            // 
-            // closeBtn1
-            // 
-            this.closeBtn1.BackColor = System.Drawing.Color.Transparent;
-            this.closeBtn1.Location = new System.Drawing.Point(802, 1);
-            this.closeBtn1.Name = "closeBtn1";
-            this.closeBtn1.Size = new System.Drawing.Size(47, 30);
-            this.closeBtn1.TabIndex = 0;
-            this.closeBtn1.Load += new System.EventHandler(this.closeBtn1_Load);
             // 
             // iconTitle
             // 
             this.iconTitle.AutoSize = true;
             this.iconTitle.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconTitle.Location = new System.Drawing.Point(27, 22);
+            this.iconTitle.Location = new System.Drawing.Point(31, 28);
             this.iconTitle.Name = "iconTitle";
             this.iconTitle.Size = new System.Drawing.Size(47, 19);
             this.iconTitle.TabIndex = 1;
             this.iconTitle.Text = "label1";
+            this.iconTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
+            this.iconTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
+            this.iconTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseUp);
             // 
             // txtTitle
             // 
             this.txtTitle.AutoSize = true;
-            this.txtTitle.Location = new System.Drawing.Point(80, 30);
+            this.txtTitle.Location = new System.Drawing.Point(78, 25);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(28, 13);
             this.txtTitle.TabIndex = 2;
             this.txtTitle.Text = "Titre";
+            this.txtTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
+            this.txtTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
+            this.txtTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseUp);
             // 
             // pnlContent
             // 
-            this.pnlContent.Location = new System.Drawing.Point(30, 67);
+            this.pnlContent.Location = new System.Drawing.Point(31, 65);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(786, 378);
+            this.pnlContent.Size = new System.Drawing.Size(790, 380);
             this.pnlContent.TabIndex = 3;
             // 
             // btnBack
@@ -100,6 +97,14 @@ namespace ProbPotes.components
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
+            // closeBtn1
+            // 
+            this.closeBtn1.BackColor = System.Drawing.Color.Transparent;
+            this.closeBtn1.Location = new System.Drawing.Point(802, 1);
+            this.closeBtn1.Name = "closeBtn1";
+            this.closeBtn1.Size = new System.Drawing.Size(47, 30);
+            this.closeBtn1.TabIndex = 0;
+            // 
             // ProbPotesDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -122,6 +127,9 @@ namespace ProbPotes.components
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProbPotesDialog";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseUp);
             this.ResumeLayout(false);
             this.PerformLayout();
 

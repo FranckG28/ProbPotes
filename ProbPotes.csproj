@@ -131,6 +131,12 @@
     <Compile Include="models\EventClass.cs" />
     <Compile Include="models\Participant.cs" />
     <Compile Include="models\Expense.cs" />
+    <Compile Include="pages\participants\AddParticipantDialog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pages\participants\AddParticipantDialog.Designer.cs">
+      <DependentUpon>AddParticipantDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="services\HoverColor.cs" />
     <Compile Include="services\NavigationTemplate.cs" />
     <Compile Include="pages\EventsPage.cs">
@@ -157,10 +163,10 @@
     <Compile Include="components\PageTemplate.Designer.cs">
       <DependentUpon>PageTemplate.cs</DependentUpon>
     </Compile>
-    <Compile Include="pages\ParticipantsPage.cs">
+    <Compile Include="pages\participants\ParticipantsPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="pages\ParticipantsPage.Designer.cs">
+    <Compile Include="pages\participants\ParticipantsPage.Designer.cs">
       <DependentUpon>ParticipantsPage.cs</DependentUpon>
     </Compile>
     <Compile Include="pages\ReportsPage.cs">
@@ -220,7 +226,10 @@
     <EmbeddedResource Include="components\PageTemplate.resx">
       <DependentUpon>PageTemplate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\ParticipantsPage.resx">
+    <EmbeddedResource Include="pages\participants\AddParticipantDialog.resx">
+      <DependentUpon>AddParticipantDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\participants\ParticipantsPage.resx">
       <DependentUpon>ParticipantsPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\ReportsPage.resx">

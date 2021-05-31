@@ -15,6 +15,8 @@ using System.Runtime.InteropServices;
 using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 using ProbPotes.pages;
+using ProbPotes.components;
+using ProbPotes.pages.participants;
 
 namespace ProbPotes
 {
@@ -81,8 +83,11 @@ namespace ProbPotes
 
         public void OpenAddParticipant()
         {
-
+            ProbPotesDialog dialog = new ProbPotesDialog("Ajouter un participant", 59642, new AddParticipantDialog(), this);
+            DialogResult result = dialog.Open();
+            
         }
+
 
         #region Implémentation du déplacement du formulaire
         // dragging = true tant que l'utilisateur est en train de déplacer la fenêtre

@@ -31,12 +31,12 @@ namespace ProbPotes
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelNavbar = new System.Windows.Forms.Panel();
-            this.panelView = new System.Windows.Forms.Panel();
             this.navReports = new ProbPotes.components.NavBarItem();
             this.navParticipants = new ProbPotes.components.NavBarItem();
             this.navEvents = new ProbPotes.components.NavBarItem();
             this.navExpenses = new ProbPotes.components.NavBarItem();
             this.navHome = new ProbPotes.components.NavBarItem();
+            this.panelView = new System.Windows.Forms.Panel();
             this.closeBtn1 = new ProbPotes.components.CloseBtn();
             this.panelNavbar.SuspendLayout();
             this.SuspendLayout();
@@ -56,13 +56,6 @@ namespace ProbPotes
             this.panelNavbar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             this.panelNavbar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
             this.panelNavbar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseUp);
-            // 
-            // panelView
-            // 
-            this.panelView.Location = new System.Drawing.Point(232, 45);
-            this.panelView.Name = "panelView";
-            this.panelView.Size = new System.Drawing.Size(950, 610);
-            this.panelView.TabIndex = 7;
             // 
             // navReports
             // 
@@ -123,6 +116,13 @@ namespace ProbPotes
             this.navHome.Size = new System.Drawing.Size(170, 47);
             this.navHome.TabIndex = 7;
             this.navHome.Title = "Accueil";
+            // 
+            // panelView
+            // 
+            this.panelView.Location = new System.Drawing.Point(232, 45);
+            this.panelView.Name = "panelView";
+            this.panelView.Size = new System.Drawing.Size(950, 610);
+            this.panelView.TabIndex = 7;
             // 
             // closeBtn1
             // 
