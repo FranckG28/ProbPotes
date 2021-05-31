@@ -66,7 +66,7 @@ namespace ProbPotes
             // 
             // navReports
             // 
-            this.navReports.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.navReports.BackColor = System.Drawing.Color.Transparent;
             this.navReports.Cursor = System.Windows.Forms.Cursors.Default;
             this.navReports.Icon = 59897;
             this.navReports.Location = new System.Drawing.Point(0, 448);
@@ -141,6 +141,7 @@ namespace ProbPotes
             this.Controls.Add(this.panelView);
             this.Controls.Add(this.panelNavbar);
             this.Controls.Add(this.closeBtn1);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

@@ -73,9 +73,29 @@ namespace ProbPotes.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap doneIcon {
+            get {
+                object obj = ResourceManager.GetObject("doneIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Navbar_Background {
             get {
                 object obj = ResourceManager.GetObject("Navbar_Background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nextIcon {
+            get {
+                object obj = ResourceManager.GetObject("nextIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

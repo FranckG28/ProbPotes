@@ -46,11 +46,10 @@ namespace ProbPotes
 
             // Ajout des pages
             navigation.AddNavigation(navHome, new HomePage(), Pages.Home, "Bonjour");
-            navigation.AddNavigation(navExpenses, new ExpensesPage(), Pages.Expenses, "Vos dépenses", TestNav);
-            navigation.AddNavigation(navEvents, new EventsPage(), Pages.Events);
-            navigation.AddNavigation(navParticipants, new ParticipantsPage(), Pages.Participants);
+            navigation.AddNavigation(navExpenses, new ExpensesPage(), Pages.Expenses, "Vos dépenses", GoToHome);
+            navigation.AddNavigation(navEvents, new EventsPage(), Pages.Events, "Vos évènements", OpenAddEvent);
+            navigation.AddNavigation(navParticipants, new ParticipantsPage(), Pages.Participants, "Vos participants", OpenAddParticipant);
             navigation.AddNavigation(navReports, new ReportsPage(), Pages.Reports);
-
         }
 
         public void CloseApp() 
@@ -65,9 +64,24 @@ namespace ProbPotes
             ctrl.MouseMove += new System.Windows.Forms.MouseEventHandler(MainForm_MouseMove);
         }
 
-        public void TestNav()
+        public void GoToHome()
         {
-            MessageBox.Show("Tet");
+            navigation.NavigateTo(Pages.Home);
+        }
+
+        public void OpenAddExpense()
+        {
+
+        }
+
+        public void OpenAddEvent()
+        {
+
+        }
+
+        public void OpenAddParticipant()
+        {
+
         }
 
         #region Implémentation du déplacement du formulaire

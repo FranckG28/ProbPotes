@@ -113,6 +113,12 @@
     <Compile Include="components\participants\ParticipantTile.Designer.cs">
       <DependentUpon>ParticipantTile.cs</DependentUpon>
     </Compile>
+    <Compile Include="components\dialog\ProbPotesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="components\dialog\ProbPotesDialog.Designer.cs">
+      <DependentUpon>ProbPotesDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,6 +202,9 @@
     <EmbeddedResource Include="components\participants\ParticipantTile.resx">
       <DependentUpon>ParticipantTile.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="components\dialog\ProbPotesDialog.resx">
+      <DependentUpon>ProbPotesDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -247,7 +256,9 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="images\addIcon.png" />
+    <Content Include="images\doneIcon.png" />
     <Content Include="images\Navbar Background.png" />
+    <Content Include="images\nextIcon.png" />
     <Content Include="images\person.png" />
     <Content Include="probpotes.ico" />
   </ItemGroup>
