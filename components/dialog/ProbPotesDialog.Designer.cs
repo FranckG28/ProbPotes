@@ -100,7 +100,7 @@ namespace ProbPotes.components
             // closeBtn1
             // 
             this.closeBtn1.BackColor = System.Drawing.Color.Transparent;
-            this.closeBtn1.Location = new System.Drawing.Point(802, 1);
+            this.closeBtn1.Location = new System.Drawing.Point(803, 0);
             this.closeBtn1.Name = "closeBtn1";
             this.closeBtn1.Size = new System.Drawing.Size(47, 30);
             this.closeBtn1.TabIndex = 0;

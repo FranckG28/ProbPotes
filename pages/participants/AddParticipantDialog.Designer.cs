@@ -31,24 +31,26 @@ namespace ProbPotes.pages.participants
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txtTitle1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.iconName = new System.Windows.Forms.Label();
-            this.boxFirstName = new System.Windows.Forms.TextBox();
-            this.lblFirstName = new System.Windows.Forms.Label();
-            this.lblName = new System.Windows.Forms.Label();
-            this.boxName = new System.Windows.Forms.TextBox();
-            this.iconPhone = new System.Windows.Forms.Label();
-            this.lblPhone = new System.Windows.Forms.Label();
-            this.boxPhone = new System.Windows.Forms.TextBox();
-            this.lblMail = new System.Windows.Forms.Label();
-            this.boxMail = new System.Windows.Forms.TextBox();
-            this.iconMail = new System.Windows.Forms.Label();
+            this.lblEuro = new System.Windows.Forms.Label();
             this.lblBalance = new System.Windows.Forms.Label();
             this.boxBalance = new System.Windows.Forms.TextBox();
             this.iconBalance = new System.Windows.Forms.Label();
-            this.lblEuro = new System.Windows.Forms.Label();
+            this.lblMail = new System.Windows.Forms.Label();
+            this.boxMail = new System.Windows.Forms.TextBox();
+            this.iconMail = new System.Windows.Forms.Label();
+            this.lblPhone = new System.Windows.Forms.Label();
+            this.boxPhone = new System.Windows.Forms.TextBox();
+            this.iconPhone = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.boxName = new System.Windows.Forms.TextBox();
+            this.lblFirstName = new System.Windows.Forms.Label();
+            this.boxFirstName = new System.Windows.Forms.TextBox();
+            this.iconName = new System.Windows.Forms.Label();
+            this.txtTitle1 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.txtTitleSuccess = new System.Windows.Forms.Label();
+            this.iconSuccessful = new System.Windows.Forms.Label();
+            this.txtSuccessfulDescription = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -91,132 +93,14 @@ namespace ProbPotes.pages.participants
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // lblEuro
             // 
-            this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(782, 354);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // txtTitle1
-            // 
-            this.txtTitle1.AutoSize = true;
-            this.txtTitle1.Location = new System.Drawing.Point(6, 12);
-            this.txtTitle1.Name = "txtTitle1";
-            this.txtTitle1.Size = new System.Drawing.Size(144, 13);
-            this.txtTitle1.TabIndex = 0;
-            this.txtTitle1.Text = "Informations sur le participant";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(360, 132);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "label2";
-            // 
-            // iconName
-            // 
-            this.iconName.AutoSize = true;
-            this.iconName.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconName.Location = new System.Drawing.Point(6, 84);
-            this.iconName.Name = "iconName";
-            this.iconName.Size = new System.Drawing.Size(47, 19);
-            this.iconName.TabIndex = 1;
-            this.iconName.Text = "label1";
-            // 
-            // boxFirstName
-            // 
-            this.boxFirstName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.boxFirstName.Location = new System.Drawing.Point(56, 85);
-            this.boxFirstName.Name = "boxFirstName";
-            this.boxFirstName.Size = new System.Drawing.Size(346, 20);
-            this.boxFirstName.TabIndex = 2;
-            // 
-            // lblFirstName
-            // 
-            this.lblFirstName.AutoSize = true;
-            this.lblFirstName.Location = new System.Drawing.Point(53, 62);
-            this.lblFirstName.Name = "lblFirstName";
-            this.lblFirstName.Size = new System.Drawing.Size(43, 13);
-            this.lblFirstName.TabIndex = 3;
-            this.lblFirstName.Text = "Prénom";
-            // 
-            // lblName
-            // 
-            this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(410, 62);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(29, 13);
-            this.lblName.TabIndex = 5;
-            this.lblName.Text = "Nom";
-            // 
-            // boxName
-            // 
-            this.boxName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.boxName.Location = new System.Drawing.Point(413, 85);
-            this.boxName.Name = "boxName";
-            this.boxName.Size = new System.Drawing.Size(346, 20);
-            this.boxName.TabIndex = 4;
-            // 
-            // iconPhone
-            // 
-            this.iconPhone.AutoSize = true;
-            this.iconPhone.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconPhone.Location = new System.Drawing.Point(6, 159);
-            this.iconPhone.Name = "iconPhone";
-            this.iconPhone.Size = new System.Drawing.Size(47, 19);
-            this.iconPhone.TabIndex = 6;
-            this.iconPhone.Text = "label1";
-            // 
-            // lblPhone
-            // 
-            this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(53, 138);
-            this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(58, 13);
-            this.lblPhone.TabIndex = 8;
-            this.lblPhone.Text = "Téléphone";
-            // 
-            // boxPhone
-            // 
-            this.boxPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.boxPhone.Location = new System.Drawing.Point(56, 161);
-            this.boxPhone.Name = "boxPhone";
-            this.boxPhone.Size = new System.Drawing.Size(703, 20);
-            this.boxPhone.TabIndex = 7;
-            // 
-            // lblMail
-            // 
-            this.lblMail.AutoSize = true;
-            this.lblMail.Location = new System.Drawing.Point(53, 211);
-            this.lblMail.Name = "lblMail";
-            this.lblMail.Size = new System.Drawing.Size(67, 13);
-            this.lblMail.TabIndex = 11;
-            this.lblMail.Text = "Adresse Mail";
-            // 
-            // boxMail
-            // 
-            this.boxMail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.boxMail.Location = new System.Drawing.Point(56, 234);
-            this.boxMail.Name = "boxMail";
-            this.boxMail.Size = new System.Drawing.Size(703, 20);
-            this.boxMail.TabIndex = 10;
-            // 
-            // iconMail
-            // 
-            this.iconMail.AutoSize = true;
-            this.iconMail.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconMail.Location = new System.Drawing.Point(6, 232);
-            this.iconMail.Name = "iconMail";
-            this.iconMail.Size = new System.Drawing.Size(47, 19);
-            this.iconMail.TabIndex = 9;
-            this.iconMail.Text = "label1";
+            this.lblEuro.AutoSize = true;
+            this.lblEuro.Location = new System.Drawing.Point(179, 314);
+            this.lblEuro.Name = "lblEuro";
+            this.lblEuro.Size = new System.Drawing.Size(13, 13);
+            this.lblEuro.TabIndex = 15;
+            this.lblEuro.Text = "€";
             // 
             // lblBalance
             // 
@@ -245,14 +129,153 @@ namespace ProbPotes.pages.participants
             this.iconBalance.TabIndex = 12;
             this.iconBalance.Text = "label1";
             // 
-            // lblEuro
+            // lblMail
             // 
-            this.lblEuro.AutoSize = true;
-            this.lblEuro.Location = new System.Drawing.Point(179, 314);
-            this.lblEuro.Name = "lblEuro";
-            this.lblEuro.Size = new System.Drawing.Size(13, 13);
-            this.lblEuro.TabIndex = 15;
-            this.lblEuro.Text = "€";
+            this.lblMail.AutoSize = true;
+            this.lblMail.Location = new System.Drawing.Point(53, 211);
+            this.lblMail.Name = "lblMail";
+            this.lblMail.Size = new System.Drawing.Size(67, 13);
+            this.lblMail.TabIndex = 11;
+            this.lblMail.Text = "Adresse Mail";
+            // 
+            // boxMail
+            // 
+            this.boxMail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.boxMail.Location = new System.Drawing.Point(56, 234);
+            this.boxMail.Name = "boxMail";
+            this.boxMail.Size = new System.Drawing.Size(703, 20);
+            this.boxMail.TabIndex = 10;
+            // 
+            // iconMail
+            // 
+            this.iconMail.AutoSize = true;
+            this.iconMail.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconMail.Location = new System.Drawing.Point(6, 232);
+            this.iconMail.Name = "iconMail";
+            this.iconMail.Size = new System.Drawing.Size(47, 19);
+            this.iconMail.TabIndex = 9;
+            this.iconMail.Text = "label1";
+            // 
+            // lblPhone
+            // 
+            this.lblPhone.AutoSize = true;
+            this.lblPhone.Location = new System.Drawing.Point(53, 138);
+            this.lblPhone.Name = "lblPhone";
+            this.lblPhone.Size = new System.Drawing.Size(58, 13);
+            this.lblPhone.TabIndex = 8;
+            this.lblPhone.Text = "Téléphone";
+            // 
+            // boxPhone
+            // 
+            this.boxPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.boxPhone.Location = new System.Drawing.Point(56, 161);
+            this.boxPhone.Name = "boxPhone";
+            this.boxPhone.Size = new System.Drawing.Size(703, 20);
+            this.boxPhone.TabIndex = 7;
+            // 
+            // iconPhone
+            // 
+            this.iconPhone.AutoSize = true;
+            this.iconPhone.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconPhone.Location = new System.Drawing.Point(6, 159);
+            this.iconPhone.Name = "iconPhone";
+            this.iconPhone.Size = new System.Drawing.Size(47, 19);
+            this.iconPhone.TabIndex = 6;
+            this.iconPhone.Text = "label1";
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(410, 62);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(29, 13);
+            this.lblName.TabIndex = 5;
+            this.lblName.Text = "Nom";
+            // 
+            // boxName
+            // 
+            this.boxName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.boxName.Location = new System.Drawing.Point(413, 85);
+            this.boxName.Name = "boxName";
+            this.boxName.Size = new System.Drawing.Size(346, 20);
+            this.boxName.TabIndex = 4;
+            // 
+            // lblFirstName
+            // 
+            this.lblFirstName.AutoSize = true;
+            this.lblFirstName.Location = new System.Drawing.Point(53, 62);
+            this.lblFirstName.Name = "lblFirstName";
+            this.lblFirstName.Size = new System.Drawing.Size(43, 13);
+            this.lblFirstName.TabIndex = 3;
+            this.lblFirstName.Text = "Prénom";
+            // 
+            // boxFirstName
+            // 
+            this.boxFirstName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.boxFirstName.Location = new System.Drawing.Point(56, 85);
+            this.boxFirstName.Name = "boxFirstName";
+            this.boxFirstName.Size = new System.Drawing.Size(346, 20);
+            this.boxFirstName.TabIndex = 2;
+            // 
+            // iconName
+            // 
+            this.iconName.AutoSize = true;
+            this.iconName.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconName.Location = new System.Drawing.Point(6, 84);
+            this.iconName.Name = "iconName";
+            this.iconName.Size = new System.Drawing.Size(47, 19);
+            this.iconName.TabIndex = 1;
+            this.iconName.Text = "label1";
+            // 
+            // txtTitle1
+            // 
+            this.txtTitle1.AutoSize = true;
+            this.txtTitle1.Location = new System.Drawing.Point(6, 12);
+            this.txtTitle1.Name = "txtTitle1";
+            this.txtTitle1.Size = new System.Drawing.Size(144, 13);
+            this.txtTitle1.TabIndex = 0;
+            this.txtTitle1.Text = "Informations sur le participant";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.txtSuccessfulDescription);
+            this.tabPage2.Controls.Add(this.iconSuccessful);
+            this.tabPage2.Controls.Add(this.txtTitleSuccess);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(782, 354);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // txtTitleSuccess
+            // 
+            this.txtTitleSuccess.Location = new System.Drawing.Point(3, 200);
+            this.txtTitleSuccess.Name = "txtTitleSuccess";
+            this.txtTitleSuccess.Size = new System.Drawing.Size(773, 43);
+            this.txtTitleSuccess.TabIndex = 0;
+            this.txtTitleSuccess.Text = "Participant ajouté";
+            this.txtTitleSuccess.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // iconSuccessful
+            // 
+            this.iconSuccessful.Font = new System.Drawing.Font("Segoe MDL2 Assets", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconSuccessful.Location = new System.Drawing.Point(3, 52);
+            this.iconSuccessful.Name = "iconSuccessful";
+            this.iconSuccessful.Size = new System.Drawing.Size(776, 148);
+            this.iconSuccessful.TabIndex = 2;
+            this.iconSuccessful.Text = "label1";
+            this.iconSuccessful.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtSuccessfulDescription
+            // 
+            this.txtSuccessfulDescription.Location = new System.Drawing.Point(6, 243);
+            this.txtSuccessfulDescription.Name = "txtSuccessfulDescription";
+            this.txtSuccessfulDescription.Size = new System.Drawing.Size(773, 43);
+            this.txtSuccessfulDescription.TabIndex = 3;
+            this.txtSuccessfulDescription.Text = "Participant ajouté";
+            this.txtSuccessfulDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AddParticipantDialog
             // 
@@ -265,7 +288,6 @@ namespace ProbPotes.pages.participants
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -276,7 +298,7 @@ namespace ProbPotes.pages.participants
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label txtTitle1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label txtTitleSuccess;
         private System.Windows.Forms.TextBox boxMail;
         private System.Windows.Forms.Label iconMail;
         private System.Windows.Forms.TextBox boxPhone;
@@ -292,5 +314,7 @@ namespace ProbPotes.pages.participants
         private System.Windows.Forms.Label lblFirstName;
         private System.Windows.Forms.TextBox boxBalance;
         private System.Windows.Forms.Label lblEuro;
+        private System.Windows.Forms.Label iconSuccessful;
+        private System.Windows.Forms.Label txtSuccessfulDescription;
     }
 }

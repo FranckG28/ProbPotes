@@ -25,9 +25,13 @@ namespace ProbPotes.pages.participants
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
             // Polices et couleurs
-            ProbPotesDialog.ApplyTitleStyle(txtTitle1);
+            List<Label> titles = new List<Label>() { txtTitle1, txtTitleSuccess };
+            foreach (Label lbl in titles)
+            {
+                ProbPotesDialog.ApplyTitleStyle(lbl);
+            }
 
-            List<Label> labels = new List<Label>() { lblBalance, lblFirstName, lblMail,lblName, lblPhone, lblEuro};
+            List<Label> labels = new List<Label>() { lblBalance, lblFirstName, lblMail,lblName, lblPhone, lblEuro, txtSuccessfulDescription};
             foreach(Label lbl in labels)
             {
                 ProbPotesDialog.ApplyLabelStyle(lbl);
@@ -44,6 +48,10 @@ namespace ProbPotes.pages.participants
             iconMail.Text = char.ConvertFromUtf32(0xE715);
             iconName.Text = char.ConvertFromUtf32(0xE77B);
             iconPhone.Text = char.ConvertFromUtf32(0xE717);
+            iconSuccessful.Text = char.ConvertFromUtf32(0xE8FA);
+
+            // Couleurs 
+            iconSuccessful.ForeColor = Colors.blue;
 
         }
 
