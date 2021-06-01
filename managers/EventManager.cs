@@ -171,7 +171,53 @@ namespace ProbPotes.managers
         // Fonction qui retourne l'évènement correspondant au numéro demandé dans la base :
         public EventClass GetEvent(int code)
         {
-            return null;
+            connect.Open();
+
+            OleDbCommand cdGetEvent = new OleDbCommand("SELECT * FROM Evenements WHERE codeEvent='"+code+"'", connect);
+
+            OleDbDataReader dr = cdGetEvent.ExecuteReader();
+
+            dr.Read();
+
+                DateTime debut = new DateTime((long)dr[2]);
+                DateTime fin = new DateTime((long)dr[3]);
+
+
+                //RECHERCHE LES PARTICIPANTS A L'EVENEMENT
+                OleDbCommand cdGuest = new OleDbCommand("SELECT codePart WHERE codeEvent='" + dr[0].ToString() + "'", connect);
+                OleDbDataReader drGuest = cdGuest.ExecuteReader();
+                List<int> guest = new List<int>();
+
+                while (drGuest.Read())
+                {
+                    guest.Add(Convert.ToInt32(drGuest[0].ToString()));
+                }
+
+                //RECHERCHE DES DEPENSES DE L'EVENEMENT
+                OleDbCommand cdExpense = new OleDbCommand("SELECT * FROM Depenses WHERE codeEvent='" + dr[0].ToString() + "'", connect);
+                OleDbDataReader drExpense = cdExpense.ExecuteReader();
+                List<Expense> rowExpense = new List<Expense>();
+
+                while (drExpense.Read())
+                {
+                    List<int> listRecipients = new List<int>();
+                    OleDbCommand cdRecipients = new OleDbCommand("SELECT codePart FROM Beneficiaires WHERE codePart='" + drExpense[0].ToString() + "'", connect);
+                    OleDbDataReader drRecipients = cdRecipients.ExecuteReader();
+
+                    while (drRecipients.Read())
+                    {
+                        listRecipients.Add(Convert.ToInt32(drRecipients[0].ToString()));
+                    }
+
+                    DateTime debutExpense = new DateTime((long)drExpense[3]);
+                    rowExpense.Add(new Expense(Convert.ToInt32(drExpense[0].ToString()), Convert.ToInt32(dr[0].ToString()), drExpense[1].ToString(), (decimal)drExpense[2], listRecipients, Convert.ToInt32(drExpense[6].ToString()), debutExpense, drExpense[4].ToString()));
+                }
+
+                EventClass rowRes=new EventClass(Convert.ToInt32(dr[0].ToString()), dr[1].ToString(), Convert.ToInt32(dr[6].ToString()), (Boolean)dr[5], dr[4].ToString(), debut, fin, guest, rowExpense);
+            connect.Close();
+
+            return rowRes;
+
         }
 
     }
