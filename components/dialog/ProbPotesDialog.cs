@@ -222,5 +222,32 @@ namespace ProbPotes.components
         {
             DialogResult = DialogResult.Cancel;
         }
+
+
+        public static Font TitleFont = new Font(Fonts.bold, 22);
+
+        public static void ApplyTitleStyle(Label lbl)
+        {
+            lbl.Font = TitleFont;
+            lbl.ForeColor = Colors.blue;
+        }
+
+        public static Font LabelFont = new Font(Fonts.regular, 11);
+
+        public static void ApplyLabelStyle(Label lbl)
+        {
+            lbl.Font = LabelFont;
+            lbl.ForeColor = Colors.black;
+        }
+
+        public static Font TextBoxFont = new Font(Fonts.book, 13);
+
+        public static void ApplyTextBoxStyle(TextBox txtBox)
+        {
+            txtBox.Font = TextBoxFont;
+            txtBox.ForeColor = Colors.blue;
+        }
+
+
     }
 }
