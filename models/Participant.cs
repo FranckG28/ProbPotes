@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,7 +36,7 @@ namespace ProbPotes.models
             this.firstName = (string)row["prenomPart"];
             this.phone = (string)row["mobile"];
             this.shares = (int)row["nbParts"];
-            this.balance = (int)row["solde"];
+            if (row["solde"].ToString() != "") this.balance = (double)row["solde"];
             this.mailAddress = (string)row["adresseMail"];
         }
     }

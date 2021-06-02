@@ -24,6 +24,20 @@ namespace ProbPotes.components
         {
             InitializeComponent();
 
+            init();
+        }
+
+        public EventPreview(EventClass eventClass)
+        {
+            InitializeComponent();
+
+            init();
+
+            this.EventClass = eventClass;
+        }
+
+        private void init()
+        {
             // Initialisation des icones :
             iconParticipants.Text = char.ConvertFromUtf32(0xEBDA);
 
@@ -43,7 +57,7 @@ namespace ProbPotes.components
             hover = new HoverController(new List<HoverColor>() { hoverBg, hoverForeBlack, hoverForeBlue }, this);
 
             // Ajout de l'évènement Click à tout les controles
-            foreach(Control ctrl in Controls)
+            foreach (Control ctrl in Controls)
             {
                 ctrl.Click += new System.EventHandler(EventPreview_Click);
             }

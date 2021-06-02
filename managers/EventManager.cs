@@ -5,15 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.OleDb;
+using System.Windows.Forms;
+using System.Data;
 
 namespace ProbPotes.managers
 {
 
     class EventManager
     {
-        //METTEZ VOTRE SOURCE DE BDD SINON CA MARCHE PAS !
-        OleDbConnection connect = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\hsche\source\repos\probpotes\bdEvents.mdb");
-
+        
         // Un évènement inclus les dépenses et la liste des participant
         // --> A gérer lors de l'obtention, l'ajout et la suppression d'évènements
 
@@ -22,13 +22,13 @@ namespace ProbPotes.managers
         public Boolean AddEvent(EventClass eventclass) {
             try
             {
-                connect.Open();
+                DatabaseManager.db.Open();
 
                 OleDbCommand insertEvent = new OleDbCommand(@"INSERT INTO Evenements(codeEvent,titreEvent,dateDebut,dateFin,description,soldeON,codeCreateur)
-                                                       	VALUES(?,?,?,?,?,?,?)", connect);
+                                                       	VALUES(?,?,?,?,?,?,?)", DatabaseManager.db);
 
                 //CHERCHE LE PROCHAIN CODE EVENT LIBRE
-                /*OleDbCommand cdCodeEvent = new OleDbCommand("SELECT codeEvent FROM Evenements ORDER BY codeEvent DESC", connect);
+                /*OleDbCommand cdCodeEvent = new OleDbCommand("SELECT codeEvent FROM Evenements ORDER BY codeEvent DESC", DatabaseManager.db);
                 int codeEvent = Convert.ToInt32(cdCodeEvent.ExecuteScalar().ToString()) + 1;*/
 
                 insertEvent.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = eventclass.code;
@@ -48,7 +48,7 @@ namespace ProbPotes.managers
             }
             finally
             {
-                connect.Close();
+                DatabaseManager.db.Close();
             }
 
 
@@ -62,8 +62,8 @@ namespace ProbPotes.managers
         {
             try
             {
-                connect.Open();
-                OleDbCommand update = new OleDbCommand("UPDATE Evenements set titreEvent = @titreEvent,dateDebut =@dateDebut, dateFin=@dateFin ,soldeON = @soldeON, codeCreateur =@codeCreateur where codeEvent =@codeEvent ;", connect);
+                DatabaseManager.db.Open();
+                OleDbCommand update = new OleDbCommand("UPDATE Evenements set titreEvent = @titreEvent,dateDebut =@dateDebut, dateFin=@dateFin ,soldeON = @soldeON, codeCreateur =@codeCreateur where codeEvent =@codeEvent ;", DatabaseManager.db);
 
                 update.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventclass.code;
                 update.Parameters.Add(new OleDbParameter("@titreEvent", OleDbType.WChar)).Value = eventclass.title;
@@ -85,7 +85,7 @@ namespace ProbPotes.managers
             }
             finally
             {
-                connect.Close();
+                DatabaseManager.db.Close();
             }
         }
 
@@ -96,8 +96,8 @@ namespace ProbPotes.managers
             //ici j'ai modifié le paramètre au lieu de int id j'ai juste mis eventclass (je sais pas si le id correspond au code de l'event!)
             try
             {
-                connect.Open();
-                OleDbCommand delete = new OleDbCommand(@"DELETE FROM Evenements WHERE codeEvent = @codeEvent;", connect);
+                DatabaseManager.db.Open();
+                OleDbCommand delete = new OleDbCommand(@"DELETE FROM Evenements WHERE codeEvent = @codeEvent;", DatabaseManager.db);
 
                 delete.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventclass.code;
                 delete.ExecuteNonQuery();
@@ -110,7 +110,7 @@ namespace ProbPotes.managers
             }
             finally
             {
-                connect.Close();
+                DatabaseManager.db.Close();
             }
         }
 
@@ -119,20 +119,20 @@ namespace ProbPotes.managers
         {
             List<EventClass> res = new List<EventClass>();
 
-                connect.Open();
+                DatabaseManager.db.Open();
 
-                OleDbCommand cdGetEvent = new OleDbCommand("SELECT * FROM Evenements", connect);
+                OleDbCommand cdGetEvent = new OleDbCommand("SELECT * FROM Evenements", DatabaseManager.db);
 
                 OleDbDataReader dr = cdGetEvent.ExecuteReader();
 
                 while (dr.Read())
                 {
-                DateTime debut = new DateTime((long)dr[2]);
-                DateTime fin = new DateTime((long)dr[3]);
+                DateTime debut = (DateTime)dr[2];
+                DateTime fin = (DateTime)dr[3];
 
 
                 //RECHERCHE LES PARTICIPANTS A L'EVENEMENT
-                OleDbCommand cdGuest = new OleDbCommand("SELECT codePart WHERE codeEvent='"+dr[0].ToString()+"'", connect);
+                OleDbCommand cdGuest = new OleDbCommand("SELECT codePart FROM Invites WHERE codeEvent="+dr[0].ToString(), DatabaseManager.db);
                 OleDbDataReader drGuest = cdGuest.ExecuteReader();
                 List<int> guest = new List<int>();
 
@@ -142,14 +142,14 @@ namespace ProbPotes.managers
                 }
 
                 //RECHERCHE DES DEPENSES DE L'EVENEMENT
-                OleDbCommand cdExpense = new OleDbCommand("SELECT * FROM Depenses WHERE codeEvent='"+dr[0].ToString()+"'", connect);
+                OleDbCommand cdExpense = new OleDbCommand("SELECT * FROM Depenses WHERE codeEvent="+dr[0].ToString(), DatabaseManager.db);
                 OleDbDataReader drExpense = cdExpense.ExecuteReader();
                 List<Expense> rowExpense = new List<Expense>();
 
                 while (drExpense.Read())
                 {
                     List<int> listRecipients = new List<int>();
-                    OleDbCommand cdRecipients = new OleDbCommand("SELECT codePart FROM Beneficiaires WHERE codePart='"+drExpense[0].ToString()+"'", connect);
+                    OleDbCommand cdRecipients = new OleDbCommand("SELECT codePart FROM Beneficiaires WHERE codePart="+drExpense[0].ToString(), DatabaseManager.db);
                     OleDbDataReader drRecipients = cdRecipients.ExecuteReader();
 
                     while (drRecipients.Read())
@@ -157,13 +157,13 @@ namespace ProbPotes.managers
                         listRecipients.Add(Convert.ToInt32(drRecipients[0].ToString()));
                     }
 
-                    DateTime debutExpense = new DateTime((long)drExpense[3]);
+                    DateTime debutExpense = (DateTime)drExpense[3];
                     rowExpense.Add(new Expense(Convert.ToInt32(drExpense[0].ToString()), Convert.ToInt32(dr[0].ToString()),drExpense[1].ToString(),(decimal)drExpense[2],listRecipients,Convert.ToInt32(drExpense[6].ToString()),debutExpense,drExpense[4].ToString()));
                 }
 
                 res.Add(new EventClass(Convert.ToInt32(dr[0].ToString()),dr[1].ToString(), Convert.ToInt32(dr[6].ToString()),(Boolean)dr[5],dr[4].ToString(),debut,fin,guest,rowExpense));
                 }
-            connect.Close();
+            DatabaseManager.db.Close();
 
             return res;
         }
@@ -171,9 +171,9 @@ namespace ProbPotes.managers
         // Fonction qui retourne l'évènement correspondant au numéro demandé dans la base :
         public EventClass GetEvent(int code)
         {
-            connect.Open();
+            DatabaseManager.db.Open();
 
-            OleDbCommand cdGetEvent = new OleDbCommand("SELECT * FROM Evenements WHERE codeEvent='"+code+"'", connect);
+            OleDbCommand cdGetEvent = new OleDbCommand("SELECT * FROM Evenements WHERE codeEvent="+code, DatabaseManager.db);
 
             OleDbDataReader dr = cdGetEvent.ExecuteReader();
 
@@ -184,7 +184,7 @@ namespace ProbPotes.managers
 
 
                 //RECHERCHE LES PARTICIPANTS A L'EVENEMENT
-                OleDbCommand cdGuest = new OleDbCommand("SELECT codePart WHERE codeEvent='" + dr[0].ToString() + "'", connect);
+                OleDbCommand cdGuest = new OleDbCommand("SELECT codePart WHERE codeEvent=" + dr[0].ToString(), DatabaseManager.db);
                 OleDbDataReader drGuest = cdGuest.ExecuteReader();
                 List<int> guest = new List<int>();
 
@@ -194,14 +194,14 @@ namespace ProbPotes.managers
                 }
 
                 //RECHERCHE DES DEPENSES DE L'EVENEMENT
-                OleDbCommand cdExpense = new OleDbCommand("SELECT * FROM Depenses WHERE codeEvent='" + dr[0].ToString() + "'", connect);
+                OleDbCommand cdExpense = new OleDbCommand("SELECT * FROM Depenses WHERE codeEvent=" + dr[0].ToString(), DatabaseManager.db);
                 OleDbDataReader drExpense = cdExpense.ExecuteReader();
                 List<Expense> rowExpense = new List<Expense>();
 
                 while (drExpense.Read())
                 {
                     List<int> listRecipients = new List<int>();
-                    OleDbCommand cdRecipients = new OleDbCommand("SELECT codePart FROM Beneficiaires WHERE codePart='" + drExpense[0].ToString() + "'", connect);
+                    OleDbCommand cdRecipients = new OleDbCommand("SELECT codePart FROM Beneficiaires WHERE codePart=" + drExpense[0].ToString(), DatabaseManager.db);
                     OleDbDataReader drRecipients = cdRecipients.ExecuteReader();
 
                     while (drRecipients.Read())
@@ -214,9 +214,40 @@ namespace ProbPotes.managers
                 }
 
                 EventClass rowRes=new EventClass(Convert.ToInt32(dr[0].ToString()), dr[1].ToString(), Convert.ToInt32(dr[6].ToString()), (Boolean)dr[5], dr[4].ToString(), debut, fin, guest, rowExpense);
-            connect.Close();
+            DatabaseManager.db.Close();
 
             return rowRes;
+
+        }
+
+
+        public EventNavigation getEventNavigator()
+        {
+
+            DataSet data = new DataSet();
+
+            BindingSource eventBs = new BindingSource();
+            BindingSource participantBs = new BindingSource();
+
+            BindingNavigator bn = new BindingNavigator();
+
+            OleDbDataAdapter adapter5 = new OleDbDataAdapter(@"SELECT * FROM Evenements", DatabaseManager.db);
+            adapter5.Fill(data, "Evenements");
+            new OleDbCommandBuilder(adapter5);
+
+            OleDbDataAdapter adapter6 = new OleDbDataAdapter(@"SELECT * FROM Invites", DatabaseManager.db);
+            adapter6.Fill(data, "Invites");
+            new OleDbCommandBuilder(adapter6);
+
+            OleDbDataAdapter adapter7 = new OleDbDataAdapter(@"SELECT * FROM Participants", DatabaseManager.db);
+            adapter7.Fill(data, "Participants");
+            new OleDbCommandBuilder(adapter7);
+
+            eventBs.DataSource = data.Tables["Evenements"];
+            participantBs.DataSource = data.Tables["Participants"]; //relation entre table-bindingsource
+            bn.BindingSource = eventBs;
+
+            return new EventNavigation(data, eventBs, participantBs, bn);
 
         }
 

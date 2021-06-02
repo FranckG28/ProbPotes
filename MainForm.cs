@@ -51,7 +51,7 @@ namespace ProbPotes
             navigation.AddNavigation(navExpenses, new ExpensesPage(), Pages.Expenses, "Vos dépenses", GoToHome);
             navigation.AddNavigation(navEvents, new EventsPage(), Pages.Events, "Vos évènements", OpenAddEvent);
             navigation.AddNavigation(navParticipants, new ParticipantsPage(), Pages.Participants, "Vos participants", OpenAddParticipant);
-            navigation.AddNavigation(navReports, new ReportsPage(), Pages.Reports);
+            navigation.AddNavigation(navReports, new ReportsPage(), Pages.Reports, "Faire un bilan");
         }
 
         public void CloseApp() 
