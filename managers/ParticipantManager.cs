@@ -1,6 +1,8 @@
 ﻿using ProbPotes.models;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +11,16 @@ namespace ProbPotes.managers
 {
     class ParticipantManager
     {
+
+        // Liste des participants
+        private List<Participant> Participants;
+
+        // Constructeur de la classe
+        // Récupère la liste des participants
+        public ParticipantManager()
+        {
+            RefreshParticipants();
+        }
 
         // Procédure d'ajout d'un participant à la base de donnée.
         // Retourne true si l'ajout a réussi
@@ -34,13 +46,22 @@ namespace ProbPotes.managers
         // Fonction qui retourne le participant correspondant au numéro dans la base
         public Participant GetParticipant(int id)
         {
-            return null;
+            return Participants.Where(p => p.code == id).First();
         }
 
-        // Fonction qui retourne la liste de tous les participant de la base
-        public List<Participant> GetParticipants()
+        // Fonction qui actualise la liste de tous les participant de la base
+        public void RefreshParticipants()
         {
-            return null;
+            Participants = new List<Participant>();
+
+            OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM Participants", DatabaseManager.db);
+            DataTable participantsTable = new DataTable();
+            adapter.Fill(participantsTable);
+
+            foreach(DataRow row in participantsTable.Rows)
+            {
+                Participants.Add(new Participant(row));
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using ProbPotes.components;
+using ProbPotes.components;
 using ProbPotes.services;
 using System;
 using System.Collections.Generic;
@@ -66,6 +66,47 @@ namespace ProbPotes.pages.participants
         public int Index { 
             get => tabControl1.SelectedIndex; 
             set => tabControl1.SelectedIndex = value; 
+        }
+
+        //KeyPress
+          private void boxPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space)
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void boxFirstName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+
+            if (char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space)
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void boxName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+
+            if (char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space)
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void boxBalance_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || (e.KeyChar == ',' && !boxBalance.Text.Contains(',')))
+            {
+                e.Handled = false;
+            }
         }
     }
 }
