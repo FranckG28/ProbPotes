@@ -1,4 +1,4 @@
-﻿using ProbPotes.managers;
+using ProbPotes.managers;
 using ProbPotes.models;
 using ProbPotes.services;
 using System;
@@ -108,7 +108,7 @@ namespace ProbPotes.pages
         {
 
             // Activation/Désactivation des boutons :
-            bool showPrevious = nav.Index >= 0;
+            bool showPrevious = nav.Index >1;
             bool showNext = nav.Index < nav.EventCount;
 
             btnFirst.Visible = showPrevious;
