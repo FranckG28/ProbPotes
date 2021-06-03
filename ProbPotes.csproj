@@ -137,6 +137,7 @@
     <Compile Include="pages\participants\AddParticipantDialog.Designer.cs">
       <DependentUpon>AddParticipantDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="services\Email.cs" />
     <Compile Include="services\HoverColor.cs" />
     <Compile Include="services\NavigationTemplate.cs" />
     <Compile Include="pages\EventsPage.cs">
