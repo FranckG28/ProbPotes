@@ -17,6 +17,7 @@ using System.Drawing.Drawing2D;
 using ProbPotes.pages;
 using ProbPotes.components;
 using ProbPotes.pages.participants;
+using ProbPotes.pages.events;
 
 namespace ProbPotes
 {
@@ -78,7 +79,8 @@ namespace ProbPotes
 
         public void OpenAddEvent()
         {
-
+            ProbPotesDialog dialog = new ProbPotesDialog("Ajouter un évènement", 59601, new AddEventDialog(), this);
+            DialogResult result = dialog.Open();
         }
 
         public void OpenAddParticipant()
