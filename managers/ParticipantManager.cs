@@ -85,7 +85,7 @@ namespace ProbPotes.managers
                     return false;
                 }
             }
-            catch
+            catch(Exception)
             {
                 return false;
             }
@@ -96,7 +96,37 @@ namespace ProbPotes.managers
         public Boolean DeleteParticipant(int id)
         {
 
-            return false;
+            try
+            {
+                Boolean partFind = false;
+                for (int i = 0; i < Participants.Count; i++)
+                {
+                    if (Participants[i].code == id)
+                    {
+                        Participants.RemoveAt(i);
+                        partFind = true;
+                    }
+                }
+
+                DatabaseManager.db.Open();
+
+                OleDbCommand deletePart = new OleDbCommand(@"DELETE FROM Participants WHERE codeParticipant="+id, DatabaseManager.db);
+
+                int rowDelete= Convert.ToInt32(deletePart.ExecuteNonQuery().ToString());
+
+                if (partFind && rowDelete>0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception)
+            {
+                return false;
+            }
         }
 
         // Fonction qui retourne le participant correspondant au numéro dans la base
