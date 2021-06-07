@@ -132,7 +132,7 @@
     <Compile Include="managers\ExpensesManager.cs" />
     <Compile Include="managers\ParticipantManager.cs" />
     <Compile Include="models\EventClass.cs" />
-    <Compile Include="models\EventNavigation.cs" />
+    <Compile Include="services\EventNavigation.cs" />
     <Compile Include="models\Participant.cs" />
     <Compile Include="models\Expense.cs" />
     <Compile Include="pages\events\AddEventDialog.cs">

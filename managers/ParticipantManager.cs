@@ -13,13 +13,19 @@ namespace ProbPotes.managers
     {
 
         // Liste des participants
-        private List<Participant> Participants;
+        private List<Participant> ParticipantsList;
 
         // Constructeur de la classe
         // Récupère la liste des participants
         public ParticipantManager()
         {
             RefreshParticipants();
+        }
+
+        // Getter de la liste des participants
+        public List<Participant> Participants
+        {
+            get => ParticipantsList;
         }
 
         // Procédure d'ajout d'un participant à la base de donnée.
@@ -41,8 +47,16 @@ namespace ProbPotes.managers
                 insertPart.Parameters.Add(new OleDbParameter("solde", OleDbType.Double)).Value = participant.balance;
                 insertPart.Parameters.Add(new OleDbParameter("adresseMail", OleDbType.WChar)).Value = participant.mailAddress;
 
-                insertPart.ExecuteNonQuery();
-                return true;
+                int result = insertPart.ExecuteNonQuery();
+                if (result != 1)
+                {
+                    return false;
+                } else
+                {
+                    ParticipantsList.Add(participant);
+                    return true;
+                }
+                
             }
             catch (Exception)
             {
@@ -62,7 +76,7 @@ namespace ProbPotes.managers
             {
                 Boolean partFind = false;
 
-                for(int i = 0; i < Participants.Count; i++)
+                for(int i = 0; i < ParticipantsList.Count; i++)
                 {
                     if (participant.code == Participants[i].code)
                     {
@@ -99,11 +113,11 @@ namespace ProbPotes.managers
             try
             {
                 Boolean partFind = false;
-                for (int i = 0; i < Participants.Count; i++)
+                for (int i = 0; i < ParticipantsList.Count; i++)
                 {
                     if (Participants[i].code == id)
                     {
-                        Participants.RemoveAt(i);
+                        ParticipantsList.RemoveAt(i);
                         partFind = true;
                     }
                 }
@@ -132,13 +146,13 @@ namespace ProbPotes.managers
         // Fonction qui retourne le participant correspondant au numéro dans la base
         public Participant GetParticipant(int id)
         {
-            return Participants.Where(p => p.code == id).First();
+            return ParticipantsList.Where(p => p.code == id).First();
         }
 
         // Fonction qui actualise la liste de tous les participant de la base
         public void RefreshParticipants()
         {
-            Participants = new List<Participant>();
+            ParticipantsList = new List<Participant>();
 
             OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM Participants", DatabaseManager.db);
             DataTable participantsTable = new DataTable();
@@ -146,7 +160,7 @@ namespace ProbPotes.managers
 
             foreach(DataRow row in participantsTable.Rows)
             {
-                Participants.Add(new Participant(row));
+                ParticipantsList.Add(new Participant(row));
             }
         }
     }

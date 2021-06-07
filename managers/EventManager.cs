@@ -13,9 +13,19 @@ namespace ProbPotes.managers
 
     class EventManager
     {
-        
+
+        // CLASSE DE GESTION DES ÉVÈNEMENTS PROBPOTES
+
+        private List<EventClass> EventsList;
+
+        public List<EventClass> Events
+        {
+            get => EventsList;
+        }
+
         // Un évènement inclus les dépenses et la liste des participant
         // --> A gérer lors de l'obtention, l'ajout et la suppression d'évènements
+
 
         // Procédure d'ajout d'un évènement
         // Retourne true si l'ajout a réussi
@@ -31,19 +41,29 @@ namespace ProbPotes.managers
                 /*OleDbCommand cdCodeEvent = new OleDbCommand("SELECT codeEvent FROM Evenements ORDER BY codeEvent DESC", DatabaseManager.db);
                 int codeEvent = Convert.ToInt32(cdCodeEvent.ExecuteScalar().ToString()) + 1;*/
 
-                insertEvent.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = eventclass.code;
-                insertEvent.Parameters.Add(new OleDbParameter("titreEvent", OleDbType.WChar)).Value = eventclass.title;
-                insertEvent.Parameters.Add(new OleDbParameter("dateDebut", OleDbType.Date)).Value = eventclass.startDate;
-                insertEvent.Parameters.Add(new OleDbParameter("dateFin", OleDbType.Date)).Value = eventclass.endDate;
-                insertEvent.Parameters.Add(new OleDbParameter("description", OleDbType.WChar)).Value = eventclass.description;
-                insertEvent.Parameters.Add(new OleDbParameter("soldeON", OleDbType.Boolean)).Value = eventclass.startDate < DateTime.Today && eventclass.endDate > DateTime.Today;
-                insertEvent.Parameters.Add(new OleDbParameter("codeCreateur", OleDbType.Integer)).Value = eventclass.creatorCode;
+                insertEvent.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = eventclass.Code;
+                insertEvent.Parameters.Add(new OleDbParameter("titreEvent", OleDbType.WChar)).Value = eventclass.Title;
+                insertEvent.Parameters.Add(new OleDbParameter("dateDebut", OleDbType.Date)).Value = eventclass.StartDate;
+                insertEvent.Parameters.Add(new OleDbParameter("dateFin", OleDbType.Date)).Value = eventclass.EndDate;
+                insertEvent.Parameters.Add(new OleDbParameter("description", OleDbType.WChar)).Value = eventclass.Description;
+                insertEvent.Parameters.Add(new OleDbParameter("soldeON", OleDbType.Boolean)).Value = eventclass.StartDate < DateTime.Today && eventclass.EndDate > DateTime.Today;
+                insertEvent.Parameters.Add(new OleDbParameter("codeCreateur", OleDbType.Integer)).Value = eventclass.CreatorCode;
 
-                insertEvent.ExecuteNonQuery();
-                return true;
+                int result = insertEvent.ExecuteNonQuery();
+
+                if (result > 0)
+                {
+                    EventsList.Add(eventclass);
+                    return true;
+                } else
+                {
+                    return false;
+                }
+                
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                MessageBox.Show(e.ToString());
                 return false;
             }
             finally
@@ -55,8 +75,6 @@ namespace ProbPotes.managers
         }
 
         // Procédure de mise à jour d'un évènement
-        // --> Mettre à jour un évènement signifie aussi mettre à jour sa liste des participant
-        // --> Les modifications sur les dépenses ne sont pas gérés ici
         // Retourne true si la mise à jour a réussi
         public Boolean UpdateEvent(EventClass eventclass)
         {
@@ -65,19 +83,32 @@ namespace ProbPotes.managers
                 DatabaseManager.db.Open();
                 OleDbCommand update = new OleDbCommand("UPDATE Evenements set titreEvent = @titreEvent,dateDebut =@dateDebut, dateFin=@dateFin ,soldeON = @soldeON, codeCreateur =@codeCreateur where codeEvent =@codeEvent ;", DatabaseManager.db);
 
-                update.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventclass.code;
-                update.Parameters.Add(new OleDbParameter("@titreEvent", OleDbType.WChar)).Value = eventclass.title;
-                update.Parameters.Add(new OleDbParameter("@dateDebut", OleDbType.Date)).Value = eventclass.startDate;
-                update.Parameters.Add(new OleDbParameter("@dateFin", OleDbType.Date)).Value = eventclass.endDate;
-                update.Parameters.Add(new OleDbParameter("@description", OleDbType.WChar)).Value = eventclass.description;
-                update.Parameters.Add(new OleDbParameter("@soldeON", OleDbType.Boolean)).Value = eventclass.startDate < DateTime.Today &&                                 eventclass.endDate > DateTime.Today;
-                update.Parameters.Add(new OleDbParameter("@codeCreateur", OleDbType.Integer)).Value = eventclass.creatorCode;
+                update.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventclass.Code;
+                update.Parameters.Add(new OleDbParameter("@titreEvent", OleDbType.WChar)).Value = eventclass.Title;
+                update.Parameters.Add(new OleDbParameter("@dateDebut", OleDbType.Date)).Value = eventclass.StartDate;
+                update.Parameters.Add(new OleDbParameter("@dateFin", OleDbType.Date)).Value = eventclass.EndDate;
+                update.Parameters.Add(new OleDbParameter("@description", OleDbType.WChar)).Value = eventclass.Description;
+                update.Parameters.Add(new OleDbParameter("@soldeON", OleDbType.Boolean)).Value = eventclass.StartDate < DateTime.Today && eventclass.EndDate > DateTime.Today;
+                update.Parameters.Add(new OleDbParameter("@codeCreateur", OleDbType.Integer)).Value = eventclass.CreatorCode;
 
                 //manque la partie mettre à jour les participants donc utiliser la liste des participants
                 //mais je sais vraiment pas comment m'y procéder
 
-                update.ExecuteNonQuery();
-                return true;
+                // TODO: Utiliser le gestionnaire d'invités et de dépense pour mettre à jour ces données
+
+                int result = update.ExecuteNonQuery();
+
+                if (result > 0)
+                {
+                    EventClass eventToDelete = GetEvent(eventclass.Code);
+                    int index = EventsList.IndexOf(eventToDelete);
+                    EventsList[index] = eventclass;
+                    return true;
+                } else
+                {
+                    return false;
+                }
+                
             }
             catch (Exception)
             {
@@ -91,7 +122,7 @@ namespace ProbPotes.managers
 
         // Procédure de suppression d'un évènement
         // Retourne true si la suppression a reussi
-        public Boolean DeleteEvent(EventClass eventclass)
+        public Boolean DeleteEvent(int eventId)
         {
             //ici j'ai modifié le paramètre au lieu de int id j'ai juste mis eventclass (je sais pas si le id correspond au code de l'event!)
             try
@@ -99,11 +130,21 @@ namespace ProbPotes.managers
                 DatabaseManager.db.Open();
                 OleDbCommand delete = new OleDbCommand(@"DELETE FROM Evenements WHERE codeEvent = @codeEvent;", DatabaseManager.db);
 
-                delete.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventclass.code;
-                delete.ExecuteNonQuery();
+                delete.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventId;
+                int result = delete.ExecuteNonQuery();
+
+                if (result > 0)
+                {
+                    EventClass eventToDelete = GetEvent(eventId);
+                    EventsList.Remove(eventToDelete);
+                    return true;
+                } else
+                {
+                    return false;
+                }
+            } 
                 
-                return true;
-            }
+                
             catch (Exception)
             {
                 return false;
@@ -115,7 +156,7 @@ namespace ProbPotes.managers
         }
 
         // Fonction qui retourne la liste de tous les participants de la base :
-        public List<EventClass> GetEvents()
+        public void RefreshEvents()
         {
             List<EventClass> res = new List<EventClass>();
 
@@ -141,87 +182,22 @@ namespace ProbPotes.managers
                     guest.Add(Convert.ToInt32(drGuest[0].ToString()));
                 }
 
-                //RECHERCHE DES DEPENSES DE L'EVENEMENT
-                OleDbCommand cdExpense = new OleDbCommand("SELECT * FROM Depenses WHERE codeEvent="+dr[0].ToString(), DatabaseManager.db);
-                OleDbDataReader drExpense = cdExpense.ExecuteReader();
-                List<Expense> rowExpense = new List<Expense>();
-
-                while (drExpense.Read())
-                {
-                    List<int> listRecipients = new List<int>();
-                    OleDbCommand cdRecipients = new OleDbCommand("SELECT codePart FROM Beneficiaires WHERE codePart="+drExpense[0].ToString(), DatabaseManager.db);
-                    OleDbDataReader drRecipients = cdRecipients.ExecuteReader();
-
-                    while (drRecipients.Read())
-                    {
-                        listRecipients.Add(Convert.ToInt32(drRecipients[0].ToString()));
-                    }
-
-                    DateTime debutExpense = (DateTime)drExpense[3];
-                    rowExpense.Add(new Expense(Convert.ToInt32(drExpense[0].ToString()), Convert.ToInt32(dr[0].ToString()),drExpense[1].ToString(),(decimal)drExpense[2],listRecipients,Convert.ToInt32(drExpense[6].ToString()),debutExpense,drExpense[4].ToString()));
-                }
-
-                res.Add(new EventClass(Convert.ToInt32(dr[0].ToString()),dr[1].ToString(), Convert.ToInt32(dr[6].ToString()),(Boolean)dr[5],dr[4].ToString(),debut,fin,guest,rowExpense));
+                res.Add(new EventClass(Convert.ToInt32(dr[0].ToString()),dr[1].ToString(), Convert.ToInt32(dr[6].ToString()),(Boolean)dr[5],dr[4].ToString(),debut,fin,guest));
                 }
             DatabaseManager.db.Close();
 
-            return res;
+            EventsList = res;
         }
 
         // Fonction qui retourne l'évènement correspondant au numéro demandé dans la base :
         public EventClass GetEvent(int code)
         {
-            DatabaseManager.db.Open();
-
-            OleDbCommand cdGetEvent = new OleDbCommand("SELECT * FROM Evenements WHERE codeEvent="+code, DatabaseManager.db);
-
-            OleDbDataReader dr = cdGetEvent.ExecuteReader();
-
-            dr.Read();
-
-                DateTime debut = new DateTime((long)dr[2]);
-                DateTime fin = new DateTime((long)dr[3]);
-
-
-                //RECHERCHE LES PARTICIPANTS A L'EVENEMENT
-                OleDbCommand cdGuest = new OleDbCommand("SELECT codePart WHERE codeEvent=" + dr[0].ToString(), DatabaseManager.db);
-                OleDbDataReader drGuest = cdGuest.ExecuteReader();
-                List<int> guest = new List<int>();
-
-                while (drGuest.Read())
-                {
-                    guest.Add(Convert.ToInt32(drGuest[0].ToString()));
-                }
-
-                //RECHERCHE DES DEPENSES DE L'EVENEMENT
-                OleDbCommand cdExpense = new OleDbCommand("SELECT * FROM Depenses WHERE codeEvent=" + dr[0].ToString(), DatabaseManager.db);
-                OleDbDataReader drExpense = cdExpense.ExecuteReader();
-                List<Expense> rowExpense = new List<Expense>();
-
-                while (drExpense.Read())
-                {
-                    List<int> listRecipients = new List<int>();
-                    OleDbCommand cdRecipients = new OleDbCommand("SELECT codePart FROM Beneficiaires WHERE codePart=" + drExpense[0].ToString(), DatabaseManager.db);
-                    OleDbDataReader drRecipients = cdRecipients.ExecuteReader();
-
-                    while (drRecipients.Read())
-                    {
-                        listRecipients.Add(Convert.ToInt32(drRecipients[0].ToString()));
-                    }
-
-                    DateTime debutExpense = new DateTime((long)drExpense[3]);
-                    rowExpense.Add(new Expense(Convert.ToInt32(drExpense[0].ToString()), Convert.ToInt32(dr[0].ToString()), drExpense[1].ToString(), (decimal)drExpense[2], listRecipients, Convert.ToInt32(drExpense[6].ToString()), debutExpense, drExpense[4].ToString()));
-                }
-
-                EventClass rowRes=new EventClass(Convert.ToInt32(dr[0].ToString()), dr[1].ToString(), Convert.ToInt32(dr[6].ToString()), (Boolean)dr[5], dr[4].ToString(), debut, fin, guest, rowExpense);
-            DatabaseManager.db.Close();
-
-            return rowRes;
-
+            return EventsList.Where(e => e.Code == code).First();            
         }
 
 
-        public EventNavigation getEventNavigator()
+        // Fonction qui retourne un navigateur d'évènement (pour la navigation un à un)
+        public EventNavigation GetEventNavigator()
         {
 
             DataSet data = new DataSet();
