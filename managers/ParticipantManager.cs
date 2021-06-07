@@ -26,20 +26,76 @@ namespace ProbPotes.managers
         // Retourne true si l'ajout a réussi
         public Boolean AddParticipant(Participant participant)
         {
-            return false;
+            try
+            {
+                DatabaseManager.db.Open();
+
+                OleDbCommand insertPart = new OleDbCommand(@"INSERT INTO Participants(codeParticipant,nomPart,prenomPart,mobile,nbParts,solde,adresseMail)
+                                                       	VALUES(?,?,?,?,?,?,?)", DatabaseManager.db);
+
+                insertPart.Parameters.Add(new OleDbParameter("codeParticipant", OleDbType.Integer)).Value = participant.code;
+                insertPart.Parameters.Add(new OleDbParameter("nomPart", OleDbType.WChar)).Value = participant.name;
+                insertPart.Parameters.Add(new OleDbParameter("prenomPart", OleDbType.WChar)).Value = participant.firstName;
+                insertPart.Parameters.Add(new OleDbParameter("mobile", OleDbType.WChar)).Value = participant.phone;
+                insertPart.Parameters.Add(new OleDbParameter("nbParts", OleDbType.Integer)).Value = participant.shares;
+                insertPart.Parameters.Add(new OleDbParameter("solde", OleDbType.Double)).Value = participant.balance;
+                insertPart.Parameters.Add(new OleDbParameter("adresseMail", OleDbType.WChar)).Value = participant.mailAddress;
+
+                insertPart.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                DatabaseManager.db.Close();
+            }
         }
 
         // Procédure de mise à jour d'un participant 
         // Retourne true si la mise à jour a réussi
         public Boolean UpdateParticipant(Participant participant)
         {
-            return false;
+            try
+            {
+                Boolean partFind = false;
+
+                for(int i = 0; i < Participants.Count; i++)
+                {
+                    if (participant.code == Participants[i].code)
+                    {
+                        participant.phone = Participants[i].phone;
+                        participant.shares = Participants[i].shares;
+                        participant.balance = Participants[i].balance;
+                        participant.name = Participants[i].name;
+                        participant.firstName = Participants[i].firstName;
+                        participant.mailAddress = Participants[i].mailAddress;
+                        partFind = true;
+                    }
+                }
+
+                if (partFind)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         // Procédure de suppression d'un participant
         // Retourne true si la suppression a reussi
         public Boolean DeleteParticipant(int id)
         {
+
             return false;
         }
 
