@@ -49,8 +49,6 @@ namespace ProbPotes
             // Initialisation de la navigation :
             navigation = new NavigationController(panelView);
 
-
-
             // Ajout des pages
             navigation.AddNavigation(navHome, Pages.Home, "Bonjour");
             navigation.AddNavigation(navExpenses, Pages.Expenses, "Vos dépenses", GoToHome);
@@ -89,7 +87,7 @@ namespace ProbPotes
 
         public void OpenAddParticipant()
         {
-            ProbPotesDialog dialog = new ProbPotesDialog("Ajouter un participant", 59642, new AddParticipantDialog(), this);
+            ProbPotesDialog dialog = new ProbPotesDialog("Ajouter un participant", 59642, new AddParticipantDialog(navigation.RefreshActualPage), this);
             DialogResult result = dialog.Open();
             
         }

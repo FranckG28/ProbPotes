@@ -28,7 +28,7 @@ namespace ProbPotes.components.participants
             {
                 txtFirstName.Font = new Font(Fonts.bold,18);
                 txtName.Font = new Font(Fonts.book, 12);
-                List<Label> labels = new List<Label>() { txtBalance, txtMail, txtShares, txtPhone };
+                List<Label> labels = new List<Label>() { txtMail, txtShares, txtPhone };
                 foreach(Label lbl in labels)
                 {
                     lbl.Font = new Font(Fonts.regular, 11);
@@ -39,12 +39,11 @@ namespace ProbPotes.components.participants
             iconPhone.Text = char.ConvertFromUtf32(0xE717);
             iconMail.Text = char.ConvertFromUtf32(0xE715);
             iconShares.Text = char.ConvertFromUtf32(0xE125);
-            iconBalance.Text = char.ConvertFromUtf32(0xE1D0);
 
             // Effet de survol
             HoverColor hoverBg = new HoverColor(new List<Control>() { this }, false, Colors.lightBlue, Colors.blue, Colors.green);
             HoverColor hoverBlue = new HoverColor(new List<Control>() { txtFirstName, txtName }, true, Colors.blue, Colors.white, Colors.white);
-            HoverColor hoverBlack = new HoverColor(new List<Control>() { txtBalance, txtShares, txtMail, txtPhone, iconBalance, iconMail, iconPhone, iconShares }, true, Colors.black, Colors.white, Colors.white);
+            HoverColor hoverBlack = new HoverColor(new List<Control>() { txtShares, txtMail, txtPhone, iconMail, iconPhone, iconShares }, true, Colors.black, Colors.white, Colors.white);
             hover = new HoverController(new List<HoverColor>() { hoverBg, hoverBlack, hoverBlue }, this);
 
         }
@@ -62,7 +61,6 @@ namespace ProbPotes.components.participants
                     txtPhone.Text = participant.Phone;
                     txtMail.Text = participant.MailAddress;
                     txtShares.Text = participant.Shares.ToString();
-                    txtBalance.Text = participant.Balance.ToString() + " €";
                 }
             }
         }

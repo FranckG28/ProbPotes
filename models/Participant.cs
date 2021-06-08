@@ -15,15 +15,13 @@ namespace ProbPotes.models
         public string FirstName;
         public string Phone;
         public int Shares;
-        public double Balance;
         public string MailAddress;
 
-        public Participant(int code, string phone, int shares, double balance, string name, string firstName, string mailAddress)
+        public Participant(int code, string phone, int shares, string name, string firstName, string mailAddress)
         {
             this.Code= code;
             this.Phone = phone;
             this.Shares = shares;
-            this.Balance= balance;
             this.Name = name;
             this.FirstName = firstName;
             this.MailAddress = mailAddress;
@@ -36,7 +34,6 @@ namespace ProbPotes.models
             this.FirstName = (string)row["prenomPart"];
             this.Phone = (string)row["mobile"];
             this.Shares = (int)row["nbParts"];
-            if (row["solde"].ToString() != "") this.Balance = (double)row["solde"];
             this.MailAddress = (string)row["adresseMail"];
         }
     }

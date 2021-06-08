@@ -35,11 +35,9 @@ namespace ProbPotes.components.participants
             this.iconPhone = new System.Windows.Forms.Label();
             this.iconMail = new System.Windows.Forms.Label();
             this.iconShares = new System.Windows.Forms.Label();
-            this.iconBalance = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.Label();
             this.txtMail = new System.Windows.Forms.Label();
             this.txtShares = new System.Windows.Forms.Label();
-            this.txtBalance = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,16 +103,6 @@ namespace ProbPotes.components.participants
             this.iconShares.TabIndex = 7;
             this.iconShares.Text = "label2";
             // 
-            // iconBalance
-            // 
-            this.iconBalance.AutoSize = true;
-            this.iconBalance.Font = new System.Drawing.Font("Segoe MDL2 Assets", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconBalance.Location = new System.Drawing.Point(11, 310);
-            this.iconBalance.Name = "iconBalance";
-            this.iconBalance.Size = new System.Drawing.Size(35, 15);
-            this.iconBalance.TabIndex = 8;
-            this.iconBalance.Text = "label3";
-            // 
             // txtPhone
             // 
             this.txtPhone.AutoSize = true;
@@ -142,24 +130,13 @@ namespace ProbPotes.components.participants
             this.txtShares.TabIndex = 11;
             this.txtShares.Text = "label3";
             // 
-            // txtBalance
-            // 
-            this.txtBalance.AutoSize = true;
-            this.txtBalance.Location = new System.Drawing.Point(47, 308);
-            this.txtBalance.Name = "txtBalance";
-            this.txtBalance.Size = new System.Drawing.Size(35, 13);
-            this.txtBalance.TabIndex = 12;
-            this.txtBalance.Text = "label4";
-            // 
             // ParticipantTile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.txtBalance);
             this.Controls.Add(this.txtShares);
             this.Controls.Add(this.txtMail);
             this.Controls.Add(this.txtPhone);
-            this.Controls.Add(this.iconBalance);
             this.Controls.Add(this.iconShares);
             this.Controls.Add(this.iconMail);
             this.Controls.Add(this.iconPhone);
@@ -167,7 +144,7 @@ namespace ProbPotes.components.participants
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.pictureBox1);
             this.Name = "ParticipantTile";
-            this.Size = new System.Drawing.Size(222, 341);
+            this.Size = new System.Drawing.Size(222, 313);
             this.Click += new System.EventHandler(this.ParticipantTile_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -183,10 +160,8 @@ namespace ProbPotes.components.participants
         private System.Windows.Forms.Label iconPhone;
         private System.Windows.Forms.Label iconMail;
         private System.Windows.Forms.Label iconShares;
-        private System.Windows.Forms.Label iconBalance;
         private System.Windows.Forms.Label txtPhone;
         private System.Windows.Forms.Label txtMail;
         private System.Windows.Forms.Label txtShares;
-        private System.Windows.Forms.Label txtBalance;
     }
 }

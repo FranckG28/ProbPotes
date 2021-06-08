@@ -57,5 +57,10 @@ namespace ProbPotes.pages.events
             get => tabControl1.SelectedIndex;
             set => tabControl1.SelectedIndex = value;
         }
+
+        public int PageCount
+        {
+            get => tabControl1.TabCount;
+        }
     }
 }
