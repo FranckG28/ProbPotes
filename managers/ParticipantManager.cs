@@ -13,7 +13,7 @@ namespace ProbPotes.managers
     {
 
         // Liste des participants
-        private List<Participant> Participants;
+        private List<Participant> ParticipantsList;
 
         // Constructeur de la classe
         // Récupère la liste des participants
@@ -22,37 +22,137 @@ namespace ProbPotes.managers
             RefreshParticipants();
         }
 
+        // Getter de la liste des participants
+        public List<Participant> Participants
+        {
+            get => ParticipantsList;
+        }
+
         // Procédure d'ajout d'un participant à la base de donnée.
         // Retourne true si l'ajout a réussi
         public Boolean AddParticipant(Participant participant)
         {
-            return false;
+            try
+            {
+                DatabaseManager.db.Open();
+
+                OleDbCommand insertPart = new OleDbCommand(@"INSERT INTO Participants(codeParticipant,nomPart,prenomPart,mobile,nbParts,solde,adresseMail)
+                                                       	VALUES(?,?,?,?,?,?,?)", DatabaseManager.db);
+
+                insertPart.Parameters.Add(new OleDbParameter("codeParticipant", OleDbType.Integer)).Value = participant.code;
+                insertPart.Parameters.Add(new OleDbParameter("nomPart", OleDbType.WChar)).Value = participant.name;
+                insertPart.Parameters.Add(new OleDbParameter("prenomPart", OleDbType.WChar)).Value = participant.firstName;
+                insertPart.Parameters.Add(new OleDbParameter("mobile", OleDbType.WChar)).Value = participant.phone;
+                insertPart.Parameters.Add(new OleDbParameter("nbParts", OleDbType.Integer)).Value = participant.shares;
+                insertPart.Parameters.Add(new OleDbParameter("solde", OleDbType.Double)).Value = participant.balance;
+                insertPart.Parameters.Add(new OleDbParameter("adresseMail", OleDbType.WChar)).Value = participant.mailAddress;
+
+                int result = insertPart.ExecuteNonQuery();
+                if (result != 1)
+                {
+                    return false;
+                } else
+                {
+                    ParticipantsList.Add(participant);
+                    return true;
+                }
+                
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                DatabaseManager.db.Close();
+            }
         }
 
         // Procédure de mise à jour d'un participant 
         // Retourne true si la mise à jour a réussi
         public Boolean UpdateParticipant(Participant participant)
         {
-            return false;
+            try
+            {
+                Boolean partFind = false;
+
+                for(int i = 0; i < ParticipantsList.Count; i++)
+                {
+                    if (participant.code == Participants[i].code)
+                    {
+                        participant.phone = Participants[i].phone;
+                        participant.shares = Participants[i].shares;
+                        participant.balance = Participants[i].balance;
+                        participant.name = Participants[i].name;
+                        participant.firstName = Participants[i].firstName;
+                        participant.mailAddress = Participants[i].mailAddress;
+                        partFind = true;
+                    }
+                }
+
+                if (partFind)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception)
+            {
+                return false;
+            }
         }
 
         // Procédure de suppression d'un participant
         // Retourne true si la suppression a reussi
         public Boolean DeleteParticipant(int id)
         {
-            return false;
+
+            try
+            {
+                Boolean partFind = false;
+                for (int i = 0; i < ParticipantsList.Count; i++)
+                {
+                    if (Participants[i].code == id)
+                    {
+                        ParticipantsList.RemoveAt(i);
+                        partFind = true;
+                    }
+                }
+
+                DatabaseManager.db.Open();
+
+                OleDbCommand deletePart = new OleDbCommand(@"DELETE FROM Participants WHERE codeParticipant="+id, DatabaseManager.db);
+
+                int rowDelete= Convert.ToInt32(deletePart.ExecuteNonQuery().ToString());
+
+                if (partFind && rowDelete>0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception)
+            {
+                return false;
+            }
         }
 
         // Fonction qui retourne le participant correspondant au numéro dans la base
         public Participant GetParticipant(int id)
         {
-            return Participants.Where(p => p.code == id).First();
+            return ParticipantsList.Where(p => p.code == id).First();
         }
 
         // Fonction qui actualise la liste de tous les participant de la base
         public void RefreshParticipants()
         {
-            Participants = new List<Participant>();
+            ParticipantsList = new List<Participant>();
 
             OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM Participants", DatabaseManager.db);
             DataTable participantsTable = new DataTable();
@@ -60,7 +160,7 @@ namespace ProbPotes.managers
 
             foreach(DataRow row in participantsTable.Rows)
             {
-                Participants.Add(new Participant(row));
+                ParticipantsList.Add(new Participant(row));
             }
         }
     }

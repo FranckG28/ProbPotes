@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProbPotes.managers;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -9,40 +10,41 @@ namespace ProbPotes.models
 {
     public class EventClass
     {
-        public int code;
-        public string title;
-        public DateTime startDate;
-        public DateTime endDate;
-        public string description;
-        public bool soldeOn;
-        public int creatorCode;
+        public int Code;
+        public string Title;
+        public DateTime StartDate;
+        public DateTime EndDate;
+        public string Description;
+        public bool SoldeOn;
+        public int CreatorCode;
 
-        public List<int> guests;
-        public List<Expense> expenses;
+        public List<int> Guests;
+        public ExpensesManager Expenses;
 
-        public EventClass(int code, string title, int creatorCode, bool soldeOn, string description, DateTime startDate, DateTime endDate, List<int> guests, List<Expense> expenses)
+        public EventClass(int code, string title, int creatorCode, bool soldeOn, string description, DateTime startDate, DateTime endDate, List<int> guests)
         {
-            this.code = code;
-            this.title = title;
-            this.startDate = startDate;
-            this.description = description;
-            this.startDate = startDate;
-            this.creatorCode = creatorCode;
-            this.soldeOn = soldeOn;
-            this.guests = guests;
-            this.expenses = expenses;
+            this.Code = code;
+            this.Title = title;
+            this.StartDate = startDate;
+            this.Description = description;
+            this.StartDate = startDate;
+            this.CreatorCode = creatorCode;
+            this.SoldeOn = soldeOn;
+            this.Guests = guests;
+            this.Expenses = new ExpensesManager(code);
         }
 
-        // LISTE DES INVITES ET LISTE DES DEPENSES A JOUTER MANUELLEMENT VIA CE CONSTRUCTEUR :
+        // LISTE DES INVITES A JOUTER MANUELLEMENT VIA CE CONSTRUCTEUR :
         public EventClass(DataRow row)
         {
-            this.code = (int)row["codeEvent"];
-            this.title = (string)row["titreEvent"];
-            this.startDate = (DateTime)row["dateDebut"];
-            this.description= (string)row["description"];
-            this.endDate = (DateTime)row["dateFin"];
-            this.creatorCode = (int)row["codeCreateur"];
-            this.soldeOn= (bool)row["soldeOn"];
+            this.Code = (int)row["codeEvent"];
+            this.Title = (string)row["titreEvent"];
+            this.StartDate = (DateTime)row["dateDebut"];
+            this.Description= (string)row["description"];
+            this.EndDate = (DateTime)row["dateFin"];
+            this.CreatorCode = (int)row["codeCreateur"];
+            this.SoldeOn= (bool)row["soldeOn"];
+            this.Expenses = new ExpensesManager(Code);
         }
     }
 }

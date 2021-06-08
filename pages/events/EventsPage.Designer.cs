@@ -30,25 +30,25 @@ namespace ProbPotes.pages
         private void InitializeComponent()
         {
             this.pnlEvent = new System.Windows.Forms.Panel();
-            this.chkSold = new System.Windows.Forms.CheckBox();
+            this.pnlDates = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtDateStart = new System.Windows.Forms.Label();
+            this.txtDatesSeparator = new System.Windows.Forms.Label();
             this.txtDateEnd = new System.Windows.Forms.Label();
+            this.chkSold = new System.Windows.Forms.CheckBox();
             this.txtParticipants = new System.Windows.Forms.Label();
             this.iconSoldOut = new System.Windows.Forms.Label();
             this.iconParticipants = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.Label();
             this.txtCreator = new System.Windows.Forms.Label();
-            this.txtDateStart = new System.Windows.Forms.Label();
             this.txtTitle = new System.Windows.Forms.Label();
             this.txtIndex = new System.Windows.Forms.Label();
+            this.txtCount = new System.Windows.Forms.Label();
             this.btnLast = new ProbPotes.components.IconButton();
             this.btnNext = new ProbPotes.components.IconButton();
             this.btnPrevious = new ProbPotes.components.IconButton();
             this.btnFirst = new ProbPotes.components.IconButton();
             this.btnEdit = new ProbPotes.components.IconButton();
             this.btnDelete = new ProbPotes.components.IconButton();
-            this.pnlDates = new System.Windows.Forms.FlowLayoutPanel();
-            this.txtDatesSeparator = new System.Windows.Forms.Label();
-            this.txtCount = new System.Windows.Forms.Label();
             this.pnlEvent.SuspendLayout();
             this.pnlDates.SuspendLayout();
             this.SuspendLayout();
@@ -70,16 +70,33 @@ namespace ProbPotes.pages
             this.pnlEvent.Size = new System.Drawing.Size(499, 301);
             this.pnlEvent.TabIndex = 0;
             // 
-            // chkSold
+            // pnlDates
             // 
-            this.chkSold.AutoSize = true;
-            this.chkSold.Enabled = false;
-            this.chkSold.Location = new System.Drawing.Point(76, 239);
-            this.chkSold.Name = "chkSold";
-            this.chkSold.Size = new System.Drawing.Size(53, 17);
-            this.chkSold.TabIndex = 11;
-            this.chkSold.Text = "Soldé";
-            this.chkSold.UseVisualStyleBackColor = true;
+            this.pnlDates.Controls.Add(this.txtDateStart);
+            this.pnlDates.Controls.Add(this.txtDatesSeparator);
+            this.pnlDates.Controls.Add(this.txtDateEnd);
+            this.pnlDates.Location = new System.Drawing.Point(21, 57);
+            this.pnlDates.Name = "pnlDates";
+            this.pnlDates.Size = new System.Drawing.Size(455, 24);
+            this.pnlDates.TabIndex = 12;
+            // 
+            // txtDateStart
+            // 
+            this.txtDateStart.AutoSize = true;
+            this.txtDateStart.Location = new System.Drawing.Point(3, 0);
+            this.txtDateStart.Name = "txtDateStart";
+            this.txtDateStart.Size = new System.Drawing.Size(33, 13);
+            this.txtDateStart.TabIndex = 3;
+            this.txtDateStart.Text = "dates";
+            // 
+            // txtDatesSeparator
+            // 
+            this.txtDatesSeparator.AutoSize = true;
+            this.txtDatesSeparator.Location = new System.Drawing.Point(42, 0);
+            this.txtDatesSeparator.Name = "txtDatesSeparator";
+            this.txtDatesSeparator.Size = new System.Drawing.Size(10, 13);
+            this.txtDatesSeparator.TabIndex = 11;
+            this.txtDatesSeparator.Text = "-";
             // 
             // txtDateEnd
             // 
@@ -90,12 +107,22 @@ namespace ProbPotes.pages
             this.txtDateEnd.TabIndex = 10;
             this.txtDateEnd.Text = "dates";
             // 
+            // chkSold
+            // 
+            this.chkSold.AutoSize = true;
+            this.chkSold.Enabled = false;
+            this.chkSold.Location = new System.Drawing.Point(76, 166);
+            this.chkSold.Name = "chkSold";
+            this.chkSold.Size = new System.Drawing.Size(53, 17);
+            this.chkSold.TabIndex = 11;
+            this.chkSold.Text = "Soldé";
+            this.chkSold.UseVisualStyleBackColor = true;
+            // 
             // txtParticipants
             // 
-            this.txtParticipants.AutoSize = true;
-            this.txtParticipants.Location = new System.Drawing.Point(72, 199);
+            this.txtParticipants.Location = new System.Drawing.Point(72, 204);
             this.txtParticipants.Name = "txtParticipants";
-            this.txtParticipants.Size = new System.Drawing.Size(62, 13);
+            this.txtParticipants.Size = new System.Drawing.Size(410, 55);
             this.txtParticipants.TabIndex = 8;
             this.txtParticipants.Text = "Participants";
             // 
@@ -103,7 +130,7 @@ namespace ProbPotes.pages
             // 
             this.iconSoldOut.AutoSize = true;
             this.iconSoldOut.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconSoldOut.Location = new System.Drawing.Point(24, 238);
+            this.iconSoldOut.Location = new System.Drawing.Point(24, 167);
             this.iconSoldOut.Name = "iconSoldOut";
             this.iconSoldOut.Size = new System.Drawing.Size(47, 19);
             this.iconSoldOut.TabIndex = 7;
@@ -113,7 +140,7 @@ namespace ProbPotes.pages
             // 
             this.iconParticipants.AutoSize = true;
             this.iconParticipants.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconParticipants.Location = new System.Drawing.Point(24, 199);
+            this.iconParticipants.Location = new System.Drawing.Point(24, 204);
             this.iconParticipants.Name = "iconParticipants";
             this.iconParticipants.Size = new System.Drawing.Size(47, 19);
             this.iconParticipants.TabIndex = 6;
@@ -123,7 +150,7 @@ namespace ProbPotes.pages
             // 
             this.txtDescription.Location = new System.Drawing.Point(24, 87);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(458, 97);
+            this.txtDescription.Size = new System.Drawing.Size(458, 78);
             this.txtDescription.TabIndex = 5;
             this.txtDescription.Text = "Description";
             // 
@@ -135,15 +162,6 @@ namespace ProbPotes.pages
             this.txtCreator.TabIndex = 4;
             this.txtCreator.Text = "crée par";
             this.txtCreator.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            // 
-            // txtDateStart
-            // 
-            this.txtDateStart.AutoSize = true;
-            this.txtDateStart.Location = new System.Drawing.Point(3, 0);
-            this.txtDateStart.Name = "txtDateStart";
-            this.txtDateStart.Size = new System.Drawing.Size(33, 13);
-            this.txtDateStart.TabIndex = 3;
-            this.txtDateStart.Text = "dates";
             // 
             // txtTitle
             // 
@@ -162,6 +180,15 @@ namespace ProbPotes.pages
             this.txtIndex.TabIndex = 1;
             this.txtIndex.Text = "0/0";
             this.txtIndex.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtCount
+            // 
+            this.txtCount.Location = new System.Drawing.Point(487, 446);
+            this.txtCount.Name = "txtCount";
+            this.txtCount.Size = new System.Drawing.Size(463, 36);
+            this.txtCount.TabIndex = 6;
+            this.txtCount.Text = "0/0";
+            this.txtCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnLast
             // 
@@ -222,34 +249,6 @@ namespace ProbPotes.pages
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(35, 35);
             this.btnDelete.TabIndex = 0;
-            // 
-            // pnlDates
-            // 
-            this.pnlDates.Controls.Add(this.txtDateStart);
-            this.pnlDates.Controls.Add(this.txtDatesSeparator);
-            this.pnlDates.Controls.Add(this.txtDateEnd);
-            this.pnlDates.Location = new System.Drawing.Point(27, 54);
-            this.pnlDates.Name = "pnlDates";
-            this.pnlDates.Size = new System.Drawing.Size(455, 24);
-            this.pnlDates.TabIndex = 12;
-            // 
-            // txtDatesSeparator
-            // 
-            this.txtDatesSeparator.AutoSize = true;
-            this.txtDatesSeparator.Location = new System.Drawing.Point(42, 0);
-            this.txtDatesSeparator.Name = "txtDatesSeparator";
-            this.txtDatesSeparator.Size = new System.Drawing.Size(10, 13);
-            this.txtDatesSeparator.TabIndex = 11;
-            this.txtDatesSeparator.Text = "-";
-            // 
-            // txtCount
-            // 
-            this.txtCount.Location = new System.Drawing.Point(495, 446);
-            this.txtCount.Name = "txtCount";
-            this.txtCount.Size = new System.Drawing.Size(455, 36);
-            this.txtCount.TabIndex = 6;
-            this.txtCount.Text = "0/0";
-            this.txtCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // EventsPage
             // 

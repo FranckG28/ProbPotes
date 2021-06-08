@@ -34,7 +34,6 @@ namespace ProbPotes.pages.participants
             this.lblEuro = new System.Windows.Forms.Label();
             this.lblBalance = new System.Windows.Forms.Label();
             this.boxBalance = new System.Windows.Forms.TextBox();
-            this.iconBalance = new System.Windows.Forms.Label();
             this.lblMail = new System.Windows.Forms.Label();
             this.boxMail = new System.Windows.Forms.TextBox();
             this.iconMail = new System.Windows.Forms.Label();
@@ -51,6 +50,9 @@ namespace ProbPotes.pages.participants
             this.txtSuccessfulDescription = new System.Windows.Forms.Label();
             this.iconSuccessful = new System.Windows.Forms.Label();
             this.txtTitleSuccess = new System.Windows.Forms.Label();
+            this.lblShares = new System.Windows.Forms.Label();
+            this.boxShares = new System.Windows.Forms.TextBox();
+            this.iconShares = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -72,7 +74,6 @@ namespace ProbPotes.pages.participants
             this.tabPage1.Controls.Add(this.lblEuro);
             this.tabPage1.Controls.Add(this.lblBalance);
             this.tabPage1.Controls.Add(this.boxBalance);
-            this.tabPage1.Controls.Add(this.iconBalance);
             this.tabPage1.Controls.Add(this.lblMail);
             this.tabPage1.Controls.Add(this.boxMail);
             this.tabPage1.Controls.Add(this.iconMail);
@@ -96,7 +97,7 @@ namespace ProbPotes.pages.participants
             // lblEuro
             // 
             this.lblEuro.AutoSize = true;
-            this.lblEuro.Location = new System.Drawing.Point(179, 314);
+            this.lblEuro.Location = new System.Drawing.Point(766, 312);
             this.lblEuro.Name = "lblEuro";
             this.lblEuro.Size = new System.Drawing.Size(13, 13);
             this.lblEuro.TabIndex = 15;
@@ -105,7 +106,7 @@ namespace ProbPotes.pages.participants
             // lblBalance
             // 
             this.lblBalance.AutoSize = true;
-            this.lblBalance.Location = new System.Drawing.Point(53, 284);
+            this.lblBalance.Location = new System.Drawing.Point(410, 282);
             this.lblBalance.Name = "lblBalance";
             this.lblBalance.Size = new System.Drawing.Size(34, 13);
             this.lblBalance.TabIndex = 14;
@@ -114,21 +115,11 @@ namespace ProbPotes.pages.participants
             // boxBalance
             // 
             this.boxBalance.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.boxBalance.Location = new System.Drawing.Point(56, 307);
+            this.boxBalance.Location = new System.Drawing.Point(413, 305);
             this.boxBalance.Name = "boxBalance";
-            this.boxBalance.Size = new System.Drawing.Size(117, 20);
+            this.boxBalance.Size = new System.Drawing.Size(346, 20);
             this.boxBalance.TabIndex = 13;
             this.boxBalance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxBalance_KeyPress);
-            // 
-            // iconBalance
-            // 
-            this.iconBalance.AutoSize = true;
-            this.iconBalance.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconBalance.Location = new System.Drawing.Point(6, 305);
-            this.iconBalance.Name = "iconBalance";
-            this.iconBalance.Size = new System.Drawing.Size(47, 19);
-            this.iconBalance.TabIndex = 12;
-            this.iconBalance.Text = "label1";
             // 
             // lblMail
             // 
@@ -283,6 +274,39 @@ namespace ProbPotes.pages.participants
             this.txtTitleSuccess.Text = "Participant ajouté";
             this.txtTitleSuccess.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblShares
+            // 
+            this.lblShares.AutoSize = true;
+            this.lblShares.Location = new System.Drawing.Point(53, 282);
+            this.lblShares.Name = "lblShares";
+            this.lblShares.Size = new System.Drawing.Size(31, 13);
+            this.lblShares.TabIndex = 18;
+            this.lblShares.Text = "Parts";
+            // 
+            // boxShares
+            // 
+            this.boxShares.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.boxShares.Location = new System.Drawing.Point(56, 305);
+            this.boxShares.Name = "boxShares";
+            this.boxShares.Size = new System.Drawing.Size(346, 20);
+            this.boxShares.TabIndex = 17;
+            // 
+            // iconShares
+            // 
+            this.iconShares.AutoSize = true;
+            this.iconShares.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconShares.Location = new System.Drawing.Point(6, 303);
+            this.iconShares.Name = "iconShares";
+            this.iconShares.Size = new System.Drawing.Size(47, 19);
+            this.iconShares.TabIndex = 16;
+            this.iconShares.Text = "label1";
+            this.txtTitleSuccess.Location = new System.Drawing.Point(3, 200);
+            this.txtTitleSuccess.Name = "txtTitleSuccess";
+            this.txtTitleSuccess.Size = new System.Drawing.Size(773, 43);
+            this.txtTitleSuccess.TabIndex = 0;
+            this.txtTitleSuccess.Text = "Participant ajouté";
+            this.txtTitleSuccess.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // AddParticipantDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -312,7 +336,6 @@ namespace ProbPotes.pages.participants
         private System.Windows.Forms.TextBox boxName;
         private System.Windows.Forms.TextBox boxFirstName;
         private System.Windows.Forms.Label iconName;
-        private System.Windows.Forms.Label iconBalance;
         private System.Windows.Forms.Label lblBalance;
         private System.Windows.Forms.Label lblMail;
         private System.Windows.Forms.Label lblPhone;
@@ -322,5 +345,8 @@ namespace ProbPotes.pages.participants
         private System.Windows.Forms.Label lblEuro;
         private System.Windows.Forms.Label iconSuccessful;
         private System.Windows.Forms.Label txtSuccessfulDescription;
+        private System.Windows.Forms.Label lblShares;
+        private System.Windows.Forms.TextBox boxShares;
+        private System.Windows.Forms.Label iconShares;
     }
 }

@@ -27,7 +27,7 @@ namespace ProbPotes.components
     {
 
         public IDialogPage Content;
-        private Form ParentForm;
+        private new Form ParentForm;
 
         public ProbPotesDialog(String title, int icon, IDialogPage content, Form parent)
         {

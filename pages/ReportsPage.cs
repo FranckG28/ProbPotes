@@ -1,6 +1,7 @@
 ﻿using ProbPotes.components;
 using ProbPotes.managers;
 using ProbPotes.models;
+using ProbPotes.services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,8 @@ namespace ProbPotes.pages
             InitializeComponent();
 
             eventManager = new EventManager();
+
+            label1.Font = new Font(Fonts.regular, 13);
 
             List<EventClass> eventList = eventManager.GetEvents();
 

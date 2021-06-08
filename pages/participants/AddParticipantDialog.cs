@@ -31,20 +31,20 @@ namespace ProbPotes.pages.participants
                 ProbPotesDialog.ApplyTitleStyle(lbl);
             }
 
-            List<Label> labels = new List<Label>() { lblBalance, lblFirstName, lblMail,lblName, lblPhone, lblEuro, txtSuccessfulDescription};
+            List<Label> labels = new List<Label>() { lblBalance, lblFirstName, lblMail,lblName, lblPhone, lblEuro, txtSuccessfulDescription, lblShares};
             foreach(Label lbl in labels)
             {
                 ProbPotesDialog.ApplyLabelStyle(lbl);
             }
 
-            List<TextBox> txtBoxes = new List<TextBox>() { boxFirstName, boxMail, boxName, boxPhone, boxBalance };
+            List<TextBox> txtBoxes = new List<TextBox>() { boxFirstName, boxMail, boxName, boxPhone, boxBalance, boxShares };
             foreach(TextBox txt in txtBoxes)
             {
                 ProbPotesDialog.ApplyTextBoxStyle(txt);
             }
 
             // Icones :
-            iconBalance.Text = char.ConvertFromUtf32(0xE8EF);
+            iconShares.Text = char.ConvertFromUtf32(0xE125);
             iconMail.Text = char.ConvertFromUtf32(0xE715);
             iconName.Text = char.ConvertFromUtf32(0xE77B);
             iconPhone.Text = char.ConvertFromUtf32(0xE717);
@@ -52,6 +52,7 @@ namespace ProbPotes.pages.participants
 
             // Couleurs 
             iconSuccessful.ForeColor = Colors.blue;
+
 
         }
 
