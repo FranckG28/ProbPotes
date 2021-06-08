@@ -40,8 +40,6 @@ namespace ProbPotes.components.participants
             this.txtMail = new System.Windows.Forms.Label();
             this.txtShares = new System.Windows.Forms.Label();
             this.txtBalance = new System.Windows.Forms.Label();
-            this.btnEdit = new ProbPotes.components.IconButton();
-            this.btnDelete = new ProbPotes.components.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -153,26 +151,6 @@ namespace ProbPotes.components.participants
             this.txtBalance.TabIndex = 12;
             this.txtBalance.Text = "label4";
             // 
-            // btnEdit
-            // 
-            this.btnEdit.AutoSize = true;
-            this.btnEdit.BackColor = System.Drawing.Color.Transparent;
-            this.btnEdit.Icon = 59151;
-            this.btnEdit.Location = new System.Drawing.Point(143, 3);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(35, 35);
-            this.btnEdit.TabIndex = 2;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.AutoSize = true;
-            this.btnDelete.BackColor = System.Drawing.Color.Transparent;
-            this.btnDelete.Icon = 59213;
-            this.btnDelete.Location = new System.Drawing.Point(184, 3);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(35, 35);
-            this.btnDelete.TabIndex = 1;
-            // 
             // ParticipantTile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -187,8 +165,6 @@ namespace ProbPotes.components.participants
             this.Controls.Add(this.iconPhone);
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.txtName);
-            this.Controls.Add(this.btnEdit);
-            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.pictureBox1);
             this.Name = "ParticipantTile";
             this.Size = new System.Drawing.Size(222, 341);
@@ -202,8 +178,6 @@ namespace ProbPotes.components.participants
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private IconButton btnDelete;
-        private IconButton btnEdit;
         private System.Windows.Forms.Label txtName;
         private System.Windows.Forms.Label txtFirstName;
         private System.Windows.Forms.Label iconPhone;

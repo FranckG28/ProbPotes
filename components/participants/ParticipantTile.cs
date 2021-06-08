@@ -1,4 +1,5 @@
-﻿using ProbPotes.models;
+﻿using ProbPotes.managers;
+using ProbPotes.models;
 using ProbPotes.services;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,7 @@ namespace ProbPotes.components.participants
             HoverColor hoverBlue = new HoverColor(new List<Control>() { txtFirstName, txtName }, true, Colors.blue, Colors.white, Colors.white);
             HoverColor hoverBlack = new HoverColor(new List<Control>() { txtBalance, txtShares, txtMail, txtPhone, iconBalance, iconMail, iconPhone, iconShares }, true, Colors.black, Colors.white, Colors.white);
             hover = new HoverController(new List<HoverColor>() { hoverBg, hoverBlack, hoverBlue }, this);
+
         }
 
         public Participant Participant
@@ -68,6 +70,7 @@ namespace ProbPotes.components.participants
         public delegate void Del();
 
         public Del ClickAction;
+        public Del RefreshDelegate;
 
         private void ParticipantTile_Click(object sender, EventArgs e)
         {
@@ -76,5 +79,6 @@ namespace ProbPotes.components.participants
                 ClickAction();
             }
         }
+        
     }
 }

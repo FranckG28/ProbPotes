@@ -77,23 +77,24 @@ namespace ProbPotes.managers
         {
             try
             {
-                Boolean partFind = false;
+                /*                Boolean partFind = false;
 
-                for(int i = 0; i < ParticipantsList.Count; i++)
-                {
-                    if (participant.Code == Participants[i].Code)
-                    {
-                        participant.Phone = Participants[i].Phone;
-                        participant.Shares = Participants[i].Shares;
-                        participant.Balance = Participants[i].Balance;
-                        participant.Name = Participants[i].Name;
-                        participant.FirstName = Participants[i].FirstName;
-                        participant.MailAddress = Participants[i].MailAddress;
-                        partFind = true;
-                    }
-                }
+                                for(int i = 0; i < ParticipantsList.Count; i++)
+                                {
+                                    if (participant.Code == Participants[i].Code)
+                                    {
+                                        participant.Phone = Participants[i].Phone;
+                                        participant.Shares = Participants[i].Shares;
+                                        participant.Balance = Participants[i].Balance;
+                                        participant.Name = Participants[i].Name;
+                                        participant.FirstName = Participants[i].FirstName;
+                                        participant.MailAddress = Participants[i].MailAddress;
+                                        partFind = true;
+                                    }
+                                }
 
-                return partFind;
+                                return partFind;*/
+                return false;
 
             }
             catch(Exception)
@@ -105,40 +106,6 @@ namespace ProbPotes.managers
             }
         }
 
-        // Procédure de suppression d'un participant
-        // Retourne true si la suppression a reussi
-        public Boolean DeleteParticipant(int id)
-        {
-
-            try
-            {
-                Boolean partFind = false;
-                for (int i = 0; i < ParticipantsList.Count; i++)
-                {
-                    if (ParticipantsList[i].Code == id)
-                    {
-                        ParticipantsList.RemoveAt(i);
-                        partFind = true;
-                    }
-                }
-
-                DatabaseManager.db.Open();
-
-                OleDbCommand deletePart = new OleDbCommand(@"DELETE FROM Participants WHERE codeParticipant="+id, DatabaseManager.db);
-
-                int rowDelete= Convert.ToInt32(deletePart.ExecuteNonQuery().ToString());
-
-                return partFind && rowDelete > 0;
-            }
-            catch(Exception e)
-            {
-                Debug.WriteLine(e.ToString());
-                return false;
-            } finally
-            {
-                RefreshParticipants();
-            }
-        }
 
         // Fonction qui retourne le participant correspondant au numéro dans la base
         public Participant GetParticipant(int id)

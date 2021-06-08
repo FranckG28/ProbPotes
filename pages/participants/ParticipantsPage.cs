@@ -1,4 +1,6 @@
-﻿using ProbPotes.models;
+﻿using ProbPotes.components.participants;
+using ProbPotes.managers;
+using ProbPotes.models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,9 +19,20 @@ namespace ProbPotes.pages
         {
             InitializeComponent();
 
-            Participant p = new Participant(20, "06 51 91 82 86", 2, 26.5, "AL HAMMUTI", "Sabrina", "sabrina080802@hotmail.fr");
+            RefreshTiles();
+        }
 
-            participantTile1.Participant = p;
+        public void RefreshTiles()
+        {
+            flowLayoutPanel1.Controls.Clear();
+            List<Participant> participants = DatabaseManager.Participants.Participants;
+
+            foreach (Participant p in participants)
+            {
+                ParticipantTile tile = new ParticipantTile();
+                tile.Participant = p;
+                flowLayoutPanel1.Controls.Add(tile);
+            }
         }
     }
 }
