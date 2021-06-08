@@ -103,7 +103,16 @@ namespace ProbPotes.pages.participants
         {
             e.Handled = true;
 
-            if (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || (e.KeyChar == ',' && !boxBalance.Text.Contains(',')))
+            if (char.IsDigit(e.KeyChar)||e.KeyChar==',' || e.KeyChar == (char)Keys.Back || (e.KeyChar == ',' && !boxBalance.Text.Contains(',')))
+            {
+                e.Handled = false;
+            }
+        }
+        private void boxEmail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+
+            if (char.IsDigit(e.KeyChar)||char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == '@' || e.KeyChar =='.')
             {
                 e.Handled = false;
             }

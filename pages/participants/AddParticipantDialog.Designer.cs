@@ -48,9 +48,9 @@ namespace ProbPotes.pages.participants
             this.iconName = new System.Windows.Forms.Label();
             this.txtTitle1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txtTitleSuccess = new System.Windows.Forms.Label();
-            this.iconSuccessful = new System.Windows.Forms.Label();
             this.txtSuccessfulDescription = new System.Windows.Forms.Label();
+            this.iconSuccessful = new System.Windows.Forms.Label();
+            this.txtTitleSuccess = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -118,6 +118,7 @@ namespace ProbPotes.pages.participants
             this.boxBalance.Name = "boxBalance";
             this.boxBalance.Size = new System.Drawing.Size(117, 20);
             this.boxBalance.TabIndex = 13;
+            this.boxBalance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxBalance_KeyPress);
             // 
             // iconBalance
             // 
@@ -145,6 +146,7 @@ namespace ProbPotes.pages.participants
             this.boxMail.Name = "boxMail";
             this.boxMail.Size = new System.Drawing.Size(703, 20);
             this.boxMail.TabIndex = 10;
+            this.boxMail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxEmail_KeyPress);
             // 
             // iconMail
             // 
@@ -169,9 +171,11 @@ namespace ProbPotes.pages.participants
             // 
             this.boxPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.boxPhone.Location = new System.Drawing.Point(56, 161);
+            this.boxPhone.MaxLength = 10;
             this.boxPhone.Name = "boxPhone";
             this.boxPhone.Size = new System.Drawing.Size(703, 20);
             this.boxPhone.TabIndex = 7;
+            this.boxPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxPhone_KeyPress);
             // 
             // iconPhone
             // 
@@ -199,6 +203,7 @@ namespace ProbPotes.pages.participants
             this.boxName.Name = "boxName";
             this.boxName.Size = new System.Drawing.Size(346, 20);
             this.boxName.TabIndex = 4;
+            this.boxName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxFirstName_KeyPress);
             // 
             // lblFirstName
             // 
@@ -216,6 +221,7 @@ namespace ProbPotes.pages.participants
             this.boxFirstName.Name = "boxFirstName";
             this.boxFirstName.Size = new System.Drawing.Size(346, 20);
             this.boxFirstName.TabIndex = 2;
+            this.boxFirstName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxName_KeyPress);
             // 
             // iconName
             // 
@@ -249,14 +255,14 @@ namespace ProbPotes.pages.participants
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // txtTitleSuccess
+            // txtSuccessfulDescription
             // 
-            this.txtTitleSuccess.Location = new System.Drawing.Point(3, 200);
-            this.txtTitleSuccess.Name = "txtTitleSuccess";
-            this.txtTitleSuccess.Size = new System.Drawing.Size(773, 43);
-            this.txtTitleSuccess.TabIndex = 0;
-            this.txtTitleSuccess.Text = "Participant ajouté";
-            this.txtTitleSuccess.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.txtSuccessfulDescription.Location = new System.Drawing.Point(6, 243);
+            this.txtSuccessfulDescription.Name = "txtSuccessfulDescription";
+            this.txtSuccessfulDescription.Size = new System.Drawing.Size(773, 43);
+            this.txtSuccessfulDescription.TabIndex = 3;
+            this.txtSuccessfulDescription.Text = "Participant ajouté";
+            this.txtSuccessfulDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // iconSuccessful
             // 
@@ -268,14 +274,14 @@ namespace ProbPotes.pages.participants
             this.iconSuccessful.Text = "label1";
             this.iconSuccessful.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtSuccessfulDescription
+            // txtTitleSuccess
             // 
-            this.txtSuccessfulDescription.Location = new System.Drawing.Point(6, 243);
-            this.txtSuccessfulDescription.Name = "txtSuccessfulDescription";
-            this.txtSuccessfulDescription.Size = new System.Drawing.Size(773, 43);
-            this.txtSuccessfulDescription.TabIndex = 3;
-            this.txtSuccessfulDescription.Text = "Participant ajouté";
-            this.txtSuccessfulDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.txtTitleSuccess.Location = new System.Drawing.Point(3, 200);
+            this.txtTitleSuccess.Name = "txtTitleSuccess";
+            this.txtTitleSuccess.Size = new System.Drawing.Size(773, 43);
+            this.txtTitleSuccess.TabIndex = 0;
+            this.txtTitleSuccess.Text = "Participant ajouté";
+            this.txtTitleSuccess.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AddParticipantDialog
             // 
