@@ -11,7 +11,7 @@ namespace ProbPotes.managers
     {
         string way = Directory.GetCurrentDirectory();
         //METTEZ VOTRE SOURCE DE BDD SINON CA MARCHE PAS !
-        public static OleDbConnection db = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\gutma\source\repos\probpotes\bdEvents.mdb;Persist Security Info=True");
+        public static OleDbConnection db = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\bdEvents.mdb") + ";Persist Security Info=True");
 
         // ACCES AUX MANAGERS
         public static EventManager Events = new EventManager();

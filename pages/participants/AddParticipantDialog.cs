@@ -72,7 +72,7 @@ namespace ProbPotes.pages.participants
             {
                 if(value == 1)
                 {
-                    Participant newParticipant = new Participant();
+                    //Participant newParticipant = new Participant();
 
                     // SI ECHEC : 
                     //tabControl1.SelectedIndex = 0;
@@ -134,7 +134,7 @@ namespace ProbPotes.pages.participants
         {
             e.Handled = true;
 
-            if (char.IsDigit(e.KeyChar)||cha    r.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == '@' || e.KeyChar =='.')
+            if (char.IsDigit(e.KeyChar)||char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == '@' || e.KeyChar =='.')
             {
                 e.Handled = false;
             }
