@@ -27,7 +27,7 @@ namespace ProbPotes.models
             this.Title = title;
             this.StartDate = startDate;
             this.Description = description;
-            this.StartDate = startDate;
+            this.EndDate = endDate;
             this.CreatorCode = creatorCode;
             this.SoldeOn = soldeOn;
             this.Guests = guests;

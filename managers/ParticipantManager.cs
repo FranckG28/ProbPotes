@@ -121,5 +121,29 @@ namespace ProbPotes.managers
                 ParticipantsList.Add(new Participant(row));
             }
         }
+
+        public string GetStringFromList(List<int> list)
+        {
+            List<Participant> guests = new List<Participant>();
+
+            foreach(int i in list)
+            {
+                guests.Add(GetParticipant(i));
+            }
+
+            // Génération de la chaine de caractère 
+            string result = "";
+
+            for (int i = 0; i < guests.Count; i++)
+            {
+                result += guests[i].FirstName + " " + guests[i].Name.Substring(0, 1).ToUpper() + ".";
+                if (i < guests.Count - 1)
+                {
+                    result += ", ";
+                }
+            }
+
+            return result;
+        }
     }
 }

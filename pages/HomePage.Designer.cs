@@ -32,11 +32,11 @@ namespace ProbPotes.pages
             this.iconAddExpense = new System.Windows.Forms.Label();
             this.txtAddExpenseTitle = new System.Windows.Forms.Label();
             this.txtAddExpenseDescription = new System.Windows.Forms.Label();
+            this.pnlEvents = new System.Windows.Forms.Panel();
             this.tileTotal = new ProbPotes.components.home.StatTile();
             this.tileEvents = new ProbPotes.components.home.StatTile();
             this.tileExpenses = new ProbPotes.components.home.StatTile();
             this.tileParticipants = new ProbPotes.components.home.StatTile();
-            this.eventPreview1 = new ProbPotes.components.EventPreview();
             this.SuspendLayout();
             // 
             // iconAddExpense
@@ -66,6 +66,14 @@ namespace ProbPotes.pages
             this.txtAddExpenseDescription.TabIndex = 6;
             this.txtAddExpenseDescription.Text = "Sélectionnez l\'évènement auquel vous souhaitez ajouter une dépense ";
             // 
+            // pnlEvents
+            // 
+            this.pnlEvents.AutoScroll = true;
+            this.pnlEvents.Location = new System.Drawing.Point(0, 371);
+            this.pnlEvents.Name = "pnlEvents";
+            this.pnlEvents.Size = new System.Drawing.Size(942, 146);
+            this.pnlEvents.TabIndex = 8;
+            // 
             // tileTotal
             // 
             this.tileTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))), ((int)(((byte)(255)))));
@@ -73,7 +81,7 @@ namespace ProbPotes.pages
             this.tileTotal.Icon = 60156;
             this.tileTotal.Location = new System.Drawing.Point(720, 3);
             this.tileTotal.Name = "tileTotal";
-            this.tileTotal.Number = "680€";
+            this.tileTotal.Number = "--";
             this.tileTotal.Size = new System.Drawing.Size(222, 222);
             this.tileTotal.TabIndex = 3;
             // 
@@ -95,7 +103,7 @@ namespace ProbPotes.pages
             this.tileExpenses.Icon = 59161;
             this.tileExpenses.Location = new System.Drawing.Point(240, 3);
             this.tileExpenses.Name = "tileExpenses";
-            this.tileExpenses.Number = "13";
+            this.tileExpenses.Number = "--";
             this.tileExpenses.Size = new System.Drawing.Size(222, 222);
             this.tileExpenses.TabIndex = 1;
             // 
@@ -110,19 +118,11 @@ namespace ProbPotes.pages
             this.tileParticipants.Size = new System.Drawing.Size(222, 222);
             this.tileParticipants.TabIndex = 0;
             // 
-            // eventPreview1
-            // 
-            this.eventPreview1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))), ((int)(((byte)(255)))));
-            this.eventPreview1.Location = new System.Drawing.Point(0, 368);
-            this.eventPreview1.Name = "eventPreview1";
-            this.eventPreview1.Size = new System.Drawing.Size(222, 120);
-            this.eventPreview1.TabIndex = 7;
-            // 
             // HomePage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.eventPreview1);
+            this.Controls.Add(this.pnlEvents);
             this.Controls.Add(this.txtAddExpenseDescription);
             this.Controls.Add(this.txtAddExpenseTitle);
             this.Controls.Add(this.iconAddExpense);
@@ -146,6 +146,6 @@ namespace ProbPotes.pages
         private System.Windows.Forms.Label iconAddExpense;
         private System.Windows.Forms.Label txtAddExpenseTitle;
         private System.Windows.Forms.Label txtAddExpenseDescription;
-        private components.EventPreview eventPreview1;
+        private System.Windows.Forms.Panel pnlEvents;
     }
 }

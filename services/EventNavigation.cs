@@ -77,27 +77,15 @@ namespace ProbPotes.models
                 // Recherche des numéros de participant :
                 DataRow[] participantCodes = data.Tables["Invites"].Select("codeEvent = " + Index);
 
-                List<Participant> guests = new List<Participant>();
+                List<int> guests = new List<int>();
 
                 // Recherches des participants correspondants :
-                foreach(DataRow row in participantCodes)
+                foreach (DataRow row in participantCodes)
                 {
-                    guests.Add(participants.GetParticipant((int)row["codePart"]));
+                    guests.Add((int)row["codePart"]);
                 }
 
-                // Génération de la chaine de caractère 
-                string result = "";
-
-                for (int i = 0; i < guests.Count; i++)
-                {
-                    result += guests[i].FirstName + " " + guests[i].Name.Substring(0, 1).ToUpper() + ".";
-                    if (i < guests.Count-1)
-                    {
-                        result += ", ";
-                    }
-                }
-
-                return result;
+                return DatabaseManager.Participants.GetStringFromList(guests);
             }
         }
 

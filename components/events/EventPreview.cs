@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using ProbPotes.managers;
 using ProbPotes.models;
 using ProbPotes.services;
 
@@ -73,14 +73,7 @@ namespace ProbPotes.components
                 {
                     txtTitle.Text = eventClass.Title;
                     txtDate.Text = eventClass.StartDate.ToShortDateString() + " - " + eventClass.EndDate.ToShortDateString();
-
-                    // Génération de la liste des participants :
-                    string participantList = "";
-                    foreach(int participant in eventClass.Guests)
-                    {
-                        participantList += participant.ToString() + ", ";
-                    }
-                    txtParticipants.Text = participantList;
+                    txtParticipants.Text = DatabaseManager.Participants.GetStringFromList(eventClass.Guests);
                 }
             }
         }
