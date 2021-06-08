@@ -71,9 +71,6 @@ namespace ProbPotes.pages.participants
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.lblShares);
-            this.tabPage1.Controls.Add(this.boxShares);
-            this.tabPage1.Controls.Add(this.iconShares);
             this.tabPage1.Controls.Add(this.lblEuro);
             this.tabPage1.Controls.Add(this.lblBalance);
             this.tabPage1.Controls.Add(this.boxBalance);
@@ -122,6 +119,7 @@ namespace ProbPotes.pages.participants
             this.boxBalance.Name = "boxBalance";
             this.boxBalance.Size = new System.Drawing.Size(346, 20);
             this.boxBalance.TabIndex = 13;
+            this.boxBalance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxBalance_KeyPress);
             // 
             // lblMail
             // 
@@ -139,6 +137,7 @@ namespace ProbPotes.pages.participants
             this.boxMail.Name = "boxMail";
             this.boxMail.Size = new System.Drawing.Size(703, 20);
             this.boxMail.TabIndex = 10;
+            this.boxMail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxEmail_KeyPress);
             // 
             // iconMail
             // 
@@ -163,9 +162,11 @@ namespace ProbPotes.pages.participants
             // 
             this.boxPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.boxPhone.Location = new System.Drawing.Point(56, 161);
+            this.boxPhone.MaxLength = 10;
             this.boxPhone.Name = "boxPhone";
             this.boxPhone.Size = new System.Drawing.Size(703, 20);
             this.boxPhone.TabIndex = 7;
+            this.boxPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxPhone_KeyPress);
             // 
             // iconPhone
             // 
@@ -193,6 +194,7 @@ namespace ProbPotes.pages.participants
             this.boxName.Name = "boxName";
             this.boxName.Size = new System.Drawing.Size(346, 20);
             this.boxName.TabIndex = 4;
+            this.boxName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxFirstName_KeyPress);
             // 
             // lblFirstName
             // 
@@ -210,6 +212,7 @@ namespace ProbPotes.pages.participants
             this.boxFirstName.Name = "boxFirstName";
             this.boxFirstName.Size = new System.Drawing.Size(346, 20);
             this.boxFirstName.TabIndex = 2;
+            this.boxFirstName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxName_KeyPress);
             // 
             // iconName
             // 
@@ -297,6 +300,12 @@ namespace ProbPotes.pages.participants
             this.iconShares.Size = new System.Drawing.Size(47, 19);
             this.iconShares.TabIndex = 16;
             this.iconShares.Text = "label1";
+            this.txtTitleSuccess.Location = new System.Drawing.Point(3, 200);
+            this.txtTitleSuccess.Name = "txtTitleSuccess";
+            this.txtTitleSuccess.Size = new System.Drawing.Size(773, 43);
+            this.txtTitleSuccess.TabIndex = 0;
+            this.txtTitleSuccess.Text = "Participant ajouté";
+            this.txtTitleSuccess.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AddParticipantDialog
             // 
