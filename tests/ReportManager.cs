@@ -28,11 +28,10 @@ namespace ProbPotes.tests
         public void Test(EventClass evt)
         {
             DatabaseManager.db.Open();
-            DataSet ds = new DataSet();
 
             DataTable dtBilan = new DataTable();
 
-            dtBilan.Columns.Add("codeParticipant", typeof(Int32));
+            dtBilan.Columns.Add("codeParticipant", typeof(int));
             dtBilan.Columns.Add("Personne", typeof(string));
             dtBilan.Columns.Add("Plus", typeof(double));
             dtBilan.Columns.Add("Moins", typeof(double));
@@ -53,7 +52,86 @@ namespace ProbPotes.tests
 
             foreach (KeyValuePair<int, int> val in partShare)
             {
-                //PROCEDURE STOCKEE JSP COMMENT FAIRE ;(
+                //PROCEDURE STOCKEE MAIS JSP COMMENT FAIRE ;(
+                //APPELER LES 2 PROCEDURES STOCKE, REMPLIR UNE DATAROX ET LA RAJOUTER 
+                //DANS DTBILAN
+            }
+
+            Boolean allSoldeAt0 = false;
+
+            while (allSoldeAt0)
+            {
+                DataRow receveur = dtBilan.Rows[0];
+                DataRow donneur = dtBilan.Rows[0];
+
+                foreach (DataRow row in dtBilan.Rows)
+                {
+                    if (Convert.ToDecimal(row["Solde"].ToString()) < Convert.ToDecimal(receveur["Solde"].ToString()))
+                    {
+                        receveur = row;
+                        row.Delete();
+                    }
+
+                    if (Convert.ToDecimal(row["Solde"].ToString()) > Convert.ToDecimal(donneur["Solde"].ToString()))
+                    {
+                        donneur = row;
+                        row.Delete();
+                    }
+                }
+
+                if (Convert.ToDecimal(donneur["Solde"].ToString()) > Convert.ToDecimal(receveur["Solde"].ToString()))
+                {
+                    OleDbCommand cdBilanPart= new OleDbCommand("INSERT INTO BilanPart(codeEvent,codeDonneur,codeReceveur,montant)" +
+                        "                          VALUES (?,?,?,?)",DatabaseManager.db);
+
+                    cdBilanPart.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value =evt.Code;
+                    cdBilanPart.Parameters.Add(new OleDbParameter("codeDonneur", OleDbType.Integer)).Value = donneur["codeParticipant"];
+                    cdBilanPart.Parameters.Add(new OleDbParameter("codeReceveur", OleDbType.Integer)).Value = receveur["codeParticipant"];
+                    cdBilanPart.Parameters.Add(new OleDbParameter("montant", OleDbType.Currency)).Value = receveur["Solde"];
+
+                    cdBilanPart.ExecuteNonQuery();
+
+                    donneur["Solde"] = Convert.ToDecimal(donneur["Solde"].ToString()) - Convert.ToDecimal(receveur["Solde"].ToString());
+                    receveur["Solde"] = 0;
+
+                    dtBilan.Rows.Add(donneur);
+                    dtBilan.Rows.Add(receveur);
+                }
+                else
+                {
+                    OleDbCommand cdBilanPart = new OleDbCommand("INSERT INTO BilanPart(codeEvent,codeDonneur,codeReceveur,montant)" +
+    "                          VALUES (?,?,?,?)", DatabaseManager.db);
+
+                    cdBilanPart.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = evt.Code;
+                    cdBilanPart.Parameters.Add(new OleDbParameter("codeDonneur", OleDbType.Integer)).Value = donneur["codeParticipant"];
+                    cdBilanPart.Parameters.Add(new OleDbParameter("codeReceveur", OleDbType.Integer)).Value = receveur["codeParticipant"];
+                    cdBilanPart.Parameters.Add(new OleDbParameter("montant", OleDbType.Currency)).Value = donneur["Solde"];
+
+                    cdBilanPart.ExecuteNonQuery();
+
+                    donneur["Solde"] = 0;
+                    receveur["Solde"] = Convert.ToDecimal(receveur["Solde"].ToString()) - Convert.ToDecimal(donneur["Solde"].ToString());
+
+                    dtBilan.Rows.Add(donneur);
+                    dtBilan.Rows.Add(receveur);
+                }
+
+
+                //VERIFIE SI LES LES DEPENSE SONT TOUTES A 0 OU NON
+                int cptSoldeAt0 = 0;
+                foreach (DataRow row in dtBilan.Rows)
+                {
+                    if (Convert.ToDecimal(row["Solde"].ToString()) == 0)
+                    {
+                        cptSoldeAt0 += 1;
+                    }
+                }
+
+                //SI TOUTE LES DEPENSES == 0 , ARRETE LE WHILE
+                if (cptSoldeAt0 == dtBilan.Rows.Count)
+                {
+                    allSoldeAt0 = true;
+                }
             }
 
         }
