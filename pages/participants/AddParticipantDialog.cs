@@ -1,4 +1,6 @@
 using ProbPotes.components;
+using ProbPotes.managers;
+using ProbPotes.models;
 using ProbPotes.services;
 using System;
 using System.Collections.Generic;
@@ -66,7 +68,26 @@ namespace ProbPotes.pages.participants
 
         public int Index { 
             get => tabControl1.SelectedIndex; 
-            set => tabControl1.SelectedIndex = value; 
+            set
+            {
+                if(value == 1)
+                {
+                    Participant newParticipant = new Participant();
+
+                    // SI ECHEC : 
+                    //tabControl1.SelectedIndex = 0;
+                    // AJOUTER WARNING
+                    
+                    // SI REUSSITE :
+                    tabControl1.SelectedIndex = value;
+                } else
+                {
+                    tabControl1.SelectedIndex = value;
+                }
+                
+
+            }
+
         }
 
         //KeyPress
@@ -113,7 +134,7 @@ namespace ProbPotes.pages.participants
         {
             e.Handled = true;
 
-            if (char.IsDigit(e.KeyChar)||char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == '@' || e.KeyChar =='.')
+            if (char.IsDigit(e.KeyChar)||cha    r.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == '@' || e.KeyChar =='.')
             {
                 e.Handled = false;
             }
