@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -88,7 +89,7 @@ namespace ProbPotes.managers
 
             } catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
+                Debug.WriteLine(e.ToString());
                 return false;
             }
         }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Windows.Forms;
 using System.Data;
+using System.Diagnostics;
 
 namespace ProbPotes.managers
 {
@@ -16,7 +17,7 @@ namespace ProbPotes.managers
 
         // CLASSE DE GESTION DES ÉVÈNEMENTS PROBPOTES
 
-        private List<EventClass> EventsList;
+        private List<EventClass> EventsList = new List<EventClass>();
 
         public List<EventClass> Events
         {
@@ -26,6 +27,12 @@ namespace ProbPotes.managers
         // Un évènement inclus les dépenses et la liste des participant
         // --> A gérer lors de l'obtention, l'ajout et la suppression d'évènements
 
+
+        public EventManager()
+        {
+            Debug.WriteLine("Création d'EventManager");
+            RefreshEvents();
+        }
 
         // Procédure d'ajout d'un évènement
         // Retourne true si l'ajout a réussi
@@ -51,24 +58,18 @@ namespace ProbPotes.managers
 
                 int result = insertEvent.ExecuteNonQuery();
 
-                if (result > 0)
-                {
-                    EventsList.Add(eventclass);
-                    return true;
-                } else
-                {
-                    return false;
-                }
+                return result > 0;
                 
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
+                Debug.WriteLine(e.ToString());
                 return false;
             }
             finally
             {
                 DatabaseManager.db.Close();
+                RefreshEvents();
             }
 
 
@@ -98,25 +99,18 @@ namespace ProbPotes.managers
 
                 int result = update.ExecuteNonQuery();
 
-                if (result > 0)
-                {
-                    EventClass eventToDelete = GetEvent(eventclass.Code);
-                    int index = EventsList.IndexOf(eventToDelete);
-                    EventsList[index] = eventclass;
-                    return true;
-                } else
-                {
-                    return false;
-                }
+                return result > 0;
                 
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.WriteLine(e.ToString());
                 return false;
             }
             finally
             {
                 DatabaseManager.db.Close();
+                RefreshEvents();
             }
         }
 
@@ -133,32 +127,27 @@ namespace ProbPotes.managers
                 delete.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventId;
                 int result = delete.ExecuteNonQuery();
 
-                if (result > 0)
-                {
-                    EventClass eventToDelete = GetEvent(eventId);
-                    EventsList.Remove(eventToDelete);
-                    return true;
-                } else
-                {
-                    return false;
-                }
+                return result > 0;
+
             } 
-                
-                
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.WriteLine(e.ToString());
                 return false;
             }
             finally
             {
                 DatabaseManager.db.Close();
+                RefreshEvents();
             }
         }
 
         // Fonction qui retourne la liste de tous les participants de la base :
-        public void RefreshEvents()
+        public Boolean RefreshEvents()
         {
-            List<EventClass> res = new List<EventClass>();
+            try
+            {
+                List<EventClass> res = new List<EventClass>();
 
                 DatabaseManager.db.Open();
 
@@ -168,25 +157,38 @@ namespace ProbPotes.managers
 
                 while (dr.Read())
                 {
-                DateTime debut = (DateTime)dr[2];
-                DateTime fin = (DateTime)dr[3];
+                    DateTime debut = (DateTime)dr[2];
+                    DateTime fin = (DateTime)dr[3];
 
 
-                //RECHERCHE LES PARTICIPANTS A L'EVENEMENT
-                OleDbCommand cdGuest = new OleDbCommand("SELECT codePart FROM Invites WHERE codeEvent="+dr[0].ToString(), DatabaseManager.db);
-                OleDbDataReader drGuest = cdGuest.ExecuteReader();
-                List<int> guest = new List<int>();
+                    //RECHERCHE LES PARTICIPANTS A L'EVENEMENT
+                    OleDbCommand cdGuest = new OleDbCommand("SELECT codePart FROM Invites WHERE codeEvent=" + dr[0].ToString(), DatabaseManager.db);
+                    OleDbDataReader drGuest = cdGuest.ExecuteReader();
+                    List<int> guest = new List<int>();
 
-                while (drGuest.Read())
-                {
-                    guest.Add(Convert.ToInt32(drGuest[0].ToString()));
+                    while (drGuest.Read())
+                    {
+                        guest.Add(Convert.ToInt32(drGuest[0].ToString()));
+                    }
+
+                    Debug.WriteLine("event ajouté");
+
+                    res.Add(new EventClass(Convert.ToInt32(dr[0].ToString()), dr[1].ToString(), Convert.ToInt32(dr[6].ToString()), (Boolean)dr[5], dr[4].ToString(), debut, fin, guest));
                 }
 
-                res.Add(new EventClass(Convert.ToInt32(dr[0].ToString()),dr[1].ToString(), Convert.ToInt32(dr[6].ToString()),(Boolean)dr[5],dr[4].ToString(),debut,fin,guest));
-                }
-            DatabaseManager.db.Close();
+                Debug.WriteLine("FIN REFRESHEVENT");
+                
+                EventsList = res;
 
-            EventsList = res;
+                return true;
+            } catch (Exception e)
+            {
+                Debug.WriteLine(e.ToString());
+                return false;
+            } finally
+            {
+                DatabaseManager.db.Close();
+            }
         }
 
         // Fonction qui retourne l'évènement correspondant au numéro demandé dans la base :

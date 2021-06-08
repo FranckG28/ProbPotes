@@ -55,12 +55,12 @@ namespace ProbPotes.components.participants
                 participant = value;
                 if (participant != null)
                 {
-                    txtFirstName.Text = participant.firstName;
-                    txtName.Text = participant.name;
-                    txtPhone.Text = participant.phone;
-                    txtMail.Text = participant.mailAddress;
-                    txtShares.Text = participant.shares.ToString();
-                    txtBalance.Text = participant.balance.ToString() + " €";
+                    txtFirstName.Text = participant.FirstName;
+                    txtName.Text = participant.Name;
+                    txtPhone.Text = participant.Phone;
+                    txtMail.Text = participant.MailAddress;
+                    txtShares.Text = participant.Shares.ToString();
+                    txtBalance.Text = participant.Balance.ToString() + " €";
                 }
             }
         }

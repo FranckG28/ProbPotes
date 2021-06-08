@@ -36,13 +36,13 @@ namespace ProbPotes.services
             view = panel;
         }
 
-        public void AddNavigation(NavBarItem nav, Control page, Pages id, string title = "", PageTemplate.AddButtonDelegate addButtonAction = null) 
+        public void AddNavigation(NavBarItem nav, Pages id, string title = "", PageTemplate.AddButtonDelegate addButtonAction = null) 
         {
             if (title == "")
             {
                 title = nav.Title;
             }
-            NavigationTemplate navTemplate = new NavigationTemplate(nav, page, id, title, addButtonAction);
+            NavigationTemplate navTemplate = new NavigationTemplate(nav, id, title, addButtonAction);
             nav.page = navTemplate;
             nav.action = NavigateTo;
             pages.Add(navTemplate);

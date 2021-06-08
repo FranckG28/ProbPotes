@@ -80,8 +80,7 @@ namespace ProbPotes.pages
             btnPrevious.ClickAction = ButtonPrevious;
 
             // Recuperation des evènement :
-            EventManager eventManager = new EventManager();
-            nav = eventManager.getEventNavigator();
+            nav = DatabaseManager.Events.GetEventNavigator();
 
             // Initialisation des labels
             AddBinding(txtTitle, "titreEvent");

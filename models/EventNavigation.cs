@@ -66,7 +66,7 @@ namespace ProbPotes.models
 
                 // Recherche du participant :
                 Participant creator = participants.GetParticipant((int)eventResult.First()["codeCreateur"]);
-                return creator.FirstName + " " + creator.Name;
+                return creator.firstName + " " + creator.name;
             }
         }
 
@@ -90,7 +90,7 @@ namespace ProbPotes.models
 
                 for (int i = 0; i < guests.Count; i++)
                 {
-                    result += guests[i].FirstName + " " + guests[i].Name.Substring(0, 1).ToUpper() + ".";
+                    result += guests[i].firstName + " " + guests[i].name.Substring(0, 1).ToUpper() + ".";
                     if (i < guests.Count-1)
                     {
                         result += ", ";

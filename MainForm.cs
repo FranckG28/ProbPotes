@@ -18,6 +18,8 @@ using ProbPotes.pages;
 using ProbPotes.components;
 using ProbPotes.pages.participants;
 using ProbPotes.pages.events;
+using ProbPotes.managers;
+using System.Diagnostics;
 
 namespace ProbPotes
 {
@@ -47,12 +49,14 @@ namespace ProbPotes
             // Initialisation de la navigation :
             navigation = new NavigationController(panelView);
 
+
+
             // Ajout des pages
-            navigation.AddNavigation(navHome, new HomePage(), Pages.Home, "Bonjour");
-            navigation.AddNavigation(navExpenses, new ExpensesPage(), Pages.Expenses, "Vos dépenses", GoToHome);
-            navigation.AddNavigation(navEvents, new EventsPage(), Pages.Events, "Vos évènements", OpenAddEvent);
-            navigation.AddNavigation(navParticipants, new ParticipantsPage(), Pages.Participants, "Vos participants", OpenAddParticipant);
-            navigation.AddNavigation(navReports, new ReportsPage(), Pages.Reports, "Faire un bilan");
+            navigation.AddNavigation(navHome, Pages.Home, "Bonjour");
+            navigation.AddNavigation(navExpenses, Pages.Expenses, "Vos dépenses", GoToHome);
+            navigation.AddNavigation(navEvents, Pages.Events, "Vos évènements", OpenAddEvent);
+            navigation.AddNavigation(navParticipants, Pages.Participants, "Vos participants", OpenAddParticipant);
+            navigation.AddNavigation(navReports, Pages.Reports, "Faire un bilan");
         }
 
         public void CloseApp() 

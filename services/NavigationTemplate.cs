@@ -1,5 +1,7 @@
 ﻿using ProbPotes.components;
+using ProbPotes.managers;
 using ProbPotes.pages;
+using ProbPotes.pages.events;
 using ProbPotes.services;
 using System;
 using System.Collections.Generic;
@@ -14,15 +16,13 @@ namespace ProbPotes.models
     {
 
         public NavBarItem navItem;
-        public Control content;
         public String title;
         public Pages id;
 
         public PageTemplate.AddButtonDelegate addAction;
 
-        public NavigationTemplate(NavBarItem nav, Control content, Pages id, String title, PageTemplate.AddButtonDelegate addAction)
+        public NavigationTemplate(NavBarItem nav, Pages id, String title, PageTemplate.AddButtonDelegate addAction)
         {
-            this.content = content;
             this.navItem = nav;
             this.title = title;
             this.id = id;
@@ -34,7 +34,32 @@ namespace ProbPotes.models
             PageTemplate page = new PageTemplate();
             page.Title = title;
             page.Icon = navItem.Icon;
-            page.Content = content;
+            
+            switch (id)
+            {
+                case Pages.Home:
+                    page.Content = new HomePage();
+                    break;
+                case Pages.Events:
+                    if (DatabaseManager.Events.Events != null && DatabaseManager.Events.Events.Count > 0)
+                    {
+                        page.Content = new EventsPage();
+                    } else
+                    {
+                        page.Content = new NoEventPage();
+                    }
+                    break;
+                case Pages.Expenses:
+                    page.Content = new ExpensesPage();
+                    break;
+                case Pages.Participants:
+                    page.Content = new ParticipantsPage();
+                    break;
+                case Pages.Reports:
+                    page.Content = new ReportsPage();
+                    break;
+            }
+
             if (addAction != null) {
                 page.AddButtonAction = addAction;
             }

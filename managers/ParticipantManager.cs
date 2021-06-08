@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProbPotes.managers
 {
@@ -13,7 +15,7 @@ namespace ProbPotes.managers
     {
 
         // Liste des participants
-        private List<Participant> ParticipantsList;
+        private List<Participant> ParticipantsList = new List<Participant>();
 
         // Constructeur de la classe
         // Récupère la liste des participants
@@ -39,13 +41,13 @@ namespace ProbPotes.managers
                 OleDbCommand insertPart = new OleDbCommand(@"INSERT INTO Participants(codeParticipant,nomPart,prenomPart,mobile,nbParts,solde,adresseMail)
                                                        	VALUES(?,?,?,?,?,?,?)", DatabaseManager.db);
 
-                insertPart.Parameters.Add(new OleDbParameter("codeParticipant", OleDbType.Integer)).Value = participant.code;
-                insertPart.Parameters.Add(new OleDbParameter("nomPart", OleDbType.WChar)).Value = participant.name;
-                insertPart.Parameters.Add(new OleDbParameter("prenomPart", OleDbType.WChar)).Value = participant.firstName;
-                insertPart.Parameters.Add(new OleDbParameter("mobile", OleDbType.WChar)).Value = participant.phone;
-                insertPart.Parameters.Add(new OleDbParameter("nbParts", OleDbType.Integer)).Value = participant.shares;
-                insertPart.Parameters.Add(new OleDbParameter("solde", OleDbType.Double)).Value = participant.balance;
-                insertPart.Parameters.Add(new OleDbParameter("adresseMail", OleDbType.WChar)).Value = participant.mailAddress;
+                insertPart.Parameters.Add(new OleDbParameter("codeParticipant", OleDbType.Integer)).Value = participant.Code;
+                insertPart.Parameters.Add(new OleDbParameter("nomPart", OleDbType.WChar)).Value = participant.Name;
+                insertPart.Parameters.Add(new OleDbParameter("prenomPart", OleDbType.WChar)).Value = participant.FirstName;
+                insertPart.Parameters.Add(new OleDbParameter("mobile", OleDbType.WChar)).Value = participant.Phone;
+                insertPart.Parameters.Add(new OleDbParameter("nbParts", OleDbType.Integer)).Value = participant.Shares;
+                insertPart.Parameters.Add(new OleDbParameter("solde", OleDbType.Double)).Value = participant.Balance;
+                insertPart.Parameters.Add(new OleDbParameter("adresseMail", OleDbType.WChar)).Value = participant.MailAddress;
 
                 int result = insertPart.ExecuteNonQuery();
                 if (result != 1)
@@ -65,6 +67,7 @@ namespace ProbPotes.managers
             finally
             {
                 DatabaseManager.db.Close();
+                RefreshParticipants();
             }
         }
 
@@ -78,30 +81,27 @@ namespace ProbPotes.managers
 
                 for(int i = 0; i < ParticipantsList.Count; i++)
                 {
-                    if (participant.code == Participants[i].code)
+                    if (participant.Code == Participants[i].Code)
                     {
-                        participant.phone = Participants[i].phone;
-                        participant.shares = Participants[i].shares;
-                        participant.balance = Participants[i].balance;
-                        participant.name = Participants[i].name;
-                        participant.firstName = Participants[i].firstName;
-                        participant.mailAddress = Participants[i].mailAddress;
+                        participant.Phone = Participants[i].Phone;
+                        participant.Shares = Participants[i].Shares;
+                        participant.Balance = Participants[i].Balance;
+                        participant.Name = Participants[i].Name;
+                        participant.FirstName = Participants[i].FirstName;
+                        participant.MailAddress = Participants[i].MailAddress;
                         partFind = true;
                     }
                 }
 
-                if (partFind)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return partFind;
+
             }
             catch(Exception)
             {
                 return false;
+            } finally
+            {
+                RefreshParticipants();
             }
         }
 
@@ -115,7 +115,7 @@ namespace ProbPotes.managers
                 Boolean partFind = false;
                 for (int i = 0; i < ParticipantsList.Count; i++)
                 {
-                    if (Participants[i].code == id)
+                    if (ParticipantsList[i].Code == id)
                     {
                         ParticipantsList.RemoveAt(i);
                         partFind = true;
@@ -128,25 +128,22 @@ namespace ProbPotes.managers
 
                 int rowDelete= Convert.ToInt32(deletePart.ExecuteNonQuery().ToString());
 
-                if (partFind && rowDelete>0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return partFind && rowDelete > 0;
             }
-            catch(Exception)
+            catch(Exception e)
             {
+                Debug.WriteLine(e.ToString());
                 return false;
+            } finally
+            {
+                RefreshParticipants();
             }
         }
 
         // Fonction qui retourne le participant correspondant au numéro dans la base
         public Participant GetParticipant(int id)
         {
-            return ParticipantsList.Where(p => p.code == id).First();
+            return ParticipantsList.Where(p => p.Code == id).First();
         }
 
         // Fonction qui actualise la liste de tous les participant de la base

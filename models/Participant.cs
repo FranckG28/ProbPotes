@@ -10,34 +10,34 @@ namespace ProbPotes.models
 {
     public class Participant
     {
-        public int code;
-        public string name;
-        public string firstName;
-        public string phone;
-        public int shares;
-        public double balance;
-        public string mailAddress;
+        public int Code;
+        public string Name;
+        public string FirstName;
+        public string Phone;
+        public int Shares;
+        public double Balance;
+        public string MailAddress;
 
         public Participant(int code, string phone, int shares, double balance, string name, string firstName, string mailAddress)
         {
-            this.code= code;
-            this.phone = phone;
-            this.shares = shares;
-            this.balance= balance;
-            this.name = name;
-            this.firstName = firstName;
-            this.mailAddress = mailAddress;
+            this.Code= code;
+            this.Phone = phone;
+            this.Shares = shares;
+            this.Balance= balance;
+            this.Name = name;
+            this.FirstName = firstName;
+            this.MailAddress = mailAddress;
         }
 
         public Participant(DataRow row)
         {
-            this.code = (int)row["codeParticipant"];
-            this.name = (string)row["nomPart"];
-            this.firstName = (string)row["prenomPart"];
-            this.phone = (string)row["mobile"];
-            this.shares = (int)row["nbParts"];
-            if (row["solde"].ToString() != "") this.balance = (double)row["solde"];
-            this.mailAddress = (string)row["adresseMail"];
+            this.Code = (int)row["codeParticipant"];
+            this.Name = (string)row["nomPart"];
+            this.FirstName = (string)row["prenomPart"];
+            this.Phone = (string)row["mobile"];
+            this.Shares = (int)row["nbParts"];
+            if (row["solde"].ToString() != "") this.Balance = (double)row["solde"];
+            this.MailAddress = (string)row["adresseMail"];
         }
     }
 }

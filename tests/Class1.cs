@@ -46,7 +46,7 @@ namespace ProbPotes.models
                 OleDbCommand cdAddParticipant = new OleDbCommand(@"INSERT INTO Evenements (codeEvent,codePart)
                                                                     VALUES (?,?)", connect);
 
-                cdAddParticipant.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = evenement.code;
+                cdAddParticipant.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = evenement.Code;
                 cdAddParticipant.Parameters.Add(new OleDbParameter("codepart", OleDbType.Integer)).Value = this.code;
 
                 cdAddParticipant.ExecuteNonQuery();

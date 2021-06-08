@@ -29,7 +29,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -37,7 +37,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -50,6 +50,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>probpotes.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ProbPotes.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System">
@@ -132,6 +135,12 @@
     <Compile Include="managers\ExpensesManager.cs" />
     <Compile Include="managers\ParticipantManager.cs" />
     <Compile Include="models\EventClass.cs" />
+    <Compile Include="pages\events\NoEventPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pages\events\NoEventPage.Designer.cs">
+      <DependentUpon>NoEventPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="services\EventNavigation.cs" />
     <Compile Include="models\Participant.cs" />
     <Compile Include="models\Expense.cs" />
@@ -230,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\events\EventsPage.resx">
       <DependentUpon>EventsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\events\NoEventPage.resx">
+      <DependentUpon>NoEventPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\ExpensesPage.resx">
       <DependentUpon>ExpensesPage.cs</DependentUpon>

@@ -71,12 +71,12 @@ namespace ProbPotes.components
                 eventClass = value;
                 if (eventClass != null)
                 {
-                    txtTitle.Text = eventClass.title;
-                    txtDate.Text = eventClass.startDate.ToShortDateString() + " - " + eventClass.endDate.ToShortDateString();
+                    txtTitle.Text = eventClass.Title;
+                    txtDate.Text = eventClass.StartDate.ToShortDateString() + " - " + eventClass.EndDate.ToShortDateString();
 
                     // Génération de la liste des participants :
                     string participantList = "";
-                    foreach(int participant in eventClass.guests)
+                    foreach(int participant in eventClass.Guests)
                     {
                         participantList += participant.ToString() + ", ";
                     }

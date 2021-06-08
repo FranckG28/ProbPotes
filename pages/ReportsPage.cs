@@ -17,17 +17,13 @@ namespace ProbPotes.pages
     public partial class ReportsPage : UserControl
     {
 
-        private EventManager eventManager;
-
         public ReportsPage()
         {
             InitializeComponent();
 
-            eventManager = new EventManager();
-
             label1.Font = new Font(Fonts.regular, 13);
 
-            List<EventClass> eventList = eventManager.GetEvents();
+            List<EventClass> eventList = DatabaseManager.Events.Events;
 
             foreach(EventClass e in eventList)
             {
