@@ -19,7 +19,7 @@ namespace ProbPotes.managers
         private int EventId;
 
         // Liste des dépenses de l'évènement
-        private List<Expense> ExpensesList;
+        private List<Expense> ExpensesList = new List<Expense>();
 
         // Getter de la liste des évènements
         public List<Expense> Expenses
@@ -71,7 +71,7 @@ namespace ProbPotes.managers
                 while (drExpense.Read())
                 {
                     List<int> listRecipients = new List<int>();
-                    OleDbCommand cdRecipients = new OleDbCommand("SELECT codePart FROM Beneficiaires WHERE codePart=" + drExpense[0].ToString(), DatabaseManager.db);
+                    OleDbCommand cdRecipients = new OleDbCommand("SELECT codePart FROM Beneficiaires WHERE numDepense=" + drExpense[0].ToString(), DatabaseManager.db);
                     OleDbDataReader drRecipients = cdRecipients.ExecuteReader();
 
                     while (drRecipients.Read())

@@ -30,7 +30,6 @@ namespace ProbPotes.managers
 
         public EventManager()
         {
-            Debug.WriteLine("Création d'EventManager");
             RefreshEvents();
         }
 
@@ -171,12 +170,9 @@ namespace ProbPotes.managers
                         guest.Add(Convert.ToInt32(drGuest[0].ToString()));
                     }
 
-                    Debug.WriteLine("event ajouté");
 
                     res.Add(new EventClass(Convert.ToInt32(dr[0].ToString()), dr[1].ToString(), Convert.ToInt32(dr[6].ToString()), (Boolean)dr[5], dr[4].ToString(), debut, fin, guest));
                 }
-
-                Debug.WriteLine("FIN REFRESHEVENT");
                 
                 EventsList = res;
 

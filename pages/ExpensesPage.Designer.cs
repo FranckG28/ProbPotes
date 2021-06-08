@@ -29,32 +29,54 @@ namespace ProbPotes.pages
         /// </summary>
         private void InitializeComponent()
         {
-            this.expenseTile1 = new ProbPotes.components.expenses.ExpenseTile();
+            this.txtDescription = new System.Windows.Forms.Label();
+            this.pnlEvents = new System.Windows.Forms.Panel();
+            this.pnlExpenses = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // expenseTile1
+            // txtDescription
             // 
-            this.expenseTile1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))), ((int)(((byte)(255)))));
-            this.expenseTile1.Expense = null;
-            this.expenseTile1.Location = new System.Drawing.Point(0, 3);
-            this.expenseTile1.Name = "expenseTile1";
-            this.expenseTile1.Size = new System.Drawing.Size(950, 120);
-            this.expenseTile1.TabIndex = 0;
+            this.txtDescription.AutoSize = true;
+            this.txtDescription.Location = new System.Drawing.Point(0, 0);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(61, 13);
+            this.txtDescription.TabIndex = 1;
+            this.txtDescription.Text = "Évènement";
+            // 
+            // pnlEvents
+            // 
+            this.pnlEvents.AutoScroll = true;
+            this.pnlEvents.Location = new System.Drawing.Point(0, 26);
+            this.pnlEvents.Name = "pnlEvents";
+            this.pnlEvents.Size = new System.Drawing.Size(250, 494);
+            this.pnlEvents.TabIndex = 2;
+            // 
+            // pnlExpenses
+            // 
+            this.pnlExpenses.AutoScroll = true;
+            this.pnlExpenses.Location = new System.Drawing.Point(250, 26);
+            this.pnlExpenses.Name = "pnlExpenses";
+            this.pnlExpenses.Size = new System.Drawing.Size(700, 494);
+            this.pnlExpenses.TabIndex = 2;
             // 
             // ExpensesPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.expenseTile1);
+            this.Controls.Add(this.pnlExpenses);
+            this.Controls.Add(this.pnlEvents);
+            this.Controls.Add(this.txtDescription);
             this.Name = "ExpensesPage";
             this.Size = new System.Drawing.Size(950, 520);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private components.expenses.ExpenseTile expenseTile1;
+        private System.Windows.Forms.Panel pnlEvents;
+        private System.Windows.Forms.Panel pnlExpenses;
+        private System.Windows.Forms.Label txtDescription;
     }
 }

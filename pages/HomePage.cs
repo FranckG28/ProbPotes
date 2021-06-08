@@ -55,7 +55,7 @@ namespace ProbPotes.pages
             }
 
             tileExpenses.Number = expenseCount.ToString();
-            tileTotal.Number = expenseAmount.ToString();
+            tileTotal.Number = expenseAmount.ToString() + " €";
 
             // Affichage des évènements
             int i = 0;
