@@ -29,8 +29,6 @@ namespace ProbPotes.pages
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnDelete = new ProbPotes.components.IconButton();
-            this.btnEdit = new ProbPotes.components.IconButton();
             this.txtTitle = new System.Windows.Forms.Label();
             this.txtCreator = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.Label();
@@ -39,39 +37,20 @@ namespace ProbPotes.pages
             this.txtParticipants = new System.Windows.Forms.Label();
             this.chkSold = new System.Windows.Forms.CheckBox();
             this.pnlDates = new System.Windows.Forms.FlowLayoutPanel();
-            this.txtDateEnd = new System.Windows.Forms.Label();
-            this.txtDatesSeparator = new System.Windows.Forms.Label();
             this.txtDateStart = new System.Windows.Forms.Label();
+            this.txtDatesSeparator = new System.Windows.Forms.Label();
+            this.txtDateEnd = new System.Windows.Forms.Label();
             this.pnlEvent = new System.Windows.Forms.Panel();
             this.txtIndex = new System.Windows.Forms.Label();
-            this.btnFirst = new ProbPotes.components.IconButton();
-            this.btnPrevious = new ProbPotes.components.IconButton();
-            this.btnNext = new ProbPotes.components.IconButton();
-            this.btnLast = new ProbPotes.components.IconButton();
             this.txtCount = new System.Windows.Forms.Label();
+            this.btnLast = new ProbPotes.components.IconButton();
+            this.btnNext = new ProbPotes.components.IconButton();
+            this.btnPrevious = new ProbPotes.components.IconButton();
+            this.btnFirst = new ProbPotes.components.IconButton();
+            this.btnEdit = new ProbPotes.components.IconButton();
             this.pnlDates.SuspendLayout();
             this.pnlEvent.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.AutoSize = true;
-            this.btnDelete.BackColor = System.Drawing.Color.Transparent;
-            this.btnDelete.Icon = 59213;
-            this.btnDelete.Location = new System.Drawing.Point(450, 13);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(35, 35);
-            this.btnDelete.TabIndex = 0;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.AutoSize = true;
-            this.btnEdit.BackColor = System.Drawing.Color.Transparent;
-            this.btnEdit.Icon = 59151;
-            this.btnEdit.Location = new System.Drawing.Point(409, 13);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(35, 35);
-            this.btnEdit.TabIndex = 1;
             // 
             // txtTitle
             // 
@@ -145,17 +124,17 @@ namespace ProbPotes.pages
             this.pnlDates.Controls.Add(this.txtDateEnd);
             this.pnlDates.Location = new System.Drawing.Point(21, 57);
             this.pnlDates.Name = "pnlDates";
-            this.pnlDates.Size = new System.Drawing.Size(455, 24);
+            this.pnlDates.Size = new System.Drawing.Size(461, 24);
             this.pnlDates.TabIndex = 12;
             // 
-            // txtDateEnd
+            // txtDateStart
             // 
-            this.txtDateEnd.AutoSize = true;
-            this.txtDateEnd.Location = new System.Drawing.Point(58, 0);
-            this.txtDateEnd.Name = "txtDateEnd";
-            this.txtDateEnd.Size = new System.Drawing.Size(33, 13);
-            this.txtDateEnd.TabIndex = 10;
-            this.txtDateEnd.Text = "dates";
+            this.txtDateStart.AutoSize = true;
+            this.txtDateStart.Location = new System.Drawing.Point(3, 0);
+            this.txtDateStart.Name = "txtDateStart";
+            this.txtDateStart.Size = new System.Drawing.Size(33, 13);
+            this.txtDateStart.TabIndex = 3;
+            this.txtDateStart.Text = "dates";
             // 
             // txtDatesSeparator
             // 
@@ -166,14 +145,14 @@ namespace ProbPotes.pages
             this.txtDatesSeparator.TabIndex = 11;
             this.txtDatesSeparator.Text = "-";
             // 
-            // txtDateStart
+            // txtDateEnd
             // 
-            this.txtDateStart.AutoSize = true;
-            this.txtDateStart.Location = new System.Drawing.Point(3, 0);
-            this.txtDateStart.Name = "txtDateStart";
-            this.txtDateStart.Size = new System.Drawing.Size(33, 13);
-            this.txtDateStart.TabIndex = 3;
-            this.txtDateStart.Text = "dates";
+            this.txtDateEnd.AutoSize = true;
+            this.txtDateEnd.Location = new System.Drawing.Point(58, 0);
+            this.txtDateEnd.Name = "txtDateEnd";
+            this.txtDateEnd.Size = new System.Drawing.Size(33, 13);
+            this.txtDateEnd.TabIndex = 10;
+            this.txtDateEnd.Text = "dates";
             // 
             // pnlEvent
             // 
@@ -186,7 +165,6 @@ namespace ProbPotes.pages
             this.pnlEvent.Controls.Add(this.txtCreator);
             this.pnlEvent.Controls.Add(this.txtTitle);
             this.pnlEvent.Controls.Add(this.btnEdit);
-            this.pnlEvent.Controls.Add(this.btnDelete);
             this.pnlEvent.Location = new System.Drawing.Point(226, 99);
             this.pnlEvent.Name = "pnlEvent";
             this.pnlEvent.Size = new System.Drawing.Size(499, 301);
@@ -201,35 +179,14 @@ namespace ProbPotes.pages
             this.txtIndex.Text = "0/0";
             this.txtIndex.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btnFirst
+            // txtCount
             // 
-            this.btnFirst.AutoSize = true;
-            this.btnFirst.BackColor = System.Drawing.Color.Transparent;
-            this.btnFirst.Icon = 59538;
-            this.btnFirst.Location = new System.Drawing.Point(43, 232);
-            this.btnFirst.Name = "btnFirst";
-            this.btnFirst.Size = new System.Drawing.Size(35, 35);
-            this.btnFirst.TabIndex = 2;
-            // 
-            // btnPrevious
-            // 
-            this.btnPrevious.AutoSize = true;
-            this.btnPrevious.BackColor = System.Drawing.Color.Transparent;
-            this.btnPrevious.Icon = 59179;
-            this.btnPrevious.Location = new System.Drawing.Point(133, 232);
-            this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(35, 35);
-            this.btnPrevious.TabIndex = 3;
-            // 
-            // btnNext
-            // 
-            this.btnNext.AutoSize = true;
-            this.btnNext.BackColor = System.Drawing.Color.Transparent;
-            this.btnNext.Icon = 59178;
-            this.btnNext.Location = new System.Drawing.Point(777, 232);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(35, 35);
-            this.btnNext.TabIndex = 4;
+            this.txtCount.Location = new System.Drawing.Point(487, 446);
+            this.txtCount.Name = "txtCount";
+            this.txtCount.Size = new System.Drawing.Size(463, 36);
+            this.txtCount.TabIndex = 6;
+            this.txtCount.Text = "0/0";
+            this.txtCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnLast
             // 
@@ -241,14 +198,45 @@ namespace ProbPotes.pages
             this.btnLast.Size = new System.Drawing.Size(35, 35);
             this.btnLast.TabIndex = 5;
             // 
-            // txtCount
+            // btnNext
             // 
-            this.txtCount.Location = new System.Drawing.Point(487, 446);
-            this.txtCount.Name = "txtCount";
-            this.txtCount.Size = new System.Drawing.Size(463, 36);
-            this.txtCount.TabIndex = 6;
-            this.txtCount.Text = "0/0";
-            this.txtCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNext.AutoSize = true;
+            this.btnNext.BackColor = System.Drawing.Color.Transparent;
+            this.btnNext.Icon = 59178;
+            this.btnNext.Location = new System.Drawing.Point(777, 232);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(35, 35);
+            this.btnNext.TabIndex = 4;
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.AutoSize = true;
+            this.btnPrevious.BackColor = System.Drawing.Color.Transparent;
+            this.btnPrevious.Icon = 59179;
+            this.btnPrevious.Location = new System.Drawing.Point(133, 232);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(35, 35);
+            this.btnPrevious.TabIndex = 3;
+            // 
+            // btnFirst
+            // 
+            this.btnFirst.AutoSize = true;
+            this.btnFirst.BackColor = System.Drawing.Color.Transparent;
+            this.btnFirst.Icon = 59538;
+            this.btnFirst.Location = new System.Drawing.Point(43, 232);
+            this.btnFirst.Name = "btnFirst";
+            this.btnFirst.Size = new System.Drawing.Size(35, 35);
+            this.btnFirst.TabIndex = 2;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.AutoSize = true;
+            this.btnEdit.BackColor = System.Drawing.Color.Transparent;
+            this.btnEdit.Icon = 59151;
+            this.btnEdit.Location = new System.Drawing.Point(447, 16);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(35, 35);
+            this.btnEdit.TabIndex = 1;
             // 
             // EventsPage
             // 
@@ -274,8 +262,6 @@ namespace ProbPotes.pages
         }
 
         #endregion
-
-        private components.IconButton btnDelete;
         private components.IconButton btnEdit;
         private System.Windows.Forms.Label txtTitle;
         private System.Windows.Forms.Label txtCreator;

@@ -74,5 +74,10 @@ namespace ProbPotes.services
             }
         }
 
+        public void RefreshActualPage()
+        {
+            NavigateTo(selected);
+        }
+
     }
 }

@@ -38,30 +38,24 @@ namespace ProbPotes.managers
             {
                 DatabaseManager.db.Open();
 
-                OleDbCommand insertPart = new OleDbCommand(@"INSERT INTO Participants(codeParticipant,nomPart,prenomPart,mobile,nbParts,solde,adresseMail)
-                                                       	VALUES(?,?,?,?,?,?,?)", DatabaseManager.db);
+                OleDbCommand insertPart = new OleDbCommand(@"INSERT INTO Participants(codeParticipant,nomPart,prenomPart,mobile,nbParts,adresseMail)
+                                                       	VALUES(?,?,?,?,?,?)", DatabaseManager.db);
 
                 insertPart.Parameters.Add(new OleDbParameter("codeParticipant", OleDbType.Integer)).Value = participant.Code;
                 insertPart.Parameters.Add(new OleDbParameter("nomPart", OleDbType.WChar)).Value = participant.Name;
                 insertPart.Parameters.Add(new OleDbParameter("prenomPart", OleDbType.WChar)).Value = participant.FirstName;
                 insertPart.Parameters.Add(new OleDbParameter("mobile", OleDbType.WChar)).Value = participant.Phone;
                 insertPart.Parameters.Add(new OleDbParameter("nbParts", OleDbType.Integer)).Value = participant.Shares;
-                insertPart.Parameters.Add(new OleDbParameter("solde", OleDbType.Double)).Value = participant.Balance;
                 insertPart.Parameters.Add(new OleDbParameter("adresseMail", OleDbType.WChar)).Value = participant.MailAddress;
 
                 int result = insertPart.ExecuteNonQuery();
-                if (result != 1)
-                {
-                    return false;
-                } else
-                {
-                    ParticipantsList.Add(participant);
-                    return true;
-                }
-                
+
+                return result > 0;
+               
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.WriteLine(e.ToString());
                 return false;
             }
             finally

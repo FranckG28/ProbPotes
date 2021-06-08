@@ -21,6 +21,8 @@ namespace ProbPotes.components
 
         int Index { get; set; }
 
+        int PageCount { get; }
+
     }
 
     public partial class ProbPotesDialog : Form
@@ -125,8 +127,15 @@ namespace ProbPotes.components
             if (Content.CanGoForward)
             {
                 // Bouton suivant
-                btnNext.Text = "Suivant";
-                btnNext.Image = Properties.Resources.nextIcon;
+                if (index == Content.PageCount-2)
+                {
+                    btnNext.Text = "Valider";
+                    btnNext.Image = Properties.Resources.doneIcon;
+                } else
+                {
+                    btnNext.Text = "Suivant";
+                    btnNext.Image = Properties.Resources.nextIcon;
+                }
             } else
             {
                 // Bouton terminer

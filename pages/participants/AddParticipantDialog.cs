@@ -17,9 +17,15 @@ namespace ProbPotes.pages.participants
     public partial class AddParticipantDialog : UserControl, IDialogPage
     {
 
-        public AddParticipantDialog()
+        public delegate void Del();
+
+        public Del RefreshParent;
+
+        public AddParticipantDialog(Del refreshParent)
         {
             InitializeComponent();
+
+            this.RefreshParent = refreshParent;
 
             // Cacher les onglets
             tabControl1.Appearance = TabAppearance.FlatButtons;
@@ -33,17 +39,21 @@ namespace ProbPotes.pages.participants
                 ProbPotesDialog.ApplyTitleStyle(lbl);
             }
 
-            List<Label> labels = new List<Label>() { lblBalance, lblFirstName, lblMail,lblName, lblPhone, lblEuro, txtSuccessfulDescription, lblShares};
+            List<Label> labels = new List<Label>() { lblFirstName, lblMail,lblName, lblPhone, txtSuccessfulDescription, lblShares};
             foreach(Label lbl in labels)
             {
                 ProbPotesDialog.ApplyLabelStyle(lbl);
             }
 
-            List<TextBox> txtBoxes = new List<TextBox>() { boxFirstName, boxMail, boxName, boxPhone, boxBalance, boxShares };
+            List<TextBox> txtBoxes = new List<TextBox>() { boxFirstName, boxMail, boxName, boxPhone, boxShares };
             foreach(TextBox txt in txtBoxes)
             {
                 ProbPotesDialog.ApplyTextBoxStyle(txt);
             }
+
+            txtWarning.ForeColor = Colors.red;
+            txtWarning.Font = new Font(Fonts.book, 14);
+            txtWarning.Visible = false;
 
             // Icones :
             iconShares.Text = char.ConvertFromUtf32(0xE125);
@@ -72,14 +82,36 @@ namespace ProbPotes.pages.participants
             {
                 if(value == 1)
                 {
-                    //Participant newParticipant = new Participant();
 
-                    // SI ECHEC : 
-                    //tabControl1.SelectedIndex = 0;
-                    // AJOUTER WARNING
+                    // Vérification des champs 
+                    bool correct = boxFirstName.Text != "" 
+                        && boxMail.Text != "" 
+                        && boxName.Text != "" 
+                        && boxPhone.Text != "" 
+                        && boxShares.Text != "";
+
+                    txtWarning.Visible = !correct;
+
+                    // Si tout les champs sont corrects 
+                    if (correct)
+                    {
+                        Participant newParticipant = new Participant(DatabaseManager.Participants.Participants.Count + 1, boxPhone.Text, Convert.ToInt32(boxShares.Text), boxName.Text, boxFirstName.Text, boxMail.Text);
+                        correct = DatabaseManager.Participants.AddParticipant(newParticipant);
+                    }
+
+                    // Si l'ajout a réussi
+                    if (correct)
+                    {
+                        tabControl1.SelectedIndex = value;
+                        if (RefreshParent != null)
+                        {
+                            RefreshParent();
+                        }
+                    } else
+                    {
+                        tabControl1.SelectedIndex = 0;
+                    }
                     
-                    // SI REUSSITE :
-                    tabControl1.SelectedIndex = value;
                 } else
                 {
                     tabControl1.SelectedIndex = value;
@@ -88,6 +120,11 @@ namespace ProbPotes.pages.participants
 
             }
 
+        }
+
+        public int PageCount
+        {
+            get => tabControl1.TabCount;
         }
 
         //KeyPress
@@ -121,15 +158,6 @@ namespace ProbPotes.pages.participants
             }
         }
 
-        private void boxBalance_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-
-            if (char.IsDigit(e.KeyChar)||e.KeyChar==',' || e.KeyChar == (char)Keys.Back || (e.KeyChar == ',' && !boxBalance.Text.Contains(',')))
-            {
-                e.Handled = false;
-            }
-        }
         private void boxEmail_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
