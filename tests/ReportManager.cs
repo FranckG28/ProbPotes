@@ -123,17 +123,19 @@ namespace ProbPotes.tests
 
             while (allSoldeAt0)
             {
+                //PREND LA 1er LIGNE COMME BASE
                 DataRow receveur = dtBilan.Rows[0];
                 DataRow donneur = dtBilan.Rows[0];
 
                 foreach (DataRow row in dtBilan.Rows)
                 {
+                    //STOCK LA LIGNE DU RECEVEUR ET LA SUPPRIME DE LA TABLE ( POUR LA RAJOUTER APRES AVEC LES MODIFICATIONS)
                     if (Convert.ToDecimal(row["Solde"].ToString()) < Convert.ToDecimal(receveur["Solde"].ToString()))
                     {
                         receveur = row;
                         row.Delete();
                     }
-
+                    //STOCK LA LIGNE DU DONNEUR ET LA SUPPRIME DE LA TABLE ( POUR LA RAJOUTER APRES AVEC LES MODIFICATIONS)
                     if (Convert.ToDecimal(row["Solde"].ToString()) > Convert.ToDecimal(donneur["Solde"].ToString()))
                     {
                         donneur = row;
@@ -141,8 +143,10 @@ namespace ProbPotes.tests
                     }
                 }
 
+                //1er CAS: SI LE SOLDE DU DONNEUR EST PLUS GRAND QUE SOLDE DU RECEVEUR
                 if (Convert.ToDecimal(donneur["Solde"].ToString()) > Convert.ToDecimal(receveur["Solde"].ToString()))
                 {
+                    //AJOUTE DANS LA TABLE BilantPart LES TRANSACTION A REALISER
                     OleDbCommand cdBilanPart = new OleDbCommand("INSERT INTO BilanPart(codeEvent,codeDonneur,codeReceveur,montant)" +
                         "                          VALUES (?,?,?,?)", DatabaseManager.db);
 
@@ -153,14 +157,17 @@ namespace ProbPotes.tests
 
                     cdBilanPart.ExecuteNonQuery();
 
+                    //CHANGE LES SOLDE DANS LA LIGNE DU DONNEUR ET RECEVEUR
                     donneur["Solde"] = Convert.ToDecimal(donneur["Solde"].ToString()) - Convert.ToDecimal(receveur["Solde"].ToString());
                     receveur["Solde"] = 0;
 
+                    //AJOUTE LE RECEVEUR ET LE DONNEUR DANS LA BASE dtBilan  AVEC LES SOLDES MODIFIER
                     dtBilan.Rows.Add(donneur);
                     dtBilan.Rows.Add(receveur);
-                }
+                }//2er CAS: SI LE SOLDE DU DONNEUR EST PLUS PETIT QUE SOLDE DU RECEVEUR
                 else
                 {
+                    //AJOUTE DANS LA TABLE BilantPart LES TRANSACTION A REALISER
                     OleDbCommand cdBilanPart = new OleDbCommand("INSERT INTO BilanPart(codeEvent,codeDonneur,codeReceveur,montant)" +
     "                          VALUES (?,?,?,?)", DatabaseManager.db);
 
@@ -171,9 +178,11 @@ namespace ProbPotes.tests
 
                     cdBilanPart.ExecuteNonQuery();
 
+                    //CHANGE LES SOLDE DANS LA LIGNE DU DONNEUR ET RECEVEUR
                     donneur["Solde"] = 0;
                     receveur["Solde"] = Convert.ToDecimal(receveur["Solde"].ToString()) - Convert.ToDecimal(donneur["Solde"].ToString());
 
+                    //AJOUTE LE RECEVEUR ET LE DONNEUR DANS LA BASE dtBilan  AVEC LES SOLDES MODIFIER
                     dtBilan.Rows.Add(donneur);
                     dtBilan.Rows.Add(receveur);
                 }
@@ -195,7 +204,6 @@ namespace ProbPotes.tests
                     allSoldeAt0 = true;
                 }
             }
-
         }
     }
 }
