@@ -55,6 +55,33 @@ namespace ProbPotes.tests
                 //PROCEDURE STOCKEE MAIS JSP COMMENT FAIRE ;(
                 //APPELER LES 2 PROCEDURES STOCKE, REMPLIR UNE DATAROX ET LA RAJOUTER 
                 //DANS DTBILAN
+
+
+                //PARTI MOINS
+                double moins = 0;
+                OleDbCommand cd1 = new OleDbCommand
+                {
+                    Connection = DatabaseManager.db,
+                    CommandType = CommandType.StoredProcedure,
+                    CommandText = "DepensesQuiMeConcernent"
+                };
+
+                var parameter = new OleDbParameter("@pEvent", OleDbType.BigInt);
+                parameter.Value = evt.Code;
+                cd1.Parameters.Add(parameter);
+
+
+                var parameter2 = new OleDbParameter("@pPart", OleDbType.BigInt);
+                parameter2.Value = 1;
+                cd1.Parameters.Add(parameter2);
+
+                OleDbDataReader dr = cd1.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    MessageBox.Show(dr[0].ToString() + " " + dr[1].ToString() + " " + dr[2].ToString());
+                }
+
             }
 
             Boolean allSoldeAt0 = false;
@@ -81,10 +108,10 @@ namespace ProbPotes.tests
 
                 if (Convert.ToDecimal(donneur["Solde"].ToString()) > Convert.ToDecimal(receveur["Solde"].ToString()))
                 {
-                    OleDbCommand cdBilanPart= new OleDbCommand("INSERT INTO BilanPart(codeEvent,codeDonneur,codeReceveur,montant)" +
-                        "                          VALUES (?,?,?,?)",DatabaseManager.db);
+                    OleDbCommand cdBilanPart = new OleDbCommand("INSERT INTO BilanPart(codeEvent,codeDonneur,codeReceveur,montant)" +
+                        "                          VALUES (?,?,?,?)", DatabaseManager.db);
 
-                    cdBilanPart.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value =evt.Code;
+                    cdBilanPart.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = evt.Code;
                     cdBilanPart.Parameters.Add(new OleDbParameter("codeDonneur", OleDbType.Integer)).Value = donneur["codeParticipant"];
                     cdBilanPart.Parameters.Add(new OleDbParameter("codeReceveur", OleDbType.Integer)).Value = receveur["codeParticipant"];
                     cdBilanPart.Parameters.Add(new OleDbParameter("montant", OleDbType.Currency)).Value = receveur["Solde"];
@@ -137,3 +164,5 @@ namespace ProbPotes.tests
         }
     }
 }
+
+
