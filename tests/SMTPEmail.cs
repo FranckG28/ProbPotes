@@ -10,39 +10,39 @@ namespace ProbPotes.tests
 {
     class SMTPEmail
     {
-        public Boolean sendMail()
+        public Boolean sendMail(string dest,string objet,string msg)
         {
             string from = "probpote@fifoot-bet.fr"; //https://mail.ovh.net/roundcube/?_task=login pour accéder au mail
             string mdp = "changethis";
-            string title = "Mail Test";//OBJET DU MESSAGE
-            string message = "message zebi";//MESSAGE
-            string to = "hugo.schellinger@gmail.com";//DESTINATAIRE
+            string title = objet;//OBJET DU MESSAGE
+            string message = msg;//MESSAGE
+            string to = dest;//DESTINATAIRE
 
-            int Port = 465;
+            int Port = 587;
             string SMTP = "ssl0.ovh.net";
 
             try
             {
-                MailMessage msg;
+                MailMessage mail;
 
                 SmtpClient client = new SmtpClient();
 
 
                 //PARAMETRE DU MAIL
-                msg = new MailMessage(from, to, title, message);
+                mail = new MailMessage(from, to, title, message);
                 client.Port = Port;
                 client.Host = SMTP;
                 client.EnableSsl = true;
                 client.Timeout = 10000;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.Credentials = new NetworkCredential(from, mdp);
-                msg.Priority = MailPriority.High;
-                msg.BodyEncoding = Encoding.UTF8;
-                msg.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+                mail.Priority = MailPriority.High;
+                mail.BodyEncoding = Encoding.UTF8;
+                mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
 
 
                 //ENVOIE DU MAIL
-                client.Send(msg);
+                client.Send(mail);
 
                 return true;
             }
