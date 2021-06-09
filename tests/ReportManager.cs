@@ -59,29 +59,64 @@ namespace ProbPotes.tests
 
                 //PARTI MOINS
                 double moins = 0;
-                OleDbCommand cd1 = new OleDbCommand
+
+                OleDbCommand cdMoins = new OleDbCommand
                 {
                     Connection = DatabaseManager.db,
                     CommandType = CommandType.StoredProcedure,
                     CommandText = "DepensesQuiMeConcernent"
                 };
 
-                var parameter = new OleDbParameter("@pEvent", OleDbType.BigInt);
-                parameter.Value = evt.Code;
-                cd1.Parameters.Add(parameter);
+                var paramMoins1 = new OleDbParameter("@pEvent", OleDbType.BigInt);
+                paramMoins1.Value = evt.Code;
+                cdMoins.Parameters.Add(paramMoins1);
 
 
-                var parameter2 = new OleDbParameter("@pPart", OleDbType.BigInt);
-                parameter2.Value = 1;
-                cd1.Parameters.Add(parameter2);
+                var paramMoins2 = new OleDbParameter("@pPart", OleDbType.BigInt);
+                paramMoins2.Value = val.Key;
+                cdMoins.Parameters.Add(paramMoins2);
 
-                OleDbDataReader dr = cd1.ExecuteReader();
+                OleDbDataReader dr = cdMoins.ExecuteReader();
 
                 while (dr.Read())
                 {
-                    MessageBox.Show(dr[0].ToString() + " " + dr[1].ToString() + " " + dr[2].ToString());
+                    moins+= Math.Truncate(Convert.ToDouble(dr[1].ToString())/ Convert.ToDouble(dr[1].ToString())*val.Value*100)/100;
                 }
 
+                //PARTI PLUS
+                OleDbCommand cdPlus = new OleDbCommand
+                {
+                    Connection = DatabaseManager.db,
+                    CommandType = CommandType.StoredProcedure,
+                    CommandText = "DepensesQuiMeConcernent"
+                };
+
+                var paramplus1 = new OleDbParameter("@pEvent", OleDbType.BigInt);
+                paramplus1.Value = evt.Code;
+                cdPlus.Parameters.Add(paramplus1);
+
+
+                var paramplus2 = new OleDbParameter("@pPart", OleDbType.BigInt);
+                paramplus2.Value = val.Key;
+                cdPlus.Parameters.Add(paramplus2);
+
+                double plus = Convert.ToDouble(cdPlus.ExecuteScalar().ToString());
+
+
+                //AJOUT DANS dtBilan
+
+                OleDbCommand findName = new OleDbCommand("SELECT * FROM Participants WHERE codeParticipant=" + val.Key, DatabaseManager.db);
+                OleDbDataReader drName = findName.ExecuteReader();
+                drName.Read();
+
+                DataRow partBilan = dtBilan.NewRow();
+                partBilan[0] = val.Key;
+                partBilan[1] = drName[2].ToString()+" "+drName[3].ToString();
+                partBilan[2] = plus;
+                partBilan[3] = moins;
+                partBilan[4] = plus-moins;
+
+                dtBilan.Rows.Add(partBilan);
             }
 
             Boolean allSoldeAt0 = false;
