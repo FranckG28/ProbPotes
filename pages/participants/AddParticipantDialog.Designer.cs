@@ -256,7 +256,7 @@ namespace ProbPotes.pages.participants
             // 
             // txtSuccessfulDescription
             // 
-            this.txtSuccessfulDescription.Location = new System.Drawing.Point(6, 243);
+            this.txtSuccessfulDescription.Location = new System.Drawing.Point(3, 243);
             this.txtSuccessfulDescription.Name = "txtSuccessfulDescription";
             this.txtSuccessfulDescription.Size = new System.Drawing.Size(773, 43);
             this.txtSuccessfulDescription.TabIndex = 3;

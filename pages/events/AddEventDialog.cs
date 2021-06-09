@@ -1,4 +1,5 @@
 ﻿using ProbPotes.components;
+using ProbPotes.services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,13 +24,13 @@ namespace ProbPotes.pages.events
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
             // Styles
-            List<Label> labels = new List<Label>() { lblDescription, lblEndDate, lblStartDate, lblTitle };
+            List<Label> labels = new List<Label>() { lblDescription, lblEndDate, lblStartDate, lblTitle, txtSuccessfulDescription };
             foreach(Label lbl in labels)
             {
                 ProbPotesDialog.ApplyLabelStyle(lbl);
             }
 
-            List<Label> titles = new List<Label>() { txtTitle1 };
+            List<Label> titles = new List<Label>() { txtTitle1, txtTitle2, txtTitle3, txtTitleSuccess };
             foreach(Label title in titles)
             {
                 ProbPotesDialog.ApplyTitleStyle(title);
@@ -52,6 +53,21 @@ namespace ProbPotes.pages.events
             iconDate.Text = char.ConvertFromUtf32(59271);
             iconTitle.Text = char.ConvertFromUtf32(59151);
             iconDescription.Text = char.ConvertFromUtf32(59959);
+            iconSuccessful.Text = char.ConvertFromUtf32(0xE73E);
+
+            List<Label> icons = new List<Label>() {iconDate, iconDescription, iconTitle };
+            foreach(Label icon in icons)
+            {
+                icon.ForeColor = Colors.black;
+            }
+
+            iconSuccessful.ForeColor = Colors.blue;
+
+            txtWarningTitle.ForeColor = Colors.red;
+            txtWarningTitle.Font = new Font(Fonts.book, 12);
+            txtWarningTitle.Visible = false;
+
+
         }
 
         public bool CanGoBack
@@ -67,7 +83,20 @@ namespace ProbPotes.pages.events
         public int Index
         {
             get => tabControl1.SelectedIndex;
-            set => tabControl1.SelectedIndex = value;
+            set
+            {
+                if (value == 1)
+                {
+                    txtWarningTitle.Visible = boxTitle.Text == "";
+                    if (boxTitle.Text != "")
+                    {
+                        tabControl1.SelectedIndex = value;
+                    }
+                } else
+                {
+                    tabControl1.SelectedIndex = value;
+                }
+            }
         }
 
         public int PageCount

@@ -112,6 +112,18 @@
     <Compile Include="components\PageTitle.Designer.cs">
       <DependentUpon>PageTitle.cs</DependentUpon>
     </Compile>
+    <Compile Include="components\participants\ParticipantSelectionTile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="components\participants\ParticipantSelectionTile.Designer.cs">
+      <DependentUpon>ParticipantSelectionTile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="components\participants\ParticipantSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="components\participants\ParticipantSelector.Designer.cs">
+      <DependentUpon>ParticipantSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="components\participants\ParticipantTile.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -230,6 +242,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="components\PageTitle.resx">
       <DependentUpon>PageTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="components\participants\ParticipantSelectionTile.resx">
+      <DependentUpon>ParticipantSelectionTile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="components\participants\ParticipantSelector.resx">
+      <DependentUpon>ParticipantSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="components\participants\ParticipantTile.resx">
       <DependentUpon>ParticipantTile.cs</DependentUpon>

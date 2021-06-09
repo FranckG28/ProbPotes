@@ -31,27 +31,42 @@ namespace ProbPotes.pages.events
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtWarningTitle = new System.Windows.Forms.Label();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.boxDescription = new System.Windows.Forms.TextBox();
+            this.iconDescription = new System.Windows.Forms.Label();
             this.dateEnd = new System.Windows.Forms.DateTimePicker();
             this.dateStart = new System.Windows.Forms.DateTimePicker();
             this.boxTitle = new System.Windows.Forms.TextBox();
+            this.txtTitle1 = new System.Windows.Forms.Label();
             this.iconTitle = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblEndDate = new System.Windows.Forms.Label();
             this.lblStartDate = new System.Windows.Forms.Label();
             this.iconDate = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txtTitle1 = new System.Windows.Forms.Label();
-            this.lblDescription = new System.Windows.Forms.Label();
-            this.boxDescription = new System.Windows.Forms.TextBox();
-            this.iconDescription = new System.Windows.Forms.Label();
+            this.txtTitle2 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txtTitle3 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.txtSuccessfulDescription = new System.Windows.Forms.Label();
+            this.iconSuccessful = new System.Windows.Forms.Label();
+            this.txtTitleSuccess = new System.Windows.Forms.Label();
+            this.participantSelector1 = new ProbPotes.components.participants.ParticipantSelector();
+            this.participantSelector2 = new ProbPotes.components.participants.ParticipantSelector();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -61,6 +76,7 @@ namespace ProbPotes.pages.events
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.txtWarningTitle);
             this.tabPage1.Controls.Add(this.lblDescription);
             this.tabPage1.Controls.Add(this.boxDescription);
             this.tabPage1.Controls.Add(this.iconDescription);
@@ -80,6 +96,43 @@ namespace ProbPotes.pages.events
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // txtWarningTitle
+            // 
+            this.txtWarningTitle.AutoSize = true;
+            this.txtWarningTitle.Location = new System.Drawing.Point(56, 112);
+            this.txtWarningTitle.Name = "txtWarningTitle";
+            this.txtWarningTitle.Size = new System.Drawing.Size(108, 13);
+            this.txtWarningTitle.TabIndex = 34;
+            this.txtWarningTitle.Text = "Veuillez entrer un titre";
+            // 
+            // lblDescription
+            // 
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Location = new System.Drawing.Point(53, 211);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(60, 13);
+            this.lblDescription.TabIndex = 33;
+            this.lblDescription.Text = "Description";
+            // 
+            // boxDescription
+            // 
+            this.boxDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.boxDescription.Location = new System.Drawing.Point(56, 234);
+            this.boxDescription.Multiline = true;
+            this.boxDescription.Name = "boxDescription";
+            this.boxDescription.Size = new System.Drawing.Size(703, 88);
+            this.boxDescription.TabIndex = 32;
+            // 
+            // iconDescription
+            // 
+            this.iconDescription.AutoSize = true;
+            this.iconDescription.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconDescription.Location = new System.Drawing.Point(6, 232);
+            this.iconDescription.Name = "iconDescription";
+            this.iconDescription.Size = new System.Drawing.Size(47, 19);
+            this.iconDescription.TabIndex = 31;
+            this.iconDescription.Text = "label1";
             // 
             // dateEnd
             // 
@@ -102,6 +155,15 @@ namespace ProbPotes.pages.events
             this.boxTitle.Name = "boxTitle";
             this.boxTitle.Size = new System.Drawing.Size(703, 20);
             this.boxTitle.TabIndex = 26;
+            // 
+            // txtTitle1
+            // 
+            this.txtTitle1.AutoSize = true;
+            this.txtTitle1.Location = new System.Drawing.Point(6, 14);
+            this.txtTitle1.Name = "txtTitle1";
+            this.txtTitle1.Size = new System.Drawing.Size(141, 13);
+            this.txtTitle1.TabIndex = 19;
+            this.txtTitle1.Text = "Informations sur l\'évènement";
             // 
             // iconTitle
             // 
@@ -152,6 +214,8 @@ namespace ProbPotes.pages.events
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.participantSelector1);
+            this.tabPage2.Controls.Add(this.txtTitle2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -160,42 +224,92 @@ namespace ProbPotes.pages.events
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // txtTitle1
+            // txtTitle2
             // 
-            this.txtTitle1.AutoSize = true;
-            this.txtTitle1.Location = new System.Drawing.Point(7, 10);
-            this.txtTitle1.Name = "txtTitle1";
-            this.txtTitle1.Size = new System.Drawing.Size(141, 13);
-            this.txtTitle1.TabIndex = 19;
-            this.txtTitle1.Text = "Informations sur l\'évènement";
+            this.txtTitle2.AutoSize = true;
+            this.txtTitle2.Location = new System.Drawing.Point(6, 14);
+            this.txtTitle2.Name = "txtTitle2";
+            this.txtTitle2.Size = new System.Drawing.Size(177, 13);
+            this.txtTitle2.TabIndex = 20;
+            this.txtTitle2.Text = "Qui est le créateur de l\'évènement ?";
             // 
-            // lblDescription
+            // tabPage3
             // 
-            this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(53, 211);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(60, 13);
-            this.lblDescription.TabIndex = 33;
-            this.lblDescription.Text = "Description";
+            this.tabPage3.Controls.Add(this.participantSelector2);
+            this.tabPage3.Controls.Add(this.txtTitle3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(782, 354);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // boxDescription
+            // txtTitle3
             // 
-            this.boxDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.boxDescription.Location = new System.Drawing.Point(56, 234);
-            this.boxDescription.Multiline = true;
-            this.boxDescription.Name = "boxDescription";
-            this.boxDescription.Size = new System.Drawing.Size(703, 88);
-            this.boxDescription.TabIndex = 32;
+            this.txtTitle3.AutoSize = true;
+            this.txtTitle3.Location = new System.Drawing.Point(6, 14);
+            this.txtTitle3.Name = "txtTitle3";
+            this.txtTitle3.Size = new System.Drawing.Size(146, 13);
+            this.txtTitle3.TabIndex = 21;
+            this.txtTitle3.Text = "Qui est invité à l\'évènement ?";
             // 
-            // iconDescription
+            // tabPage4
             // 
-            this.iconDescription.AutoSize = true;
-            this.iconDescription.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconDescription.Location = new System.Drawing.Point(6, 232);
-            this.iconDescription.Name = "iconDescription";
-            this.iconDescription.Size = new System.Drawing.Size(47, 19);
-            this.iconDescription.TabIndex = 31;
-            this.iconDescription.Text = "label1";
+            this.tabPage4.Controls.Add(this.txtSuccessfulDescription);
+            this.tabPage4.Controls.Add(this.iconSuccessful);
+            this.tabPage4.Controls.Add(this.txtTitleSuccess);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(782, 354);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // txtSuccessfulDescription
+            // 
+            this.txtSuccessfulDescription.Location = new System.Drawing.Point(6, 251);
+            this.txtSuccessfulDescription.Name = "txtSuccessfulDescription";
+            this.txtSuccessfulDescription.Size = new System.Drawing.Size(773, 43);
+            this.txtSuccessfulDescription.TabIndex = 6;
+            this.txtSuccessfulDescription.Text = "Les participants invités ont reçu une notification par email";
+            this.txtSuccessfulDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // iconSuccessful
+            // 
+            this.iconSuccessful.Font = new System.Drawing.Font("Segoe MDL2 Assets", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconSuccessful.Location = new System.Drawing.Point(3, 60);
+            this.iconSuccessful.Name = "iconSuccessful";
+            this.iconSuccessful.Size = new System.Drawing.Size(776, 148);
+            this.iconSuccessful.TabIndex = 5;
+            this.iconSuccessful.Text = "label1";
+            this.iconSuccessful.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtTitleSuccess
+            // 
+            this.txtTitleSuccess.Location = new System.Drawing.Point(3, 208);
+            this.txtTitleSuccess.Name = "txtTitleSuccess";
+            this.txtTitleSuccess.Size = new System.Drawing.Size(773, 43);
+            this.txtTitleSuccess.TabIndex = 4;
+            this.txtTitleSuccess.Text = "Évènement ajouté !";
+            this.txtTitleSuccess.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // participantSelector1
+            // 
+            this.participantSelector1.Location = new System.Drawing.Point(6, 50);
+            this.participantSelector1.MultiSelection = false;
+            this.participantSelector1.Name = "participantSelector1";
+            this.participantSelector1.Size = new System.Drawing.Size(767, 298);
+            this.participantSelector1.TabIndex = 21;
+            // 
+            // participantSelector2
+            // 
+            this.participantSelector2.Location = new System.Drawing.Point(6, 50);
+            this.participantSelector2.MultiSelection = true;
+            this.participantSelector2.Name = "participantSelector2";
+            this.participantSelector2.Size = new System.Drawing.Size(767, 298);
+            this.participantSelector2.TabIndex = 22;
             // 
             // AddEventDialog
             // 
@@ -207,6 +321,11 @@ namespace ProbPotes.pages.events
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -228,5 +347,15 @@ namespace ProbPotes.pages.events
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.TextBox boxDescription;
         private System.Windows.Forms.Label iconDescription;
+        private System.Windows.Forms.Label txtTitle2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Label txtTitle3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label txtSuccessfulDescription;
+        private System.Windows.Forms.Label iconSuccessful;
+        private System.Windows.Forms.Label txtTitleSuccess;
+        private System.Windows.Forms.Label txtWarningTitle;
+        private components.participants.ParticipantSelector participantSelector1;
+        private components.participants.ParticipantSelector participantSelector2;
     }
 }
