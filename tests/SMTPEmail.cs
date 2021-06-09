@@ -12,7 +12,7 @@ namespace ProbPotes.tests
     {
         public Boolean sendMail()
         {
-            string from = "probpote"; //https://mail.ovh.net/roundcube/?_task=login pour accéder au mail
+            string from = "probpote@fifoot-bet.fr"; //https://mail.ovh.net/roundcube/?_task=login pour accéder au mail
             string mdp = "changethis";
             string title = "Mail Test";//OBJET DU MESSAGE
             string message = "message zebi";//MESSAGE
