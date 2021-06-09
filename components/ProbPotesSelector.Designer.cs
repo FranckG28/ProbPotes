@@ -60,6 +60,7 @@ namespace ProbPotes.components
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.txtIcon);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "ProbPotesSelector";
             this.Size = new System.Drawing.Size(211, 34);
             this.Click += new System.EventHandler(this.ProbPotesSelector_Click);

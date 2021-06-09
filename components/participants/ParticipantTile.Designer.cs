@@ -46,38 +46,38 @@ namespace ProbPotes.components.participants
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBox1.Image = global::ProbPotes.Properties.Resources.person;
-            this.pictureBox1.Location = new System.Drawing.Point(55, 44);
+            this.pictureBox1.Location = new System.Drawing.Point(19, 18);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(109, 112);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.Size = new System.Drawing.Size(60, 60);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // txtName
             // 
             this.txtName.BackColor = System.Drawing.Color.Transparent;
-            this.txtName.Location = new System.Drawing.Point(3, 186);
+            this.txtName.Location = new System.Drawing.Point(88, 53);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(216, 20);
+            this.txtName.Size = new System.Drawing.Size(209, 20);
             this.txtName.TabIndex = 3;
             this.txtName.Text = "N?ame";
-            this.txtName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.txtName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtFirstName
             // 
             this.txtFirstName.BackColor = System.Drawing.Color.Transparent;
-            this.txtFirstName.Location = new System.Drawing.Point(3, 157);
+            this.txtFirstName.Location = new System.Drawing.Point(86, 25);
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(216, 31);
+            this.txtFirstName.Size = new System.Drawing.Size(211, 31);
             this.txtFirstName.TabIndex = 4;
             this.txtFirstName.Text = "FirstName";
-            this.txtFirstName.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.txtFirstName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // iconPhone
             // 
             this.iconPhone.AutoSize = true;
             this.iconPhone.Font = new System.Drawing.Font("Segoe MDL2 Assets", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconPhone.Location = new System.Drawing.Point(11, 217);
+            this.iconPhone.Location = new System.Drawing.Point(16, 93);
             this.iconPhone.Name = "iconPhone";
             this.iconPhone.Size = new System.Drawing.Size(35, 15);
             this.iconPhone.TabIndex = 5;
@@ -87,7 +87,7 @@ namespace ProbPotes.components.participants
             // 
             this.iconMail.AutoSize = true;
             this.iconMail.Font = new System.Drawing.Font("Segoe MDL2 Assets", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconMail.Location = new System.Drawing.Point(11, 248);
+            this.iconMail.Location = new System.Drawing.Point(16, 119);
             this.iconMail.Name = "iconMail";
             this.iconMail.Size = new System.Drawing.Size(35, 15);
             this.iconMail.TabIndex = 6;
@@ -97,7 +97,7 @@ namespace ProbPotes.components.participants
             // 
             this.iconShares.AutoSize = true;
             this.iconShares.Font = new System.Drawing.Font("Segoe MDL2 Assets", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconShares.Location = new System.Drawing.Point(11, 279);
+            this.iconShares.Location = new System.Drawing.Point(16, 145);
             this.iconShares.Name = "iconShares";
             this.iconShares.Size = new System.Drawing.Size(35, 15);
             this.iconShares.TabIndex = 7;
@@ -106,7 +106,7 @@ namespace ProbPotes.components.participants
             // txtPhone
             // 
             this.txtPhone.AutoSize = true;
-            this.txtPhone.Location = new System.Drawing.Point(47, 216);
+            this.txtPhone.Location = new System.Drawing.Point(44, 91);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(35, 13);
             this.txtPhone.TabIndex = 9;
@@ -115,7 +115,7 @@ namespace ProbPotes.components.participants
             // txtMail
             // 
             this.txtMail.AutoSize = true;
-            this.txtMail.Location = new System.Drawing.Point(47, 246);
+            this.txtMail.Location = new System.Drawing.Point(44, 117);
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(35, 13);
             this.txtMail.TabIndex = 10;
@@ -124,7 +124,7 @@ namespace ProbPotes.components.participants
             // txtShares
             // 
             this.txtShares.AutoSize = true;
-            this.txtShares.Location = new System.Drawing.Point(47, 278);
+            this.txtShares.Location = new System.Drawing.Point(44, 144);
             this.txtShares.Name = "txtShares";
             this.txtShares.Size = new System.Drawing.Size(35, 13);
             this.txtShares.TabIndex = 11;
@@ -143,8 +143,9 @@ namespace ProbPotes.components.participants
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.pictureBox1);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "ParticipantTile";
-            this.Size = new System.Drawing.Size(222, 313);
+            this.Size = new System.Drawing.Size(300, 174);
             this.Click += new System.EventHandler(this.ParticipantTile_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

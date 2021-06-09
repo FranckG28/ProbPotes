@@ -35,7 +35,7 @@ namespace ProbPotes.components.expenses
         private void Init()
         {
             // Création de l'effet de survol
-            HoverColor hoverBg = new HoverColor(new List<Control>() { this }, false, Colors.lightBlue, Colors.lightBlue2, Colors.blue);
+            HoverColor hoverBg = new HoverColor(new List<Control>() { this }, false, Colors.lightGrey, Colors.lightBlue2, Colors.blue);
             HoverColor hoverForeBlue = new HoverColor(new List<Control>() { txtTitle, txtCreator }, true, Colors.blue, Colors.blue, Colors.white);
             HoverColor hoverForeBlack = new HoverColor(new List<Control>() { txtRecipients, iconRecipients, txtLblParticipants, txtLblDescription, iconDescription }, true, Colors.black, Colors.black, Colors.white);
             HoverColor hoverPriceFg = new HoverColor(new List<Control>() { txtPrice }, true, Colors.white, Colors.white, Colors.white);

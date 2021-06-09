@@ -257,6 +257,12 @@ namespace ProbPotes.components
             txtBox.ForeColor = Colors.blue;
         }
 
+        public static void ApplyDatePickerStyle(DateTimePicker picker)
+        {
+            picker.Font = TextBoxFont;
+            picker.ForeColor = Colors.blue;
+        }
+
 
     }
 }

@@ -38,7 +38,7 @@ namespace ProbPotes.pages
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(950, 520);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(950, 559);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // ParticipantsPage
@@ -48,7 +48,7 @@ namespace ProbPotes.pages
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "ParticipantsPage";
-            this.Size = new System.Drawing.Size(950, 520);
+            this.Size = new System.Drawing.Size(950, 559);
             this.ResumeLayout(false);
 
         }

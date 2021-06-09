@@ -160,6 +160,7 @@ namespace ProbPotes.components.expenses
             this.Controls.Add(this.txtRecipients);
             this.Controls.Add(this.txtCreator);
             this.Controls.Add(this.txtTitle);
+            this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.Name = "ExpenseTile";
             this.Size = new System.Drawing.Size(670, 183);
             this.ResumeLayout(false);

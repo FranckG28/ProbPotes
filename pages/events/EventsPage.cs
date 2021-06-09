@@ -40,7 +40,7 @@ namespace ProbPotes.pages
             txtCount.Font = new Font(Fonts.medium, 14);
 
             // Couleurs
-            pnlEvent.BackColor = Colors.lightBlue;
+            pnlEvent.BackColor = Colors.lightGrey;
             txtTitle.ForeColor = Colors.blue;
             txtDateStart.ForeColor = Colors.blue;
             txtDatesSeparator.ForeColor = Colors.blue;

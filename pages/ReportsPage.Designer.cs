@@ -47,7 +47,7 @@ namespace ProbPotes.pages
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 41);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(920, 479);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(920, 515);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // ReportsPage
@@ -58,7 +58,7 @@ namespace ProbPotes.pages
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.label1);
             this.Name = "ReportsPage";
-            this.Size = new System.Drawing.Size(950, 520);
+            this.Size = new System.Drawing.Size(950, 559);
             this.ResumeLayout(false);
             this.PerformLayout();
 

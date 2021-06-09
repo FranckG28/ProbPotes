@@ -31,7 +31,7 @@ namespace ProbPotes.components.participants
                 List<Label> labels = new List<Label>() { txtMail, txtShares, txtPhone };
                 foreach(Label lbl in labels)
                 {
-                    lbl.Font = new Font(Fonts.regular, 11);
+                    lbl.Font = new Font(Fonts.book, 10);
                 }
             }
 
@@ -41,9 +41,9 @@ namespace ProbPotes.components.participants
             iconShares.Text = char.ConvertFromUtf32(0xE125);
 
             // Effet de survol
-            HoverColor hoverBg = new HoverColor(new List<Control>() { this }, false, Colors.lightBlue, Colors.blue, Colors.green);
-            HoverColor hoverBlue = new HoverColor(new List<Control>() { txtFirstName, txtName }, true, Colors.blue, Colors.white, Colors.white);
-            HoverColor hoverBlack = new HoverColor(new List<Control>() { txtShares, txtMail, txtPhone, iconMail, iconPhone, iconShares }, true, Colors.black, Colors.white, Colors.white);
+            HoverColor hoverBg = new HoverColor(new List<Control>() { this }, false, Colors.lightGrey, Colors.lightBlue2, Colors.blue);
+            HoverColor hoverBlue = new HoverColor(new List<Control>() { txtFirstName, txtName }, true, Colors.blue, Colors.blue, Colors.white);
+            HoverColor hoverBlack = new HoverColor(new List<Control>() { txtShares, txtMail, txtPhone, iconMail, iconPhone, iconShares }, true, Colors.black, Colors.black, Colors.white);
             hover = new HoverController(new List<HoverColor>() { hoverBg, hoverBlack, hoverBlue }, this);
 
         }
@@ -60,7 +60,7 @@ namespace ProbPotes.components.participants
                     txtName.Text = participant.Name;
                     txtPhone.Text = participant.Phone;
                     txtMail.Text = participant.MailAddress;
-                    txtShares.Text = participant.Shares.ToString();
+                    txtShares.Text = participant.Shares.ToString() + (participant.Shares > 1 ? " parts" : " part");
                 }
             }
         }

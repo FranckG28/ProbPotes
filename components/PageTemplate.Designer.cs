@@ -36,13 +36,15 @@ namespace ProbPotes.pages
             // 
             // pageContent
             // 
+            this.pageContent.BackColor = System.Drawing.Color.Transparent;
             this.pageContent.Location = new System.Drawing.Point(0, 91);
             this.pageContent.Name = "pageContent";
-            this.pageContent.Size = new System.Drawing.Size(950, 520);
+            this.pageContent.Size = new System.Drawing.Size(950, 559);
             this.pageContent.TabIndex = 1;
             // 
             // pageTitle
             // 
+            this.pageTitle.AddButtonAction = null;
             this.pageTitle.BackColor = System.Drawing.Color.Transparent;
             this.pageTitle.Icon = 59545;
             this.pageTitle.Location = new System.Drawing.Point(0, 0);
@@ -57,7 +59,7 @@ namespace ProbPotes.pages
             this.Controls.Add(this.pageContent);
             this.Controls.Add(this.pageTitle);
             this.Name = "PageTemplate";
-            this.Size = new System.Drawing.Size(950, 610);
+            this.Size = new System.Drawing.Size(950, 650);
             this.Load += new System.EventHandler(this.PageTemplate_Load);
             this.ResumeLayout(false);
 

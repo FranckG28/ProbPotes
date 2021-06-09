@@ -41,13 +41,13 @@ namespace ProbPotes.pages
             this.txtDatesSeparator = new System.Windows.Forms.Label();
             this.txtDateEnd = new System.Windows.Forms.Label();
             this.pnlEvent = new System.Windows.Forms.Panel();
+            this.btnEdit = new ProbPotes.components.IconButton();
             this.txtIndex = new System.Windows.Forms.Label();
             this.txtCount = new System.Windows.Forms.Label();
             this.btnLast = new ProbPotes.components.IconButton();
             this.btnNext = new ProbPotes.components.IconButton();
             this.btnPrevious = new ProbPotes.components.IconButton();
             this.btnFirst = new ProbPotes.components.IconButton();
-            this.btnEdit = new ProbPotes.components.IconButton();
             this.pnlDates.SuspendLayout();
             this.pnlEvent.SuspendLayout();
             this.SuspendLayout();
@@ -165,68 +165,10 @@ namespace ProbPotes.pages
             this.pnlEvent.Controls.Add(this.txtCreator);
             this.pnlEvent.Controls.Add(this.txtTitle);
             this.pnlEvent.Controls.Add(this.btnEdit);
-            this.pnlEvent.Location = new System.Drawing.Point(226, 99);
+            this.pnlEvent.Location = new System.Drawing.Point(226, 111);
             this.pnlEvent.Name = "pnlEvent";
             this.pnlEvent.Size = new System.Drawing.Size(499, 301);
             this.pnlEvent.TabIndex = 0;
-            // 
-            // txtIndex
-            // 
-            this.txtIndex.Location = new System.Drawing.Point(9, 446);
-            this.txtIndex.Name = "txtIndex";
-            this.txtIndex.Size = new System.Drawing.Size(480, 36);
-            this.txtIndex.TabIndex = 1;
-            this.txtIndex.Text = "0/0";
-            this.txtIndex.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtCount
-            // 
-            this.txtCount.Location = new System.Drawing.Point(487, 446);
-            this.txtCount.Name = "txtCount";
-            this.txtCount.Size = new System.Drawing.Size(463, 36);
-            this.txtCount.TabIndex = 6;
-            this.txtCount.Text = "0/0";
-            this.txtCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btnLast
-            // 
-            this.btnLast.AutoSize = true;
-            this.btnLast.BackColor = System.Drawing.Color.Transparent;
-            this.btnLast.Icon = 59539;
-            this.btnLast.Location = new System.Drawing.Point(867, 232);
-            this.btnLast.Name = "btnLast";
-            this.btnLast.Size = new System.Drawing.Size(35, 35);
-            this.btnLast.TabIndex = 5;
-            // 
-            // btnNext
-            // 
-            this.btnNext.AutoSize = true;
-            this.btnNext.BackColor = System.Drawing.Color.Transparent;
-            this.btnNext.Icon = 59178;
-            this.btnNext.Location = new System.Drawing.Point(777, 232);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(35, 35);
-            this.btnNext.TabIndex = 4;
-            // 
-            // btnPrevious
-            // 
-            this.btnPrevious.AutoSize = true;
-            this.btnPrevious.BackColor = System.Drawing.Color.Transparent;
-            this.btnPrevious.Icon = 59179;
-            this.btnPrevious.Location = new System.Drawing.Point(133, 232);
-            this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(35, 35);
-            this.btnPrevious.TabIndex = 3;
-            // 
-            // btnFirst
-            // 
-            this.btnFirst.AutoSize = true;
-            this.btnFirst.BackColor = System.Drawing.Color.Transparent;
-            this.btnFirst.Icon = 59538;
-            this.btnFirst.Location = new System.Drawing.Point(43, 232);
-            this.btnFirst.Name = "btnFirst";
-            this.btnFirst.Size = new System.Drawing.Size(35, 35);
-            this.btnFirst.TabIndex = 2;
             // 
             // btnEdit
             // 
@@ -237,6 +179,64 @@ namespace ProbPotes.pages
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(35, 35);
             this.btnEdit.TabIndex = 1;
+            // 
+            // txtIndex
+            // 
+            this.txtIndex.Location = new System.Drawing.Point(9, 458);
+            this.txtIndex.Name = "txtIndex";
+            this.txtIndex.Size = new System.Drawing.Size(480, 36);
+            this.txtIndex.TabIndex = 1;
+            this.txtIndex.Text = "0/0";
+            this.txtIndex.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtCount
+            // 
+            this.txtCount.Location = new System.Drawing.Point(476, 458);
+            this.txtCount.Name = "txtCount";
+            this.txtCount.Size = new System.Drawing.Size(474, 36);
+            this.txtCount.TabIndex = 6;
+            this.txtCount.Text = "0/0";
+            this.txtCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnLast
+            // 
+            this.btnLast.AutoSize = true;
+            this.btnLast.BackColor = System.Drawing.Color.Transparent;
+            this.btnLast.Icon = 59539;
+            this.btnLast.Location = new System.Drawing.Point(867, 244);
+            this.btnLast.Name = "btnLast";
+            this.btnLast.Size = new System.Drawing.Size(35, 35);
+            this.btnLast.TabIndex = 5;
+            // 
+            // btnNext
+            // 
+            this.btnNext.AutoSize = true;
+            this.btnNext.BackColor = System.Drawing.Color.Transparent;
+            this.btnNext.Icon = 59178;
+            this.btnNext.Location = new System.Drawing.Point(777, 244);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(35, 35);
+            this.btnNext.TabIndex = 4;
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.AutoSize = true;
+            this.btnPrevious.BackColor = System.Drawing.Color.Transparent;
+            this.btnPrevious.Icon = 59179;
+            this.btnPrevious.Location = new System.Drawing.Point(133, 244);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(35, 35);
+            this.btnPrevious.TabIndex = 3;
+            // 
+            // btnFirst
+            // 
+            this.btnFirst.AutoSize = true;
+            this.btnFirst.BackColor = System.Drawing.Color.Transparent;
+            this.btnFirst.Icon = 59538;
+            this.btnFirst.Location = new System.Drawing.Point(43, 244);
+            this.btnFirst.Name = "btnFirst";
+            this.btnFirst.Size = new System.Drawing.Size(35, 35);
+            this.btnFirst.TabIndex = 2;
             // 
             // EventsPage
             // 
@@ -251,7 +251,7 @@ namespace ProbPotes.pages
             this.Controls.Add(this.txtIndex);
             this.Controls.Add(this.pnlEvent);
             this.Name = "EventsPage";
-            this.Size = new System.Drawing.Size(950, 520);
+            this.Size = new System.Drawing.Size(950, 559);
             this.pnlDates.ResumeLayout(false);
             this.pnlDates.PerformLayout();
             this.pnlEvent.ResumeLayout(false);

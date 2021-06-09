@@ -30,8 +30,8 @@ namespace ProbPotes.pages
         private void InitializeComponent()
         {
             this.txtDescription = new System.Windows.Forms.Label();
-            this.pnlEvents = new System.Windows.Forms.Panel();
-            this.pnlExpenses = new System.Windows.Forms.Panel();
+            this.pnlExpenses = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlEvents = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
             // txtDescription
@@ -43,40 +43,40 @@ namespace ProbPotes.pages
             this.txtDescription.TabIndex = 1;
             this.txtDescription.Text = "Évènement";
             // 
-            // pnlEvents
-            // 
-            this.pnlEvents.AutoScroll = true;
-            this.pnlEvents.Location = new System.Drawing.Point(0, 26);
-            this.pnlEvents.Name = "pnlEvents";
-            this.pnlEvents.Size = new System.Drawing.Size(250, 494);
-            this.pnlEvents.TabIndex = 2;
-            // 
             // pnlExpenses
             // 
             this.pnlExpenses.AutoScroll = true;
-            this.pnlExpenses.Location = new System.Drawing.Point(250, 26);
+            this.pnlExpenses.Location = new System.Drawing.Point(242, 26);
             this.pnlExpenses.Name = "pnlExpenses";
-            this.pnlExpenses.Size = new System.Drawing.Size(700, 494);
-            this.pnlExpenses.TabIndex = 2;
+            this.pnlExpenses.Size = new System.Drawing.Size(708, 533);
+            this.pnlExpenses.TabIndex = 3;
+            // 
+            // pnlEvents
+            // 
+            this.pnlEvents.AutoScroll = true;
+            this.pnlEvents.Location = new System.Drawing.Point(3, 26);
+            this.pnlEvents.Name = "pnlEvents";
+            this.pnlEvents.Size = new System.Drawing.Size(233, 533);
+            this.pnlEvents.TabIndex = 4;
             // 
             // ExpensesPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.pnlExpenses);
             this.Controls.Add(this.pnlEvents);
+            this.Controls.Add(this.pnlExpenses);
             this.Controls.Add(this.txtDescription);
             this.Name = "ExpensesPage";
-            this.Size = new System.Drawing.Size(950, 520);
+            this.Size = new System.Drawing.Size(950, 559);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel pnlEvents;
-        private System.Windows.Forms.Panel pnlExpenses;
         private System.Windows.Forms.Label txtDescription;
+        private System.Windows.Forms.FlowLayoutPanel pnlExpenses;
+        private System.Windows.Forms.FlowLayoutPanel pnlEvents;
     }
 }

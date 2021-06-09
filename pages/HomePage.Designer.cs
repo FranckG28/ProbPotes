@@ -43,7 +43,7 @@ namespace ProbPotes.pages
             // 
             this.iconAddExpense.AutoSize = true;
             this.iconAddExpense.Font = new System.Drawing.Font("Segoe MDL2 Assets", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconAddExpense.Location = new System.Drawing.Point(2, 292);
+            this.iconAddExpense.Location = new System.Drawing.Point(2, 298);
             this.iconAddExpense.Name = "iconAddExpense";
             this.iconAddExpense.Size = new System.Drawing.Size(0, 48);
             this.iconAddExpense.TabIndex = 4;
@@ -51,7 +51,7 @@ namespace ProbPotes.pages
             // txtAddExpenseTitle
             // 
             this.txtAddExpenseTitle.AutoSize = true;
-            this.txtAddExpenseTitle.Location = new System.Drawing.Point(66, 284);
+            this.txtAddExpenseTitle.Location = new System.Drawing.Point(66, 290);
             this.txtAddExpenseTitle.Name = "txtAddExpenseTitle";
             this.txtAddExpenseTitle.Size = new System.Drawing.Size(105, 13);
             this.txtAddExpenseTitle.TabIndex = 5;
@@ -60,7 +60,7 @@ namespace ProbPotes.pages
             // txtAddExpenseDescription
             // 
             this.txtAddExpenseDescription.AutoSize = true;
-            this.txtAddExpenseDescription.Location = new System.Drawing.Point(68, 327);
+            this.txtAddExpenseDescription.Location = new System.Drawing.Point(68, 333);
             this.txtAddExpenseDescription.Name = "txtAddExpenseDescription";
             this.txtAddExpenseDescription.Size = new System.Drawing.Size(340, 13);
             this.txtAddExpenseDescription.TabIndex = 6;
@@ -69,14 +69,14 @@ namespace ProbPotes.pages
             // pnlEvents
             // 
             this.pnlEvents.AutoScroll = true;
-            this.pnlEvents.Location = new System.Drawing.Point(0, 371);
+            this.pnlEvents.Location = new System.Drawing.Point(0, 377);
             this.pnlEvents.Name = "pnlEvents";
             this.pnlEvents.Size = new System.Drawing.Size(942, 146);
             this.pnlEvents.TabIndex = 8;
             // 
             // tileTotal
             // 
-            this.tileTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))), ((int)(((byte)(255)))));
+            this.tileTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(7)))), ((int)(((byte)(7)))), ((int)(((byte)(7)))));
             this.tileTotal.Description = "total dépensé";
             this.tileTotal.Icon = 60156;
             this.tileTotal.Location = new System.Drawing.Point(720, 3);
@@ -87,7 +87,7 @@ namespace ProbPotes.pages
             // 
             // tileEvents
             // 
-            this.tileEvents.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))), ((int)(((byte)(255)))));
+            this.tileEvents.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(7)))), ((int)(((byte)(7)))), ((int)(((byte)(7)))));
             this.tileEvents.Description = "évènements";
             this.tileEvents.Icon = 59271;
             this.tileEvents.Location = new System.Drawing.Point(480, 3);
@@ -98,7 +98,7 @@ namespace ProbPotes.pages
             // 
             // tileExpenses
             // 
-            this.tileExpenses.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))), ((int)(((byte)(255)))));
+            this.tileExpenses.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(7)))), ((int)(((byte)(7)))), ((int)(((byte)(7)))));
             this.tileExpenses.Description = "dépenses";
             this.tileExpenses.Icon = 59161;
             this.tileExpenses.Location = new System.Drawing.Point(240, 3);
@@ -109,7 +109,7 @@ namespace ProbPotes.pages
             // 
             // tileParticipants
             // 
-            this.tileParticipants.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(214)))), ((int)(((byte)(223)))), ((int)(((byte)(255)))));
+            this.tileParticipants.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(7)))), ((int)(((byte)(7)))), ((int)(((byte)(7)))));
             this.tileParticipants.Description = "participants";
             this.tileParticipants.Icon = 59158;
             this.tileParticipants.Location = new System.Drawing.Point(0, 3);
@@ -131,7 +131,7 @@ namespace ProbPotes.pages
             this.Controls.Add(this.tileExpenses);
             this.Controls.Add(this.tileParticipants);
             this.Name = "HomePage";
-            this.Size = new System.Drawing.Size(950, 520);
+            this.Size = new System.Drawing.Size(950, 559);
             this.ResumeLayout(false);
             this.PerformLayout();
 

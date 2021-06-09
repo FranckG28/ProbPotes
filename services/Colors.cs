@@ -21,7 +21,7 @@ namespace ProbPotes.services
         public static Color red = Color.FromArgb(232,17,35);
         public static Color lightRed = Color.FromArgb(241,112,122);
         public static Color grey = Color.FromArgb(170, 7, 7, 7);
-        public static Color lightGrey = Color.FromArgb(5, 7, 7, 7);
+        public static Color lightGrey = Color.FromArgb(3, 7, 7, 7);
 
     }
 }

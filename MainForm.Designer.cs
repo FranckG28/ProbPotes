@@ -121,7 +121,7 @@ namespace ProbPotes
             // 
             this.panelView.Location = new System.Drawing.Point(232, 45);
             this.panelView.Name = "panelView";
-            this.panelView.Size = new System.Drawing.Size(950, 610);
+            this.panelView.Size = new System.Drawing.Size(950, 650);
             this.panelView.TabIndex = 7;
             // 
             // closeBtn1

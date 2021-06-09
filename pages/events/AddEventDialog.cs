@@ -35,6 +35,18 @@ namespace ProbPotes.pages.events
                 ProbPotesDialog.ApplyTitleStyle(title);
             }
 
+            List<TextBox> boxes = new List<TextBox>() { boxDescription, boxTitle };
+            foreach(TextBox box in boxes)
+            {
+                ProbPotesDialog.ApplyTextBoxStyle(box);
+            }
+
+            List<DateTimePicker> dates = new List<DateTimePicker>() { dateEnd, dateStart };
+            foreach (DateTimePicker date in dates)
+            {
+                ProbPotesDialog.ApplyDatePickerStyle(date);
+            }
+
 
             // Icones
             iconDate.Text = char.ConvertFromUtf32(59271);

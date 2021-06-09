@@ -80,6 +80,7 @@ namespace ProbPotes.components
             this.Controls.Add(this.txtParticipants);
             this.Controls.Add(this.txtDate);
             this.Controls.Add(this.txtTitle);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "EventPreview";
             this.Size = new System.Drawing.Size(222, 120);
             this.Click += new System.EventHandler(this.EventPreview_Click);
