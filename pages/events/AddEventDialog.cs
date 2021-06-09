@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -48,6 +49,13 @@ namespace ProbPotes.pages.events
                 ProbPotesDialog.ApplyDatePickerStyle(date);
             }
 
+            List<Label> warnings = new List<Label>() { txtWarningCreator, txtWarningTitle };
+            foreach(Label lbl in warnings)
+            {
+                lbl.ForeColor = Colors.red;
+                lbl.Font = new Font(Fonts.book, 12);
+                lbl.Visible = false;
+            }
 
             // Icones
             iconDate.Text = char.ConvertFromUtf32(59271);
@@ -62,11 +70,6 @@ namespace ProbPotes.pages.events
             }
 
             iconSuccessful.ForeColor = Colors.blue;
-
-            txtWarningTitle.ForeColor = Colors.red;
-            txtWarningTitle.Font = new Font(Fonts.book, 12);
-            txtWarningTitle.Visible = false;
-
 
         }
 
@@ -92,7 +95,24 @@ namespace ProbPotes.pages.events
                     {
                         tabControl1.SelectedIndex = value;
                     }
-                } else
+                } else if (value == 2)
+                {
+                    txtWarningCreator.Visible = psCreator.SelectedParticipants.Count == 0;
+                    if (psCreator.SelectedParticipants.Count > 0)
+                    {
+                        tabControl1.SelectedIndex = value;
+                    }
+                } else if (value == 3)
+                {
+                    // AJOUT DE L'EVENEMENT
+
+                    // SI REUSSITE 
+                    if (true)
+                    {
+                        tabControl1.SelectedIndex = value;
+                    }
+                }
+                else
                 {
                     tabControl1.SelectedIndex = value;
                 }

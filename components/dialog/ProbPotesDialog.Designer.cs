@@ -67,7 +67,7 @@ namespace ProbPotes.components
             // 
             this.pnlContent.Location = new System.Drawing.Point(31, 65);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(790, 380);
+            this.pnlContent.Size = new System.Drawing.Size(790, 407);
             this.pnlContent.TabIndex = 3;
             // 
             // btnBack

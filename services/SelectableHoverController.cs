@@ -19,7 +19,7 @@ namespace ProbPotes.services
 
         public bool Selected
         {
-            get => isHover;
+            get => isSelected;
             set
             {
                 isSelected = value;

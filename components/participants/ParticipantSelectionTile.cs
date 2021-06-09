@@ -25,7 +25,7 @@ namespace ProbPotes.components.participants
             // Polices
             if (LicenseManager.UsageMode == LicenseUsageMode.Runtime)
             {
-                txtFirstName.Font = new Font(Fonts.bold, 18);
+                txtFirstName.Font = new Font(Fonts.bold, 13);
                 txtName.Font = new Font(Fonts.book, 12);
             }
 
@@ -35,7 +35,7 @@ namespace ProbPotes.components.participants
             hover = new SelectableHoverController(new List<HoverColor>() { hoverBg, hoverBlue }, this);
         }
 
-        public Boolean Selected
+        public bool Selected
         {
             get => hover.Selected;
             set => hover.Selected = value;
@@ -54,24 +54,11 @@ namespace ProbPotes.components.participants
 
         public delegate void Del(Participant p);
         public Del SelectAction;
-        public Del UnselectAction;
 
         private void ParticipantSelectionTile_Click(object sender, EventArgs e)
         {
             Selected = !Selected;
-            if (Selected)
-            {
-                if (SelectAction != null)
-                {
-                    SelectAction(participant);
-                }
-            } else
-            {
-                if (UnselectAction != null)
-                {
-                    UnselectAction(participant);
-                }
-            }
+                SelectAction?.DynamicInvoke(Participant);
         }
     }
 }

@@ -1,4 +1,4 @@
-using ProbPotes.models;
+ using ProbPotes.models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +55,8 @@ namespace ProbPotes.managers
                 insertEvent.Parameters.Add(new OleDbParameter("soldeON", OleDbType.Boolean)).Value = eventclass.StartDate < DateTime.Today && eventclass.EndDate > DateTime.Today;
                 insertEvent.Parameters.Add(new OleDbParameter("codeCreateur", OleDbType.Integer)).Value = eventclass.CreatorCode;
 
+                // TODO: Ajout des participants à l'évènement (liste des codes dans la table invité)
+
                 int result = insertEvent.ExecuteNonQuery();
 
                 return result > 0;
@@ -94,7 +96,7 @@ namespace ProbPotes.managers
                 //manque la partie mettre à jour les participants donc utiliser la liste des participants
                 //mais je sais vraiment pas comment m'y procéder
 
-                // TODO: Utiliser le gestionnaire d'invités et de dépense pour mettre à jour ces données
+                // TODO: Utiliser de dépense pour mettre à jour les mettre à jour et mettre à jour les invités (donc vérifier suppression/ajout)
 
                 int result = update.ExecuteNonQuery();
 
@@ -117,11 +119,12 @@ namespace ProbPotes.managers
         // Retourne true si la suppression a reussi
         public Boolean DeleteEvent(int eventId)
         {
-            //ici j'ai modifié le paramètre au lieu de int id j'ai juste mis eventclass (je sais pas si le id correspond au code de l'event!)
             try
             {
                 DatabaseManager.db.Open();
                 OleDbCommand delete = new OleDbCommand(@"DELETE FROM Evenements WHERE codeEvent = @codeEvent;", DatabaseManager.db);
+
+                // TODO: Supprimmer aussi toutes les dépenses et invités de l'évènement
 
                 delete.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventId;
                 int result = delete.ExecuteNonQuery();

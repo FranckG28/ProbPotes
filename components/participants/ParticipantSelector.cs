@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -51,6 +52,11 @@ namespace ProbPotes.components.participants
 
         }
 
+        public List<Participant> SelectedParticipants
+        {
+            get => ParticipantList;
+        }
+
         public Boolean MultiSelection
         {
             get => multiSelect;
@@ -63,10 +69,14 @@ namespace ProbPotes.components.participants
 
         public void RefreshSelection()
         {
+            ParticipantList = new List<Participant>();
             foreach(Control c in flowLayoutPanel1.Controls)
             {
                 ParticipantSelectionTile tile = (ParticipantSelectionTile)c;
-                tile.Selected = ParticipantList.Contains(tile.Participant);
+                if (tile.Selected)
+                {
+                    ParticipantList.Add(tile.Participant);
+                }
             }
         }
 
@@ -79,27 +89,24 @@ namespace ProbPotes.components.participants
                 tile.Participant = p;
                 tile.Selected = ParticipantList.Contains(p);
                 tile.SelectAction = Selection;
-                tile.UnselectAction = Unselect;
                 flowLayoutPanel1.Controls.Add(tile);
             }
         }
 
         public void Selection(Participant p )
         {
-            if (!multiSelect)
+            // Tout décocher sauf le sélectionné si pas de multi sélection
+            if (!multiSelect && !ParticipantList.Contains(p))
             {
-                ParticipantList = new List<Participant>() { p};
-            } else
-            {
-                ParticipantList.Add(p);
+                foreach(Control c in flowLayoutPanel1.Controls)
+                {
+                    ParticipantSelectionTile tile = (ParticipantSelectionTile)c;
+                    if (tile.Participant != p)
+                    {
+                        tile.Selected = false;
+                    }
+                }
             }
-            RefreshSelection();
-        }
-
-        public void Unselect(Participant p)
-        {
-            if (ParticipantList.Contains(p))
-                ParticipantList.Remove(p);
 
             RefreshSelection();
         }
@@ -111,11 +118,14 @@ namespace ProbPotes.components.participants
             if (select)
             {
                 btnSelectAll.Text = "Tout déselectionner";
-                ParticipantList = DatabaseManager.Participants.Participants;
             } else
             {
                 btnSelectAll.Text = "Tout sélectionner";
-                ParticipantList = new List<Participant>();
+            }
+            foreach (Control c in flowLayoutPanel1.Controls)
+            {
+                ParticipantSelectionTile tile = (ParticipantSelectionTile)c;
+                tile.Selected = select;
             }
             RefreshSelection();
 

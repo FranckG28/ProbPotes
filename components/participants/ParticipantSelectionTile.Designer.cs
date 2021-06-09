@@ -40,9 +40,9 @@ namespace ProbPotes.components.participants
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBox1.Image = global::ProbPotes.Properties.Resources.person;
-            this.pictureBox1.Location = new System.Drawing.Point(17, 17);
+            this.pictureBox1.Location = new System.Drawing.Point(13, 14);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(60, 60);
+            this.pictureBox1.Size = new System.Drawing.Size(30, 30);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -50,24 +50,24 @@ namespace ProbPotes.components.participants
             // 
             // txtFirstName
             // 
+            this.txtFirstName.AutoSize = true;
             this.txtFirstName.BackColor = System.Drawing.Color.Transparent;
-            this.txtFirstName.Location = new System.Drawing.Point(93, 23);
+            this.txtFirstName.Location = new System.Drawing.Point(57, 12);
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(257, 31);
+            this.txtFirstName.Size = new System.Drawing.Size(54, 13);
             this.txtFirstName.TabIndex = 6;
             this.txtFirstName.Text = "FirstName";
-            this.txtFirstName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.txtFirstName.Click += new System.EventHandler(this.ParticipantSelectionTile_Click);
             // 
             // txtName
             // 
+            this.txtName.AutoSize = true;
             this.txtName.BackColor = System.Drawing.Color.Transparent;
-            this.txtName.Location = new System.Drawing.Point(95, 51);
+            this.txtName.Location = new System.Drawing.Point(58, 33);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(255, 20);
+            this.txtName.Size = new System.Drawing.Size(35, 13);
             this.txtName.TabIndex = 5;
-            this.txtName.Text = "N?ame";
-            this.txtName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtName.Text = "Name";
             this.txtName.Click += new System.EventHandler(this.ParticipantSelectionTile_Click);
             // 
             // ParticipantSelectionTile
@@ -78,10 +78,11 @@ namespace ProbPotes.components.participants
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.pictureBox1);
             this.Name = "ParticipantSelectionTile";
-            this.Size = new System.Drawing.Size(352, 98);
+            this.Size = new System.Drawing.Size(352, 59);
             this.Click += new System.EventHandler(this.ParticipantSelectionTile_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
