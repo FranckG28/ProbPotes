@@ -159,6 +159,12 @@
     <Compile Include="pages\events\NoEventPage.Designer.cs">
       <DependentUpon>NoEventPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="pages\expenses\AddExpenseDialog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pages\expenses\AddExpenseDialog.Designer.cs">
+      <DependentUpon>AddExpenseDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="services\EventNavigation.cs" />
     <Compile Include="models\Participant.cs" />
     <Compile Include="models\Expense.cs" />
@@ -183,10 +189,10 @@
     <Compile Include="pages\events\EventsPage.Designer.cs">
       <DependentUpon>EventsPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="pages\ExpensesPage.cs">
+    <Compile Include="pages\expenses\ExpensesPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="pages\ExpensesPage.Designer.cs">
+    <Compile Include="pages\expenses\ExpensesPage.Designer.cs">
       <DependentUpon>ExpensesPage.cs</DependentUpon>
     </Compile>
     <Compile Include="pages\HomePage.cs">
@@ -270,7 +276,10 @@
     <EmbeddedResource Include="pages\events\NoEventPage.resx">
       <DependentUpon>NoEventPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\ExpensesPage.resx">
+    <EmbeddedResource Include="pages\expenses\AddExpenseDialog.resx">
+      <DependentUpon>AddExpenseDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\expenses\ExpensesPage.resx">
       <DependentUpon>ExpensesPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\HomePage.resx">

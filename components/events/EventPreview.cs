@@ -78,7 +78,7 @@ namespace ProbPotes.components
             }
         }
 
-        public delegate void Del();
+        public delegate void Del(EventClass e);
 
         public Del ClickAction;
 
@@ -86,7 +86,7 @@ namespace ProbPotes.components
         {
             if (ClickAction != null)
             {
-                ClickAction();
+                ClickAction(eventClass);
             }
         }
     }

@@ -19,9 +19,15 @@ namespace ProbPotes.components
 
         bool CanGoForward { get; }
 
+        bool ShowBackBtn { get; }
+        
+        bool ShowNextBtn { get; }
+
         int Index { get; set; }
 
         int PageCount { get; }
+
+        ProbPotesDialog ParentController { set; }
 
     }
 
@@ -62,14 +68,14 @@ namespace ProbPotes.components
 
             // Definition des valeurs
             Content = content;
+            Content.ParentController = this;
             Title = title;
             TitleIcon = icon;
             ParentForm = parent;
 
             // Ajout de la page 
             pnlContent.Controls.Add((UserControl)content);
-            Navigate(0);
-
+            RefreshButtons();
         }
 
         public String Title
@@ -120,23 +126,33 @@ namespace ProbPotes.components
             } // panel will be disposed and the form will "lighten" again...
         }
 
-        private void Navigate(int index)
+        public void Navigate(int index)
         {
             Content.Index = index;
-            
+
+            RefreshButtons();
+        }
+
+        private void RefreshButtons()
+        {
+            btnBack.Visible = Content.ShowBackBtn;
+            btnNext.Visible = Content.ShowNextBtn;
+
             if (Content.CanGoForward)
             {
                 // Bouton suivant
-                if (index == Content.PageCount-2)
+                if (Content.Index == Content.PageCount - 2)
                 {
                     btnNext.Text = "Valider";
                     btnNext.Image = Properties.Resources.doneIcon;
-                } else
+                }
+                else
                 {
                     btnNext.Text = "Suivant";
                     btnNext.Image = Properties.Resources.nextIcon;
                 }
-            } else
+            }
+            else
             {
                 // Bouton terminer
                 btnNext.Text = "OK";
@@ -147,7 +163,8 @@ namespace ProbPotes.components
             {
                 // Bouton précédent
                 btnBack.Text = "Précédent";
-            } else
+            }
+            else
             {
                 // Bouton annuler
                 btnBack.Text = "Annuler";
@@ -162,7 +179,6 @@ namespace ProbPotes.components
         public void GoBack()
         {
             Navigate(Content.Index -1);
-            Debug.WriteLine(Content.Index);
         }
 
         private void btnBack_Click(object sender, EventArgs e)

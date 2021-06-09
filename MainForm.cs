@@ -51,7 +51,7 @@ namespace ProbPotes
 
             // Ajout des pages
             navigation.AddNavigation(navHome, Pages.Home, "Bonjour");
-            navigation.AddNavigation(navExpenses, Pages.Expenses, "Vos dépenses", GoToHome);
+            navigation.AddNavigation(navExpenses, Pages.Expenses, "Vos dépenses", OpenAddExpense);
             navigation.AddNavigation(navEvents, Pages.Events, "Vos évènements", OpenAddEvent);
             navigation.AddNavigation(navParticipants, Pages.Participants, "Vos participants", OpenAddParticipant);
             navigation.AddNavigation(navReports, Pages.Reports, "Faire un bilan");
@@ -76,7 +76,8 @@ namespace ProbPotes
 
         public void OpenAddExpense()
         {
-
+            ProbPotesDialog dialog = new ProbPotesDialog("Ajouter une dépense", 59161, new AddExpenseDialog(null), this);
+            DialogResult result = dialog.Open();
         }
 
         public void OpenAddEvent()

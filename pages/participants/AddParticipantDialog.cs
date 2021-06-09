@@ -17,6 +17,8 @@ namespace ProbPotes.pages.participants
     public partial class AddParticipantDialog : UserControl, IDialogPage
     {
 
+        private ProbPotesDialog ParentDialog;
+
         public delegate void Del();
 
         public Del RefreshParent;
@@ -127,8 +129,14 @@ namespace ProbPotes.pages.participants
             get => tabControl1.TabCount;
         }
 
+        public bool ShowBackBtn => true;
+
+        public bool ShowNextBtn => true;
+
+        public ProbPotesDialog ParentController { set => ParentDialog = value; }
+
         //KeyPress
-          private void boxPhone_KeyPress(object sender, KeyPressEventArgs e)
+        private void boxPhone_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
 

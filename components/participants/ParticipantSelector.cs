@@ -21,9 +21,9 @@ namespace ProbPotes.components.participants
 
         private Boolean multiSelect = false;
 
-/*        public delegate void Del();
+        public delegate void Del(Participant p);
 
-        public Del SelectAction;*/
+        public Del SelectAction;
 
         public ParticipantSelector()
         {
@@ -106,9 +106,15 @@ namespace ProbPotes.components.participants
                         tile.Selected = false;
                     }
                 }
+
             }
 
             RefreshSelection();
+
+            if (SelectAction != null)
+            {
+                SelectAction(p);
+            }
         }
 
         private void btnSelectAll_Click(object sender, EventArgs e)

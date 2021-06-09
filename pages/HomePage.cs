@@ -1,6 +1,7 @@
 ﻿using ProbPotes.components;
 using ProbPotes.managers;
 using ProbPotes.models;
+using ProbPotes.pages.events;
 using ProbPotes.services;
 using System;
 using System.Collections.Generic;
@@ -64,10 +65,17 @@ namespace ProbPotes.pages
                 EventPreview tile = new EventPreview();
                 tile.EventClass = e;
                 tile.Location = new Point(i* (tile.Width+10),0);
+                tile.ClickAction = OpenAddExpense;
                 pnlEvents.Controls.Add(tile);
                 i++;
             }
 
+        }
+
+        public void OpenAddExpense(EventClass e)
+        {
+            ProbPotesDialog dialog = new ProbPotesDialog("Ajouter une dépense à " + e.Title, 59161, new AddExpenseDialog(e), this.ParentForm);
+            DialogResult result = dialog.Open();
         }
 
     }

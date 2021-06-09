@@ -1,4 +1,6 @@
 ﻿using ProbPotes.components;
+using ProbPotes.managers;
+using ProbPotes.models;
 using ProbPotes.services;
 using System;
 using System.Collections.Generic;
@@ -13,13 +15,18 @@ using System.Windows.Forms;
 
 namespace ProbPotes.pages.events
 {
-    public partial class AddEventDialog : UserControl, IDialogPage
+    public partial class AddExpenseDialog : UserControl, IDialogPage
     {
-        private ProbPotesDialog ParentDialog;
 
-        public AddEventDialog()
+        private EventClass SelectedEvent;
+        private ProbPotesDialog ParentDialog;
+        private Participant Payer;
+
+        public AddExpenseDialog(EventClass eventClass)
         {
             InitializeComponent();
+
+            this.SelectedEvent = eventClass;
 
             // Cacher les onglets
             tabControl1.Appearance = TabAppearance.FlatButtons;
@@ -27,25 +34,25 @@ namespace ProbPotes.pages.events
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
             // Styles
-            List<Label> labels = new List<Label>() { lblDescription, lblEndDate, lblStartDate, lblTitle, txtSuccessfulDescription };
+            List<Label> labels = new List<Label>() { lblDescription, lblEndDate, lblAmount, lblTitle, txtSuccessfulDescription, lblEuro };
             foreach(Label lbl in labels)
             {
                 ProbPotesDialog.ApplyLabelStyle(lbl);
             }
 
-            List<Label> titles = new List<Label>() { txtTitle1, txtTitle2, txtTitle3, txtTitleSuccess };
+            List<Label> titles = new List<Label>() { txtTitle1, txtTitle2, txtTitle3, txtTitleSuccess, txtTitle0 };
             foreach(Label title in titles)
             {
                 ProbPotesDialog.ApplyTitleStyle(title);
             }
 
-            List<TextBox> boxes = new List<TextBox>() { boxDescription, boxTitle };
+            List<TextBox> boxes = new List<TextBox>() { boxDescription, boxTitle, boxAmount };
             foreach(TextBox box in boxes)
             {
                 ProbPotesDialog.ApplyTextBoxStyle(box);
             }
 
-            List<DateTimePicker> dates = new List<DateTimePicker>() { dateEnd, dateStart };
+            List<DateTimePicker> dates = new List<DateTimePicker>() { date };
             foreach (DateTimePicker date in dates)
             {
                 ProbPotesDialog.ApplyDatePickerStyle(date);
@@ -60,7 +67,7 @@ namespace ProbPotes.pages.events
             }
 
             // Icones
-            iconDate.Text = char.ConvertFromUtf32(59271);
+            iconDate.Text = char.ConvertFromUtf32(59161);
             iconTitle.Text = char.ConvertFromUtf32(59151);
             iconDescription.Text = char.ConvertFromUtf32(59959);
             iconSuccessful.Text = char.ConvertFromUtf32(0xE73E);
@@ -73,6 +80,40 @@ namespace ProbPotes.pages.events
 
             iconSuccessful.ForeColor = Colors.blue;
 
+            // Affichage de la liste des évènements
+            foreach(EventClass e in DatabaseManager.Events.Events)
+            {
+                EventPreview ep = new EventPreview();
+                ep.EventClass = e;
+                ep.ClickAction = EventClick;
+                pnlEvents.Controls.Add(ep);
+            }
+
+            // Ajout de l'évènement PayerClick à la selection du payeur
+            psPayer.SelectAction = PayerClick;
+
+        }
+
+        private void SetEvent(EventClass e)
+        {
+            this.SelectedEvent = e;
+            if (e != null && ParentDialog != null)
+            {
+                ParentDialog.Title = "Ajouter une dépense à " + e.Title;
+            }
+        }
+
+        private void EventClick(EventClass e)
+        {
+            SetEvent(e);
+            ParentDialog.Navigate(Index + 1);
+        }
+
+        private void PayerClick(Participant p)
+        {
+            Payer = p;
+            Debug.WriteLine(p.FirstName);
+            ParentDialog.Navigate(Index+1);
         }
 
         public bool CanGoBack
@@ -90,23 +131,23 @@ namespace ProbPotes.pages.events
             get => tabControl1.SelectedIndex;
             set
             {
-                if (value == 1)
+                if (value == 2)
                 {
                     txtWarningTitle.Visible = boxTitle.Text == "";
                     if (boxTitle.Text != "")
                     {
                         tabControl1.SelectedIndex = value;
                     }
-                } else if (value == 2)
+                } else if (value == 3)
                 {
-                    txtWarningCreator.Visible = psCreator.SelectedParticipants.Count == 0;
-                    if (psCreator.SelectedParticipants.Count > 0)
+                    txtWarningCreator.Visible = psPayer.SelectedParticipants.Count == 0;
+                    if (psPayer.SelectedParticipants.Count > 0)
                     {
                         tabControl1.SelectedIndex = value;
                     }
-                } else if (value == 3)
+                } else if (value == 4)
                 {
-                    // AJOUT DE L'EVENEMENT
+                    // AJOUT DE LA DEPENSE
 
                     // SI REUSSITE 
                     if (true)
@@ -128,8 +169,20 @@ namespace ProbPotes.pages.events
 
         public bool ShowBackBtn => true;
 
-        public bool ShowNextBtn => true;
+        public bool ShowNextBtn => Index != 0 && Index != 2;
 
-        public ProbPotesDialog ParentController { set => ParentDialog = value; }
+        public ProbPotesDialog ParentController { 
+            set
+            {
+                ParentDialog = value;
+                if (SelectedEvent != null)
+                {
+                    ParentDialog.Navigate(1);
+                }
+            }
+         }
+
+        // TODO: Ajouter vérification des champs
+
     }
 }
