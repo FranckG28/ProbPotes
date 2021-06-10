@@ -264,8 +264,7 @@ namespace ProbPotes.managers
 
         public void CreateReport(EventClass evt)
         {
-            if (DatabaseManager.db.State != ConnectionState.Open)
-                DatabaseManager.db.Open();
+            DatabaseManager.db.Open();
 
             DataTable dtBilan = new DataTable();
 
@@ -327,26 +326,22 @@ namespace ProbPotes.managers
                     CommandText = "TotalMesDepenses"
                 };
 
-                var paramplus1 = new OleDbParameter("pEvent", OleDbType.BigInt);
+                OleDbParameter paramplus1 = new OleDbParameter("pEvent", OleDbType.BigInt);
                 paramplus1.Value = evt.Code;
                 cdPlus.Parameters.Add(paramplus1);
 
-                var paramplus2 = new OleDbParameter("pPart", OleDbType.BigInt);
+                OleDbParameter paramplus2 = new OleDbParameter("pPart", OleDbType.BigInt);
                 paramplus2.Value = val.Key;
                 cdPlus.Parameters.Add(paramplus2);
-                double plus;
+                double plus = 0;
 
                 try
                 {
                     plus = Convert.ToDouble(cdPlus.ExecuteScalar().ToString());
                 }
-                catch
-                {
-                    plus = 0;
-                }
+                catch { }
 
                 //AJOUT DANS dtBilan
-
                 OleDbCommand findName = new OleDbCommand("SELECT * FROM Participants WHERE codeParticipant=" + val.Key, DatabaseManager.db);
                 OleDbDataReader drName = findName.ExecuteReader();
                 drName.Read();
@@ -361,84 +356,85 @@ namespace ProbPotes.managers
                 dtBilan.Rows.Add(partBilan);
             }
 
-                Boolean allSoldeAt0 = true;
+            Boolean allSoldeAt0 = true;
 
-                OleDbCommand cdBilanPart = new OleDbCommand("INSERT INTO BilanPart(codeEvent,codeDonneur,codeReceveur,montant)" +
+            OleDbCommand cdBilanPart = new OleDbCommand("INSERT INTO BilanPart(codeEvent,codeDonneur,codeReceveur,montant)" +
 "                          VALUES (?,?,?,?)", DatabaseManager.db);
+            cdBilanPart.Parameters.AddWithValue("codeEvent", evt.Code);
 
-                cdBilanPart.Parameters.AddWithValue("codeEvent", evt.Code);
-
-
-                while (allSoldeAt0)
+            while (allSoldeAt0 && !evt.SoldeOn)
+            {
+                foreach (DataColumn column in dtBilan.Columns) column.ReadOnly = false;
+                //VERIFIE SI LES LES DEPENSE SONT TOUTES A 0 OU NON
+                int cptSoldeAt0 = 0;
+                foreach (DataRow row in dtBilan.Rows)
                 {
-                    //PREND LA 1er LIGNE COMME BASE
-                    DataRow receveur = dtBilan.Rows[0];
-                    DataRow donneur = dtBilan.Rows[0];
-
-                    int indexDonneur = 1;
-                    int indexReceveur = 1;
-                    for(int i=0;i<dtBilan.Rows.Count;i++)
+                    if (Convert.ToDouble(row["Solde"].ToString()) == 0)
                     {
-                        //STOCK LA LIGNE DU RECEVEUR ET LA SUPPRIME DE LA TABLE ( POUR LA RAJOUTER APRES AVEC LES MODIFICATIONS)
-                        if (Convert.ToDouble(dtBilan.Rows[i]["Solde"].ToString()) < Convert.ToDouble(receveur["Solde"].ToString()))
-                        {
-                            donneur = dtBilan.Rows[i];
-                            indexDonneur = i;
-                        }
-                        //STOCK LA LIGNE DU DONNEUR ET LA SUPPRIME DE LA TABLE ( POUR LA RAJOUTER APRES AVEC LES MODIFICATIONS)
-                        if(Convert.ToDouble(dtBilan.Rows[i]["Solde"].ToString()) > Convert.ToDouble(donneur["Solde"].ToString()))
-                        {
-                            receveur = dtBilan.Rows[i];
-                            indexReceveur = i;
-                        }
+                        cptSoldeAt0 += 1;
                     }
+                }
 
-                    cdBilanPart.Parameters.AddWithValue("codeDonneur", donneur["codeParticipant"]);
-                    cdBilanPart.Parameters.AddWithValue("codeReceveur", receveur["codeParticipant"]);
+                //SI TOUTE LES DEPENSES == 0 , ARRETE LE WHILE
+                if (cptSoldeAt0 == dtBilan.Rows.Count)
+                {
+                    allSoldeAt0 = false;
+                }
+
+                //PREND LA 1er LIGNE COMME BASE
+                DataRow receveur = dtBilan.Rows[0];
+                DataRow donneur = dtBilan.Rows[0];
+
+                int indexDonneur = 1;
+                int indexReceveur = 1;
+                for (int i = 0; i < dtBilan.Rows.Count; i++)
+                {
+                    //STOCK LA LIGNE DU RECEVEUR ET LA SUPPRIME DE LA TABLE ( POUR LA RAJOUTER APRES AVEC LES MODIFICATIONS)
+                    if (Convert.ToDouble(dtBilan.Rows[i]["Solde"].ToString()) < Convert.ToDouble(donneur["Solde"].ToString()))
+                    {
+                        donneur = dtBilan.Rows[i];
+                        indexDonneur = i;
+                    }
+                    //STOCK LA LIGNE DU DONNEUR ET LA SUPPRIME DE LA TABLE ( POUR LA RAJOUTER APRES AVEC LES MODIFICATIONS)
+                    if (Convert.ToDouble(dtBilan.Rows[i]["Solde"].ToString()) > Convert.ToDouble(receveur["Solde"].ToString()))
+                    {
+                        receveur = dtBilan.Rows[i];
+                        indexReceveur = i;
+                    }
+                }
+
+                cdBilanPart.Parameters.AddWithValue("codeDonneur", donneur["codeParticipant"]);
+                cdBilanPart.Parameters.AddWithValue("codeReceveur", receveur["codeParticipant"]);
 
                 //1er CAS: SI LE SOLDE DU DONNEUR EST PLUS GRAND QUE SOLDE DU RECEVEUR
                 if (-Convert.ToDouble(donneur["Solde"].ToString()) > Convert.ToDouble(receveur["Solde"].ToString()))
-                    {
-                        cdBilanPart.Parameters.AddWithValue("montant", Convert.ToDouble(receveur["Solde"].ToString()));
-
-
-                        //CHANGE LES SOLDE DANS LA LIGNE DU DONNEUR ET RECEVEUR
-                    donneur["Solde"] = Convert.ToDecimal(donneur["Solde"].ToString()) + Convert.ToDecimal(receveur["Solde"].ToString());
-                        receveur["Solde"] = 0;
-                    }//2er CAS: SI LE SOLDE DU DONNEUR EST PLUS PETIT QUE SOLDE DU RECEVEUR
-                    else
-                    {
-                        cdBilanPart.Parameters.AddWithValue("montant", -Convert.ToDouble(donneur["Solde"].ToString()));
+                {
+                    cdBilanPart.Parameters.AddWithValue("montant", Convert.ToDouble(receveur["Solde"].ToString()));
 
                     //CHANGE LES SOLDE DANS LA LIGNE DU DONNEUR ET RECEVEUR
-                        donneur["Solde"] = 0;
-                        receveur["Solde"] = Convert.ToDecimal(receveur["Solde"].ToString()) + Convert.ToDecimal(donneur["Solde"].ToString());
-                    }
-                        Debug.WriteLine(cdBilanPart.CommandText);
-                        cdBilanPart.ExecuteNonQuery();
-
-                    //AJOUTE LE RECEVEUR ET LE DONNEUR DANS LA BASE dtBilan  AVEC LES SOLDES MODIFIER
-                    dtBilan.Rows.Add(donneur);
-                    dtBilan.Rows.Add(receveur);
-
-                    //VERIFIE SI LES LES DEPENSE SONT TOUTES A 0 OU NON
-                    int cptSoldeAt0 = 0;
-                    foreach (DataRow row in dtBilan.Rows)
-                    {
-                        if (Convert.ToDecimal(row["Solde"].ToString()) == 0)
-                        {
-                            cptSoldeAt0 += 1;
-                        }
-                    }
-
-                    //SI TOUTE LES DEPENSES == 0 , ARRETE LE WHILE
-                    if (cptSoldeAt0 == dtBilan.Rows.Count)
-                    {
-                        allSoldeAt0 = true;
-                    }
+                    donneur["Solde"] = Convert.ToDecimal(donneur["Solde"].ToString()) + Convert.ToDecimal(receveur["Solde"].ToString());
+                    receveur["Solde"] = 0;
+                }//2er CAS: SI LE SOLDE DU DONNEUR EST PLUS PETIT QUE SOLDE DU RECEVEUR
+                else
+                {
+                    cdBilanPart.Parameters.AddWithValue("montant", -Convert.ToDouble(donneur["Solde"].ToString()));
+                    //CHANGE LES SOLDE DANS LA LIGNE DU DONNEUR ET RECEVEUR
+                    donneur["Solde"] = 0;
+                    receveur["Solde"] = Convert.ToDecimal(receveur["Solde"].ToString()) + Convert.ToDecimal(donneur["Solde"].ToString());
                 }
+                cdBilanPart.ExecuteNonQuery();
+
+                Debug.WriteLine(dtBilan.Rows[indexDonneur]["Solde"]);
+                //AJOUTE LE RECEVEUR ET LE DONNEUR DANS LA BASE dtBilan  AVEC LES SOLDES MODIFIER
+                dtBilan.Rows[indexDonneur] = donneur;
+                dtBilan.Rows[indexReceveur] = receveur;//JSP D'OU CA VIENT CA LA , COMMENT CA LECTURE SEUL ?????
+                Debug.WriteLine(dtBilan.Rows[indexDonneur]["Solde"]);
+            }
+            evt.SoldeOn = !evt.SoldeOn;
             DatabaseManager.db.Close();
         }
+
+
 
         public List<WOWTW> GetWOWTWs()
         {
