@@ -81,12 +81,17 @@ namespace ProbPotes.pages.events
             iconSuccessful.ForeColor = Colors.blue;
 
             // Affichage de la liste des évènements
-            foreach(EventClass e in DatabaseManager.Events.Events)
+            List<EventClass> eventList = DatabaseManager.Events.Events;
+            eventList.Reverse();
+            foreach (EventClass e in eventList)
             {
-                EventPreview ep = new EventPreview();
-                ep.EventClass = e;
-                ep.ClickAction = EventClick;
-                pnlEvents.Controls.Add(ep);
+                if (!e.SoldeOn)
+                {
+                    EventPreview ep = new EventPreview();
+                    ep.EventClass = e;
+                    ep.ClickAction = EventClick;
+                    pnlEvents.Controls.Add(ep);
+                }
             }
 
             // Ajout de l'évènement PayerClick à la selection du payeur

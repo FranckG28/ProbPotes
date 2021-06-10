@@ -60,14 +60,18 @@ namespace ProbPotes.pages
 
             // Affichage des évènements
             int i = 0;
+            events.Reverse();
             foreach(EventClass e in events)
             {
-                EventPreview tile = new EventPreview();
-                tile.EventClass = e;
-                tile.Location = new Point(i* (tile.Width+10),0);
-                tile.ClickAction = OpenAddExpense;
-                pnlEvents.Controls.Add(tile);
-                i++;
+                if (!e.SoldeOn)
+                {
+                    EventPreview tile = new EventPreview();
+                    tile.EventClass = e;
+                    tile.Location = new Point(i * (tile.Width + 10), 0);
+                    tile.ClickAction = OpenAddExpense;
+                    pnlEvents.Controls.Add(tile);
+                    i++;
+                }
             }
 
         }
