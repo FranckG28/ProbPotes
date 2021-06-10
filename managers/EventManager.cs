@@ -52,7 +52,7 @@ namespace ProbPotes.managers
                 insertEvent.Parameters.Add(new OleDbParameter("dateDebut", OleDbType.Date)).Value = eventclass.StartDate;
                 insertEvent.Parameters.Add(new OleDbParameter("dateFin", OleDbType.Date)).Value = eventclass.EndDate;
                 insertEvent.Parameters.Add(new OleDbParameter("description", OleDbType.WChar)).Value = eventclass.Description;
-                insertEvent.Parameters.Add(new OleDbParameter("soldeON", OleDbType.Boolean)).Value =  eventclass.EndDate > DateTime.Today;
+                insertEvent.Parameters.Add(new OleDbParameter("soldeON", OleDbType.Boolean)).Value =  false;
                 insertEvent.Parameters.Add(new OleDbParameter("codeCreateur", OleDbType.Integer)).Value = eventclass.CreatorCode;
 
                 //AJOUT DANS LA TABLE Evenement
@@ -103,7 +103,7 @@ namespace ProbPotes.managers
                 update.Parameters.Add(new OleDbParameter("@dateDebut", OleDbType.Date)).Value = eventclass.StartDate;
                 update.Parameters.Add(new OleDbParameter("@dateFin", OleDbType.Date)).Value = eventclass.EndDate;
                 update.Parameters.Add(new OleDbParameter("@description", OleDbType.WChar)).Value = eventclass.Description;
-                update.Parameters.Add(new OleDbParameter("@soldeON", OleDbType.Boolean)).Value = eventclass.EndDate > DateTime.Today;
+                update.Parameters.Add(new OleDbParameter("@soldeON", OleDbType.Boolean)).Value = eventclass.SoldeOn;
                 update.Parameters.Add(new OleDbParameter("@codeCreateur", OleDbType.Integer)).Value = eventclass.CreatorCode;
 
                 int result = update.ExecuteNonQuery();
@@ -132,7 +132,7 @@ namespace ProbPotes.managers
                     }
                 }
 
-                return result > 0 && resultInsertPart;
+                return result > 0 && resultInsertPart && eventclass.Expenses.RefreshExpenses();//UPDATE DES EXPENSE
             }
             catch (Exception e)
             {
