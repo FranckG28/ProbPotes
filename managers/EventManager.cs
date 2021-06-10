@@ -24,7 +24,7 @@ namespace ProbPotes.managers
             get => EventsList;
         }
 
-        // Un évènement inclus les dépenses et la liste des participant
+        // Un évènement inclus les dépenses et la liste des participants
         // --> A gérer lors de l'obtention, l'ajout et la suppression d'évènements
 
 
@@ -55,11 +55,26 @@ namespace ProbPotes.managers
                 insertEvent.Parameters.Add(new OleDbParameter("soldeON", OleDbType.Boolean)).Value =  eventclass.EndDate > DateTime.Today;
                 insertEvent.Parameters.Add(new OleDbParameter("codeCreateur", OleDbType.Integer)).Value = eventclass.CreatorCode;
 
-                // TODO: Ajout des participants à l'évènement (liste des codes dans la table invité)
+                //AJOUT DANS LA TABLE Evenement
+                int resultInsertEvent = insertEvent.ExecuteNonQuery();
 
-                int result = insertEvent.ExecuteNonQuery();
 
-                return result > 0;
+                Boolean resultInsertPart = true;
+                //AJOUT DES PARTICIPANTS DANS LA TABLE Invites
+                foreach(int codePart in eventclass.Guests)
+                {
+                    OleDbCommand insertPart = new OleDbCommand("INSERT INTO invites(codeEvent,codePart) VALUES (?,?)", DatabaseManager.db);
+                    insertEvent.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = eventclass.Code;
+                    insertEvent.Parameters.Add(new OleDbParameter("codePart", OleDbType.Integer)).Value = codePart;
+
+                    int boolInsertPart = insertPart.ExecuteNonQuery();
+                    if (resultInsertPart)
+                    {
+                        resultInsertPart = boolInsertPart > 0;
+                    }
+                }
+
+                return resultInsertEvent > 0 && resultInsertPart;
                 
             }
             catch (Exception e)
@@ -72,8 +87,6 @@ namespace ProbPotes.managers
                 DatabaseManager.db.Close();
                 RefreshEvents();
             }
-
-
         }
 
         // Procédure de mise à jour d'un évènement
