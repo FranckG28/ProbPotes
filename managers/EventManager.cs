@@ -52,7 +52,7 @@ namespace ProbPotes.managers
                 insertEvent.Parameters.Add(new OleDbParameter("dateDebut", OleDbType.Date)).Value = eventclass.StartDate;
                 insertEvent.Parameters.Add(new OleDbParameter("dateFin", OleDbType.Date)).Value = eventclass.EndDate;
                 insertEvent.Parameters.Add(new OleDbParameter("description", OleDbType.WChar)).Value = eventclass.Description;
-                insertEvent.Parameters.Add(new OleDbParameter("soldeON", OleDbType.Boolean)).Value = eventclass.StartDate < DateTime.Today && eventclass.EndDate > DateTime.Today;
+                insertEvent.Parameters.Add(new OleDbParameter("soldeON", OleDbType.Boolean)).Value =  eventclass.EndDate > DateTime.Today;
                 insertEvent.Parameters.Add(new OleDbParameter("codeCreateur", OleDbType.Integer)).Value = eventclass.CreatorCode;
 
                 // TODO: Ajout des participants à l'évènement (liste des codes dans la table invité)
