@@ -14,17 +14,23 @@ namespace ProbPotes.components
     public partial class ProbPotesSelector : UserControl
     {
 
-        private SelectableHoverController hover; 
+        private SelectableHoverController hover;
 
-        public ProbPotesSelector()
+        public Object Value;
+
+        public ProbPotesSelector(string title, Object value)
         {
             InitializeComponent();
+
+            Title = title;
+            Value = value;
 
             // Polices et couleurs
             txtTitle.Font = new Font(Fonts.medium, 11);
 
             // Icon
             txtIcon.Visible = false;
+            Icon = 59198;
 
             // Effet de survol :
             HoverColor hoverBg = new HoverColor(new List<Control>() { this }, false, Colors.lightGreen1, Colors.lightGreen2, Colors.green);
@@ -44,7 +50,6 @@ namespace ProbPotes.components
         public delegate void SelectorAction(Object arg);
 
         public SelectorAction action;
-        public Object argument;
         private int iconInt = 59198;
 
         public bool Selected
@@ -63,7 +68,7 @@ namespace ProbPotes.components
         {
             if (action != null)
             {
-                action(argument);
+                action(Value);
             }
             Selected = true;
         }

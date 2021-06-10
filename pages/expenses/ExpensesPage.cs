@@ -30,20 +30,15 @@ namespace ProbPotes.pages
 
             // Affichage du choix des évènements
             
-            ProbPotesSelector all = new ProbPotesSelector();
-            all.Title = "Tous";
+            ProbPotesSelector all = new ProbPotesSelector("Tous", null);
             all.Icon = 59198;
-            all.argument = null;
             all.action = EventSelection;
             all.Selected = true;
             pnlEvents.Controls.Add(all);
 
             foreach (EventClass e in DatabaseManager.Events.Events)
             {
-                ProbPotesSelector selector = new ProbPotesSelector();
-                selector.Title = e.Title;
-                selector.Icon = 59198;
-                selector.argument = e;
+                ProbPotesSelector selector = new ProbPotesSelector(e.Title, e);
                 selector.action = EventSelection;
                 pnlEvents.Controls.Add(selector);
             }

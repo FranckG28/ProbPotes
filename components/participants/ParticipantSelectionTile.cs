@@ -18,6 +18,8 @@ namespace ProbPotes.components.participants
         private SelectableHoverController hover;
         private Participant participant;
 
+        public Boolean IsSelectable = true;
+
         public ParticipantSelectionTile()
         {
             InitializeComponent();
@@ -57,8 +59,11 @@ namespace ProbPotes.components.participants
 
         private void ParticipantSelectionTile_Click(object sender, EventArgs e)
         {
-            Selected = !Selected;
-                SelectAction?.DynamicInvoke(Participant);
+            if (IsSelectable)
+            {
+                Selected = !Selected;
+            }
+            SelectAction?.DynamicInvoke(Participant);
         }
     }
 }

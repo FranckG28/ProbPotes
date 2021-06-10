@@ -27,6 +27,11 @@ namespace ProbPotes.managers
             get => ExpensesList;
         }
 
+        public Expense GetExpense(int id)
+        {
+            return Expenses.Where(e => e.code == id).FirstOrDefault(null);
+        }
+
         // Constructeur de la classe
         public ExpensesManager(int id)
         {

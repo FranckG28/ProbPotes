@@ -165,6 +165,18 @@
     <Compile Include="pages\expenses\AddExpenseDialog.Designer.cs">
       <DependentUpon>AddExpenseDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="pages\reports\ParticipantReportDialog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pages\reports\ParticipantReportDialog.Designer.cs">
+      <DependentUpon>ParticipantReportDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pages\reports\WOWTWDialog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pages\reports\WOWTWDialog.Designer.cs">
+      <DependentUpon>WOWTWDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="services\EventNavigation.cs" />
     <Compile Include="models\Participant.cs" />
     <Compile Include="models\Expense.cs" />
@@ -213,10 +225,10 @@
     <Compile Include="pages\participants\ParticipantsPage.Designer.cs">
       <DependentUpon>ParticipantsPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="pages\ReportsPage.cs">
+    <Compile Include="pages\reports\ReportsPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="pages\ReportsPage.Designer.cs">
+    <Compile Include="pages\reports\ReportsPage.Designer.cs">
       <DependentUpon>ReportsPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -294,8 +306,14 @@
     <EmbeddedResource Include="pages\participants\ParticipantsPage.resx">
       <DependentUpon>ParticipantsPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\ReportsPage.resx">
+    <EmbeddedResource Include="pages\reports\ParticipantReportDialog.resx">
+      <DependentUpon>ParticipantReportDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\reports\ReportsPage.resx">
       <DependentUpon>ReportsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\reports\WOWTWDialog.resx">
+      <DependentUpon>WOWTWDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

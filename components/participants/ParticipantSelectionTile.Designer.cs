@@ -78,7 +78,7 @@ namespace ProbPotes.components.participants
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.pictureBox1);
             this.Name = "ParticipantSelectionTile";
-            this.Size = new System.Drawing.Size(352, 59);
+            this.Size = new System.Drawing.Size(324, 59);
             this.Click += new System.EventHandler(this.ParticipantSelectionTile_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
