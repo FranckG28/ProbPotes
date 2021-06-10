@@ -32,14 +32,14 @@ namespace ProbPotes.components.expenses
             this.txtPrice = new System.Windows.Forms.Label();
             this.txtTitle = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.Label();
-            this.iconRecipients = new System.Windows.Forms.Label();
-            this.txtRecipients = new System.Windows.Forms.Label();
             this.txtCreator = new System.Windows.Forms.Label();
-            this.txtLblParticipants = new System.Windows.Forms.Label();
             this.pnlLine = new System.Windows.Forms.Panel();
             this.txtLblDescription = new System.Windows.Forms.Label();
-            this.pnlLine2 = new System.Windows.Forms.Panel();
             this.iconDescription = new System.Windows.Forms.Label();
+            this.pnlLine2 = new System.Windows.Forms.Panel();
+            this.iconRecipients = new System.Windows.Forms.Label();
+            this.txtLblParticipants = new System.Windows.Forms.Label();
+            this.txtRecipients = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtPrice
@@ -70,27 +70,6 @@ namespace ProbPotes.components.expenses
             this.txtDescription.TabIndex = 0;
             this.txtDescription.Text = "label1";
             // 
-            // iconRecipients
-            // 
-            this.iconRecipients.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.iconRecipients.Font = new System.Drawing.Font("Segoe MDL2 Assets", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconRecipients.Location = new System.Drawing.Point(13, 76);
-            this.iconRecipients.Name = "iconRecipients";
-            this.iconRecipients.Size = new System.Drawing.Size(51, 39);
-            this.iconRecipients.TabIndex = 0;
-            this.iconRecipients.Text = "icon";
-            this.iconRecipients.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtRecipients
-            // 
-            this.txtRecipients.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.txtRecipients.Location = new System.Drawing.Point(64, 94);
-            this.txtRecipients.Name = "txtRecipients";
-            this.txtRecipients.Size = new System.Drawing.Size(581, 34);
-            this.txtRecipients.TabIndex = 0;
-            this.txtRecipients.Text = "label1";
-            this.txtRecipients.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // txtCreator
             // 
             this.txtCreator.BackColor = System.Drawing.SystemColors.GrayText;
@@ -99,16 +78,6 @@ namespace ProbPotes.components.expenses
             this.txtCreator.Size = new System.Drawing.Size(489, 35);
             this.txtCreator.TabIndex = 0;
             this.txtCreator.Text = "label1";
-            // 
-            // txtLblParticipants
-            // 
-            this.txtLblParticipants.AutoSize = true;
-            this.txtLblParticipants.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.txtLblParticipants.Location = new System.Drawing.Point(64, 81);
-            this.txtLblParticipants.Name = "txtLblParticipants";
-            this.txtLblParticipants.Size = new System.Drawing.Size(62, 13);
-            this.txtLblParticipants.TabIndex = 0;
-            this.txtLblParticipants.Text = "Participants";
             // 
             // pnlLine
             // 
@@ -127,13 +96,6 @@ namespace ProbPotes.components.expenses
             this.txtLblDescription.TabIndex = 0;
             this.txtLblDescription.Text = "Description";
             // 
-            // pnlLine2
-            // 
-            this.pnlLine2.Location = new System.Drawing.Point(17, 124);
-            this.pnlLine2.Name = "pnlLine2";
-            this.pnlLine2.Size = new System.Drawing.Size(636, 1);
-            this.pnlLine2.TabIndex = 2;
-            // 
             // iconDescription
             // 
             this.iconDescription.BackColor = System.Drawing.SystemColors.ButtonShadow;
@@ -144,6 +106,44 @@ namespace ProbPotes.components.expenses
             this.iconDescription.TabIndex = 0;
             this.iconDescription.Text = "icon";
             this.iconDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pnlLine2
+            // 
+            this.pnlLine2.Location = new System.Drawing.Point(17, 124);
+            this.pnlLine2.Name = "pnlLine2";
+            this.pnlLine2.Size = new System.Drawing.Size(636, 1);
+            this.pnlLine2.TabIndex = 2;
+            // 
+            // iconRecipients
+            // 
+            this.iconRecipients.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.iconRecipients.Font = new System.Drawing.Font("Segoe MDL2 Assets", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconRecipients.Location = new System.Drawing.Point(13, 76);
+            this.iconRecipients.Name = "iconRecipients";
+            this.iconRecipients.Size = new System.Drawing.Size(51, 39);
+            this.iconRecipients.TabIndex = 0;
+            this.iconRecipients.Text = "icon";
+            this.iconRecipients.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtLblParticipants
+            // 
+            this.txtLblParticipants.AutoSize = true;
+            this.txtLblParticipants.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.txtLblParticipants.Location = new System.Drawing.Point(64, 81);
+            this.txtLblParticipants.Name = "txtLblParticipants";
+            this.txtLblParticipants.Size = new System.Drawing.Size(62, 13);
+            this.txtLblParticipants.TabIndex = 0;
+            this.txtLblParticipants.Text = "Participants";
+            // 
+            // txtRecipients
+            // 
+            this.txtRecipients.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.txtRecipients.Location = new System.Drawing.Point(64, 94);
+            this.txtRecipients.Name = "txtRecipients";
+            this.txtRecipients.Size = new System.Drawing.Size(581, 34);
+            this.txtRecipients.TabIndex = 0;
+            this.txtRecipients.Text = "label1";
+            this.txtRecipients.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ExpenseTile
             // 
@@ -172,13 +172,13 @@ namespace ProbPotes.components.expenses
         private System.Windows.Forms.Label txtPrice;
         private System.Windows.Forms.Label txtTitle;
         private System.Windows.Forms.Label txtDescription;
-        private System.Windows.Forms.Label iconRecipients;
-        private System.Windows.Forms.Label txtRecipients;
         private System.Windows.Forms.Label txtCreator;
-        private System.Windows.Forms.Label txtLblParticipants;
         private System.Windows.Forms.Panel pnlLine;
         private System.Windows.Forms.Label txtLblDescription;
-        private System.Windows.Forms.Panel pnlLine2;
         private System.Windows.Forms.Label iconDescription;
+        private System.Windows.Forms.Panel pnlLine2;
+        private System.Windows.Forms.Label iconRecipients;
+        private System.Windows.Forms.Label txtLblParticipants;
+        private System.Windows.Forms.Label txtRecipients;
     }
 }

@@ -37,10 +37,12 @@ namespace ProbPotes.components
             // 
             // txtTitle
             // 
-            this.txtTitle.AutoSize = true;
+            this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTitle.AutoEllipsis = true;
             this.txtTitle.Location = new System.Drawing.Point(12, 12);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(24, 13);
+            this.txtTitle.Size = new System.Drawing.Size(250, 25);
             this.txtTitle.TabIndex = 0;
             this.txtTitle.Text = "titre";
             // 
@@ -55,6 +57,9 @@ namespace ProbPotes.components
             // 
             // txtParticipants
             // 
+            this.txtParticipants.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtParticipants.AutoEllipsis = true;
             this.txtParticipants.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.txtParticipants.Location = new System.Drawing.Point(51, 65);
             this.txtParticipants.Name = "txtParticipants";

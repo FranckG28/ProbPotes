@@ -46,10 +46,12 @@ namespace ProbPotes.components
             // 
             // txtTitle
             // 
-            this.txtTitle.AutoSize = true;
+            this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTitle.AutoEllipsis = true;
             this.txtTitle.Location = new System.Drawing.Point(33, 8);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(35, 13);
+            this.txtTitle.Size = new System.Drawing.Size(178, 26);
             this.txtTitle.TabIndex = 1;
             this.txtTitle.Text = "label1";
             this.txtTitle.Click += new System.EventHandler(this.ProbPotesSelector_Click);

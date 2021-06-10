@@ -63,9 +63,9 @@ namespace ProbPotes.pages
             // pnlEvents
             // 
             this.pnlEvents.AutoScroll = true;
-            this.pnlEvents.Location = new System.Drawing.Point(0, 35);
+            this.pnlEvents.Location = new System.Drawing.Point(0, 28);
             this.pnlEvents.Name = "pnlEvents";
-            this.pnlEvents.Size = new System.Drawing.Size(221, 521);
+            this.pnlEvents.Size = new System.Drawing.Size(344, 528);
             this.pnlEvents.TabIndex = 2;
             // 
             // panel1
@@ -82,30 +82,30 @@ namespace ProbPotes.pages
             this.panel1.Controls.Add(this.iconParticipants);
             this.panel1.Controls.Add(this.txtDescription);
             this.panel1.Controls.Add(this.txtTitle);
-            this.panel1.Location = new System.Drawing.Point(236, 0);
+            this.panel1.Location = new System.Drawing.Point(350, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(711, 556);
+            this.panel1.Size = new System.Drawing.Size(597, 556);
             this.panel1.TabIndex = 3;
             // 
             // pnlLine1
             // 
             this.pnlLine1.Location = new System.Drawing.Point(6, 162);
             this.pnlLine1.Name = "pnlLine1";
-            this.pnlLine1.Size = new System.Drawing.Size(710, 10);
+            this.pnlLine1.Size = new System.Drawing.Size(586, 10);
             this.pnlLine1.TabIndex = 32;
             // 
             // pnlLine2
             // 
             this.pnlLine2.Location = new System.Drawing.Point(6, 254);
             this.pnlLine2.Name = "pnlLine2";
-            this.pnlLine2.Size = new System.Drawing.Size(710, 10);
+            this.pnlLine2.Size = new System.Drawing.Size(586, 10);
             this.pnlLine2.TabIndex = 31;
             // 
             // txtSoldTip
             // 
             this.txtSoldTip.Location = new System.Drawing.Point(3, 175);
             this.txtSoldTip.Name = "txtSoldTip";
-            this.txtSoldTip.Size = new System.Drawing.Size(705, 24);
+            this.txtSoldTip.Size = new System.Drawing.Size(588, 24);
             this.txtSoldTip.TabIndex = 30;
             this.txtSoldTip.Text = "ou choisissez un participant pour lequel vous souhaitez obtenir les détails";
             this.txtSoldTip.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -115,7 +115,7 @@ namespace ProbPotes.pages
             this.pnlGuests.AutoScroll = true;
             this.pnlGuests.Location = new System.Drawing.Point(6, 290);
             this.pnlGuests.Name = "pnlGuests";
-            this.pnlGuests.Size = new System.Drawing.Size(702, 263);
+            this.pnlGuests.Size = new System.Drawing.Size(585, 263);
             this.pnlGuests.TabIndex = 29;
             // 
             // txtDetails
@@ -134,7 +134,7 @@ namespace ProbPotes.pages
             this.btnQDQAQ.ForeColor = System.Drawing.Color.White;
             this.btnQDQAQ.Location = new System.Drawing.Point(6, 202);
             this.btnQDQAQ.Name = "btnQDQAQ";
-            this.btnQDQAQ.Size = new System.Drawing.Size(702, 40);
+            this.btnQDQAQ.Size = new System.Drawing.Size(585, 40);
             this.btnQDQAQ.TabIndex = 27;
             this.btnQDQAQ.Text = "Qui doit quoi à qui ?";
             this.btnQDQAQ.UseVisualStyleBackColor = true;
@@ -155,9 +155,9 @@ namespace ProbPotes.pages
             this.pnlDates.Controls.Add(this.txtDateStart);
             this.pnlDates.Controls.Add(this.txtDatesSeparator);
             this.pnlDates.Controls.Add(this.txtDateEnd);
-            this.pnlDates.Location = new System.Drawing.Point(76, 46);
+            this.pnlDates.Location = new System.Drawing.Point(60, 45);
             this.pnlDates.Name = "pnlDates";
-            this.pnlDates.Size = new System.Drawing.Size(632, 24);
+            this.pnlDates.Size = new System.Drawing.Size(515, 24);
             this.pnlDates.TabIndex = 25;
             // 
             // txtDateStart
@@ -191,7 +191,7 @@ namespace ProbPotes.pages
             // 
             this.txtParticipants.Location = new System.Drawing.Point(49, 128);
             this.txtParticipants.Name = "txtParticipants";
-            this.txtParticipants.Size = new System.Drawing.Size(659, 39);
+            this.txtParticipants.Size = new System.Drawing.Size(542, 39);
             this.txtParticipants.TabIndex = 24;
             this.txtParticipants.Text = "Participants";
             // 
@@ -207,16 +207,16 @@ namespace ProbPotes.pages
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(3, 73);
+            this.txtDescription.Location = new System.Drawing.Point(3, 75);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(705, 46);
+            this.txtDescription.Size = new System.Drawing.Size(588, 46);
             this.txtDescription.TabIndex = 22;
             this.txtDescription.Text = "Description";
             // 
             // txtTitle
             // 
             this.txtTitle.AutoSize = true;
-            this.txtTitle.Location = new System.Drawing.Point(73, 12);
+            this.txtTitle.Location = new System.Drawing.Point(62, 16);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(103, 13);
             this.txtTitle.TabIndex = 21;

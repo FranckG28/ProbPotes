@@ -30,16 +30,22 @@ namespace ProbPotes.pages.events
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.pnlEvents = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtTitle0 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtWarningTitle = new System.Windows.Forms.Label();
             this.lblDescription = new System.Windows.Forms.Label();
             this.boxDescription = new System.Windows.Forms.TextBox();
             this.iconDescription = new System.Windows.Forms.Label();
+            this.date = new System.Windows.Forms.DateTimePicker();
+            this.boxAmount = new System.Windows.Forms.TextBox();
             this.boxTitle = new System.Windows.Forms.TextBox();
             this.txtTitle1 = new System.Windows.Forms.Label();
             this.iconTitle = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblEndDate = new System.Windows.Forms.Label();
+            this.lblEuro = new System.Windows.Forms.Label();
             this.lblAmount = new System.Windows.Forms.Label();
             this.iconDate = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -51,20 +57,14 @@ namespace ProbPotes.pages.events
             this.txtSuccessfulDescription = new System.Windows.Forms.Label();
             this.iconSuccessful = new System.Windows.Forms.Label();
             this.txtTitleSuccess = new System.Windows.Forms.Label();
-            this.date = new System.Windows.Forms.DateTimePicker();
-            this.boxAmount = new System.Windows.Forms.TextBox();
-            this.lblEuro = new System.Windows.Forms.Label();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.txtTitle0 = new System.Windows.Forms.Label();
-            this.pnlEvents = new System.Windows.Forms.FlowLayoutPanel();
             this.psPayer = new ProbPotes.components.participants.ParticipantSelector();
             this.psRecipients = new ProbPotes.components.participants.ParticipantSelector();
             this.tabControl1.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -80,6 +80,35 @@ namespace ProbPotes.pages.events
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(790, 380);
             this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.pnlEvents);
+            this.tabPage5.Controls.Add(this.txtTitle0);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(782, 354);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "tabPage5";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // pnlEvents
+            // 
+            this.pnlEvents.AutoScroll = true;
+            this.pnlEvents.Location = new System.Drawing.Point(0, 43);
+            this.pnlEvents.Name = "pnlEvents";
+            this.pnlEvents.Size = new System.Drawing.Size(782, 311);
+            this.pnlEvents.TabIndex = 21;
+            // 
+            // txtTitle0
+            // 
+            this.txtTitle0.AutoSize = true;
+            this.txtTitle0.Location = new System.Drawing.Point(4, 3);
+            this.txtTitle0.Name = "txtTitle0";
+            this.txtTitle0.Size = new System.Drawing.Size(210, 13);
+            this.txtTitle0.TabIndex = 20;
+            this.txtTitle0.Text = "Dans quel évènement ajouter la dépense ?";
             // 
             // tabPage1
             // 
@@ -142,6 +171,21 @@ namespace ProbPotes.pages.events
             this.iconDescription.TabIndex = 31;
             this.iconDescription.Text = "label1";
             // 
+            // date
+            // 
+            this.date.Location = new System.Drawing.Point(413, 158);
+            this.date.Name = "date";
+            this.date.Size = new System.Drawing.Size(344, 20);
+            this.date.TabIndex = 29;
+            // 
+            // boxAmount
+            // 
+            this.boxAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.boxAmount.Location = new System.Drawing.Point(54, 158);
+            this.boxAmount.Name = "boxAmount";
+            this.boxAmount.Size = new System.Drawing.Size(302, 20);
+            this.boxAmount.TabIndex = 26;
+            // 
             // boxTitle
             // 
             this.boxTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -186,6 +230,15 @@ namespace ProbPotes.pages.events
             this.lblEndDate.Size = new System.Drawing.Size(30, 13);
             this.lblEndDate.TabIndex = 24;
             this.lblEndDate.Text = "Date";
+            // 
+            // lblEuro
+            // 
+            this.lblEuro.AutoSize = true;
+            this.lblEuro.Location = new System.Drawing.Point(361, 162);
+            this.lblEuro.Name = "lblEuro";
+            this.lblEuro.Size = new System.Drawing.Size(13, 13);
+            this.lblEuro.TabIndex = 22;
+            this.lblEuro.Text = "€";
             // 
             // lblAmount
             // 
@@ -299,59 +352,6 @@ namespace ProbPotes.pages.events
             this.txtTitleSuccess.Text = "Dépense ajoutée !";
             this.txtTitleSuccess.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // date
-            // 
-            this.date.Location = new System.Drawing.Point(413, 158);
-            this.date.Name = "date";
-            this.date.Size = new System.Drawing.Size(344, 20);
-            this.date.TabIndex = 29;
-            // 
-            // boxAmount
-            // 
-            this.boxAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.boxAmount.Location = new System.Drawing.Point(54, 158);
-            this.boxAmount.Name = "boxAmount";
-            this.boxAmount.Size = new System.Drawing.Size(302, 20);
-            this.boxAmount.TabIndex = 26;
-            // 
-            // lblEuro
-            // 
-            this.lblEuro.AutoSize = true;
-            this.lblEuro.Location = new System.Drawing.Point(361, 162);
-            this.lblEuro.Name = "lblEuro";
-            this.lblEuro.Size = new System.Drawing.Size(13, 13);
-            this.lblEuro.TabIndex = 22;
-            this.lblEuro.Text = "€";
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.pnlEvents);
-            this.tabPage5.Controls.Add(this.txtTitle0);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(782, 354);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "tabPage5";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // txtTitle0
-            // 
-            this.txtTitle0.AutoSize = true;
-            this.txtTitle0.Location = new System.Drawing.Point(4, 3);
-            this.txtTitle0.Name = "txtTitle0";
-            this.txtTitle0.Size = new System.Drawing.Size(210, 13);
-            this.txtTitle0.TabIndex = 20;
-            this.txtTitle0.Text = "Dans quel évènement ajouter la dépense ?";
-            // 
-            // pnlEvents
-            // 
-            this.pnlEvents.AutoScroll = true;
-            this.pnlEvents.Location = new System.Drawing.Point(0, 43);
-            this.pnlEvents.Name = "pnlEvents";
-            this.pnlEvents.Size = new System.Drawing.Size(783, 311);
-            this.pnlEvents.TabIndex = 21;
-            // 
             // psPayer
             // 
             this.psPayer.BackColor = System.Drawing.Color.Transparent;
@@ -377,6 +377,8 @@ namespace ProbPotes.pages.events
             this.Name = "AddExpenseDialog";
             this.Size = new System.Drawing.Size(790, 380);
             this.tabControl1.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -384,8 +386,6 @@ namespace ProbPotes.pages.events
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
 
         }

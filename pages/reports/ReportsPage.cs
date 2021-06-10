@@ -72,6 +72,7 @@ namespace ProbPotes.pages
             {
                 ProbPotesSelector ctrl = new ProbPotesSelector(e.Title, e);
                 ctrl.action = ShowReport;
+                ctrl.Width = pnlEvents.Width-20;
                 pnlEvents.Controls.Add(ctrl);
                 if (SelectedEvent == null)
                 {
@@ -84,22 +85,13 @@ namespace ProbPotes.pages
             {
                 panel1.Controls.Clear();
                 Label lbl = new Label();
-                lbl.Text = "Aucun évènement soldé";
+                lbl.Text = "Aucun évènement à afficher";
                 lbl.Font = new Font(Fonts.book, 16);
                 lbl.ForeColor = Colors.black;
                 lbl.AutoSize = false;
                 lbl.Width = panel1.Width;
                 lbl.TextAlign = ContentAlignment.MiddleCenter;
                 lbl.Location = new Point(0, 50);
-
-                Label lbl2 = new Label();
-                lbl2.Text = "Cliquez sur le bouton \" Ajouter \" pour solder un évènement";
-                lbl2.Font = new Font(Fonts.regular, 11);
-                lbl2.ForeColor = Colors.black;
-                lbl2.AutoSize = false;
-                lbl2.Width = panel1.Width;
-                lbl2.TextAlign = ContentAlignment.MiddleCenter;
-                lbl2.Location = new Point(0, 80);
             }
             
         }
