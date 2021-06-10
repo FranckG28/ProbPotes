@@ -32,6 +32,9 @@ namespace ProbPotes.pages
             this.txtHelp = new System.Windows.Forms.Label();
             this.pnlEvents = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlLine1 = new System.Windows.Forms.Panel();
+            this.pnlLine2 = new System.Windows.Forms.Panel();
+            this.txtSoldTip = new System.Windows.Forms.Label();
             this.pnlGuests = new System.Windows.Forms.FlowLayoutPanel();
             this.txtDetails = new System.Windows.Forms.Label();
             this.btnQDQAQ = new System.Windows.Forms.Button();
@@ -44,9 +47,6 @@ namespace ProbPotes.pages
             this.iconParticipants = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.Label();
             this.txtTitle = new System.Windows.Forms.Label();
-            this.txtSoldTip = new System.Windows.Forms.Label();
-            this.pnlLine2 = new System.Windows.Forms.Panel();
-            this.pnlLine1 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.pnlDates.SuspendLayout();
             this.SuspendLayout();
@@ -87,6 +87,29 @@ namespace ProbPotes.pages
             this.panel1.Size = new System.Drawing.Size(711, 556);
             this.panel1.TabIndex = 3;
             // 
+            // pnlLine1
+            // 
+            this.pnlLine1.Location = new System.Drawing.Point(6, 162);
+            this.pnlLine1.Name = "pnlLine1";
+            this.pnlLine1.Size = new System.Drawing.Size(710, 10);
+            this.pnlLine1.TabIndex = 32;
+            // 
+            // pnlLine2
+            // 
+            this.pnlLine2.Location = new System.Drawing.Point(6, 254);
+            this.pnlLine2.Name = "pnlLine2";
+            this.pnlLine2.Size = new System.Drawing.Size(710, 10);
+            this.pnlLine2.TabIndex = 31;
+            // 
+            // txtSoldTip
+            // 
+            this.txtSoldTip.Location = new System.Drawing.Point(3, 175);
+            this.txtSoldTip.Name = "txtSoldTip";
+            this.txtSoldTip.Size = new System.Drawing.Size(705, 24);
+            this.txtSoldTip.TabIndex = 30;
+            this.txtSoldTip.Text = "ou choisissez un participant pour lequel vous souhaitez obtenir les détails";
+            this.txtSoldTip.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // pnlGuests
             // 
             this.pnlGuests.AutoScroll = true;
@@ -98,7 +121,7 @@ namespace ProbPotes.pages
             // txtDetails
             // 
             this.txtDetails.AutoSize = true;
-            this.txtDetails.Location = new System.Drawing.Point(9, 274);
+            this.txtDetails.Location = new System.Drawing.Point(9, 269);
             this.txtDetails.Name = "txtDetails";
             this.txtDetails.Size = new System.Drawing.Size(170, 13);
             this.txtDetails.TabIndex = 28;
@@ -198,29 +221,6 @@ namespace ProbPotes.pages
             this.txtTitle.Size = new System.Drawing.Size(103, 13);
             this.txtTitle.TabIndex = 21;
             this.txtTitle.Text = "Titre de l\'évènement";
-            // 
-            // txtSoldTip
-            // 
-            this.txtSoldTip.Location = new System.Drawing.Point(3, 175);
-            this.txtSoldTip.Name = "txtSoldTip";
-            this.txtSoldTip.Size = new System.Drawing.Size(705, 24);
-            this.txtSoldTip.TabIndex = 30;
-            this.txtSoldTip.Text = "ou choisissez un participant pour lequel vous souhaitez obtenir les détails";
-            this.txtSoldTip.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // pnlLine2
-            // 
-            this.pnlLine2.Location = new System.Drawing.Point(6, 254);
-            this.pnlLine2.Name = "pnlLine2";
-            this.pnlLine2.Size = new System.Drawing.Size(710, 10);
-            this.pnlLine2.TabIndex = 31;
-            // 
-            // pnlLine1
-            // 
-            this.pnlLine1.Location = new System.Drawing.Point(6, 162);
-            this.pnlLine1.Name = "pnlLine1";
-            this.pnlLine1.Size = new System.Drawing.Size(710, 10);
-            this.pnlLine1.TabIndex = 32;
             // 
             // ReportsPage
             // 

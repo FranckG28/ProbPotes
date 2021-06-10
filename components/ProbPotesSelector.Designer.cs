@@ -47,7 +47,7 @@ namespace ProbPotes.components
             // txtTitle
             // 
             this.txtTitle.AutoSize = true;
-            this.txtTitle.Location = new System.Drawing.Point(37, 10);
+            this.txtTitle.Location = new System.Drawing.Point(33, 8);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(35, 13);
             this.txtTitle.TabIndex = 1;

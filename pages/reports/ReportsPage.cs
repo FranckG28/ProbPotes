@@ -36,6 +36,7 @@ namespace ProbPotes.pages
 
             txtTitle.Font = new Font(Fonts.bold, 16);
             txtTitle.ForeColor = Colors.blue;
+            icon.ForeColor = Colors.blue;
 
             List<Label> labels = new List<Label>() { txtDescription, txtParticipants, txtHelp, txtDetails };
             foreach (Label lbl in labels)
@@ -154,7 +155,15 @@ namespace ProbPotes.pages
 
         private void btnQDQAQ_Click(object sender, EventArgs e)
         {
-
+            if (!SelectedEvent.SoldeOn)
+            {
+                DatabaseManager.Events.CreateReport(SelectedEvent);
+                ShowReport(SelectedEvent);
+            } else
+            {
+                ProbPotesDialog dialog = new ProbPotesDialog("Qui doit qui à quoi ? ", 59897, new WOWTWDialog(SelectedEvent), this.ParentForm);
+                DialogResult result = dialog.Open();
+            }
         }
     }
 }

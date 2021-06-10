@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.OleDb;
+using ProbPotes.managers;
 
 namespace ProbPotes.models
 {
@@ -44,6 +45,17 @@ namespace ProbPotes.models
             this.comment = (string)row["commentaire"];
         }
 
-        
+        public int GetPartAmount()
+        {
+            int counter = DatabaseManager.Participants.GetParticipant(creatorCode).Shares;
+
+            foreach(int code in recipients)
+            {
+                counter += DatabaseManager.Participants.GetParticipant(code).Shares;
+            }
+
+            return counter;
+        }
+
     }
 }

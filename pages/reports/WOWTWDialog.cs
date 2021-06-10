@@ -1,4 +1,5 @@
 ﻿using ProbPotes.components;
+using ProbPotes.models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,28 +14,33 @@ namespace ProbPotes.pages.reports
 {
     public partial class WOWTWDialog : UserControl, IDialogPage
     {
-        public WOWTWDialog()
+        public ProbPotesDialog ParentDialog;
+        public EventClass Event;
+
+        public WOWTWDialog(EventClass e)
         {
             InitializeComponent();
+
+            Event = e;
         }
 
-        public bool CanGoBack => throw new NotImplementedException();
+        public bool CanGoBack => false;
 
-        public bool CanGoForward => throw new NotImplementedException();
+        public bool CanGoForward => false;
 
-        public bool ShowBackBtn => throw new NotImplementedException();
+        public bool ShowBackBtn => false;
 
-        public bool ShowNextBtn => throw new NotImplementedException();
+        public bool ShowNextBtn => true;
 
-        public int Index { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int Index { get => 0; set { } }
 
-        public int PageCount => throw new NotImplementedException();
+        public int PageCount => 1;
 
-        public ProbPotesDialog ParentController { set => throw new NotImplementedException(); }
+        public ProbPotesDialog ParentController { set => ParentDialog = value; }
 
         public void FocusBox()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

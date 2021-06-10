@@ -52,7 +52,7 @@ namespace ProbPotes.components.participants
             // 
             this.txtFirstName.AutoSize = true;
             this.txtFirstName.BackColor = System.Drawing.Color.Transparent;
-            this.txtFirstName.Location = new System.Drawing.Point(57, 12);
+            this.txtFirstName.Location = new System.Drawing.Point(57, 11);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(54, 13);
             this.txtFirstName.TabIndex = 6;
@@ -63,7 +63,7 @@ namespace ProbPotes.components.participants
             // 
             this.txtName.AutoSize = true;
             this.txtName.BackColor = System.Drawing.Color.Transparent;
-            this.txtName.Location = new System.Drawing.Point(58, 33);
+            this.txtName.Location = new System.Drawing.Point(58, 30);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(35, 13);
             this.txtName.TabIndex = 5;

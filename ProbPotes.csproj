@@ -82,6 +82,12 @@
     <Compile Include="components\events\EventPreview.Designer.cs">
       <DependentUpon>EventPreview.cs</DependentUpon>
     </Compile>
+    <Compile Include="components\expenses\ExpenseReportTile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="components\expenses\ExpenseReportTile.Designer.cs">
+      <DependentUpon>ExpenseReportTile.cs</DependentUpon>
+    </Compile>
     <Compile Include="components\expenses\ExpenseTile.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -153,6 +159,7 @@
     <Compile Include="managers\ExpensesManager.cs" />
     <Compile Include="managers\ParticipantManager.cs" />
     <Compile Include="models\EventClass.cs" />
+    <Compile Include="models\WOWTW.cs" />
     <Compile Include="pages\events\NoEventPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -245,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="components\events\EventPreview.resx">
       <DependentUpon>EventPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="components\expenses\ExpenseReportTile.resx">
+      <DependentUpon>ExpenseReportTile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="components\expenses\ExpenseTile.resx">
       <DependentUpon>ExpenseTile.cs</DependentUpon>

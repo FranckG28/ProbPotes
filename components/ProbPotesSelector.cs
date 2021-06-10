@@ -18,6 +18,14 @@ namespace ProbPotes.components
 
         public Object Value;
 
+        public ProbPotesSelector()
+        {
+            InitializeComponent();
+
+            Init();
+
+        }
+
         public ProbPotesSelector(string title, Object value)
         {
             InitializeComponent();
@@ -25,8 +33,15 @@ namespace ProbPotes.components
             Title = title;
             Value = value;
 
+            Init();
+
+        }
+
+        private void Init()
+        {
             // Polices et couleurs
-            txtTitle.Font = new Font(Fonts.medium, 11);
+            if (LicenseManager.UsageMode == LicenseUsageMode.Runtime)
+                txtTitle.Font = new Font(Fonts.medium, 11);
 
             // Icon
             txtIcon.Visible = false;
@@ -37,7 +52,6 @@ namespace ProbPotes.components
             HoverColor hoverFg = new HoverColor(new List<Control>() { txtTitle, txtIcon }, true, Colors.black, Colors.black, Colors.white);
 
             hover = new SelectableHoverController(new List<HoverColor>() { hoverBg, hoverFg }, this);
-
         }
 
         [Description("Titre de l'élément"), Category("Data")]
