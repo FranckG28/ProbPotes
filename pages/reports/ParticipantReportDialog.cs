@@ -91,7 +91,6 @@ namespace ProbPotes.pages.reports
                 flowLayoutPanel1.Controls.Clear();
                 foreach (Expense exp in PaidExpenses)
                 {
-                    // TODO : Ne pas afficher le total si pas béénficiaire 
                     flowLayoutPanel1.Controls.Add(new ExpenseReportTile(exp));
                 }
             }

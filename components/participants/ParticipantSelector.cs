@@ -57,6 +57,15 @@ namespace ProbPotes.components.participants
         public List<Participant> SelectedParticipants
         {
             get => ParticipantList;
+            set
+            {
+                foreach (Control c in flowLayoutPanel1.Controls)
+                {
+                    ParticipantSelectionTile tile = (ParticipantSelectionTile)c;
+                    tile.Selected = value.Contains(tile.Participant);
+                }
+                ParticipantList = value;
+            }
         }
 
         public void SetExcludedParticipant(List<Participant> value)

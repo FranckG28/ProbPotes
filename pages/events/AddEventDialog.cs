@@ -19,12 +19,45 @@ namespace ProbPotes.pages.events
     {
         private ProbPotesDialog ParentDialog;
 
+        private EventClass oldEvent;
+        private bool editMode = false;
+
         public AddEventDialog(Del refresh)
         {
             InitializeComponent();
 
             this.RefreshMainForm = refresh;
 
+            Init();
+            
+        }
+
+        public AddEventDialog(Del refresh, EventClass eventClass)
+        {
+            InitializeComponent();
+
+            this.RefreshMainForm = refresh;
+            this.editMode = true;
+            this.oldEvent = eventClass;
+
+            Init();
+
+            // Réinsérer les données de l'évènement :
+            boxTitle.Text = oldEvent.Title;
+            boxDescription.Text = oldEvent.Description;
+            dateStart.Value = oldEvent.StartDate;
+            dateEnd.Value = oldEvent.EndDate;
+            psCreator.SelectedParticipants = new List<Participant>() { DatabaseManager.Participants.GetParticipant(oldEvent.CreatorCode) };
+            List<Participant> participants = new List<Participant>();
+            foreach(int i in oldEvent.Guests)
+            {
+                participants.Add(DatabaseManager.Participants.GetParticipant(i));
+            }
+            psGuests.SelectedParticipants = participants;
+        }
+
+        private void Init()
+        {
             // Cacher les onglets
             tabControl1.Appearance = TabAppearance.FlatButtons;
             tabControl1.ItemSize = new Size(0, 1);
@@ -123,28 +156,28 @@ namespace ProbPotes.pages.events
                     }
 
                     EventClass newEvent = new EventClass(
-                        DatabaseManager.Events.Events.Count + 1,
+                        editMode ? oldEvent.Code : DatabaseManager.Events.Events.Count + 1,
                         boxTitle.Text,
                         psCreator.SelectedParticipants.First().Code,
-                        false,
+                        editMode ? oldEvent.SoldeOn : false,
                         boxDescription.Text,
-                        dateStart.Value,
-                        dateEnd.Value,
+                        dateStart.Value.Date,
+                        dateEnd.Value.Date,
                         guests
                         );
 
-                    bool result = DatabaseManager.Events.AddEvent(newEvent);
+                    bool result = editMode ? DatabaseManager.Events.UpdateEvent(newEvent) : DatabaseManager.Events.AddEvent(newEvent);
 
                     // SI REUSSITE 
                     if (result)
                     {
-                        // TODO : ENVOYER UN EMAIL A TOUT LE MONDE !!!!
+                        // TODO : ENVOYER UN EMAIL A TOUT LE MONDE !!!! OU juste les nouveaux si modificaiton
                         tabControl1.SelectedIndex = value;
                         RefreshMainForm?.DynamicInvoke();
                     }
                     else
                     {
-                        MessageBox.Show("Impossible d'ajouter l'évènement");
+                        MessageBox.Show("Impossible d'enregistrer l'évènement");
                     }
                 }
                 else
