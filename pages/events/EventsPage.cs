@@ -1,5 +1,7 @@
+using ProbPotes.components;
 using ProbPotes.managers;
 using ProbPotes.models;
+using ProbPotes.pages.events;
 using ProbPotes.services;
 using System;
 using System.Collections.Generic;
@@ -78,6 +80,7 @@ namespace ProbPotes.pages
             btnLast.ClickAction = ButtonLast;
             btnNext.ClickAction = ButtonNext;
             btnPrevious.ClickAction = ButtonPrevious;
+            btnEdit.ClickAction = Edit;
 
             // Recuperation des evènement :
             nav = DatabaseManager.Events.GetEventNavigator();
@@ -97,6 +100,7 @@ namespace ProbPotes.pages
             txtCount.Text = "/ " + nav.EventCount;
 
         }
+
 
         private void AddBinding(Label lbl, string name)
         {
@@ -146,5 +150,12 @@ namespace ProbPotes.pages
             nav.FirstButton();
             RefreshInterface();
         }
+
+        private void Edit()
+        {
+            ProbPotesDialog dialog = new ProbPotesDialog("Modifier un évènement", 59601, new AddEventDialog(((MainForm)ParentForm).navigation.RefreshActualPage, DatabaseManager.Events.GetEvent(Convert.ToInt32(txtIndex.Text))), this.ParentForm);
+            DialogResult result = dialog.Open();
+        }
+
     }
 }

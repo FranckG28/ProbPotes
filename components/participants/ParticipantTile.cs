@@ -65,7 +65,7 @@ namespace ProbPotes.components.participants
             }
         }
 
-        public delegate void Del();
+        public delegate void Del(Participant p);
 
         public Del ClickAction;
         public Del RefreshDelegate;
@@ -74,7 +74,7 @@ namespace ProbPotes.components.participants
         {
             if (ClickAction != null)
             {
-                ClickAction();
+                ClickAction(participant);
             }
         }
         

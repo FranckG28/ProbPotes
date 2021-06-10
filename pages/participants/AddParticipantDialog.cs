@@ -19,6 +19,9 @@ namespace ProbPotes.pages.participants
 
         private ProbPotesDialog ParentDialog;
 
+        private bool editMode = false;
+        private Participant oldParticipant;
+
         public delegate void Del();
 
         public Del RefreshParent;
@@ -29,6 +32,33 @@ namespace ProbPotes.pages.participants
 
             this.RefreshParent = refreshParent;
 
+            Init();
+            
+        }
+
+        public AddParticipantDialog(Del refreshParent, Participant p)
+        {
+            InitializeComponent();
+
+            this.RefreshParent = refreshParent;
+            this.editMode = true;
+            this.oldParticipant = p;
+
+            Init();
+
+            // Chargement des données du participant :
+            boxFirstName.Text = p.FirstName;
+            boxName.Text = p.Name;
+            boxPhone.Text = p.Phone;
+            boxMail.Text = p.MailAddress;
+            boxShares.Text = p.Shares.ToString();
+
+            txtTitleSuccess.Text = "Participant modifié";
+
+        }
+
+        private void Init()
+        {
             // Cacher les onglets
             tabControl1.Appearance = TabAppearance.FlatButtons;
             tabControl1.ItemSize = new Size(0, 1);
@@ -41,14 +71,14 @@ namespace ProbPotes.pages.participants
                 ProbPotesDialog.ApplyTitleStyle(lbl);
             }
 
-            List<Label> labels = new List<Label>() { lblFirstName, lblMail,lblName, lblPhone, txtSuccessfulDescription, lblShares};
-            foreach(Label lbl in labels)
+            List<Label> labels = new List<Label>() { lblFirstName, lblMail, lblName, lblPhone, txtSuccessfulDescription, lblShares };
+            foreach (Label lbl in labels)
             {
                 ProbPotesDialog.ApplyLabelStyle(lbl);
             }
 
             List<TextBox> txtBoxes = new List<TextBox>() { boxFirstName, boxMail, boxName, boxPhone, boxShares };
-            foreach(TextBox txt in txtBoxes)
+            foreach (TextBox txt in txtBoxes)
             {
                 ProbPotesDialog.ApplyTextBoxStyle(txt);
             }
@@ -97,21 +127,21 @@ namespace ProbPotes.pages.participants
                     // Si tout les champs sont corrects 
                     if (correct)
                     {
-                        Participant newParticipant = new Participant(DatabaseManager.Participants.Participants.Count + 1, boxPhone.Text, Convert.ToInt32(boxShares.Text), boxName.Text, boxFirstName.Text, boxMail.Text);
-                        correct = DatabaseManager.Participants.AddParticipant(newParticipant);
-                    }
+                        Participant newParticipant = new Participant(editMode ? oldParticipant.Code : DatabaseManager.Participants.Participants.Count + 1, boxPhone.Text, Convert.ToInt32(boxShares.Text), boxName.Text, boxFirstName.Text, boxMail.Text);
+                        correct = editMode ? DatabaseManager.Participants.UpdateParticipant(newParticipant) : DatabaseManager.Participants.AddParticipant(newParticipant);
 
-                    // Si l'ajout a réussi
-                    if (correct)
-                    {
-                        tabControl1.SelectedIndex = value;
-                        if (RefreshParent != null)
+                        if (correct)
                         {
-                            RefreshParent();
+                            txtSuccessfulDescription.Text = newParticipant.FirstName + " " + newParticipant.Name.ToUpper() + " a bien été enregistré";
+                            tabControl1.SelectedIndex = value;
+                            if (RefreshParent != null)
+                            {
+                                RefreshParent();
+                            }
                         }
                     } else
                     {
-                        tabControl1.SelectedIndex = 0;
+                        MessageBox.Show("Impossible d'enregistrer le participant !");
                     }
                     
                 } else

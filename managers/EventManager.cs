@@ -44,10 +44,6 @@ namespace ProbPotes.managers
                 OleDbCommand insertEvent = new OleDbCommand(@"INSERT INTO Evenements(codeEvent,titreEvent,dateDebut,dateFin,description,soldeON,codeCreateur)
                                                        	VALUES(?,?,?,?,?,?,?)", DatabaseManager.db);
 
-                //CHERCHE LE PROCHAIN CODE EVENT LIBRE
-                /*OleDbCommand cdCodeEvent = new OleDbCommand("SELECT codeEvent FROM Evenements ORDER BY codeEvent DESC", DatabaseManager.db);
-                int codeEvent = Convert.ToInt32(cdCodeEvent.ExecuteScalar().ToString()) + 1;*/
-
                 insertEvent.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = eventclass.Code;
                 insertEvent.Parameters.Add(new OleDbParameter("titreEvent", OleDbType.WChar)).Value = eventclass.Title;
                 insertEvent.Parameters.Add(new OleDbParameter("dateDebut", OleDbType.Date)).Value = eventclass.StartDate;
@@ -98,43 +94,37 @@ namespace ProbPotes.managers
             {
                 if (DatabaseManager.db.State != ConnectionState.Open)
                     DatabaseManager.db.Open();
-                OleDbCommand update = new OleDbCommand("UPDATE Evenements set titreEvent = @titreEvent,dateDebut =@dateDebut, dateFin=@dateFin ,soldeON = @soldeON, codeCreateur =@codeCreateur where codeEvent =@codeEvent ;", DatabaseManager.db);
+                OleDbCommand update = new OleDbCommand("UPDATE Evenements SET titreEvent = ? ,dateDebut = ? , dateFin= ? , description = ? ,soldeON = ? , codeCreateur = ? WHERE codeEvent = ?", DatabaseManager.db);
 
-                update.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventclass.Code;
-                update.Parameters.Add(new OleDbParameter("@titreEvent", OleDbType.WChar)).Value = eventclass.Title;
-                update.Parameters.Add(new OleDbParameter("@dateDebut", OleDbType.Date)).Value = eventclass.StartDate;
-                update.Parameters.Add(new OleDbParameter("@dateFin", OleDbType.Date)).Value = eventclass.EndDate;
-                update.Parameters.Add(new OleDbParameter("@description", OleDbType.WChar)).Value = eventclass.Description;
-                update.Parameters.Add(new OleDbParameter("@soldeON", OleDbType.Boolean)).Value = eventclass.SoldeOn;
-                update.Parameters.Add(new OleDbParameter("@codeCreateur", OleDbType.Integer)).Value = eventclass.CreatorCode;
+                
+                update.Parameters.Add(new OleDbParameter("titreEvent", OleDbType.WChar)).Value = eventclass.Title;
+                update.Parameters.Add(new OleDbParameter("dateDebut", OleDbType.Date)).Value = eventclass.StartDate;
+                update.Parameters.Add(new OleDbParameter("dateFin", OleDbType.Date)).Value = eventclass.EndDate;
+                update.Parameters.Add(new OleDbParameter("description", OleDbType.WChar)).Value = eventclass.Description;
+                update.Parameters.Add(new OleDbParameter("soldeON", OleDbType.Boolean)).Value = eventclass.SoldeOn;
+                update.Parameters.Add(new OleDbParameter("codeCreateur", OleDbType.Integer)).Value = eventclass.CreatorCode;
+                update.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = eventclass.Code;
 
                 int result = update.ExecuteNonQuery();
 
-                //manque la partie mettre à jour les participants donc utiliser la liste des participants
-                //mais je sais vraiment pas comment m'y procéder
-
-                // TODO: Utiliser de dépense pour mettre à jour les mettre à jour et mettre à jour les invités (donc vérifier suppression/ajout)
+                if (result != 1) throw new Exception("Impossible de mettre à jour l'évènement (" + result + ")");
 
                 //UPDATE DES PARTICIPANTS
                 OleDbCommand deleteAllPartEvent = new OleDbCommand("DELETE FROM Invites WHERE codeEvent=" + eventclass.Code, DatabaseManager.db);
                 int resultDelete=deleteAllPartEvent.ExecuteNonQuery();
 
-                Boolean resultInsertPart = true;
                 //AJOUT DES PARTICIPANTS DANS LA TABLE Invites
                 foreach (int codePart in eventclass.Guests)
                 {
-                    OleDbCommand insertPart = new OleDbCommand("INSERT INTO invites (codeEvent,codePart) VALUES (?,?)", DatabaseManager.db);
+                    OleDbCommand insertPart = new OleDbCommand("INSERT INTO Invites (codeEvent,codePart) VALUES (?,?)", DatabaseManager.db);
                     insertPart.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = eventclass.Code;
                     insertPart.Parameters.Add(new OleDbParameter("codePart", OleDbType.Integer)).Value = codePart;
 
-                    int boolInsertPart = insertPart.ExecuteNonQuery();
-                    if (resultInsertPart)
-                    {
-                        resultInsertPart = boolInsertPart > 0;
-                    }
+                    int insertResult = insertPart.ExecuteNonQuery();
+                    if (insertResult != 1) throw new Exception("Impossible d'ajouter les participants");
                 }
 
-                return result > 0 && resultInsertPart && eventclass.Expenses.RefreshExpenses();//UPDATE DES EXPENSE
+                return true;
             }
             catch (Exception e)
             {

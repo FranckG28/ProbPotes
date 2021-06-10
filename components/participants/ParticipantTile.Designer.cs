@@ -52,6 +52,7 @@ namespace ProbPotes.components.participants
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.ParticipantTile_Click);
             // 
             // txtName
             // 
@@ -62,6 +63,7 @@ namespace ProbPotes.components.participants
             this.txtName.TabIndex = 3;
             this.txtName.Text = "N?ame";
             this.txtName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtName.Click += new System.EventHandler(this.ParticipantTile_Click);
             // 
             // txtFirstName
             // 
@@ -72,6 +74,7 @@ namespace ProbPotes.components.participants
             this.txtFirstName.TabIndex = 4;
             this.txtFirstName.Text = "FirstName";
             this.txtFirstName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtFirstName.Click += new System.EventHandler(this.ParticipantTile_Click);
             // 
             // iconPhone
             // 
@@ -82,6 +85,7 @@ namespace ProbPotes.components.participants
             this.iconPhone.Size = new System.Drawing.Size(35, 15);
             this.iconPhone.TabIndex = 5;
             this.iconPhone.Text = "label1";
+            this.iconPhone.Click += new System.EventHandler(this.ParticipantTile_Click);
             // 
             // iconMail
             // 
@@ -92,6 +96,7 @@ namespace ProbPotes.components.participants
             this.iconMail.Size = new System.Drawing.Size(35, 15);
             this.iconMail.TabIndex = 6;
             this.iconMail.Text = "label1";
+            this.iconMail.Click += new System.EventHandler(this.ParticipantTile_Click);
             // 
             // iconShares
             // 
@@ -102,6 +107,7 @@ namespace ProbPotes.components.participants
             this.iconShares.Size = new System.Drawing.Size(35, 15);
             this.iconShares.TabIndex = 7;
             this.iconShares.Text = "label2";
+            this.iconShares.Click += new System.EventHandler(this.ParticipantTile_Click);
             // 
             // txtPhone
             // 
@@ -111,6 +117,7 @@ namespace ProbPotes.components.participants
             this.txtPhone.Size = new System.Drawing.Size(35, 13);
             this.txtPhone.TabIndex = 9;
             this.txtPhone.Text = "label1";
+            this.txtPhone.Click += new System.EventHandler(this.ParticipantTile_Click);
             // 
             // txtMail
             // 
@@ -120,6 +127,7 @@ namespace ProbPotes.components.participants
             this.txtMail.Size = new System.Drawing.Size(35, 13);
             this.txtMail.TabIndex = 10;
             this.txtMail.Text = "label2";
+            this.txtMail.Click += new System.EventHandler(this.ParticipantTile_Click);
             // 
             // txtShares
             // 
@@ -129,6 +137,7 @@ namespace ProbPotes.components.participants
             this.txtShares.Size = new System.Drawing.Size(35, 13);
             this.txtShares.TabIndex = 11;
             this.txtShares.Text = "label3";
+            this.txtShares.Click += new System.EventHandler(this.ParticipantTile_Click);
             // 
             // ParticipantTile
             // 

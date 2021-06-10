@@ -71,32 +71,31 @@ namespace ProbPotes.managers
         {
             try
             {
-                /*                Boolean partFind = false;
+                if (DatabaseManager.db.State != ConnectionState.Open)
+                    DatabaseManager.db.Open();
 
-                                for(int i = 0; i < ParticipantsList.Count; i++)
-                                {
-                                    if (participant.Code == Participants[i].Code)
-                                    {
-                                        participant.Phone = Participants[i].Phone;
-                                        participant.Shares = Participants[i].Shares;
-                                        participant.Balance = Participants[i].Balance;
-                                        participant.Name = Participants[i].Name;
-                                        participant.FirstName = Participants[i].FirstName;
-                                        participant.MailAddress = Participants[i].MailAddress;
-                                        partFind = true;
-                                    }
-                                }
+                OleDbCommand update = new OleDbCommand(@"UPDATE Participants SET nomPart = ?, prenomPart = ?, mobile = ?, nbParts = ?, adresseMail= ? WHERE codeParticipant = ?", DatabaseManager.db);
 
-                                return partFind;*/
-                return false;
+                update.Parameters.Add(new OleDbParameter("nomPart", OleDbType.WChar)).Value = participant.Name;
+                update.Parameters.Add(new OleDbParameter("prenomPart", OleDbType.WChar)).Value = participant.FirstName;
+                update.Parameters.Add(new OleDbParameter("mobile", OleDbType.WChar)).Value = participant.Phone;
+                update.Parameters.Add(new OleDbParameter("nbParts", OleDbType.Integer)).Value = participant.Shares;
+                update.Parameters.Add(new OleDbParameter("adresseMail", OleDbType.WChar)).Value = participant.MailAddress;
+                update.Parameters.Add(new OleDbParameter("codeParticipant", OleDbType.Integer)).Value = participant.Code;
+
+                int result = update.ExecuteNonQuery();
+
+                return result > 0;
 
             }
-            catch(Exception)
+            catch(Exception e)
             {
+                Debug.WriteLine(e.ToString());
                 return false;
             } finally
             {
                 RefreshParticipants();
+                DatabaseManager.db.Close();
             }
         }
 
