@@ -63,9 +63,9 @@ namespace ProbPotes.managers
                 //AJOUT DES PARTICIPANTS DANS LA TABLE Invites
                 foreach(int codePart in eventclass.Guests)
                 {
-                    OleDbCommand insertPart = new OleDbCommand("INSERT INTO invites(codeEvent,codePart) VALUES (?,?)", DatabaseManager.db);
-                    insertEvent.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = eventclass.Code;
-                    insertEvent.Parameters.Add(new OleDbParameter("codePart", OleDbType.Integer)).Value = codePart;
+                    OleDbCommand insertPart = new OleDbCommand("INSERT INTO invites (codeEvent,codePart) VALUES (?,?)", DatabaseManager.db);
+                    insertPart.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = eventclass.Code;
+                    insertPart.Parameters.Add(new OleDbParameter("codePart", OleDbType.Integer)).Value = codePart;
 
                     int boolInsertPart = insertPart.ExecuteNonQuery();
                     if (resultInsertPart)
@@ -106,15 +106,33 @@ namespace ProbPotes.managers
                 update.Parameters.Add(new OleDbParameter("@soldeON", OleDbType.Boolean)).Value = eventclass.EndDate > DateTime.Today;
                 update.Parameters.Add(new OleDbParameter("@codeCreateur", OleDbType.Integer)).Value = eventclass.CreatorCode;
 
+                int result = update.ExecuteNonQuery();
+
                 //manque la partie mettre à jour les participants donc utiliser la liste des participants
                 //mais je sais vraiment pas comment m'y procéder
 
                 // TODO: Utiliser de dépense pour mettre à jour les mettre à jour et mettre à jour les invités (donc vérifier suppression/ajout)
 
-                int result = update.ExecuteNonQuery();
+                //UPDATE DES PARTICIPANTS
+                OleDbCommand deleteAllPartEvent = new OleDbCommand("DELETE FROM Invites WHERE codeEvent=" + eventclass.Code, DatabaseManager.db);
+                int resultDelete=deleteAllPartEvent.ExecuteNonQuery();
 
-                return result > 0;
-                
+                Boolean resultInsertPart = true;
+                //AJOUT DES PARTICIPANTS DANS LA TABLE Invites
+                foreach (int codePart in eventclass.Guests)
+                {
+                    OleDbCommand insertPart = new OleDbCommand("INSERT INTO invites (codeEvent,codePart) VALUES (?,?)", DatabaseManager.db);
+                    insertPart.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = eventclass.Code;
+                    insertPart.Parameters.Add(new OleDbParameter("codePart", OleDbType.Integer)).Value = codePart;
+
+                    int boolInsertPart = insertPart.ExecuteNonQuery();
+                    if (resultInsertPart)
+                    {
+                        resultInsertPart = boolInsertPart > 0;
+                    }
+                }
+
+                return result > 0 && resultInsertPart;
             }
             catch (Exception e)
             {
