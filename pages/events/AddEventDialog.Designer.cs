@@ -46,15 +46,15 @@ namespace ProbPotes.pages.events
             this.iconDate = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtWarningCreator = new System.Windows.Forms.Label();
-            this.psCreator = new ProbPotes.components.participants.ParticipantSelector();
             this.txtTitle2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.psGuests = new ProbPotes.components.participants.ParticipantSelector();
             this.txtTitle3 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.txtSuccessfulDescription = new System.Windows.Forms.Label();
             this.iconSuccessful = new System.Windows.Forms.Label();
             this.txtTitleSuccess = new System.Windows.Forms.Label();
+            this.psCreator = new ProbPotes.components.participants.ParticipantSelector();
+            this.psGuests = new ProbPotes.components.participants.ParticipantSelector();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -216,8 +216,8 @@ namespace ProbPotes.pages.events
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.txtWarningCreator);
-            this.tabPage2.Controls.Add(this.psCreator);
             this.tabPage2.Controls.Add(this.txtTitle2);
+            this.tabPage2.Controls.Add(this.psCreator);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -234,15 +234,6 @@ namespace ProbPotes.pages.events
             this.txtWarningCreator.TabIndex = 24;
             this.txtWarningCreator.Text = "Veuillez sélectionner le créateur de l\'évènement";
             this.txtWarningCreator.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // psCreator
-            // 
-            this.psCreator.BackColor = System.Drawing.Color.Transparent;
-            this.psCreator.Location = new System.Drawing.Point(3, 50);
-            this.psCreator.MultiSelection = false;
-            this.psCreator.Name = "psCreator";
-            this.psCreator.Size = new System.Drawing.Size(776, 301);
-            this.psCreator.TabIndex = 21;
             // 
             // txtTitle2
             // 
@@ -264,14 +255,6 @@ namespace ProbPotes.pages.events
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // psGuests
-            // 
-            this.psGuests.Location = new System.Drawing.Point(5, 50);
-            this.psGuests.MultiSelection = true;
-            this.psGuests.Name = "psGuests";
-            this.psGuests.Size = new System.Drawing.Size(776, 304);
-            this.psGuests.TabIndex = 22;
             // 
             // txtTitle3
             // 
@@ -322,6 +305,23 @@ namespace ProbPotes.pages.events
             this.txtTitleSuccess.TabIndex = 4;
             this.txtTitleSuccess.Text = "Évènement ajouté !";
             this.txtTitleSuccess.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // psCreator
+            // 
+            this.psCreator.BackColor = System.Drawing.Color.Transparent;
+            this.psCreator.Location = new System.Drawing.Point(3, 50);
+            this.psCreator.MultiSelection = false;
+            this.psCreator.Name = "psCreator";
+            this.psCreator.Size = new System.Drawing.Size(776, 301);
+            this.psCreator.TabIndex = 21;
+            // 
+            // psGuests
+            // 
+            this.psGuests.Location = new System.Drawing.Point(5, 50);
+            this.psGuests.MultiSelection = true;
+            this.psGuests.Name = "psGuests";
+            this.psGuests.Size = new System.Drawing.Size(776, 304);
+            this.psGuests.TabIndex = 22;
             // 
             // AddEventDialog
             // 

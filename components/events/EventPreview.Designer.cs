@@ -58,7 +58,7 @@ namespace ProbPotes.components
             this.txtParticipants.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.txtParticipants.Location = new System.Drawing.Point(51, 65);
             this.txtParticipants.Name = "txtParticipants";
-            this.txtParticipants.Size = new System.Drawing.Size(171, 37);
+            this.txtParticipants.Size = new System.Drawing.Size(211, 37);
             this.txtParticipants.TabIndex = 2;
             this.txtParticipants.Text = "participants";
             this.txtParticipants.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -82,7 +82,7 @@ namespace ProbPotes.components
             this.Controls.Add(this.txtTitle);
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "EventPreview";
-            this.Size = new System.Drawing.Size(222, 120);
+            this.Size = new System.Drawing.Size(265, 120);
             this.Click += new System.EventHandler(this.EventPreview_Click);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -182,6 +182,11 @@ namespace ProbPotes.pages.events
             }
          }
 
+        public void FocusBox()
+        {
+            boxTitle.Select();
+        }
+
         // TODO: Ajouter vérification des champs
 
     }

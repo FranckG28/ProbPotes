@@ -184,7 +184,7 @@ namespace ProbPotes.pages
             // 
             this.txtIndex.Location = new System.Drawing.Point(9, 458);
             this.txtIndex.Name = "txtIndex";
-            this.txtIndex.Size = new System.Drawing.Size(480, 36);
+            this.txtIndex.Size = new System.Drawing.Size(474, 36);
             this.txtIndex.TabIndex = 1;
             this.txtIndex.Text = "0/0";
             this.txtIndex.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

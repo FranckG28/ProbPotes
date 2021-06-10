@@ -71,8 +71,6 @@ namespace ProbPotes.pages.events
                 icon.ForeColor = Colors.black;
             }
 
-            iconSuccessful.ForeColor = Colors.blue;
-
         }
 
         public bool CanGoBack
@@ -90,6 +88,7 @@ namespace ProbPotes.pages.events
             get => tabControl1.SelectedIndex;
             set
             {
+
                 if (value == 1)
                 {
                     txtWarningTitle.Visible = boxTitle.Text == "";
@@ -131,5 +130,10 @@ namespace ProbPotes.pages.events
         public bool ShowNextBtn => true;
 
         public ProbPotesDialog ParentController { set => ParentDialog = value; }
+
+        public void FocusBox()
+        {
+            boxTitle.Select();
+        }
     }
 }

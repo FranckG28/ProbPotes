@@ -67,7 +67,7 @@ namespace ProbPotes.pages.participants
             // Couleurs 
             iconSuccessful.ForeColor = Colors.blue;
 
-
+            boxFirstName.Focus();
         }
 
         public bool CanGoBack {
@@ -134,6 +134,11 @@ namespace ProbPotes.pages.participants
         public bool ShowNextBtn => true;
 
         public ProbPotesDialog ParentController { set => ParentDialog = value; }
+
+        public void FocusBox()
+        {
+            boxFirstName.Select();
+        }
 
         //KeyPress
         private void boxPhone_KeyPress(object sender, KeyPressEventArgs e)

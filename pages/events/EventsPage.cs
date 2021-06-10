@@ -94,7 +94,7 @@ namespace ProbPotes.pages
             RefreshInterface();
 
             // Affichage du nombre d'évènement 
-            txtCount.Text = "/" + nav.EventCount;
+            txtCount.Text = "/ " + nav.EventCount;
 
         }
 

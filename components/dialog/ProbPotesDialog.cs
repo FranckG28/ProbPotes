@@ -29,6 +29,8 @@ namespace ProbPotes.components
 
         ProbPotesDialog ParentController { set; }
 
+        void FocusBox();
+
     }
 
     public partial class ProbPotesDialog : Form
@@ -76,6 +78,7 @@ namespace ProbPotes.components
             // Ajout de la page 
             pnlContent.Controls.Add((UserControl)content);
             RefreshButtons();
+            Content.FocusBox();
         }
 
         public String Title
