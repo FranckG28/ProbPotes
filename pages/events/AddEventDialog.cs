@@ -54,6 +54,8 @@ namespace ProbPotes.pages.events
                 participants.Add(DatabaseManager.Participants.GetParticipant(i));
             }
             psGuests.SelectedParticipants = participants;
+
+            txtTitleSuccess.Text = "Évènement modifié";
         }
 
         private void Init()
@@ -172,6 +174,7 @@ namespace ProbPotes.pages.events
                     if (result)
                     {
                         // TODO : ENVOYER UN EMAIL A TOUT LE MONDE !!!! OU juste les nouveaux si modificaiton
+                        txtSuccessfulDescription.Text = "L'évènement " + newEvent.Title + " a bien été enregistré !";
                         tabControl1.SelectedIndex = value;
                         RefreshMainForm?.DynamicInvoke();
                     }

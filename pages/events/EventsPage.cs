@@ -153,7 +153,7 @@ namespace ProbPotes.pages
 
         private void Edit()
         {
-            ProbPotesDialog dialog = new ProbPotesDialog("Ajouter un évènement", 59601, new AddEventDialog(((MainForm)ParentForm).navigation.RefreshActualPage, DatabaseManager.Events.GetEvent(Convert.ToInt32(txtIndex.Text))), this.ParentForm);
+            ProbPotesDialog dialog = new ProbPotesDialog("Modifier un évènement", 59601, new AddEventDialog(((MainForm)ParentForm).navigation.RefreshActualPage, DatabaseManager.Events.GetEvent(Convert.ToInt32(txtIndex.Text))), this.ParentForm);
             DialogResult result = dialog.Open();
         }
 
