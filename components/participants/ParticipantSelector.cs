@@ -19,6 +19,8 @@ namespace ProbPotes.components.participants
 
         private List<Participant> ParticipantList = new List<Participant>();
 
+        private List<Participant> excluded = new List<Participant>();
+
         private Boolean multiSelect = false;
 
         public delegate void Del(Participant p);
@@ -57,6 +59,17 @@ namespace ProbPotes.components.participants
             get => ParticipantList;
         }
 
+        public void SetExcludedParticipant(List<Participant> value)
+        { 
+                excluded = value;
+                RefreshParticipantList();
+        }
+
+        public List<Participant> GetExcludedParticipants()
+        {
+            return excluded;
+        }
+
         public Boolean MultiSelection
         {
             get => multiSelect;
@@ -85,11 +98,14 @@ namespace ProbPotes.components.participants
             flowLayoutPanel1.Controls.Clear();
             foreach (Participant p in DatabaseManager.Participants.Participants)
             {
-                ParticipantSelectionTile tile = new ParticipantSelectionTile();
-                tile.Participant = p;
-                tile.Selected = ParticipantList.Contains(p);
-                tile.SelectAction = Selection;
-                flowLayoutPanel1.Controls.Add(tile);
+                if (!excluded.Contains(p))
+                {
+                    ParticipantSelectionTile tile = new ParticipantSelectionTile();
+                    tile.Participant = p;
+                    tile.Selected = ParticipantList.Contains(p);
+                    tile.SelectAction = Selection;
+                    flowLayoutPanel1.Controls.Add(tile);
+                }
             }
         }
 
@@ -119,7 +135,7 @@ namespace ProbPotes.components.participants
 
         private void btnSelectAll_Click(object sender, EventArgs e)
         {
-            Boolean select = ParticipantList.Count != DatabaseManager.Participants.Participants.Count;
+            Boolean select = ParticipantList.Count != (DatabaseManager.Participants.Participants.Count-excluded.Count);
 
             if (select)
             {

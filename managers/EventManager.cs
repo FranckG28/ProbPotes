@@ -38,7 +38,8 @@ namespace ProbPotes.managers
         public Boolean AddEvent(EventClass eventclass) {
             try
             {
-                DatabaseManager.db.Open();
+                if (DatabaseManager.db.State != ConnectionState.Open)
+                    DatabaseManager.db.Open();
 
                 OleDbCommand insertEvent = new OleDbCommand(@"INSERT INTO Evenements(codeEvent,titreEvent,dateDebut,dateFin,description,soldeON,codeCreateur)
                                                        	VALUES(?,?,?,?,?,?,?)", DatabaseManager.db);
@@ -95,7 +96,8 @@ namespace ProbPotes.managers
         {
             try
             {
-                DatabaseManager.db.Open();
+                if (DatabaseManager.db.State != ConnectionState.Open)
+                    DatabaseManager.db.Open();
                 OleDbCommand update = new OleDbCommand("UPDATE Evenements set titreEvent = @titreEvent,dateDebut =@dateDebut, dateFin=@dateFin ,soldeON = @soldeON, codeCreateur =@codeCreateur where codeEvent =@codeEvent ;", DatabaseManager.db);
 
                 update.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventclass.Code;
@@ -152,7 +154,8 @@ namespace ProbPotes.managers
         {
             try
             {
-                DatabaseManager.db.Open();
+                if (DatabaseManager.db.State != ConnectionState.Open)
+                    DatabaseManager.db.Open();
                 OleDbCommand delete = new OleDbCommand(@"DELETE FROM Evenements WHERE codeEvent = @codeEvent;", DatabaseManager.db);
 
                 // TODO: Supprimmer aussi toutes les dépenses et invités de l'évènement
@@ -182,10 +185,10 @@ namespace ProbPotes.managers
             {
                 List<EventClass> res = new List<EventClass>();
 
-                DatabaseManager.db.Open();
-
                 OleDbCommand cdGetEvent = new OleDbCommand("SELECT * FROM Evenements", DatabaseManager.db);
 
+                if (DatabaseManager.db.State == ConnectionState.Closed)
+                    DatabaseManager.db.Open();
                 OleDbDataReader dr = cdGetEvent.ExecuteReader();
 
                 while (dr.Read())
@@ -261,7 +264,8 @@ namespace ProbPotes.managers
 
         public void CreateReport(EventClass evt)
         {
-            DatabaseManager.db.Open();
+            if (DatabaseManager.db.State != ConnectionState.Open)
+                DatabaseManager.db.Open();
 
             DataTable dtBilan = new DataTable();
 

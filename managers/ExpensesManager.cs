@@ -70,6 +70,9 @@ namespace ProbPotes.managers
             {
                 //RECHERCHE DES DEPENSES DE L'EVENEMENT
                 OleDbCommand cdExpense = new OleDbCommand("SELECT * FROM Depenses WHERE codeEvent=" + EventId, DatabaseManager.db);
+                if (DatabaseManager.db.State == System.Data.ConnectionState.Closed)
+                    DatabaseManager.db.Open();
+
                 OleDbDataReader drExpense = cdExpense.ExecuteReader();
                 List<Expense> rowExpense = new List<Expense>();
 
@@ -96,6 +99,9 @@ namespace ProbPotes.managers
             {
                 Debug.WriteLine(e.ToString());
                 return false;
+            } finally
+            {
+                //DatabaseManager.db.Close();
             }
         }
 

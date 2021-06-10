@@ -82,7 +82,7 @@ namespace ProbPotes
 
         public void OpenAddEvent()
         {
-            ProbPotesDialog dialog = new ProbPotesDialog("Ajouter un évènement", 59601, new AddEventDialog(), this);
+            ProbPotesDialog dialog = new ProbPotesDialog("Ajouter un évènement", 59601, new AddEventDialog(navigation.RefreshActualPage), this);
             DialogResult result = dialog.Open();
         }
 

@@ -1,4 +1,6 @@
 ﻿using ProbPotes.components;
+using ProbPotes.managers;
+using ProbPotes.models;
 using ProbPotes.services;
 using System;
 using System.Collections.Generic;
@@ -17,9 +19,11 @@ namespace ProbPotes.pages.events
     {
         private ProbPotesDialog ParentDialog;
 
-        public AddEventDialog()
+        public AddEventDialog(Del refresh)
         {
             InitializeComponent();
+
+            this.RefreshMainForm = refresh;
 
             // Cacher les onglets
             tabControl1.Appearance = TabAppearance.FlatButtons;
@@ -27,20 +31,20 @@ namespace ProbPotes.pages.events
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
             // Styles
-            List<Label> labels = new List<Label>() { lblDescription, lblEndDate, lblStartDate, lblTitle, txtSuccessfulDescription };
-            foreach(Label lbl in labels)
+            List<Label> labels = new List<Label>() { lblDescription, lblEndDate, lblStartDate, lblTitle, txtSuccessfulDescription, txtTip };
+            foreach (Label lbl in labels)
             {
                 ProbPotesDialog.ApplyLabelStyle(lbl);
             }
 
             List<Label> titles = new List<Label>() { txtTitle1, txtTitle2, txtTitle3, txtTitleSuccess };
-            foreach(Label title in titles)
+            foreach (Label title in titles)
             {
                 ProbPotesDialog.ApplyTitleStyle(title);
             }
 
             List<TextBox> boxes = new List<TextBox>() { boxDescription, boxTitle };
-            foreach(TextBox box in boxes)
+            foreach (TextBox box in boxes)
             {
                 ProbPotesDialog.ApplyTextBoxStyle(box);
             }
@@ -52,7 +56,7 @@ namespace ProbPotes.pages.events
             }
 
             List<Label> warnings = new List<Label>() { txtWarningCreator, txtWarningTitle };
-            foreach(Label lbl in warnings)
+            foreach (Label lbl in warnings)
             {
                 lbl.ForeColor = Colors.red;
                 lbl.Font = new Font(Fonts.book, 12);
@@ -64,9 +68,10 @@ namespace ProbPotes.pages.events
             iconTitle.Text = char.ConvertFromUtf32(59151);
             iconDescription.Text = char.ConvertFromUtf32(59959);
             iconSuccessful.Text = char.ConvertFromUtf32(0xE73E);
+            iconSuccessful.ForeColor = Colors.blue;
 
-            List<Label> icons = new List<Label>() {iconDate, iconDescription, iconTitle };
-            foreach(Label icon in icons)
+            List<Label> icons = new List<Label>() { iconDate, iconDescription, iconTitle };
+            foreach (Label icon in icons)
             {
                 icon.ForeColor = Colors.black;
             }
@@ -96,21 +101,50 @@ namespace ProbPotes.pages.events
                     {
                         tabControl1.SelectedIndex = value;
                     }
-                } else if (value == 2)
+                }
+                else if (value == 2)
                 {
                     txtWarningCreator.Visible = psCreator.SelectedParticipants.Count == 0;
                     if (psCreator.SelectedParticipants.Count > 0)
                     {
+                        psGuests.SetExcludedParticipant(new List<Participant>() { psCreator.SelectedParticipants.First() });
                         tabControl1.SelectedIndex = value;
                     }
-                } else if (value == 3)
+                }
+                else if (value == 3)
                 {
                     // AJOUT DE L'EVENEMENT
 
-                    // SI REUSSITE 
-                    if (true)
+                    // Création de la liste des codes invités
+                    List<int> guests = new List<int>();
+                    foreach (Participant p in psGuests.SelectedParticipants)
                     {
+                        guests.Add(p.Code);
+                    }
+
+                    EventClass newEvent = new EventClass(
+                        DatabaseManager.Events.Events.Count + 1,
+                        boxTitle.Text,
+                        psCreator.SelectedParticipants.First().Code,
+                        false,
+                        boxDescription.Text,
+                        dateStart.Value,
+                        dateEnd.Value,
+                        guests
+                        );
+
+                    bool result = DatabaseManager.Events.AddEvent(newEvent);
+
+                    // SI REUSSITE 
+                    if (result)
+                    {
+                        // TODO : ENVOYER UN EMAIL A TOUT LE MONDE !!!!
                         tabControl1.SelectedIndex = value;
+                        RefreshMainForm?.DynamicInvoke();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Impossible d'ajouter l'évènement");
                     }
                 }
                 else
@@ -135,5 +169,8 @@ namespace ProbPotes.pages.events
         {
             boxTitle.Select();
         }
+
+        public delegate void Del();
+        public Del RefreshMainForm;
     }
 }
