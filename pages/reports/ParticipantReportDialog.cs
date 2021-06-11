@@ -31,6 +31,11 @@ namespace ProbPotes.pages.reports
             Participant = p;
             Event = e;
 
+            btnExportToPDF.Font = new Font(Fonts.book, 11);
+            btnExportToPDF.BackColor = Colors.blue;
+            btnExportToPDF.FlatAppearance.MouseOverBackColor = Colors.green;
+            btnExportToPDF.FlatAppearance.MouseDownBackColor = Colors.blue;
+
             // Calcul des totaux
             Decimal paid = 0;
             Decimal owes = 0;
@@ -49,6 +54,7 @@ namespace ProbPotes.pages.reports
                 }
 
             }
+
 
             // Selection des dépenses payés
             selectPaid.Selected = true;
@@ -127,5 +133,9 @@ namespace ProbPotes.pages.reports
             flowLayoutPanel1.Controls.Add(lbl);
         }
 
+        private void btnExportToPDF_Click(object sender, EventArgs e)
+        {
+            // TODO: Générer un PDF pour le participant Participant dans Event
+        }
     }
 }

@@ -66,6 +66,11 @@ namespace ProbPotes.pages
 
             // Boutton
             btnQDQAQ.Font = new Font(Fonts.medium, 14);
+
+            btnExportToPDF.Font = new Font(Fonts.book, 11);
+            btnExportToPDF.BackColor = Colors.blue;
+            btnExportToPDF.FlatAppearance.MouseOverBackColor = Colors.green;
+            btnExportToPDF.FlatAppearance.MouseDownBackColor = Colors.blue;
             
             // Affichage des évènements
             foreach (EventClass e in DatabaseManager.Events.Events)
@@ -116,6 +121,7 @@ namespace ProbPotes.pages
             btnQDQAQ.FlatAppearance.MouseOverBackColor = eventClass.SoldeOn ? Colors.green : Colors.red;
             btnQDQAQ.FlatAppearance.MouseDownBackColor = eventClass.SoldeOn ? Colors.blue : Colors.lightRed;
 
+            btnExportToPDF.Visible = eventClass.SoldeOn;
             txtSoldTip.Text = eventClass.SoldeOn ? "L'évènement est soldé" : "Soldez l'évènement pour voir qui doit quoi a qui";
 
             // Afficher les détails de l'évènement
@@ -156,6 +162,12 @@ namespace ProbPotes.pages
                 ProbPotesDialog dialog = new ProbPotesDialog("Qui doit qui à quoi ? ", 59897, new WOWTWDialog(SelectedEvent), this.ParentForm);
                 DialogResult result = dialog.Open();
             }
+        }
+
+        private void btnExportToPDF_Click(object sender, EventArgs e)
+        {
+            // TODO: Exporter tous les participants à SelectedEvent en PDF :)
+
         }
     }
 }

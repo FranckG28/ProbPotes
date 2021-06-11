@@ -361,6 +361,7 @@
     <Content Include="images\doneIcon.png" />
     <Content Include="images\Navbar Background.png" />
     <Content Include="images\nextIcon.png" />
+    <Content Include="images\PDFIcon.png" />
     <Content Include="images\person.png" />
     <Content Include="probpotes.ico" />
   </ItemGroup>
