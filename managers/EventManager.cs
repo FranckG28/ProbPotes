@@ -146,15 +146,23 @@ namespace ProbPotes.managers
             {
                 if (DatabaseManager.db.State != ConnectionState.Open)
                     DatabaseManager.db.Open();
+
+                //DELETE L'EVENT
                 OleDbCommand delete = new OleDbCommand(@"DELETE FROM Evenements WHERE codeEvent = @codeEvent;", DatabaseManager.db);
-
-                // TODO: Supprimmer aussi toutes les dépenses et invités de l'évènement
-
                 delete.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventId;
                 int result = delete.ExecuteNonQuery();
 
-                return result > 0;
+                //DELETE LES EXPENSE DE L'EVENT
+                OleDbCommand deleteExpense = new OleDbCommand(@"DELETE FROM Depenses WHERE codeEvent=@codeEvent", DatabaseManager.db);
+                deleteExpense.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventId;
+                deleteExpense.ExecuteNonQuery();
 
+                //DELETE LES INVITES DE L'EVENT
+                OleDbCommand deleteInvites = new OleDbCommand(@"DELETE FROM invites WHERE codeEvent=@codeEvent", DatabaseManager.db);
+                deleteInvites.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventId;
+                deleteInvites.ExecuteNonQuery();
+
+                return result > 0;
             } 
             catch (Exception e)
             {
