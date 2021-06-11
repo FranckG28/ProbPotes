@@ -39,6 +39,8 @@ namespace ProbPotes.components
         public IDialogPage Content;
         private new Form ParentForm;
 
+        private static int TEXTBOX_PADDING = 10;
+
         public ProbPotesDialog(String title, int icon, IDialogPage content, Form parent)
         {
             InitializeComponent();
@@ -66,7 +68,7 @@ namespace ProbPotes.components
             closeBtn1.ClickEvent = CloseForm;
 
             // Application de l'ombre sur le formulaire 
-            new DropShadow().ApplyShadows(this);
+            new FormDropShadow().ApplyShadows(this);
 
             // Definition des valeurs
             Content = content;
@@ -272,14 +274,49 @@ namespace ProbPotes.components
 
         public static void ApplyTextBoxStyle(TextBox txtBox)
         {
+
+            Control Parent = txtBox.Parent;
+
             txtBox.Font = TextBoxFont;
+            txtBox.BackColor = Color.White;
             txtBox.ForeColor = Colors.blue;
+            txtBox.BorderStyle = BorderStyle.None;
+
+            Panel pnl = new Panel();
+            pnl.Padding = new Padding(TEXTBOX_PADDING * 2, TEXTBOX_PADDING, TEXTBOX_PADDING * 2, TEXTBOX_PADDING);
+            pnl.Size = new Size(txtBox.Width + TEXTBOX_PADDING, txtBox.Height + TEXTBOX_PADDING);
+            pnl.Location = txtBox.Location;
+            pnl.BackColor = Color.White;
+
+            Parent.Controls.Remove(txtBox);
+            pnl.Controls.Add(txtBox);
+            Parent.Controls.Add(pnl);
+
+            txtBox.Dock = DockStyle.Fill;
+
         }
 
         public static void ApplyDatePickerStyle(DateTimePicker picker)
         {
+            Control Parent = picker.Parent;
+
             picker.Font = TextBoxFont;
             picker.ForeColor = Colors.blue;
+            picker.CalendarFont = TextBoxFont;
+
+            Panel pnl = new Panel();
+            pnl.Padding = new Padding(TEXTBOX_PADDING * 2, TEXTBOX_PADDING, TEXTBOX_PADDING * 2, TEXTBOX_PADDING);
+            pnl.Size = new Size(picker.Width + TEXTBOX_PADDING, picker.Height + TEXTBOX_PADDING);
+            pnl.Location = picker.Location;
+            pnl.BackColor = Color.White;
+
+            Parent.Controls.Remove(picker);
+            pnl.Controls.Add(picker);
+            Parent.Controls.Add(pnl);
+
+            picker.Dock = DockStyle.Fill;
+
+            
         }
 
 

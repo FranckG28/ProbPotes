@@ -43,7 +43,7 @@ namespace ProbPotes.components.expenses
             // 
             this.txtPrice.AutoEllipsis = true;
             this.txtPrice.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.txtPrice.Location = new System.Drawing.Point(634, 9);
+            this.txtPrice.Location = new System.Drawing.Point(610, 13);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(145, 35);
             this.txtPrice.TabIndex = 0;
@@ -56,7 +56,7 @@ namespace ProbPotes.components.expenses
             this.txtTitle.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.txtTitle.Location = new System.Drawing.Point(15, 9);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(602, 35);
+            this.txtTitle.Size = new System.Drawing.Size(592, 35);
             this.txtTitle.TabIndex = 0;
             this.txtTitle.Text = "label1";
             this.txtTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -65,7 +65,7 @@ namespace ProbPotes.components.expenses
             // 
             this.txtDescription.Location = new System.Drawing.Point(64, 97);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(715, 31);
+            this.txtDescription.Size = new System.Drawing.Size(543, 31);
             this.txtDescription.TabIndex = 0;
             this.txtDescription.Text = "label1";
             // 
@@ -75,7 +75,7 @@ namespace ProbPotes.components.expenses
             this.txtCreator.BackColor = System.Drawing.SystemColors.GrayText;
             this.txtCreator.Location = new System.Drawing.Point(15, 37);
             this.txtCreator.Name = "txtCreator";
-            this.txtCreator.Size = new System.Drawing.Size(602, 35);
+            this.txtCreator.Size = new System.Drawing.Size(592, 35);
             this.txtCreator.TabIndex = 0;
             this.txtCreator.Text = "label1";
             // 
@@ -83,14 +83,14 @@ namespace ProbPotes.components.expenses
             // 
             this.pnlLine.Location = new System.Drawing.Point(17, 66);
             this.pnlLine.Name = "pnlLine";
-            this.pnlLine.Size = new System.Drawing.Size(761, 1);
+            this.pnlLine.Size = new System.Drawing.Size(590, 1);
             this.pnlLine.TabIndex = 2;
             // 
             // txtLblDescription
             // 
             this.txtLblDescription.AutoSize = true;
             this.txtLblDescription.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.txtLblDescription.Location = new System.Drawing.Point(64, 83);
+            this.txtLblDescription.Location = new System.Drawing.Point(64, 80);
             this.txtLblDescription.Name = "txtLblDescription";
             this.txtLblDescription.Size = new System.Drawing.Size(60, 13);
             this.txtLblDescription.TabIndex = 0;
@@ -111,7 +111,7 @@ namespace ProbPotes.components.expenses
             // 
             this.txtBalanceTotal.AutoEllipsis = true;
             this.txtBalanceTotal.BackColor = System.Drawing.Color.Transparent;
-            this.txtBalanceTotal.Location = new System.Drawing.Point(634, 50);
+            this.txtBalanceTotal.Location = new System.Drawing.Point(610, 54);
             this.txtBalanceTotal.Name = "txtBalanceTotal";
             this.txtBalanceTotal.Size = new System.Drawing.Size(145, 17);
             this.txtBalanceTotal.TabIndex = 0;
@@ -132,7 +132,7 @@ namespace ProbPotes.components.expenses
             this.Controls.Add(this.txtTitle);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.Name = "ExpenseReportTile";
-            this.Size = new System.Drawing.Size(787, 127);
+            this.Size = new System.Drawing.Size(766, 127);
             this.ResumeLayout(false);
             this.PerformLayout();
 

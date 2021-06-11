@@ -55,6 +55,12 @@
     <StartupObject>ProbPotes.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
     </Reference>
@@ -148,6 +154,12 @@
     <Compile Include="components\ProbPotesSelector.Designer.cs">
       <DependentUpon>ProbPotesSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="components\reports\WOWTWTile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="components\reports\WOWTWTile.Designer.cs">
+      <DependentUpon>WOWTWTile.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,6 +212,7 @@
       <DependentUpon>AddParticipantDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="services\Email.cs" />
+    <Compile Include="services\GeneratePDF.cs" />
     <Compile Include="services\HoverColor.cs" />
     <Compile Include="services\NavigationTemplate.cs" />
     <Compile Include="pages\events\EventsPage.cs">
@@ -241,7 +254,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="services\Colors.cs" />
-    <Compile Include="services\DropShadow.cs" />
+    <Compile Include="services\FormDropShadow.cs" />
     <Compile Include="services\Fonts.cs" />
     <Compile Include="services\HoverController.cs" />
     <Compile Include="services\NavigationController.cs" />
@@ -285,6 +298,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="components\ProbPotesSelector.resx">
       <DependentUpon>ProbPotesSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="components\reports\WOWTWTile.resx">
+      <DependentUpon>WOWTWTile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -339,6 +355,7 @@
     <EmbeddedResource Include="fonts\SuisseIntl-Book.otf" />
     <EmbeddedResource Include="fonts\SuisseIntl-Medium.otf" />
     <EmbeddedResource Include="fonts\SuisseIntl-Regular.otf" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -357,10 +374,12 @@
     <Content Include="bdEvents.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="BilanPDF\test.txt" />
     <Content Include="images\addIcon.png" />
     <Content Include="images\doneIcon.png" />
     <Content Include="images\Navbar Background.png" />
     <Content Include="images\nextIcon.png" />
+    <Content Include="images\PDFIcon.png" />
     <Content Include="images\person.png" />
     <Content Include="probpotes.ico" />
   </ItemGroup>
@@ -379,8 +398,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="components\reports\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

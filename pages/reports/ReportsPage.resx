@@ -117,4 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnExportToPDF.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACQAAAAdCAYAAADCdc79AAAABGdBTUEAALGPC/xhBQAAAQpJREFUWEft
+        l+ENgjAQRtnVJVyBQdiCHVjBv/5zA3xX70hDtAJ3VWP6kktbbD9eiiXabWGe55HyMGhUDASa0JW67Kgb
+        ZcRJEWZCvV7aBPPXOxsjRZBXaNJW8EsR4hXqqeHRTfikCHAL6ThGisUhQgJ9vxQLvUIlzjp9Oyw6KiS7
+        8ex1IGWvhF2ZCRYdEipB1vFMFv2ukFbOpHPkMeSMaTHo2LD54UInyvrSipDdzE5SOkV532BcVUj6i5CQ
+        j2mF6kJGejS074QMmx+/Q/pxgvFaSI71R3fopRCtfYfSHO1/RShnuZGO6wjpJTdkNaEiZDWhImQ1oSJk
+        /afQ3j+KpQr5xViDsF2vQNfdAb2XCt0mHEVKAAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>

@@ -124,7 +124,7 @@ namespace ProbPotes.pages.participants
             // 
             this.iconMail.AutoSize = true;
             this.iconMail.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconMail.Location = new System.Drawing.Point(6, 232);
+            this.iconMail.Location = new System.Drawing.Point(6, 242);
             this.iconMail.Name = "iconMail";
             this.iconMail.Size = new System.Drawing.Size(47, 19);
             this.iconMail.TabIndex = 9;
@@ -153,7 +153,7 @@ namespace ProbPotes.pages.participants
             // 
             this.iconPhone.AutoSize = true;
             this.iconPhone.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconPhone.Location = new System.Drawing.Point(6, 159);
+            this.iconPhone.Location = new System.Drawing.Point(6, 169);
             this.iconPhone.Name = "iconPhone";
             this.iconPhone.Size = new System.Drawing.Size(47, 19);
             this.iconPhone.TabIndex = 6;
@@ -162,7 +162,7 @@ namespace ProbPotes.pages.participants
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(410, 62);
+            this.lblName.Location = new System.Drawing.Point(426, 63);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(29, 13);
             this.lblName.TabIndex = 5;
@@ -171,9 +171,9 @@ namespace ProbPotes.pages.participants
             // boxName
             // 
             this.boxName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.boxName.Location = new System.Drawing.Point(413, 85);
+            this.boxName.Location = new System.Drawing.Point(429, 85);
             this.boxName.Name = "boxName";
-            this.boxName.Size = new System.Drawing.Size(346, 20);
+            this.boxName.Size = new System.Drawing.Size(330, 20);
             this.boxName.TabIndex = 4;
             this.boxName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxFirstName_KeyPress);
             // 
@@ -191,7 +191,7 @@ namespace ProbPotes.pages.participants
             this.boxFirstName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.boxFirstName.Location = new System.Drawing.Point(56, 85);
             this.boxFirstName.Name = "boxFirstName";
-            this.boxFirstName.Size = new System.Drawing.Size(346, 20);
+            this.boxFirstName.Size = new System.Drawing.Size(330, 20);
             this.boxFirstName.TabIndex = 2;
             this.boxFirstName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxName_KeyPress);
             // 
@@ -199,7 +199,7 @@ namespace ProbPotes.pages.participants
             // 
             this.iconName.AutoSize = true;
             this.iconName.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconName.Location = new System.Drawing.Point(6, 84);
+            this.iconName.Location = new System.Drawing.Point(6, 94);
             this.iconName.Name = "iconName";
             this.iconName.Size = new System.Drawing.Size(47, 19);
             this.iconName.TabIndex = 1;
@@ -227,7 +227,7 @@ namespace ProbPotes.pages.participants
             // 
             this.iconShares.AutoSize = true;
             this.iconShares.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconShares.Location = new System.Drawing.Point(6, 303);
+            this.iconShares.Location = new System.Drawing.Point(6, 313);
             this.iconShares.Name = "iconShares";
             this.iconShares.Size = new System.Drawing.Size(47, 19);
             this.iconShares.TabIndex = 16;
@@ -238,7 +238,7 @@ namespace ProbPotes.pages.participants
             this.boxShares.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.boxShares.Location = new System.Drawing.Point(56, 305);
             this.boxShares.Name = "boxShares";
-            this.boxShares.Size = new System.Drawing.Size(346, 20);
+            this.boxShares.Size = new System.Drawing.Size(330, 20);
             this.boxShares.TabIndex = 17;
             // 
             // tabPage2

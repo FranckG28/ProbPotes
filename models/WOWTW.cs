@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace ProbPotes.models
 {
-    class WOWTW
+    public class WOWTW
     {
 
-        public Participant Participant;
+        public int ParticipantId;
         public Dictionary<int, Decimal> GiveTo;
         public Dictionary<int, Decimal> ReceiveFrom;
 
-        public WOWTW(Participant p, Dictionary<int, Decimal> giveTo, Dictionary<int, Decimal> receiveFrom)
+        public WOWTW(int p, Dictionary<int, Decimal> giveTo, Dictionary<int, Decimal> receiveFrom)
         {
-            Participant = p;
+            ParticipantId = p;
             GiveTo = giveTo;
             ReceiveFrom = receiveFrom;
         }

@@ -48,6 +48,10 @@ namespace ProbPotes.managers
         {
             try
             {
+
+                if (DatabaseManager.db.State != System.Data.ConnectionState.Open)
+                    DatabaseManager.db.Open();
+
                 OleDbCommand insertExpense = new OleDbCommand("INSERT INTO Depenses (numDepense,description,montant,dateDepense,commentaire,codeEvent,codePart)" +
                     "                                       VALUES(?,?,?,?,?,?,?)", DatabaseManager.db);
 
@@ -62,30 +66,36 @@ namespace ProbPotes.managers
                 int resultInsertExpense = insertExpense.ExecuteNonQuery();
 
                 OleDbCommand insertBeneficiaire = new OleDbCommand("INSERT INTO Beneficiaires(numDepense,codePart)" +
-    "                                             VALUES(?,?)", DatabaseManager.db);
-
-                insertBeneficiaire.Parameters.Add(new OleDbParameter("numDepense", OleDbType.Integer)).Value = expense.code;
-                OleDbParameter codePart = new OleDbParameter("codePart", OleDbType.Integer);
+ "                                             VALUES(?,?)", DatabaseManager.db);
 
                 foreach(int part in expense.recipients)
                 {
+                    insertBeneficiaire.Parameters.Clear();
+                    insertBeneficiaire.Parameters.Add(new OleDbParameter("numDepense", OleDbType.Integer)).Value = expense.code;
+                    OleDbParameter codePart = new OleDbParameter("codePart", OleDbType.Integer);
                     codePart.Value = part;
                     insertBeneficiaire.Parameters.Add(codePart);
                     try
                     {
                         insertBeneficiaire.ExecuteNonQuery();
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
+                        Debug.WriteLine("Erreur bénéficiaire : " + e.ToString());
                         return false;
                     }
                 }
 
                 return resultInsertExpense > 0;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.WriteLine(e.ToString());
                 return false;
+            } finally
+            {
+                DatabaseManager.db.Close();
+                RefreshExpenses();
             }
         }
 
@@ -95,6 +105,9 @@ namespace ProbPotes.managers
         {
             try
             {
+                if (DatabaseManager.db.State != System.Data.ConnectionState.Open)
+                    DatabaseManager.db.Open();
+
                 OleDbCommand updateExpense = new OleDbCommand("UPDATE Depenses SET description = ? , montant = ?, dateDepense= ? , commentaire = ? , codeEvent = ? , codePart = ? WHERE numDepense = ?", DatabaseManager.db);
 
                 updateExpense.Parameters.Add(new OleDbParameter("description", OleDbType.WChar)).Value = expense.description;
@@ -109,7 +122,7 @@ namespace ProbPotes.managers
 
                 if(resultUpdateExpense!=1) throw new Exception("Impossible de mettre à jour la dépense (" + resultUpdateExpense + ")");
 
-                OleDbCommand deletePart = new OleDbCommand("DELETE FROM Beneficiares WHERE numDepense=" + expense.code, DatabaseManager.db);
+                OleDbCommand deletePart = new OleDbCommand("DELETE FROM Beneficiaires WHERE numDepense=" + expense.code, DatabaseManager.db);
                 int resultDeletePart = deletePart.ExecuteNonQuery();
 
                 if(resultDeletePart==0) throw new Exception("Impossible de supprimer les Participant a la dépense (" + resultUpdateExpense + ")");
@@ -118,19 +131,20 @@ namespace ProbPotes.managers
                 OleDbCommand insertBeneficiaire = new OleDbCommand("INSERT INTO Beneficiaires(numDepense,codePart)" +
     "                                             VALUES(?,?)", DatabaseManager.db);
 
-                insertBeneficiaire.Parameters.Add(new OleDbParameter("numDepense", OleDbType.Integer)).Value = expense.code;
-                OleDbParameter codePart = new OleDbParameter("codePart", OleDbType.Integer);
-
                 foreach (int part in expense.recipients)
                 {
+                    insertBeneficiaire.Parameters.Clear();
+                    insertBeneficiaire.Parameters.Add(new OleDbParameter("numDepense", OleDbType.Integer)).Value = expense.code;
+                    OleDbParameter codePart = new OleDbParameter("codePart", OleDbType.Integer);
                     codePart.Value = part;
                     insertBeneficiaire.Parameters.Add(codePart);
                     try
                     {
                         insertBeneficiaire.ExecuteNonQuery();
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
+                        Debug.WriteLine("Erreur bénéficiaire : " + e.ToString());
                         return false;
                     }
                 }
@@ -138,9 +152,15 @@ namespace ProbPotes.managers
                 return true;
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.WriteLine(e.ToString());
                 return false;
+            }
+            finally
+            {
+                DatabaseManager.db.Close();
+                RefreshExpenses();
             }
         }
 

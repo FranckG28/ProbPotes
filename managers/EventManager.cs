@@ -146,15 +146,23 @@ namespace ProbPotes.managers
             {
                 if (DatabaseManager.db.State != ConnectionState.Open)
                     DatabaseManager.db.Open();
+
+                //DELETE L'EVENT
                 OleDbCommand delete = new OleDbCommand(@"DELETE FROM Evenements WHERE codeEvent = @codeEvent;", DatabaseManager.db);
-
-                // TODO: Supprimmer aussi toutes les dépenses et invités de l'évènement
-
                 delete.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventId;
                 int result = delete.ExecuteNonQuery();
 
-                return result > 0;
+                //DELETE LES EXPENSE DE L'EVENT
+                OleDbCommand deleteExpense = new OleDbCommand(@"DELETE FROM Depenses WHERE codeEvent=@codeEvent", DatabaseManager.db);
+                deleteExpense.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventId;
+                deleteExpense.ExecuteNonQuery();
 
+                //DELETE LES INVITES DE L'EVENT
+                OleDbCommand deleteInvites = new OleDbCommand(@"DELETE FROM invites WHERE codeEvent=@codeEvent", DatabaseManager.db);
+                deleteInvites.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventId;
+                deleteInvites.ExecuteNonQuery();
+
+                return result > 0;
             } 
             catch (Exception e)
             {
@@ -254,7 +262,9 @@ namespace ProbPotes.managers
 
         public void CreateReport(EventClass evt)
         {
-            DatabaseManager.db.Open();
+
+            if (DatabaseManager.db.State == ConnectionState.Closed)
+                DatabaseManager.db.Open();
 
             DataTable dtBilan = new DataTable();
 
@@ -277,10 +287,8 @@ namespace ProbPotes.managers
                 partShare.Add(Convert.ToInt32(dr["codeParticipant"].ToString()), Convert.ToInt32(dr["nbParts"].ToString()));
             }
 
-
             foreach (KeyValuePair<int, int> val in partShare)
             {
-
                 //PARTI MOINS
                 double moins = 0;
 
@@ -346,14 +354,83 @@ namespace ProbPotes.managers
                 dtBilan.Rows.Add(partBilan);
             }
 
-            Boolean allSoldeAt0 = true;
-
+            //REQUETE POUR AJOUTER DANS LA TABLE BilanPart
             OleDbCommand cdBilanPart = new OleDbCommand("INSERT INTO BilanPart(codeEvent,codeDonneur,codeReceveur,montant)" +
 "                          VALUES (?,?,?,?)", DatabaseManager.db);
-            cdBilanPart.Parameters.AddWithValue("codeEvent", evt.Code);
 
+            //CREATION DES PARAMETRE QU'ON REMPLIRA AU FUR ET A MESURE DE LA BOUCLE JUSTE EN DESSOUS
+            OleDbParameter codeEvent = new OleDbParameter("codeEvent", OleDbType.Integer);
+            codeEvent.Value = evt.Code;
+            OleDbParameter codeDonneur = new OleDbParameter("codeDonneur", OleDbType.Integer);
+            OleDbParameter codeReceveur = new OleDbParameter("codeReceveur", OleDbType.Integer);
+            OleDbParameter montant = new OleDbParameter("montant", OleDbType.Currency);
+
+            Boolean allSoldeAt0 = true;
             while (allSoldeAt0 && !evt.SoldeOn)
             {
+                //ON PREND COMME 1er VALEUR LA DATAROW 0 EN GUISE DE TEST POUR LA 1er COMPARAISON
+                int indexDonneur = 0;
+                int indexReceveur = 0;
+                for (int i = 1; i < dtBilan.Rows.Count; i++)
+                {
+                    //STOCK L'INDEX DU RECEVEUR
+                    if (Convert.ToDouble(dtBilan.Rows[i]["Solde"].ToString()) < Convert.ToDouble(dtBilan.Rows[indexDonneur]["Solde"].ToString()))
+                    {
+                        indexDonneur = i;
+                    }
+                    //STOCK L'INDEX DU DONNEUR
+                    if (Convert.ToDouble(dtBilan.Rows[i]["Solde"].ToString()) > Convert.ToDouble(dtBilan.Rows[indexReceveur]["Solde"].ToString()))
+                    {
+                        indexReceveur = i;
+                    }
+                }
+
+                //REMPLI LES PARAMETRE DE LA REQUETE AVEC LES CODE DE DONNEUR ET RECEVEUR CAR ON LES CONNAIT DESORMAIS
+                codeDonneur.Value = dtBilan.Rows[indexDonneur]["codeParticipant"];
+                codeReceveur.Value = dtBilan.Rows[indexReceveur]["codeParticipant"];
+
+                //1er CAS: SI LE SOLDE DU DONNEUR EST PLUS GRAND QUE SOLDE DU RECEVEUR
+                if (-Convert.ToDouble(dtBilan.Rows[indexDonneur]["Solde"].ToString()) > Convert.ToDouble(dtBilan.Rows[indexReceveur]["Solde"].ToString()))
+                {
+
+                    montant.Value = Convert.ToDouble(dtBilan.Rows[indexReceveur]["Solde"].ToString());
+
+                    //CHANGE LES SOLDE DANS LA LIGNE DU DONNEUR ET RECEVEUR
+                    decimal soldeDonneur = Convert.ToDecimal(dtBilan.Rows[indexDonneur]["Solde"].ToString()) + Convert.ToDecimal(dtBilan.Rows[indexReceveur]["Solde"].ToString());
+                    dtBilan.Rows[indexDonneur]["Moins"] = soldeDonneur;
+                    dtBilan.Rows[indexDonneur]["Plus"] = 0;
+                    dtBilan.Rows[indexReceveur]["Moins"] = 0;
+                    dtBilan.Rows[indexReceveur]["Plus"] = 0;
+                    dtBilan.Rows[indexReceveur]["Solde"] = Convert.ToDecimal(dtBilan.Rows[indexReceveur]["Plus"].ToString()) - Convert.ToDecimal(dtBilan.Rows[indexReceveur]["Moins"].ToString());
+                    dtBilan.Rows[indexDonneur]["Solde"] = Convert.ToDecimal(dtBilan.Rows[indexDonneur]["Plus"].ToString()) - Convert.ToDecimal(dtBilan.Rows[indexDonneur]["Moins"].ToString());
+                }//2er CAS: SI LE SOLDE DU DONNEUR EST PLUS PETIT QUE SOLDE DU RECEVEUR
+                else
+                {
+                    montant.Value = -Convert.ToDouble(dtBilan.Rows[indexDonneur]["Solde"].ToString());
+
+                    //CHANGE LES SOLDE DANS LA LIGNE DU DONNEUR ET RECEVEUR
+                    decimal SoldeReceveur = Convert.ToDecimal(dtBilan.Rows[indexReceveur]["Solde"].ToString()) + Convert.ToDecimal(dtBilan.Rows[indexDonneur]["Solde"].ToString());
+                    dtBilan.Rows[indexDonneur]["Moins"] = 0;
+                    dtBilan.Rows[indexDonneur]["Plus"] = 0;
+                    dtBilan.Rows[indexReceveur]["Moins"] = SoldeReceveur;
+                    dtBilan.Rows[indexReceveur]["Plus"] = 0;
+                    dtBilan.Rows[indexReceveur]["Solde"] = Convert.ToDecimal(dtBilan.Rows[indexReceveur]["Plus"].ToString()) - Convert.ToDecimal(dtBilan.Rows[indexReceveur]["Moins"].ToString());
+                    dtBilan.Rows[indexDonneur]["Solde"] = Convert.ToDecimal(dtBilan.Rows[indexDonneur]["Plus"].ToString()) - Convert.ToDecimal(dtBilan.Rows[indexDonneur]["Moins"].ToString());
+                }
+
+                try
+                {
+                    //AJOUTe 1 SEUL FOIS LES PARAMETRE ( IL Y A JUSTE LES VALEURS QUI VONT CHANGER A CHAQUE TOUR DE BOUCLE )    
+                    cdBilanPart.Parameters.Add(codeEvent);
+                    cdBilanPart.Parameters.Add(codeDonneur);
+                    cdBilanPart.Parameters.Add(codeReceveur);
+                    cdBilanPart.Parameters.Add(montant);
+                }
+                catch { }
+
+                //INSERTION DANS LA TABLE BilanPart
+                cdBilanPart.ExecuteNonQuery();
+
                 foreach (DataColumn column in dtBilan.Columns) column.ReadOnly = false;
                 //VERIFIE SI LES LES DEPENSE SONT TOUTES A 0 OU NON
                 int cptSoldeAt0 = 0;
@@ -370,48 +447,55 @@ namespace ProbPotes.managers
                 {
                     allSoldeAt0 = false;
                 }
+            }
+            evt.SoldeOn = true;
+            this.UpdateEvent(evt);
+            DatabaseManager.db.Close();
+        }
 
-                //PREND LA 1er LIGNE COMME BASE
-                DataRow receveur = dtBilan.Rows[0];
-                DataRow donneur = dtBilan.Rows[0];
+        public List<WOWTW> GetWOWTWs(EventClass evt)
+        {
+            Dictionary<int, WOWTW> res = new Dictionary<int, WOWTW>();
 
-                int indexDonneur = 1;
-                int indexReceveur = 1;
-                for (int i = 0; i < dtBilan.Rows.Count; i++)
+            // Création d'un WOWTW par participant :
+            foreach (int part in evt.Guests)
+            {
+                res.Add(part, new WOWTW(part, new Dictionary<int, decimal>(), new Dictionary<int, decimal>()));
+            }
+
+            if (DatabaseManager.db.State == ConnectionState.Closed)
+                DatabaseManager.db.Open();
+
+            OleDbCommand cdBilanPart = new OleDbCommand("SELECT * FROM BilanPart WHERE codeEvent=" + evt.Code, DatabaseManager.db);
+            OleDbDataReader dr = cdBilanPart.ExecuteReader();
+            while (dr.Read())
+            {
+                //PARTI POUR LES INVITES
+                foreach(int part in evt.Guests)
                 {
-                    //STOCK LA LIGNE DU RECEVEUR ET LA SUPPRIME DE LA TABLE ( POUR LA RAJOUTER APRES AVEC LES MODIFICATIONS)
-                    if (Convert.ToDouble(dtBilan.Rows[i]["Solde"].ToString()) < Convert.ToDouble(donneur["Solde"].ToString()))
+                    if (Convert.ToInt32(dr[1]) == part)
                     {
-                        donneur = dtBilan.Rows[i];
-                        indexDonneur = i;
-                    }
-                    //STOCK LA LIGNE DU DONNEUR ET LA SUPPRIME DE LA TABLE ( POUR LA RAJOUTER APRES AVEC LES MODIFICATIONS)
-                    if (Convert.ToDouble(dtBilan.Rows[i]["Solde"].ToString()) > Convert.ToDouble(receveur["Solde"].ToString()))
+                        res[part].GiveTo.Add(Convert.ToInt32(dr[2]),Convert.ToDecimal(dr[3]));
+                    }else if(Convert.ToInt32(dr[2]) == part)
                     {
-                        receveur = dtBilan.Rows[i];
-                        indexReceveur = i;
+                        res[part].ReceiveFrom.Add(Convert.ToInt32(dr[1].ToString()), Convert.ToDecimal(dr[3].ToString()));
                     }
                 }
 
-                cdBilanPart.Parameters.AddWithValue("codeDonneur", donneur["codeParticipant"]);
-                cdBilanPart.Parameters.AddWithValue("codeReceveur", receveur["codeParticipant"]);
+            }
+            return res.Values.ToList();
+        }
 
-                //1er CAS: SI LE SOLDE DU DONNEUR EST PLUS GRAND QUE SOLDE DU RECEVEUR
-                if (-Convert.ToDouble(donneur["Solde"].ToString()) > Convert.ToDouble(receveur["Solde"].ToString()))
+        public int GetExpenseCount()
+        {
+            int count = 0;
+            foreach (EventClass e in EventsList)
+            {
+                foreach (Expense expense in e.Expenses.Expenses)
                 {
-                    cdBilanPart.Parameters.AddWithValue("montant", Convert.ToDouble(receveur["Solde"].ToString()));
-
-                    //CHANGE LES SOLDE DANS LA LIGNE DU DONNEUR ET RECEVEUR
-                    donneur["Solde"] = Convert.ToDecimal(donneur["Solde"].ToString()) + Convert.ToDecimal(receveur["Solde"].ToString());
-                    receveur["Solde"] = 0;
-                }//2er CAS: SI LE SOLDE DU DONNEUR EST PLUS PETIT QUE SOLDE DU RECEVEUR
-                else
-                {
-                    cdBilanPart.Parameters.AddWithValue("montant", -Convert.ToDouble(donneur["Solde"].ToString()));
-                    //CHANGE LES SOLDE DANS LA LIGNE DU DONNEUR ET RECEVEUR
-                    donneur["Solde"] = 0;
-                    receveur["Solde"] = Convert.ToDecimal(receveur["Solde"].ToString()) + Convert.ToDecimal(donneur["Solde"].ToString());
+                    count++;
                 }
+<<<<<<< HEAD
                 cdBilanPart.ExecuteNonQuery();
 
                 Debug.WriteLine(dtBilan.Rows[indexDonneur]["Solde"]);
@@ -419,16 +503,23 @@ namespace ProbPotes.managers
                 //dtBilan.Rows[indexDonneur] = donneur;
                 //dtBilan.Rows[indexReceveur] = receveur;//JSP D'OU CA VIENT CA LA , COMMENT CA LECTURE SEUL ?????
                 //Debug.WriteLine(dtBilan.Rows[indexDonneur]["Solde"]);
+=======
+>>>>>>> 814bd14d746fe1da68d054bcd26e1d96d0673a77
             }
-            evt.SoldeOn = !evt.SoldeOn;
-            DatabaseManager.db.Close();
+            return count;
         }
 
-
-
-        public List<WOWTW> GetWOWTWs()
+        public Decimal GetExpenseSum()
         {
-            return null;
+            Decimal count = 0;
+            foreach (EventClass e in EventsList)
+            {
+                foreach (Expense expense in e.Expenses.Expenses)
+                {
+                    count+= expense.sum;
+                }
+            }
+            return count;
         }
 
     }

@@ -51,14 +51,14 @@ namespace ProbPotes.pages.events
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtWarningCreator = new System.Windows.Forms.Label();
             this.txtTitle2 = new System.Windows.Forms.Label();
+            this.psPayer = new ProbPotes.components.participants.ParticipantSelector();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.psRecipients = new ProbPotes.components.participants.ParticipantSelector();
             this.txtTitle3 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.txtSuccessfulDescription = new System.Windows.Forms.Label();
             this.iconSuccessful = new System.Windows.Forms.Label();
             this.txtTitleSuccess = new System.Windows.Forms.Label();
-            this.psPayer = new ProbPotes.components.participants.ParticipantSelector();
-            this.psRecipients = new ProbPotes.components.participants.ParticipantSelector();
             this.tabControl1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -136,7 +136,7 @@ namespace ProbPotes.pages.events
             // 
             // txtWarningTitle
             // 
-            this.txtWarningTitle.Location = new System.Drawing.Point(174, 117);
+            this.txtWarningTitle.Location = new System.Drawing.Point(174, 114);
             this.txtWarningTitle.Name = "txtWarningTitle";
             this.txtWarningTitle.Size = new System.Drawing.Size(583, 17);
             this.txtWarningTitle.TabIndex = 34;
@@ -165,7 +165,7 @@ namespace ProbPotes.pages.events
             // 
             this.iconDescription.AutoSize = true;
             this.iconDescription.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconDescription.Location = new System.Drawing.Point(6, 232);
+            this.iconDescription.Location = new System.Drawing.Point(6, 240);
             this.iconDescription.Name = "iconDescription";
             this.iconDescription.Size = new System.Drawing.Size(47, 19);
             this.iconDescription.TabIndex = 31;
@@ -207,7 +207,7 @@ namespace ProbPotes.pages.events
             // 
             this.iconTitle.AutoSize = true;
             this.iconTitle.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconTitle.Location = new System.Drawing.Point(5, 81);
+            this.iconTitle.Location = new System.Drawing.Point(5, 89);
             this.iconTitle.Name = "iconTitle";
             this.iconTitle.Size = new System.Drawing.Size(47, 19);
             this.iconTitle.TabIndex = 25;
@@ -234,7 +234,7 @@ namespace ProbPotes.pages.events
             // lblEuro
             // 
             this.lblEuro.AutoSize = true;
-            this.lblEuro.Location = new System.Drawing.Point(361, 162);
+            this.lblEuro.Location = new System.Drawing.Point(371, 160);
             this.lblEuro.Name = "lblEuro";
             this.lblEuro.Size = new System.Drawing.Size(13, 13);
             this.lblEuro.TabIndex = 22;
@@ -253,7 +253,7 @@ namespace ProbPotes.pages.events
             // 
             this.iconDate.AutoSize = true;
             this.iconDate.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconDate.Location = new System.Drawing.Point(6, 156);
+            this.iconDate.Location = new System.Drawing.Point(6, 164);
             this.iconDate.Name = "iconDate";
             this.iconDate.Size = new System.Drawing.Size(47, 19);
             this.iconDate.TabIndex = 20;
@@ -290,6 +290,15 @@ namespace ProbPotes.pages.events
             this.txtTitle2.TabIndex = 20;
             this.txtTitle2.Text = "Qui a payé ?";
             // 
+            // psPayer
+            // 
+            this.psPayer.BackColor = System.Drawing.Color.Transparent;
+            this.psPayer.Location = new System.Drawing.Point(3, 50);
+            this.psPayer.MultiSelection = false;
+            this.psPayer.Name = "psPayer";
+            this.psPayer.Size = new System.Drawing.Size(776, 301);
+            this.psPayer.TabIndex = 21;
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.psRecipients);
@@ -301,6 +310,14 @@ namespace ProbPotes.pages.events
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // psRecipients
+            // 
+            this.psRecipients.Location = new System.Drawing.Point(5, 50);
+            this.psRecipients.MultiSelection = true;
+            this.psRecipients.Name = "psRecipients";
+            this.psRecipients.Size = new System.Drawing.Size(776, 304);
+            this.psRecipients.TabIndex = 22;
             // 
             // txtTitle3
             // 
@@ -351,23 +368,6 @@ namespace ProbPotes.pages.events
             this.txtTitleSuccess.TabIndex = 4;
             this.txtTitleSuccess.Text = "Dépense ajoutée !";
             this.txtTitleSuccess.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // psPayer
-            // 
-            this.psPayer.BackColor = System.Drawing.Color.Transparent;
-            this.psPayer.Location = new System.Drawing.Point(3, 50);
-            this.psPayer.MultiSelection = false;
-            this.psPayer.Name = "psPayer";
-            this.psPayer.Size = new System.Drawing.Size(776, 301);
-            this.psPayer.TabIndex = 21;
-            // 
-            // psRecipients
-            // 
-            this.psRecipients.Location = new System.Drawing.Point(5, 50);
-            this.psRecipients.MultiSelection = true;
-            this.psRecipients.Name = "psRecipients";
-            this.psRecipients.Size = new System.Drawing.Size(776, 304);
-            this.psRecipients.TabIndex = 22;
             // 
             // AddExpenseDialog
             // 

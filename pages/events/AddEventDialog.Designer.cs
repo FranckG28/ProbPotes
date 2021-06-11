@@ -29,7 +29,6 @@ namespace ProbPotes.pages.events
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddEventDialog));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtWarningTitle = new System.Windows.Forms.Label();
@@ -48,15 +47,15 @@ namespace ProbPotes.pages.events
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtWarningCreator = new System.Windows.Forms.Label();
             this.txtTitle2 = new System.Windows.Forms.Label();
-            this.psCreator = new ProbPotes.components.participants.ParticipantSelector();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.psGuests = new ProbPotes.components.participants.ParticipantSelector();
+            this.txtTip = new System.Windows.Forms.Label();
             this.txtTitle3 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.txtSuccessfulDescription = new System.Windows.Forms.Label();
             this.iconSuccessful = new System.Windows.Forms.Label();
             this.txtTitleSuccess = new System.Windows.Forms.Label();
-            this.txtTip = new System.Windows.Forms.Label();
+            this.psCreator = new ProbPotes.components.participants.ParticipantSelector();
+            this.psGuests = new ProbPotes.components.participants.ParticipantSelector();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -102,7 +101,7 @@ namespace ProbPotes.pages.events
             // 
             // txtWarningTitle
             // 
-            this.txtWarningTitle.Location = new System.Drawing.Point(174, 117);
+            this.txtWarningTitle.Location = new System.Drawing.Point(174, 114);
             this.txtWarningTitle.Name = "txtWarningTitle";
             this.txtWarningTitle.Size = new System.Drawing.Size(583, 17);
             this.txtWarningTitle.TabIndex = 34;
@@ -131,7 +130,7 @@ namespace ProbPotes.pages.events
             // 
             this.iconDescription.AutoSize = true;
             this.iconDescription.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconDescription.Location = new System.Drawing.Point(6, 232);
+            this.iconDescription.Location = new System.Drawing.Point(6, 240);
             this.iconDescription.Name = "iconDescription";
             this.iconDescription.Size = new System.Drawing.Size(47, 19);
             this.iconDescription.TabIndex = 31;
@@ -172,7 +171,7 @@ namespace ProbPotes.pages.events
             // 
             this.iconTitle.AutoSize = true;
             this.iconTitle.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconTitle.Location = new System.Drawing.Point(5, 81);
+            this.iconTitle.Location = new System.Drawing.Point(5, 89);
             this.iconTitle.Name = "iconTitle";
             this.iconTitle.Size = new System.Drawing.Size(47, 19);
             this.iconTitle.TabIndex = 25;
@@ -209,7 +208,7 @@ namespace ProbPotes.pages.events
             // 
             this.iconDate.AutoSize = true;
             this.iconDate.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconDate.Location = new System.Drawing.Point(6, 156);
+            this.iconDate.Location = new System.Drawing.Point(6, 164);
             this.iconDate.Name = "iconDate";
             this.iconDate.Size = new System.Drawing.Size(47, 19);
             this.iconDate.TabIndex = 20;
@@ -246,20 +245,11 @@ namespace ProbPotes.pages.events
             this.txtTitle2.TabIndex = 20;
             this.txtTitle2.Text = "Qui est le créateur de l\'évènement ?";
             // 
-            // psCreator
-            // 
-            this.psCreator.BackColor = System.Drawing.Color.Transparent;
-            this.psCreator.Location = new System.Drawing.Point(3, 50);
-            this.psCreator.MultiSelection = false;
-            this.psCreator.Name = "psCreator";
-            this.psCreator.Size = new System.Drawing.Size(776, 301);
-            this.psCreator.TabIndex = 21;
-            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.txtTip);
-            this.tabPage3.Controls.Add(this.psGuests);
             this.tabPage3.Controls.Add(this.txtTitle3);
+            this.tabPage3.Controls.Add(this.psGuests);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -268,13 +258,14 @@ namespace ProbPotes.pages.events
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // psGuests
+            // txtTip
             // 
-            this.psGuests.Location = new System.Drawing.Point(5, 50);
-            this.psGuests.MultiSelection = true;
-            this.psGuests.Name = "psGuests";
-            this.psGuests.Size = new System.Drawing.Size(776, 304);
-            this.psGuests.TabIndex = 22;
+            this.txtTip.Location = new System.Drawing.Point(282, 50);
+            this.txtTip.Name = "txtTip";
+            this.txtTip.Size = new System.Drawing.Size(494, 29);
+            this.txtTip.TabIndex = 23;
+            this.txtTip.Text = "Les invités recevrons une notification par email";
+            this.txtTip.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtTitle3
             // 
@@ -326,14 +317,22 @@ namespace ProbPotes.pages.events
             this.txtTitleSuccess.Text = "Évènement ajouté !";
             this.txtTitleSuccess.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtTip
+            // psCreator
             // 
-            this.txtTip.Location = new System.Drawing.Point(282, 50);
-            this.txtTip.Name = "txtTip";
-            this.txtTip.Size = new System.Drawing.Size(494, 29);
-            this.txtTip.TabIndex = 23;
-            this.txtTip.Text = "Les invités recevrons une notification par email";
-            this.txtTip.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.psCreator.BackColor = System.Drawing.Color.Transparent;
+            this.psCreator.Location = new System.Drawing.Point(3, 50);
+            this.psCreator.MultiSelection = false;
+            this.psCreator.Name = "psCreator";
+            this.psCreator.Size = new System.Drawing.Size(776, 301);
+            this.psCreator.TabIndex = 21;
+            // 
+            // psGuests
+            // 
+            this.psGuests.Location = new System.Drawing.Point(5, 50);
+            this.psGuests.MultiSelection = true;
+            this.psGuests.Name = "psGuests";
+            this.psGuests.Size = new System.Drawing.Size(776, 304);
+            this.psGuests.TabIndex = 22;
             // 
             // AddEventDialog
             // 

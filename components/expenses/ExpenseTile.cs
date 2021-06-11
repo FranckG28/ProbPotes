@@ -19,6 +19,9 @@ namespace ProbPotes.components.expenses
         private Expense expense;
         private HoverController hover;
 
+        public delegate void Del(Expense e);
+        public Del ClickAction;
+
         public ExpenseTile()
         {
             InitializeComponent();
@@ -81,6 +84,11 @@ namespace ProbPotes.components.expenses
                     txtRecipients.Text = DatabaseManager.Participants.GetStringFromList(expense.recipients);
                 }
             }
+        }
+
+        private void ExpenseTile_Click(object sender, EventArgs e)
+        {
+            ClickAction?.DynamicInvoke(Expense);
         }
     }
 }

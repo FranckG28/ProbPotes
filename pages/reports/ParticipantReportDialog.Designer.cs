@@ -29,18 +29,19 @@ namespace ProbPotes.pages.reports
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ParticipantReportDialog));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.selectOwes = new ProbPotes.components.ProbPotesSelector();
             this.selectPaid = new ProbPotes.components.ProbPotesSelector();
+            this.btnExportToPDF = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 42);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(787, 338);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(787, 297);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // selectOwes
@@ -67,17 +68,32 @@ namespace ProbPotes.pages.reports
             this.selectPaid.TabIndex = 6;
             this.selectPaid.Title = "Dépenses payés";
             // 
+            // btnExportToPDF
+            // 
+            this.btnExportToPDF.FlatAppearance.BorderSize = 0;
+            this.btnExportToPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportToPDF.ForeColor = System.Drawing.Color.White;
+            this.btnExportToPDF.Image = ((System.Drawing.Image)(resources.GetObject("btnExportToPDF.Image")));
+            this.btnExportToPDF.Location = new System.Drawing.Point(3, 342);
+            this.btnExportToPDF.Name = "btnExportToPDF";
+            this.btnExportToPDF.Size = new System.Drawing.Size(223, 35);
+            this.btnExportToPDF.TabIndex = 34;
+            this.btnExportToPDF.Text = "    Exporter en PDF";
+            this.btnExportToPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnExportToPDF.UseVisualStyleBackColor = true;
+            this.btnExportToPDF.Click += new System.EventHandler(this.btnExportToPDF_Click);
+            // 
             // ParticipantReportDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnExportToPDF);
             this.Controls.Add(this.selectOwes);
             this.Controls.Add(this.selectPaid);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "ParticipantReportDialog";
             this.Size = new System.Drawing.Size(790, 380);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -86,5 +102,6 @@ namespace ProbPotes.pages.reports
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private components.ProbPotesSelector selectPaid;
         private components.ProbPotesSelector selectOwes;
+        private System.Windows.Forms.Button btnExportToPDF;
     }
 }

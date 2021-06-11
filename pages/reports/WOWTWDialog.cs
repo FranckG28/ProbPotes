@@ -1,9 +1,12 @@
 ﻿using ProbPotes.components;
+using ProbPotes.components.reports;
+using ProbPotes.managers;
 using ProbPotes.models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,13 +18,30 @@ namespace ProbPotes.pages.reports
     public partial class WOWTWDialog : UserControl, IDialogPage
     {
         public ProbPotesDialog ParentDialog;
-        public EventClass Event;
+        public EventClass eventClass;
 
         public WOWTWDialog(EventClass e)
         {
             InitializeComponent();
 
-            Event = e;
+            Event = e;            
+        }
+
+        public EventClass Event
+        {
+            get => eventClass;
+            set
+            {
+                eventClass = value;
+
+                List<WOWTW> wOWTWs = DatabaseManager.Events.GetWOWTWs(eventClass);
+                flowLayoutPanel1.Controls.Clear();
+                foreach(WOWTW wowtw in wOWTWs) 
+                {
+                    Debug.WriteLine(wowtw.ParticipantId);
+                    flowLayoutPanel1.Controls.Add(new WOWTWTile(wowtw));
+                }
+            }
         }
 
         public bool CanGoBack => false;

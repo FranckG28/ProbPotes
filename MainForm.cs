@@ -38,7 +38,7 @@ namespace ProbPotes
             InitializeComponent();
 
             // Ajout de l'ombre
-            new DropShadow().ApplyShadows(this);
+            new FormDropShadow().ApplyShadows(this);
 
             // Assigne la fonction closeApp à l'action Click du bouton fermer
             closeBtn1.ClickEvent = CloseApp;
@@ -76,7 +76,7 @@ namespace ProbPotes
 
         public void OpenAddExpense()
         {
-            ProbPotesDialog dialog = new ProbPotesDialog("Ajouter une dépense", 59161, new AddExpenseDialog(null), this);
+            ProbPotesDialog dialog = new ProbPotesDialog("Ajouter une dépense", 59161, new AddExpenseDialog(null, navigation.RefreshActualPage), this);
             DialogResult result = dialog.Open();
         }
 

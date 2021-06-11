@@ -47,13 +47,9 @@ namespace ProbPotes.pages.events
             boxDescription.Text = oldEvent.Description;
             dateStart.Value = oldEvent.StartDate;
             dateEnd.Value = oldEvent.EndDate;
-            psCreator.SelectedParticipants = new List<Participant>() { DatabaseManager.Participants.GetParticipant(oldEvent.CreatorCode) };
+            psCreator.SelectedParticipants = new List<int>() { oldEvent.CreatorCode };
             List<Participant> participants = new List<Participant>();
-            foreach(int i in oldEvent.Guests)
-            {
-                participants.Add(DatabaseManager.Participants.GetParticipant(i));
-            }
-            psGuests.SelectedParticipants = participants;
+            psGuests.SelectedParticipants = oldEvent.Guests;
 
             txtTitleSuccess.Text = "Évènement modifié";
         }
@@ -111,6 +107,8 @@ namespace ProbPotes.pages.events
                 icon.ForeColor = Colors.black;
             }
 
+            psCreator.SelectAction = CreatorClick;
+
         }
 
         public bool CanGoBack
@@ -142,7 +140,7 @@ namespace ProbPotes.pages.events
                     txtWarningCreator.Visible = psCreator.SelectedParticipants.Count == 0;
                     if (psCreator.SelectedParticipants.Count > 0)
                     {
-                        psGuests.SetExcludedParticipant(new List<Participant>() { psCreator.SelectedParticipants.First() });
+                        psGuests.SetExcludedParticipant(new List<int>() { psCreator.SelectedParticipants.First() });
                         tabControl1.SelectedIndex = value;
                     }
                 }
@@ -150,17 +148,15 @@ namespace ProbPotes.pages.events
                 {
                     // AJOUT DE L'EVENEMENT
 
-                    // Création de la liste des codes invités
-                    List<int> guests = new List<int>();
-                    foreach (Participant p in psGuests.SelectedParticipants)
-                    {
-                        guests.Add(p.Code);
-                    }
+                    // Création de la liste des invités avec le créateur inclus
+                    List<int> guests = psGuests.SelectedParticipants;
+                    if (!guests.Contains(psCreator.SelectedParticipants.First()))
+                        guests.Add(psCreator.SelectedParticipants.First());
 
                     EventClass newEvent = new EventClass(
                         editMode ? oldEvent.Code : DatabaseManager.Events.Events.Count + 1,
                         boxTitle.Text,
-                        psCreator.SelectedParticipants.First().Code,
+                        psCreator.SelectedParticipants.First(),
                         editMode ? oldEvent.SoldeOn : false,
                         boxDescription.Text,
                         dateStart.Value.Date,
@@ -174,6 +170,26 @@ namespace ProbPotes.pages.events
                     if (result)
                     {
                         // TODO : ENVOYER UN EMAIL A TOUT LE MONDE !!!! OU juste les nouveaux si modificaiton
+                             
+                        if (editMode)
+                        {
+                           // Mode modification : n'envoyer qu'aux nouveaux participant
+                           foreach(int code in newEvent.Guests)
+                            {
+                                if (!oldEvent.Guests.Contains(code)) {
+                                    SendMail(DatabaseManager.Participants.GetParticipant(code));
+                                }
+                            }
+                        } else
+                        {
+                            // Nouvel évènement : envoyer à tout le monde :
+                            foreach(int code in newEvent.Guests)
+                            {
+                                SendMail(DatabaseManager.Participants.GetParticipant(code));
+                            }
+                        }
+                        
+                        
                         txtSuccessfulDescription.Text = "L'évènement " + newEvent.Title + " a bien été enregistré !";
                         tabControl1.SelectedIndex = value;
                         RefreshMainForm?.DynamicInvoke();
@@ -190,6 +206,16 @@ namespace ProbPotes.pages.events
             }
         }
 
+        private void CreatorClick(int pCode)
+        {
+            ParentDialog.Navigate(Index + 1);
+        }
+
+        private void SendMail(Participant p)
+        {
+            Boolean mailSend = Email.SendMail(p.MailAddress, "objet du msg", "msg du mail");//JSP COMMENT FAIRE LA BOUCLE MAIS LA METHODE MAIL C'EST CELLE CI
+        }
+
         public int PageCount
         {
             get => tabControl1.TabCount;
@@ -197,7 +223,7 @@ namespace ProbPotes.pages.events
 
         public bool ShowBackBtn => true;
 
-        public bool ShowNextBtn => true;
+        public bool ShowNextBtn => !(Index == 1 && psCreator.SelectedParticipants.Count == 0);
 
         public ProbPotesDialog ParentController { set => ParentDialog = value; }
 

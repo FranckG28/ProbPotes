@@ -43,23 +43,12 @@ namespace ProbPotes.pages
             // Affichage des nombres 
             tileEvents.Number = DatabaseManager.Events.Events.Count.ToString();
             tileParticipants.Number = DatabaseManager.Participants.Participants.Count.ToString();
-            int expenseCount = 0;
-            decimal expenseAmount = 0;
-            List<EventClass> events = DatabaseManager.Events.Events;
-            foreach(EventClass e in events)
-            {
-                foreach(Expense expense in e.Expenses.Expenses)
-                {
-                    expenseCount++;
-                    expenseAmount += expense.sum;
-                }
-            }
-
-            tileExpenses.Number = expenseCount.ToString();
-            tileTotal.Number = expenseAmount.ToString() + " €";
+            tileExpenses.Number = DatabaseManager.Events.GetExpenseCount().ToString();
+            tileTotal.Number = DatabaseManager.Events.GetExpenseSum().ToString() + " €";
 
             // Affichage des évènements
             int i = 0;
+            List<EventClass> events = DatabaseManager.Events.Events;
             events.Reverse();
             foreach(EventClass e in events)
             {
@@ -78,7 +67,7 @@ namespace ProbPotes.pages
 
         public void OpenAddExpense(EventClass e)
         {
-            ProbPotesDialog dialog = new ProbPotesDialog("Ajouter une dépense à " + e.Title, 59161, new AddExpenseDialog(e), this.ParentForm);
+            ProbPotesDialog dialog = new ProbPotesDialog("Ajouter une dépense à " + e.Title, 59161, new AddExpenseDialog(e, ((MainForm)ParentForm).navigation.RefreshActualPage), this.ParentForm);
             DialogResult result = dialog.Open();
         }
 

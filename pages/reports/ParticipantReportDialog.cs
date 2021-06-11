@@ -31,6 +31,11 @@ namespace ProbPotes.pages.reports
             Participant = p;
             Event = e;
 
+            btnExportToPDF.Font = new Font(Fonts.book, 11);
+            btnExportToPDF.BackColor = Colors.blue;
+            btnExportToPDF.FlatAppearance.MouseOverBackColor = Colors.green;
+            btnExportToPDF.FlatAppearance.MouseDownBackColor = Colors.blue;
+
             // Calcul des totaux
             Decimal paid = 0;
             Decimal owes = 0;
@@ -50,14 +55,15 @@ namespace ProbPotes.pages.reports
 
             }
 
+
             // Selection des dépenses payés
             selectPaid.Selected = true;
             ShowPaidExpenses(null);
             selectPaid.action = ShowPaidExpenses;
             selectOwes.action = ShowOwesExpenses;
 
-            selectPaid.Title = PaidExpenses.Count + (PaidExpenses.Count == 1 ? " dépense payée (" + paid + " €)" : " dépenses payées (" + paid + " €)");
-            selectOwes.Title = OwesExpenses.Count + (OwesExpenses.Count == 1 ? " dépense bénéficiée (" + owes + " €)" : " dépenses bénéficiées (" + owes + " €)");
+            selectPaid.Title = PaidExpenses.Count + (PaidExpenses.Count == 1 ? " dépense payée (" + Decimal.Round(paid, 2) + " €)" : " dépenses payées (" + Decimal.Round(paid, 2) + " €)");
+            selectOwes.Title = OwesExpenses.Count + (OwesExpenses.Count == 1 ? " dépense bénéficiée (" + Decimal.Round(owes, 2) + " €)" : " dépenses bénéficiées (" + Decimal.Round(owes, 2) + " €)");
 
         }
 
@@ -127,5 +133,10 @@ namespace ProbPotes.pages.reports
             flowLayoutPanel1.Controls.Add(lbl);
         }
 
+        private void btnExportToPDF_Click(object sender, EventArgs e)
+        {
+            // TODO: Générer un PDF pour le participant Participant dans Event
+            GeneratePDF(Event);
+        }
     }
 }
