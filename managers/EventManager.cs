@@ -461,28 +461,28 @@ namespace ProbPotes.managers
                 //PARTI POUR LES INVITES
                 foreach(int part in evt.Guests)
                 {
-                    Dictionary<int, Decimal> giveTo = new Dictionary<int, decimal>();
-                    Dictionary<int, Decimal> receiveFrom = new Dictionary<int, decimal>();
+                    Dictionary<int, decimal> giveTo = new Dictionary<int, decimal>();
+                    Dictionary<int, decimal> receiveFrom = new Dictionary<int, decimal>();
                     if (dr[1].ToString() == part.ToString())
                     {
                         giveTo.Add(Convert.ToInt32(dr[2].ToString()),Convert.ToDecimal(dr[3].ToString()));
                     }else if(dr[2].ToString() == part.ToString())
                     {
-                        receiveFrom.Add(Convert.ToInt32(dr[1].ToString()), Convert.ToDecimal(dr[3].ToString());
+                        receiveFrom.Add(Convert.ToInt32(dr[1].ToString()), Convert.ToDecimal(dr[3].ToString()));
                     }
                     res.Add(new WOWTW(part, giveTo, receiveFrom));
                 }
 
                 //PARTIE POUR LE CREATEUR DE L'EVT ( JSP SI IL EST COMPRIS DANS LES INVITES OU NON MAIS AU KAOU J'AI FAIT CA )
-                Dictionary<int, Decimal> giveToCreator = new Dictionary<int, decimal>();
-                Dictionary<int, Decimal> receiveFromCreator = new Dictionary<int, decimal>();
+                Dictionary<int, decimal> giveToCreator = new Dictionary<int, decimal>();
+                Dictionary<int, decimal> receiveFromCreator = new Dictionary<int, decimal>();
                 if (dr[1].ToString() == evt.CreatorCode.ToString())
                 {
                     giveToCreator.Add(Convert.ToInt32(dr[2].ToString()), Convert.ToDecimal(dr[3].ToString()));
                 }
                 else if (dr[2].ToString() == evt.CreatorCode.ToString())
                 {
-                    receiveFromCreator.Add(Convert.ToInt32(dr[1].ToString()), Convert.ToDecimal(dr[3].ToString());
+                    receiveFromCreator.Add(Convert.ToInt32(dr[1].ToString()), Convert.ToDecimal(dr[3].ToString()));
                 }
                 res.Add(new WOWTW(evt.CreatorCode, giveToCreator, receiveFromCreator));
             }
