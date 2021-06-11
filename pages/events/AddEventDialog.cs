@@ -176,8 +176,8 @@ namespace ProbPotes.pages.events
                            // Mode modification : n'envoyer qu'aux nouveaux participant
                            foreach(int code in newEvent.Guests)
                             {
-                                if (!oldEvent.Guests.Contains(code)) {
-                                    SendMail(DatabaseManager.Participants.GetParticipant(code));
+                                if (!oldEvent.Guests.Contains(code) && code != newEvent.CreatorCode) {
+                                    Email.SendMail(DatabaseManager.Participants.GetParticipant(code), newEvent);
                                 }
                             }
                         } else
@@ -185,7 +185,10 @@ namespace ProbPotes.pages.events
                             // Nouvel évènement : envoyer à tout le monde :
                             foreach(int code in newEvent.Guests)
                             {
-                                SendMail(DatabaseManager.Participants.GetParticipant(code));
+                                if (code != newEvent.CreatorCode)
+                                {
+                                    Email.SendMail(DatabaseManager.Participants.GetParticipant(code), newEvent);
+                                }
                             }
                         }
                         
@@ -209,11 +212,6 @@ namespace ProbPotes.pages.events
         private void CreatorClick(int pCode)
         {
             ParentDialog.Navigate(Index + 1);
-        }
-
-        private void SendMail(Participant p)
-        {
-            Boolean mailSend = Email.SendMail(p.MailAddress, "objet du msg", "msg du mail");//JSP COMMENT FAIRE LA BOUCLE MAIS LA METHODE MAIL C'EST CELLE CI
         }
 
         public int PageCount

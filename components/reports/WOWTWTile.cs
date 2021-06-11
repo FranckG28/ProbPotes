@@ -113,9 +113,10 @@ namespace ProbPotes.components.reports
             lbl.AutoSize = false;
             lbl.Size = new Size(flowLayoutPanel1.Width - 10, 30);
             lbl.TextAlign = ContentAlignment.MiddleLeft;
-            lbl.Font = new Font(Fonts.book, 12);
+            lbl.Font = new Font(Fonts.book, 10);
             lbl.ForeColor = Colors.black;
             lbl.Padding = new Padding(5);
+            lbl.AutoEllipsis = true;
 
             Participant p = DatabaseManager.Participants.GetParticipant(pCode);
             String name = p.FirstName + " " + p.Name.ToUpper();
