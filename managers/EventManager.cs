@@ -262,7 +262,9 @@ namespace ProbPotes.managers
 
         public void CreateReport(EventClass evt)
         {
-            DatabaseManager.db.Open();
+
+            if (DatabaseManager.db.State == ConnectionState.Closed)
+                DatabaseManager.db.Open();
 
             DataTable dtBilan = new DataTable();
 
@@ -450,9 +452,13 @@ namespace ProbPotes.managers
             this.UpdateEvent(evt);
             DatabaseManager.db.Close();
         }
+
         public List<WOWTW> GetWOWTWs(EventClass evt)
         {
             List<WOWTW> res = new List<WOWTW>();
+
+            if (DatabaseManager.db.State == ConnectionState.Closed)
+                DatabaseManager.db.Open();
 
             OleDbCommand cdBilanPart = new OleDbCommand("SELECT * FROM BilanPart WHERE codeEvent=" + evt.Code, DatabaseManager.db);
             OleDbDataReader dr = cdBilanPart.ExecuteReader();
@@ -463,10 +469,10 @@ namespace ProbPotes.managers
                 {
                     Dictionary<int, decimal> giveTo = new Dictionary<int, decimal>();
                     Dictionary<int, decimal> receiveFrom = new Dictionary<int, decimal>();
-                    if (dr[1].ToString() == part.ToString())
+                    if (Convert.ToInt32(dr[1]) == part)
                     {
-                        giveTo.Add(Convert.ToInt32(dr[2].ToString()),Convert.ToDecimal(dr[3].ToString()));
-                    }else if(dr[2].ToString() == part.ToString())
+                        giveTo.Add(Convert.ToInt32(dr[2]),Convert.ToDecimal(dr[3]));
+                    }else if(Convert.ToInt32(dr[2]) == part)
                     {
                         receiveFrom.Add(Convert.ToInt32(dr[1].ToString()), Convert.ToDecimal(dr[3].ToString()));
                     }

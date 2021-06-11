@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProbPotes.models
 {
-    class WOWTW
+    public class WOWTW
     {
 
         public int ParticipantId;
