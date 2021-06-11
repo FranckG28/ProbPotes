@@ -10,7 +10,7 @@ using System.IO;
 
 namespace ProbPotes.services
 {
-    class generatePDF
+    class GeneratePDF
     {
         public Boolean PDFEvent(EventClass evt)
         {
