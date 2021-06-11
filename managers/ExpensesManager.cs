@@ -46,7 +46,47 @@ namespace ProbPotes.managers
         // Retourne true si l'ajout a réussi
         public Boolean AddExpense(Expense expense)
         {
-            return false;
+            try
+            {
+                OleDbCommand insertExpense = new OleDbCommand("INSERT INTO Depenses (numDepense,description,montant,dateDepense,commentaire,codeEvent,codePart)" +
+                    "                                       VALUES(?,?,?,?,?,?,?)", DatabaseManager.db);
+
+                insertExpense.Parameters.Add(new OleDbParameter("numDepense", OleDbType.Integer)).Value = expense.code;
+                insertExpense.Parameters.Add(new OleDbParameter("description", OleDbType.WChar)).Value = expense.description;
+                insertExpense.Parameters.Add(new OleDbParameter("montant", OleDbType.Currency)).Value = expense.sum;
+                insertExpense.Parameters.Add(new OleDbParameter("dateDepense", OleDbType.Date)).Value = expense.date;
+                insertExpense.Parameters.Add(new OleDbParameter("commentaire", OleDbType.WChar)).Value = expense.comment;
+                insertExpense.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = expense.eventCode;
+                insertExpense.Parameters.Add(new OleDbParameter("codePart", OleDbType.Integer)).Value = expense.creatorCode;
+
+                int resultInsertExpense = insertExpense.ExecuteNonQuery();
+
+                OleDbCommand insertBeneficiaire = new OleDbCommand("INSERT INTO Beneficiaires(numDepense,codePart)" +
+    "                                             VALUES(?,?)", DatabaseManager.db);
+
+                insertBeneficiaire.Parameters.Add(new OleDbParameter("numDepense", OleDbType.Integer)).Value = expense.code;
+                OleDbParameter codePart = new OleDbParameter("codePart", OleDbType.Integer);
+
+                foreach(int part in expense.recipients)
+                {
+                    codePart.Value = part;
+                    insertBeneficiaire.Parameters.Add(codePart);
+                    try
+                    {
+                        insertBeneficiaire.ExecuteNonQuery();
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                }
+
+                return resultInsertExpense > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         // Procédure de mise à jour d'une dépense
