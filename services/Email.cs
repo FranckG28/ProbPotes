@@ -253,13 +253,11 @@ namespace ProbPotes.services
 
             try
             {
-                MailMessage mail;
-
                 SmtpClient client = new SmtpClient();
 
-
                 //PARAMETRE DU MAIL
-                mail = new MailMessage(from, to, title, message);
+                MailMessage mail = new MailMessage(from, to, title, message);
+                mail.IsBodyHtml = true;
                 client.Port = Port;
                 client.Host = SMTP;
                 client.EnableSsl = true;
