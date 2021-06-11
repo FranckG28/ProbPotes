@@ -148,6 +148,11 @@ namespace ProbPotes.pages.events
                 {
                     // AJOUT DE L'EVENEMENT
 
+                    // Création de la liste des invités avec le créateur inclus
+                    List<int> guests = psGuests.SelectedParticipants;
+                    if (!guests.Contains(psCreator.SelectedParticipants.First()))
+                        guests.Add(psCreator.SelectedParticipants.First());
+
                     EventClass newEvent = new EventClass(
                         editMode ? oldEvent.Code : DatabaseManager.Events.Events.Count + 1,
                         boxTitle.Text,
@@ -156,7 +161,7 @@ namespace ProbPotes.pages.events
                         boxDescription.Text,
                         dateStart.Value.Date,
                         dateEnd.Value.Date,
-                        psGuests.SelectedParticipants
+                        guests
                         );
 
                     bool result = editMode ? DatabaseManager.Events.UpdateEvent(newEvent) : DatabaseManager.Events.AddEvent(newEvent);

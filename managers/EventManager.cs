@@ -455,7 +455,13 @@ namespace ProbPotes.managers
 
         public List<WOWTW> GetWOWTWs(EventClass evt)
         {
-            List<WOWTW> res = new List<WOWTW>();
+            Dictionary<int, WOWTW> res = new Dictionary<int, WOWTW>();
+
+            // Création d'un WOWTW par participant :
+            foreach (int part in evt.Guests)
+            {
+                res.Add(part, new WOWTW(part, new Dictionary<int, decimal>(), new Dictionary<int, decimal>()));
+            }
 
             if (DatabaseManager.db.State == ConnectionState.Closed)
                 DatabaseManager.db.Open();
@@ -467,32 +473,17 @@ namespace ProbPotes.managers
                 //PARTI POUR LES INVITES
                 foreach(int part in evt.Guests)
                 {
-                    Dictionary<int, decimal> giveTo = new Dictionary<int, decimal>();
-                    Dictionary<int, decimal> receiveFrom = new Dictionary<int, decimal>();
                     if (Convert.ToInt32(dr[1]) == part)
                     {
-                        giveTo.Add(Convert.ToInt32(dr[2]),Convert.ToDecimal(dr[3]));
+                        res[part].GiveTo.Add(Convert.ToInt32(dr[2]),Convert.ToDecimal(dr[3]));
                     }else if(Convert.ToInt32(dr[2]) == part)
                     {
-                        receiveFrom.Add(Convert.ToInt32(dr[1].ToString()), Convert.ToDecimal(dr[3].ToString()));
+                        res[part].ReceiveFrom.Add(Convert.ToInt32(dr[1].ToString()), Convert.ToDecimal(dr[3].ToString()));
                     }
-                    res.Add(new WOWTW(part, giveTo, receiveFrom));
                 }
 
-                //PARTIE POUR LE CREATEUR DE L'EVT ( JSP SI IL EST COMPRIS DANS LES INVITES OU NON MAIS AU KAOU J'AI FAIT CA )
-                Dictionary<int, decimal> giveToCreator = new Dictionary<int, decimal>();
-                Dictionary<int, decimal> receiveFromCreator = new Dictionary<int, decimal>();
-                if (dr[1].ToString() == evt.CreatorCode.ToString())
-                {
-                    giveToCreator.Add(Convert.ToInt32(dr[2].ToString()), Convert.ToDecimal(dr[3].ToString()));
-                }
-                else if (dr[2].ToString() == evt.CreatorCode.ToString())
-                {
-                    receiveFromCreator.Add(Convert.ToInt32(dr[1].ToString()), Convert.ToDecimal(dr[3].ToString()));
-                }
-                res.Add(new WOWTW(evt.CreatorCode, giveToCreator, receiveFromCreator));
             }
-            return res;
+            return res.Values.ToList();
         }
 
         public int GetExpenseCount()
