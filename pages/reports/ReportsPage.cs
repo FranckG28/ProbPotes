@@ -170,14 +170,28 @@ namespace ProbPotes.pages
 
         private void btnExportToPDF_Click(object sender, EventArgs e)
         {
-        // TODO: Exporter tous les participants à SelectedEvent en PDF :)
-        //MessageBox.Show(Path.Combine(Environment.CurrentDirectory,"\\..\\..\\BilanPDF\\Bilan_.pdf"));
+            if (!SelectedEvent.SoldeOn)
+            {
+                DatabaseManager.Events.CreateReport(SelectedEvent);
+                ShowReport(SelectedEvent);
+            }
+            else
+            {
+                ProbPotesDialog dialog = new ProbPotesDialog("Qui doit qui à quoi ? ", 59897, new WOWTWDialog(SelectedEvent), this.ParentForm);
+                DialogResult result = dialog.Open();
+            }
+        }
+
+        private void btnExportToPDF_Click(object sender, EventArgs e)
+        {
+            // TODO: Exporter tous les participants à SelectedEvent en PDF :)
+            //MessageBox.Show(Path.Combine(Environment.CurrentDirectory,"\\..\\..\\BilanPDF\\Bilan_.pdf"));
             try
             {
-                string outFile = Environment.CurrentDirectory+@"\\..\\..\\BilanPDF\\BILAN_" + SelectedEvent.Title + ".pdf";
+                string outFile = Environment.CurrentDirectory + @"\\..\\..\\BilanPDF\\BILAN_" + SelectedEvent.Title + ".pdf";
                 //CREATION DU DOCUMENT
                 Document doc = new Document();
-                PdfWriter.GetInstance(doc,new FileStream(outFile,FileMode.Create));
+                PdfWriter.GetInstance(doc, new FileStream(outFile, FileMode.Create));
 
                 doc.Open();
 
@@ -188,19 +202,19 @@ namespace ProbPotes.pages
 
                 //POLICE D'ECRITURE
                 iTextSharp.text.Font h1 = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 20f, iTextSharp.text.Font.BOLD, blue);
-                iTextSharp.text.Font h2= new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 18f, iTextSharp.text.Font.UNDERLINE, blue);
-                iTextSharp.text.Font tr = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 16f, iTextSharp.text.Font.UNDEFINED,blanc);
+                iTextSharp.text.Font h2 = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 18f, iTextSharp.text.Font.UNDERLINE, blue);
+                iTextSharp.text.Font tr = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 16f, iTextSharp.text.Font.UNDEFINED, blanc);
 
                 //PAGE
 
                 //Titre
-                Paragraph titre = new Paragraph("Bilan",h1);
+                Paragraph titre = new Paragraph("Bilan", h1);
                 titre.Alignment = Element.ALIGN_CENTER;
                 doc.Add(titre);
 
                 doc.Close();
-                Process.Start(@"cmd.exe", @"/c" + outFile);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
