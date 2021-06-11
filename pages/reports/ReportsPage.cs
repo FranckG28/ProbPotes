@@ -168,7 +168,7 @@ namespace ProbPotes.pages
             }
         }
 
-        private void btnExportToPDF_Click(object sender, EventArgs e)
+        private void btn_QDQAQ_Click(object sender, EventArgs e)
         {
             if (!SelectedEvent.SoldeOn)
             {
