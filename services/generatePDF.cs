@@ -22,7 +22,7 @@ namespace ProbPotes.services
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
 
-                string outFile = path+ @"\\BILAN_"+ part.Name + ".pdf";
+                string outFile = path+ @"\\BILAN_"+ part.Name+"_"+part.FirstName + ".pdf";
                 //CREATION DU DOCUMENT
                 Document doc = new Document(PageSize.A4,25f,25f,1f,25f);
                 PdfWriter.GetInstance(doc, new FileStream(outFile, FileMode.Create));
