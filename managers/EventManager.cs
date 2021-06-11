@@ -486,6 +486,32 @@ namespace ProbPotes.managers
             return res.Values.ToList();
         }
 
+        public WOWTW GetWOWTWsPart(EventClass evt, Participant part)
+        {
+            Dictionary<int, Decimal> giveTo = new Dictionary<int, decimal>();
+            Dictionary<int, Decimal> receiveFrom = new Dictionary<int, decimal>();
+
+            if (DatabaseManager.db.State == ConnectionState.Closed)
+                DatabaseManager.db.Open();
+
+            OleDbCommand cdBilanPart = new OleDbCommand("SELECT * FROM BilanPart WHERE codeEvent=" + evt.Code, DatabaseManager.db);
+            OleDbDataReader dr = cdBilanPart.ExecuteReader();
+            while (dr.Read())
+            {
+                if (Convert.ToInt32(dr[1]) == part.Code)
+                {
+                    giveTo.Add(Convert.ToInt32(dr[2]), Convert.ToDecimal(dr[3]));
+                }
+                else if (Convert.ToInt32(dr[2]) == part.Code)
+                {
+                    receiveFrom.Add(Convert.ToInt32(dr[1].ToString()), Convert.ToDecimal(dr[3].ToString()));
+                }
+            }
+
+            WOWTW res = new WOWTW(part.Code, giveTo, receiveFrom);
+            return res;
+        }
+
         public int GetExpenseCount()
         {
             int count = 0;
