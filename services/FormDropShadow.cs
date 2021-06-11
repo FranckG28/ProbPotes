@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace ProbPotes.services
 {
-    public class DropShadow
+    public class FormDropShadow
     {
         #region Shadowing
 

@@ -175,8 +175,26 @@ namespace ProbPotes.pages.events
                     if (result)
                     {
                         // TODO : ENVOYER UN EMAIL A TOUT LE MONDE !!!! OU juste les nouveaux si modificaiton
-                        Email email = new Email();
-                        Boolean mailSend= email.sendMail("destinataire", "objet du msg", "msg du mail");//JSP COMMENT FAIRE LA BOUCLE MAIS LA METHODE MAIL C'EST CELLE CI
+                             
+                        if (editMode)
+                        {
+                           // Mode modification : n'envoyer qu'aux nouveaux participant
+                           foreach(int code in newEvent.Guests)
+                            {
+                                if (!oldEvent.Guests.Contains(code)) {
+                                    SendMail(DatabaseManager.Participants.GetParticipant(code));
+                                }
+                            }
+                        } else
+                        {
+                            // Nouvel évènement : envoyer à tout le monde :
+                            foreach(int code in newEvent.Guests)
+                            {
+                                SendMail(DatabaseManager.Participants.GetParticipant(code));
+                            }
+                        }
+                        
+                        
                         txtSuccessfulDescription.Text = "L'évènement " + newEvent.Title + " a bien été enregistré !";
                         tabControl1.SelectedIndex = value;
                         RefreshMainForm?.DynamicInvoke();
@@ -191,6 +209,11 @@ namespace ProbPotes.pages.events
                     tabControl1.SelectedIndex = value;
                 }
             }
+        }
+
+        private void SendMail(Participant p)
+        {
+            Boolean mailSend = Email.SendMail(p.MailAddress, "objet du msg", "msg du mail");//JSP COMMENT FAIRE LA BOUCLE MAIS LA METHODE MAIL C'EST CELLE CI
         }
 
         public int PageCount

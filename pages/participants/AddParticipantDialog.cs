@@ -138,10 +138,10 @@ namespace ProbPotes.pages.participants
                             {
                                 RefreshParent();
                             }
+                        } else
+                        {
+                            MessageBox.Show("Impossible d'enregistrer le participant !");
                         }
-                    } else
-                    {
-                        MessageBox.Show("Impossible d'enregistrer le participant !");
                     }
                     
                 } else
