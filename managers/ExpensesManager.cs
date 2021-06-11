@@ -93,7 +93,55 @@ namespace ProbPotes.managers
         // Retourne true si la mise à jour a reussi
         public Boolean UpdateExpense(Expense expense)
         {
-            return false;
+            try
+            {
+                OleDbCommand updateExpense = new OleDbCommand("UPDATE Depenses SET description = ? , montant = ?, dateDepense= ? , commentaire = ? , codeEvent = ? , codePart = ? WHERE numDepense = ?", DatabaseManager.db);
+
+                updateExpense.Parameters.Add(new OleDbParameter("description", OleDbType.WChar)).Value = expense.description;
+                updateExpense.Parameters.Add(new OleDbParameter("montant", OleDbType.Currency)).Value = expense.sum;
+                updateExpense.Parameters.Add(new OleDbParameter("dateDepense", OleDbType.Date)).Value = expense.date;
+                updateExpense.Parameters.Add(new OleDbParameter("commentaire", OleDbType.WChar)).Value = expense.comment;
+                updateExpense.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = expense.eventCode;
+                updateExpense.Parameters.Add(new OleDbParameter("codePart", OleDbType.Integer)).Value = expense.creatorCode;
+                updateExpense.Parameters.Add(new OleDbParameter("numDepense", OleDbType.Integer)).Value = expense.code;
+
+                int resultUpdateExpense = updateExpense.ExecuteNonQuery();
+
+                if(resultUpdateExpense!=1) throw new Exception("Impossible de mettre à jour la dépense (" + resultUpdateExpense + ")");
+
+                OleDbCommand deletePart = new OleDbCommand("DELETE FROM Beneficiares WHERE numDepense=" + expense.code, DatabaseManager.db);
+                int resultDeletePart = deletePart.ExecuteNonQuery();
+
+                if(resultDeletePart==0) throw new Exception("Impossible de supprimer les Participant a la dépense (" + resultUpdateExpense + ")");
+
+
+                OleDbCommand insertBeneficiaire = new OleDbCommand("INSERT INTO Beneficiaires(numDepense,codePart)" +
+    "                                             VALUES(?,?)", DatabaseManager.db);
+
+                insertBeneficiaire.Parameters.Add(new OleDbParameter("numDepense", OleDbType.Integer)).Value = expense.code;
+                OleDbParameter codePart = new OleDbParameter("codePart", OleDbType.Integer);
+
+                foreach (int part in expense.recipients)
+                {
+                    codePart.Value = part;
+                    insertBeneficiaire.Parameters.Add(codePart);
+                    try
+                    {
+                        insertBeneficiaire.ExecuteNonQuery();
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         // Procédure de suppression d'une dépense
