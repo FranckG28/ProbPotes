@@ -20,7 +20,7 @@ namespace ProbPotes.services
             {
                 string outFile = Environment.CurrentDirectory + @"\\..\\..\\BilanPDF\\BILAN_" + evt.Title + "_" + part.Name + ".pdf";
                 //CREATION DU DOCUMENT
-                Document doc = new Document();
+                Document doc = new Document(PageSize.A4,25f,25f,1f,25f);
                 PdfWriter.GetInstance(doc, new FileStream(outFile, FileMode.Create));
 
                 doc.Open();
@@ -40,10 +40,18 @@ namespace ProbPotes.services
                 iTextSharp.text.Font pBlack = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12f, iTextSharp.text.Font.UNDEFINED, noir);
                 iTextSharp.text.Font th = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12f, iTextSharp.text.Font.BOLD, blanc);
                 iTextSharp.text.Font td = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 10f, iTextSharp.text.Font.UNDEFINED, blanc);
+                iTextSharp.text.Font response = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 14f, iTextSharp.text.Font.BOLD, noir);
+
 
                 //PAGE
+                Paragraph space = new Paragraph("\n");
 
                 //HEADER
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(@"C:\Users\hsche\Desktop\ProbPotes.png");
+                logo.ScalePercent(15);
+                logo.Alignment = Element.ALIGN_RIGHT;
+                doc.Add(logo);
+
                 Paragraph titre = new Paragraph("Bilan", title);
                 titre.Alignment = Element.ALIGN_CENTER;
                 doc.Add(titre);
@@ -52,23 +60,26 @@ namespace ProbPotes.services
                 eventName.Alignment = Element.ALIGN_LEFT;
                 doc.Add(eventName);
 
-                Paragraph space = new Paragraph("\n");
+
                 doc.Add(space);
 
-                Paragraph debut = new Paragraph("Date de début: " + evt.StartDate.ToString(), pBlackBold);
-                debut.Alignment = Element.ALIGN_LEFT;
-                debut.IndentationLeft = 10f;
-                doc.Add(debut);
+                Chunk startDate = new Chunk("\t Date de début: ", pBlack);
+                doc.Add(startDate);
 
-                Paragraph fin = new Paragraph("Date de fin: " + evt.EndDate.ToString(), pBlackBold);
-                fin.Alignment = Element.ALIGN_LEFT;
-                fin.IndentationLeft = 10f;
-                doc.Add(fin);
+                Chunk startDateRes = new Chunk(evt.StartDate.ToString() + "\n", response);
+                doc.Add(startDateRes);
 
-                Paragraph desc = new Paragraph("Description: " + evt.Description.ToString(), pBlackBold);
-                desc.Alignment = Element.ALIGN_LEFT;
-                desc.IndentationLeft = 10f;
+                Chunk endDate = new Chunk("\t Date de Fin: ", pBlack);
+                doc.Add(endDate);
+
+                Chunk endDateRes = new Chunk(evt.EndDate.ToString()+"\n", response);
+                doc.Add(endDateRes);
+
+                Chunk desc = new Chunk("\t Description: ", pBlack);
                 doc.Add(desc);
+
+                Chunk descRes = new Chunk(evt.Description + "\n", response);
+                doc.Add(descRes);
 
                 doc.Add(space);
                 doc.Add(space);
@@ -106,15 +117,17 @@ namespace ProbPotes.services
 
                 //PARTICIPANT + NB DE PARTS
 
-                Paragraph participant = new Paragraph("Participant: " + part.Name + " " + part.FirstName, pBlackBold);
-                participant.Alignment = Element.ALIGN_LEFT;
-                participant.IndentationLeft = 20f;
-                doc.Add(participant);
+                Chunk name = new Chunk("\t Participant: ", pBlack);
+                doc.Add(name);
 
-                Paragraph nbpart = new Paragraph("Nombre de parts: " + part.Shares, nbPart);
-                nbpart.Alignment = Element.ALIGN_LEFT;
-                nbpart.IndentationLeft = 20f;
-                doc.Add(nbpart);
+                Chunk nameRes = new Chunk(part.Name+" "+part.FirstName + "\n", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 18f, iTextSharp.text.Font.BOLD, noir));
+                doc.Add(nameRes);
+
+                Chunk nombrepart = new Chunk("\t Nombre de parts: ", pBlack);
+                doc.Add(nombrepart);
+
+                Chunk nombrepartRes = new Chunk(part.Shares.ToString()+ "\n", response);
+                doc.Add(nombrepartRes);
 
                 doc.Add(space);
                 doc.Add(space);
@@ -123,7 +136,6 @@ namespace ProbPotes.services
 
                 //TABLEAU DEPENSE PAYE
                 Paragraph titleDepense = new Paragraph("Dépense payé: ", h3);
-                participant.Alignment = Element.ALIGN_LEFT;
                 doc.Add(titleDepense);
 
                 doc.Add(space);
@@ -169,7 +181,6 @@ namespace ProbPotes.services
 
                 //TABLEAU DEPENSE BENEFICIARE
                 Paragraph titlebeneficiaire = new Paragraph("Dépense bénéficié: ", h3);
-                participant.Alignment = Element.ALIGN_LEFT;
                 doc.Add(titlebeneficiaire);
 
                 doc.Add(space);
