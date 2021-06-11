@@ -364,7 +364,7 @@ namespace ProbPotes.managers
             OleDbParameter montant = new OleDbParameter("montant", OleDbType.Currency);
 
             Boolean allSoldeAt0 = true;
-            while (allSoldeAt0)
+            while (allSoldeAt0 && !evt.SoldeOn)
             {
                 //ON PREND COMME 1er VALEUR LA DATAROW 0 EN GUISE DE TEST POUR LA 1er COMPARAISON
                 int indexDonneur = 0;
@@ -446,7 +446,8 @@ namespace ProbPotes.managers
                     allSoldeAt0 = false;
                 }
             }
-            //TODO : DIRE QUE LE SOLDE EST COLTURE !
+            evt.SoldeOn = true;
+            this.UpdateEvent(evt);
             DatabaseManager.db.Close();
         }
         public List<WOWTW> GetWOWTWs()
