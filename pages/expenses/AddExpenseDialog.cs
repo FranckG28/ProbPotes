@@ -20,68 +20,21 @@ namespace ProbPotes.pages.events
 
         private EventClass SelectedEvent;
         private ProbPotesDialog ParentDialog;
-        private Participant Payer;
 
-        public AddExpenseDialog(EventClass eventClass)
+        private Expense oldExpense;
+        private bool editMode = false;
+
+        public delegate void Del();
+        private Del RefreshMainForm;
+
+        public AddExpenseDialog(EventClass eventClass, Del refresh)
         {
             InitializeComponent();
 
             this.SelectedEvent = eventClass;
+            this.RefreshMainForm = refresh;
 
-            // Cacher les onglets
-            tabControl1.Appearance = TabAppearance.FlatButtons;
-            tabControl1.ItemSize = new Size(0, 1);
-            tabControl1.SizeMode = TabSizeMode.Fixed;
-
-            // Styles
-            List<Label> labels = new List<Label>() { lblDescription, lblEndDate, lblAmount, lblTitle, txtSuccessfulDescription};
-            foreach(Label lbl in labels)
-            {
-                ProbPotesDialog.ApplyLabelStyle(lbl);
-            }
-
-            List<Label> titles = new List<Label>() { txtTitle1, txtTitle2, txtTitle3, txtTitleSuccess, txtTitle0 };
-            foreach(Label title in titles)
-            {
-                ProbPotesDialog.ApplyTitleStyle(title);
-            }
-
-            List<TextBox> boxes = new List<TextBox>() { boxDescription, boxTitle, boxAmount };
-            foreach(TextBox box in boxes)
-            {
-                ProbPotesDialog.ApplyTextBoxStyle(box);
-            }
-
-            List<DateTimePicker> dates = new List<DateTimePicker>() { date };
-            foreach (DateTimePicker date in dates)
-            {
-                ProbPotesDialog.ApplyDatePickerStyle(date);
-            }
-
-            List<Label> warnings = new List<Label>() { txtWarningCreator, txtWarningTitle };
-            foreach(Label lbl in warnings)
-            {
-                lbl.ForeColor = Colors.red;
-                lbl.Font = new Font(Fonts.book, 12);
-                lbl.Visible = false;
-            }
-
-            lblEuro.Font = new Font(Fonts.medium, 14);
-            lblEuro.ForeColor = Colors.grey;
-
-            // Icones
-            iconDate.Text = char.ConvertFromUtf32(59161);
-            iconTitle.Text = char.ConvertFromUtf32(59151);
-            iconDescription.Text = char.ConvertFromUtf32(59959);
-            iconSuccessful.Text = char.ConvertFromUtf32(0xE73E);
-
-            List<Label> icons = new List<Label>() {iconDate, iconDescription, iconTitle };
-            foreach(Label icon in icons)
-            {
-                icon.ForeColor = Colors.black;
-            }
-
-            iconSuccessful.ForeColor = Colors.blue;
+            Init();
 
             // Affichage de la liste des évènements
             List<EventClass> eventList = DatabaseManager.Events.Events;
@@ -97,9 +50,91 @@ namespace ProbPotes.pages.events
                 }
             }
 
+        }
+
+        public AddExpenseDialog(EventClass eventClass, Del refresh, Expense expense)
+        {
+            InitializeComponent();
+
+            this.SelectedEvent = eventClass;
+            this.RefreshMainForm = refresh;
+            this.oldExpense = expense;
+            this.editMode = true;
+
+            Init();
+
+            // Suppression de la première page
+            tabControl1.TabPages.RemoveAt(0);
+
+            // Chargement des infos de la dépense
+            boxTitle.Text = expense.description;
+            boxDescription.Text = expense.comment;
+            date.Value = expense.date;
+            boxAmount.Text = expense.sum.ToString();
+            psPayer.SelectedParticipants = new List<int>() { expense.creatorCode };
+            psRecipients.SelectedParticipants = expense.recipients;
+               
+        }
+
+        private void Init()
+        {
+            // Cacher les onglets
+            tabControl1.Appearance = TabAppearance.FlatButtons;
+            tabControl1.ItemSize = new Size(0, 1);
+            tabControl1.SizeMode = TabSizeMode.Fixed;
+
+            // Styles
+            List<Label> labels = new List<Label>() { lblDescription, lblEndDate, lblAmount, lblTitle, txtSuccessfulDescription };
+            foreach (Label lbl in labels)
+            {
+                ProbPotesDialog.ApplyLabelStyle(lbl);
+            }
+
+            List<Label> titles = new List<Label>() { txtTitle1, txtTitle2, txtTitle3, txtTitleSuccess, txtTitle0 };
+            foreach (Label title in titles)
+            {
+                ProbPotesDialog.ApplyTitleStyle(title);
+            }
+
+            List<TextBox> boxes = new List<TextBox>() { boxDescription, boxTitle, boxAmount };
+            foreach (TextBox box in boxes)
+            {
+                ProbPotesDialog.ApplyTextBoxStyle(box);
+            }
+
+            List<DateTimePicker> dates = new List<DateTimePicker>() { date };
+            foreach (DateTimePicker date in dates)
+            {
+                ProbPotesDialog.ApplyDatePickerStyle(date);
+            }
+
+            List<Label> warnings = new List<Label>() { txtWarningCreator, txtWarningTitle };
+            foreach (Label lbl in warnings)
+            {
+                lbl.ForeColor = Colors.red;
+                lbl.Font = new Font(Fonts.book, 12);
+                lbl.Visible = false;
+            }
+
+            lblEuro.Font = new Font(Fonts.medium, 14);
+            lblEuro.ForeColor = Colors.grey;
+
+            // Icones
+            iconDate.Text = char.ConvertFromUtf32(59161);
+            iconTitle.Text = char.ConvertFromUtf32(59151);
+            iconDescription.Text = char.ConvertFromUtf32(59959);
+            iconSuccessful.Text = char.ConvertFromUtf32(0xE73E);
+
+            List<Label> icons = new List<Label>() { iconDate, iconDescription, iconTitle };
+            foreach (Label icon in icons)
+            {
+                icon.ForeColor = Colors.black;
+            }
+
+            iconSuccessful.ForeColor = Colors.blue;
+
             // Ajout de l'évènement PayerClick à la selection du payeur
             psPayer.SelectAction = PayerClick;
-
         }
 
         private void SetEvent(EventClass e)
@@ -117,10 +152,8 @@ namespace ProbPotes.pages.events
             ParentDialog.Navigate(Index + 1);
         }
 
-        private void PayerClick(Participant p)
+        private void PayerClick(int pCpode)
         {
-            Payer = p;
-            Debug.WriteLine(p.FirstName);
             ParentDialog.Navigate(Index+1);
         }
 
@@ -139,7 +172,7 @@ namespace ProbPotes.pages.events
             get => tabControl1.SelectedIndex;
             set
             {
-                if (value == 2)
+                if (value == (editMode ? 1 : 2))
                 {
 
                     txtWarningTitle.Visible = boxTitle.Text == "";
@@ -149,47 +182,43 @@ namespace ProbPotes.pages.events
                         psPayer.SetExcludedParticipant(GetExcludedParticipant());
                         tabControl1.SelectedIndex = value;
                     }
-                } else if (value == 3)
+                } else if (value == (editMode ? 2 : 3))
                 {
                     txtWarningCreator.Visible = psPayer.SelectedParticipants.Count == 0;
                     if (psPayer.SelectedParticipants.Count > 0)
                     {
 
                         // Ne pas afficher les participants qui ne font pas parti de l'évènement et celui qui paie la dépense
-                        List<Participant> excluded = new List<Participant>() { psPayer.SelectedParticipants.First() };
+                        List<int> excluded = new List<int>() { psPayer.SelectedParticipants.First() };
                         excluded.AddRange(GetExcludedParticipant());
                         psRecipients.SetExcludedParticipant(excluded);
 
                         tabControl1.SelectedIndex = value;
                     }
-                } else if (value == 4)
+                } else if (value == (editMode ? 3 : 4))
                 {
                     // AJOUT DE LA DEPENSE
 
-                    // Création de la liste des bénéficiaires
-                    List<int> recipients = new List<int>();
-                    foreach(Participant p in psRecipients.SelectedParticipants)
-                    {
-                        recipients.Add(p.Code);
-                    }
-
                     Expense newExpense = new Expense(
-                        DatabaseManager.Events.GetExpenseCount() + 1, 
+                        editMode ? oldExpense.code : DatabaseManager.Events.GetExpenseCount() + 1, 
                         SelectedEvent.Code, 
                         boxTitle.Text,
                         Convert.ToDecimal(boxAmount.Text),
-                        recipients,
-                        psPayer.SelectedParticipants.First().Code,
+                        psRecipients.SelectedParticipants,
+                        psPayer.SelectedParticipants.First(),
                         date.Value.Date,
                         boxDescription.Text
                         );
 
-                    bool result = SelectedEvent.Expenses.AddExpense(newExpense);
+                    bool result = editMode ? SelectedEvent.Expenses.UpdateExpense(newExpense) : SelectedEvent.Expenses.AddExpense(newExpense);
 
                     // SI REUSSITE 
                     if (result)
                     {
+                        txtTitleSuccess.Text = editMode ? "Dépense modifiée" : "Dépense ajoutée";
+                        txtSuccessfulDescription.Text = newExpense.description + " enregistré dans l'évènement " + SelectedEvent.Title;
                         tabControl1.SelectedIndex = value;
+                        RefreshMainForm?.DynamicInvoke();
                     } else
                     {
                         MessageBox.Show("Impossible d'enregistrer la dépense");
@@ -202,13 +231,13 @@ namespace ProbPotes.pages.events
             }
         }
 
-        private List<Participant> GetExcludedParticipant()
+        private List<int> GetExcludedParticipant()
         {
-            List<Participant> excluded = new List<Participant>();
+            List<int> excluded = new List<int>();
             foreach (Participant p in DatabaseManager.Participants.Participants)
             {
                 if (!SelectedEvent.Guests.Contains(p.Code) && SelectedEvent.CreatorCode != p.Code)
-                    excluded.Add(p);
+                    excluded.Add(p.Code);
             }
             return excluded;
         }
@@ -220,13 +249,13 @@ namespace ProbPotes.pages.events
 
         public bool ShowBackBtn => true;
 
-        public bool ShowNextBtn => Index != 0 && Index != 2;
+        public bool ShowNextBtn => editMode || (Index != 0 && Index != 2);
 
         public ProbPotesDialog ParentController { 
             set
             {
                 ParentDialog = value;
-                if (SelectedEvent != null)
+                if (SelectedEvent != null && !editMode)
                 {
                     ParentDialog.Navigate(1);
                 }

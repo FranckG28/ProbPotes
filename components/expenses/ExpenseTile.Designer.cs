@@ -51,6 +51,7 @@ namespace ProbPotes.components.expenses
             this.txtPrice.TabIndex = 0;
             this.txtPrice.Text = "label1";
             this.txtPrice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.txtPrice.Click += new System.EventHandler(this.ExpenseTile_Click);
             // 
             // txtTitle
             // 
@@ -61,6 +62,7 @@ namespace ProbPotes.components.expenses
             this.txtTitle.TabIndex = 0;
             this.txtTitle.Text = "label1";
             this.txtTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtTitle.Click += new System.EventHandler(this.ExpenseTile_Click);
             // 
             // txtDescription
             // 
@@ -69,6 +71,7 @@ namespace ProbPotes.components.expenses
             this.txtDescription.Size = new System.Drawing.Size(581, 31);
             this.txtDescription.TabIndex = 0;
             this.txtDescription.Text = "label1";
+            this.txtDescription.Click += new System.EventHandler(this.ExpenseTile_Click);
             // 
             // txtCreator
             // 
@@ -78,6 +81,7 @@ namespace ProbPotes.components.expenses
             this.txtCreator.Size = new System.Drawing.Size(489, 35);
             this.txtCreator.TabIndex = 0;
             this.txtCreator.Text = "label1";
+            this.txtCreator.Click += new System.EventHandler(this.ExpenseTile_Click);
             // 
             // pnlLine
             // 
@@ -85,6 +89,7 @@ namespace ProbPotes.components.expenses
             this.pnlLine.Name = "pnlLine";
             this.pnlLine.Size = new System.Drawing.Size(638, 1);
             this.pnlLine.TabIndex = 2;
+            this.pnlLine.Click += new System.EventHandler(this.ExpenseTile_Click);
             // 
             // txtLblDescription
             // 
@@ -95,6 +100,7 @@ namespace ProbPotes.components.expenses
             this.txtLblDescription.Size = new System.Drawing.Size(60, 13);
             this.txtLblDescription.TabIndex = 0;
             this.txtLblDescription.Text = "Description";
+            this.txtLblDescription.Click += new System.EventHandler(this.ExpenseTile_Click);
             // 
             // iconDescription
             // 
@@ -106,6 +112,7 @@ namespace ProbPotes.components.expenses
             this.iconDescription.TabIndex = 0;
             this.iconDescription.Text = "icon";
             this.iconDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.iconDescription.Click += new System.EventHandler(this.ExpenseTile_Click);
             // 
             // pnlLine2
             // 
@@ -113,6 +120,7 @@ namespace ProbPotes.components.expenses
             this.pnlLine2.Name = "pnlLine2";
             this.pnlLine2.Size = new System.Drawing.Size(636, 1);
             this.pnlLine2.TabIndex = 2;
+            this.pnlLine2.Click += new System.EventHandler(this.ExpenseTile_Click);
             // 
             // iconRecipients
             // 
@@ -124,6 +132,7 @@ namespace ProbPotes.components.expenses
             this.iconRecipients.TabIndex = 0;
             this.iconRecipients.Text = "icon";
             this.iconRecipients.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.iconRecipients.Click += new System.EventHandler(this.ExpenseTile_Click);
             // 
             // txtLblParticipants
             // 
@@ -134,6 +143,7 @@ namespace ProbPotes.components.expenses
             this.txtLblParticipants.Size = new System.Drawing.Size(62, 13);
             this.txtLblParticipants.TabIndex = 0;
             this.txtLblParticipants.Text = "Participants";
+            this.txtLblParticipants.Click += new System.EventHandler(this.ExpenseTile_Click);
             // 
             // txtRecipients
             // 
@@ -144,6 +154,7 @@ namespace ProbPotes.components.expenses
             this.txtRecipients.TabIndex = 0;
             this.txtRecipients.Text = "label1";
             this.txtRecipients.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtRecipients.Click += new System.EventHandler(this.ExpenseTile_Click);
             // 
             // ExpenseTile
             // 
@@ -163,6 +174,7 @@ namespace ProbPotes.components.expenses
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.Name = "ExpenseTile";
             this.Size = new System.Drawing.Size(670, 183);
+            this.Click += new System.EventHandler(this.ExpenseTile_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 

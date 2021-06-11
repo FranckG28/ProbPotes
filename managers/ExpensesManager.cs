@@ -122,7 +122,7 @@ namespace ProbPotes.managers
 
                 if(resultUpdateExpense!=1) throw new Exception("Impossible de mettre à jour la dépense (" + resultUpdateExpense + ")");
 
-                OleDbCommand deletePart = new OleDbCommand("DELETE FROM Beneficiares WHERE numDepense=" + expense.code, DatabaseManager.db);
+                OleDbCommand deletePart = new OleDbCommand("DELETE FROM Beneficiaires WHERE numDepense=" + expense.code, DatabaseManager.db);
                 int resultDeletePart = deletePart.ExecuteNonQuery();
 
                 if(resultDeletePart==0) throw new Exception("Impossible de supprimer les Participant a la dépense (" + resultUpdateExpense + ")");

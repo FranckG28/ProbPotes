@@ -67,7 +67,7 @@ namespace ProbPotes.pages
 
         public void OpenAddExpense(EventClass e)
         {
-            ProbPotesDialog dialog = new ProbPotesDialog("Ajouter une dépense à " + e.Title, 59161, new AddExpenseDialog(e), this.ParentForm);
+            ProbPotesDialog dialog = new ProbPotesDialog("Ajouter une dépense à " + e.Title, 59161, new AddExpenseDialog(e, ((MainForm)ParentForm).navigation.RefreshActualPage), this.ParentForm);
             DialogResult result = dialog.Open();
         }
 

@@ -76,7 +76,7 @@ namespace ProbPotes
 
         public void OpenAddExpense()
         {
-            ProbPotesDialog dialog = new ProbPotesDialog("Ajouter une dépense", 59161, new AddExpenseDialog(null), this);
+            ProbPotesDialog dialog = new ProbPotesDialog("Ajouter une dépense", 59161, new AddExpenseDialog(null, navigation.RefreshActualPage), this);
             DialogResult result = dialog.Open();
         }
 

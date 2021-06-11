@@ -2,6 +2,7 @@
 using ProbPotes.components.expenses;
 using ProbPotes.managers;
 using ProbPotes.models;
+using ProbPotes.pages.events;
 using ProbPotes.services;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,12 @@ namespace ProbPotes.pages
             // Rafraichissement
             RefreshExpenses();
 
+        }
+
+        private void EditExpense(Expense e)
+        {
+            ProbPotesDialog dialog = new ProbPotesDialog("Modifier "+e.description, 59161, new AddExpenseDialog(DatabaseManager.Events.GetEvent(e.eventCode), ((MainForm)ParentForm).navigation.RefreshActualPage, e), ParentForm);
+            DialogResult result = dialog.Open();
         }
 
         private void EventSelection(Object e)
@@ -108,6 +115,7 @@ namespace ProbPotes.pages
         {
             ExpenseTile tile = new ExpenseTile();
             tile.Expense = e;
+            tile.ClickAction = EditExpense;
             return tile;
         }   
 

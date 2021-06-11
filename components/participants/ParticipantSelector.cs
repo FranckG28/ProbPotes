@@ -17,13 +17,13 @@ namespace ProbPotes.components.participants
     public partial class ParticipantSelector : UserControl
     {
 
-        private List<Participant> ParticipantList = new List<Participant>();
+        private List<int> ParticipantList = new List<int>();
 
-        private List<Participant> excluded = new List<Participant>();
+        private List<int> excluded = new List<int>();
 
         private Boolean multiSelect = false;
 
-        public delegate void Del(Participant p);
+        public delegate void Del(int pCode);
 
         public Del SelectAction;
 
@@ -57,7 +57,7 @@ namespace ProbPotes.components.participants
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public List<Participant> SelectedParticipants
+        public List<int> SelectedParticipants
         {
             get => ParticipantList;
             set
@@ -65,19 +65,19 @@ namespace ProbPotes.components.participants
                 foreach (Control c in flowLayoutPanel1.Controls)
                 {
                     ParticipantSelectionTile tile = (ParticipantSelectionTile)c;
-                    tile.Selected = value.Contains(tile.Participant);
+                    tile.Selected = value.Contains(tile.Participant.Code);
                 }
                 ParticipantList = value;
             }
         }
 
-        public void SetExcludedParticipant(List<Participant> value)
+        public void SetExcludedParticipant(List<int> value)
         { 
                 excluded = value;
                 RefreshParticipantList();
         }
 
-        public List<Participant> GetExcludedParticipants()
+        public List<int> GetExcludedParticipants()
         {
             return excluded;
         }
@@ -94,13 +94,13 @@ namespace ProbPotes.components.participants
 
         public void RefreshSelection()
         {
-            ParticipantList = new List<Participant>();
+            ParticipantList = new List<int>();
             foreach(Control c in flowLayoutPanel1.Controls)
             {
                 ParticipantSelectionTile tile = (ParticipantSelectionTile)c;
                 if (tile.Selected)
                 {
-                    ParticipantList.Add(tile.Participant);
+                    ParticipantList.Add(tile.Participant.Code);
                 }
             }
         }
@@ -110,11 +110,11 @@ namespace ProbPotes.components.participants
             flowLayoutPanel1.Controls.Clear();
             foreach (Participant p in DatabaseManager.Participants.Participants)
             {
-                if (!excluded.Contains(p))
+                if (!excluded.Contains(p.Code))
                 {
                     ParticipantSelectionTile tile = new ParticipantSelectionTile();
                     tile.Participant = p;
-                    tile.Selected = ParticipantList.Contains(p);
+                    tile.Selected = ParticipantList.Contains(p.Code);
                     tile.SelectAction = Selection;
                     flowLayoutPanel1.Controls.Add(tile);
                 }
@@ -124,7 +124,7 @@ namespace ProbPotes.components.participants
         public void Selection(Participant p )
         {
             // Tout décocher sauf le sélectionné si pas de multi sélection
-            if (!multiSelect && !ParticipantList.Contains(p))
+            if (!multiSelect && !ParticipantList.Contains(p.Code))
             {
                 foreach(Control c in flowLayoutPanel1.Controls)
                 {
@@ -141,7 +141,7 @@ namespace ProbPotes.components.participants
 
             if (SelectAction != null)
             {
-                SelectAction(p);
+                SelectAction(p.Code);
             }
         }
 

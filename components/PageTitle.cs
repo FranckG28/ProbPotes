@@ -21,7 +21,7 @@ namespace ProbPotes.components
             //  Définition du style des textes :
             if (LicenseManager.UsageMode == LicenseUsageMode.Runtime)
             {
-                txtTitle.Font = new Font(Fonts.bold, 30);
+                txtTitle.Font = new Font(Fonts.medium, 30);
                 btnAdd.Font = new Font(Fonts.book, 12);
             }
             txtIcon.ForeColor = Colors.blue;
