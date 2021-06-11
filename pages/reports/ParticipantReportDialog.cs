@@ -56,8 +56,8 @@ namespace ProbPotes.pages.reports
             selectPaid.action = ShowPaidExpenses;
             selectOwes.action = ShowOwesExpenses;
 
-            selectPaid.Title = PaidExpenses.Count + (PaidExpenses.Count == 1 ? " dépense payée (" + paid + " €)" : " dépenses payées (" + paid + " €)");
-            selectOwes.Title = OwesExpenses.Count + (OwesExpenses.Count == 1 ? " dépense bénéficiée (" + owes + " €)" : " dépenses bénéficiées (" + owes + " €)");
+            selectPaid.Title = PaidExpenses.Count + (PaidExpenses.Count == 1 ? " dépense payée (" + Decimal.Round(paid, 2) + " €)" : " dépenses payées (" + Decimal.Round(paid, 2) + " €)");
+            selectOwes.Title = OwesExpenses.Count + (OwesExpenses.Count == 1 ? " dépense bénéficiée (" + Decimal.Round(owes, 2) + " €)" : " dépenses bénéficiées (" + Decimal.Round(owes, 2) + " €)");
 
         }
 
