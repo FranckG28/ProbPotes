@@ -450,9 +450,36 @@ namespace ProbPotes.managers
             this.UpdateEvent(evt);
             DatabaseManager.db.Close();
         }
+
         public List<WOWTW> GetWOWTWs()
         {
             return null;
+        }
+
+        public int GetExpenseCount()
+        {
+            int count = 0;
+            foreach (EventClass e in EventsList)
+            {
+                foreach (Expense expense in e.Expenses.Expenses)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        public Decimal GetExpenseSum()
+        {
+            Decimal count = 0;
+            foreach (EventClass e in EventsList)
+            {
+                foreach (Expense expense in e.Expenses.Expenses)
+                {
+                    count+= expense.sum;
+                }
+            }
+            return count;
         }
 
     }

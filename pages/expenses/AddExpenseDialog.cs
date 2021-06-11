@@ -166,10 +166,33 @@ namespace ProbPotes.pages.events
                 {
                     // AJOUT DE LA DEPENSE
 
+                    // Création de la liste des bénéficiaires
+                    List<int> recipients = new List<int>();
+                    foreach(Participant p in psRecipients.SelectedParticipants)
+                    {
+                        recipients.Add(p.Code);
+                    }
+
+                    Expense newExpense = new Expense(
+                        DatabaseManager.Events.GetExpenseCount() + 1, 
+                        SelectedEvent.Code, 
+                        boxTitle.Text,
+                        Convert.ToDecimal(boxAmount.Text),
+                        recipients,
+                        psPayer.SelectedParticipants.First().Code,
+                        date.Value.Date,
+                        boxDescription.Text
+                        );
+
+                    bool result = SelectedEvent.Expenses.AddExpense(newExpense);
+
                     // SI REUSSITE 
-                    if (true)
+                    if (result)
                     {
                         tabControl1.SelectedIndex = value;
+                    } else
+                    {
+                        MessageBox.Show("Impossible d'enregistrer la dépense");
                     }
                 }
                 else
@@ -184,7 +207,7 @@ namespace ProbPotes.pages.events
             List<Participant> excluded = new List<Participant>();
             foreach (Participant p in DatabaseManager.Participants.Participants)
             {
-                if (!SelectedEvent.Guests.Contains(p.Code))
+                if (!SelectedEvent.Guests.Contains(p.Code) && SelectedEvent.CreatorCode != p.Code)
                     excluded.Add(p);
             }
             return excluded;
