@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProbPotes.services;
 
 namespace ProbPotes.pages.events
 {
@@ -174,6 +175,8 @@ namespace ProbPotes.pages.events
                     if (result)
                     {
                         // TODO : ENVOYER UN EMAIL A TOUT LE MONDE !!!! OU juste les nouveaux si modificaiton
+                        Email email = new Email();
+                        Boolean mailSend= email.sendMail("destinataire", "objet du msg", "msg du mail");//JSP COMMENT FAIRE LA BOUCLE MAIS LA METHODE MAIL C'EST CELLE CI
                         txtSuccessfulDescription.Text = "L'évènement " + newEvent.Title + " a bien été enregistré !";
                         tabControl1.SelectedIndex = value;
                         RefreshMainForm?.DynamicInvoke();
