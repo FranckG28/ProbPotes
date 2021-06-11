@@ -416,9 +416,9 @@ namespace ProbPotes.managers
 
                 Debug.WriteLine(dtBilan.Rows[indexDonneur]["Solde"]);
                 //AJOUTE LE RECEVEUR ET LE DONNEUR DANS LA BASE dtBilan  AVEC LES SOLDES MODIFIER
-                dtBilan.Rows[indexDonneur] = donneur;
-                dtBilan.Rows[indexReceveur] = receveur;//JSP D'OU CA VIENT CA LA , COMMENT CA LECTURE SEUL ?????
-                Debug.WriteLine(dtBilan.Rows[indexDonneur]["Solde"]);
+                //dtBilan.Rows[indexDonneur] = donneur;
+                //dtBilan.Rows[indexReceveur] = receveur;//JSP D'OU CA VIENT CA LA , COMMENT CA LECTURE SEUL ?????
+                //Debug.WriteLine(dtBilan.Rows[indexDonneur]["Solde"]);
             }
             evt.SoldeOn = !evt.SoldeOn;
             DatabaseManager.db.Close();
