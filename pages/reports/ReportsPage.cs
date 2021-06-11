@@ -13,6 +13,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
+using System.Diagnostics;
 
 namespace ProbPotes.pages
 {
@@ -30,11 +34,11 @@ namespace ProbPotes.pages
             List<Label> subTitles = new List<Label>() { txtDatesSeparator, txtDateStart, txtDateEnd };
             foreach (Label lbl in subTitles)
             {
-                lbl.Font = new Font(Fonts.book, 12);
+                lbl.Font = new System.Drawing.Font(Fonts.book, 12);
                 lbl.ForeColor = Colors.blue;
             }
 
-            txtTitle.Font = new Font(Fonts.bold, 16);
+            txtTitle.Font = new System.Drawing.Font(Fonts.bold, 16);
             txtTitle.ForeColor = Colors.blue;
             icon.ForeColor = Colors.blue;
 
@@ -42,13 +46,13 @@ namespace ProbPotes.pages
             foreach (Label lbl in labels)
             {
                 lbl.ForeColor = Colors.black;
-                lbl.Font = new Font(Fonts.book, 11);
+                lbl.Font = new System.Drawing.Font(Fonts.book, 11);
             }
 
             List<Label> tips = new List<Label>() { txtSoldTip, txtDetails };
             foreach(Label lbl in tips)
             {
-                lbl.Font = new Font(Fonts.medium, 11);
+                lbl.Font = new System.Drawing.Font(Fonts.medium, 11);
                 lbl.ForeColor = Colors.grey;
             }
             
@@ -65,9 +69,9 @@ namespace ProbPotes.pages
             iconParticipants.Text = char.ConvertFromUtf32(59158);
 
             // Boutton
-            btnQDQAQ.Font = new Font(Fonts.medium, 14);
+            btnQDQAQ.Font = new System.Drawing.Font(Fonts.medium, 14);
 
-            btnExportToPDF.Font = new Font(Fonts.book, 11);
+            btnExportToPDF.Font = new System.Drawing.Font(Fonts.book, 11);
             btnExportToPDF.BackColor = Colors.blue;
             btnExportToPDF.FlatAppearance.MouseOverBackColor = Colors.green;
             btnExportToPDF.FlatAppearance.MouseDownBackColor = Colors.blue;
@@ -91,7 +95,7 @@ namespace ProbPotes.pages
                 panel1.Controls.Clear();
                 Label lbl = new Label();
                 lbl.Text = "Aucun évènement à afficher";
-                lbl.Font = new Font(Fonts.book, 16);
+                lbl.Font = new System.Drawing.Font(Fonts.book, 16);
                 lbl.ForeColor = Colors.black;
                 lbl.AutoSize = false;
                 lbl.Width = panel1.Width;
@@ -166,8 +170,40 @@ namespace ProbPotes.pages
 
         private void btnExportToPDF_Click(object sender, EventArgs e)
         {
-            // TODO: Exporter tous les participants à SelectedEvent en PDF :)
+        // TODO: Exporter tous les participants à SelectedEvent en PDF :)
+        //MessageBox.Show(Path.Combine(Environment.CurrentDirectory,"\\..\\..\\BilanPDF\\Bilan_.pdf"));
+            try
+            {
+                string outFile = Environment.CurrentDirectory+@"\\..\\..\\BilanPDF\\BILAN_" + SelectedEvent.Title + ".pdf";
+                //CREATION DU DOCUMENT
+                Document doc = new Document();
+                PdfWriter.GetInstance(doc,new FileStream(outFile,FileMode.Create));
 
+                doc.Open();
+
+                //COULEUR
+                BaseColor blue = new BaseColor(0, 75, 155);
+                BaseColor gris = new BaseColor(240, 240, 240);
+                BaseColor blanc = new BaseColor(255, 255, 255);
+
+                //POLICE D'ECRITURE
+                iTextSharp.text.Font h1 = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 20f, iTextSharp.text.Font.BOLD, blue);
+                iTextSharp.text.Font h2= new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 18f, iTextSharp.text.Font.UNDERLINE, blue);
+                iTextSharp.text.Font tr = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 16f, iTextSharp.text.Font.UNDEFINED,blanc);
+
+                //PAGE
+
+                //Titre
+                Paragraph titre = new Paragraph("Bilan",h1);
+                titre.Alignment = Element.ALIGN_CENTER;
+                doc.Add(titre);
+
+                doc.Close();
+                Process.Start(@"cmd.exe", @"/c" + outFile);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
