@@ -54,6 +54,9 @@ namespace ProbPotes.components.participants
 
         }
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<Participant> SelectedParticipants
         {
             get => ParticipantList;

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ProbPotes.services
 {
-    class Email
+    abstract class Email
     {
-        public Boolean sendMail(string dest, string objet, string msg)
+        public static Boolean SendMail(string dest, string objet, string msg)
         {
             string from = "probpote@fifoot-bet.fr"; //https://mail.ovh.net/roundcube/?_task=login pour accéder au mail
             string mdp = "changethis";

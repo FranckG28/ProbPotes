@@ -37,7 +37,6 @@ namespace ProbPotes.pages.reports
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 42);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(787, 338);
@@ -77,7 +76,6 @@ namespace ProbPotes.pages.reports
             this.Name = "ParticipantReportDialog";
             this.Size = new System.Drawing.Size(790, 380);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

@@ -92,6 +92,12 @@ namespace ProbPotes.pages
             AddBinding(txtDateEnd, "dateFin");
             AddBinding(txtDescription, "description");
             chkSold.DataBindings.Add("checked", nav.eventBs, "soldeON", true);
+            Binding bind = new Binding("visible", nav.eventBs, "soldeON");
+
+            bind.Format += SwitchBool;
+            bind.Parse += SwitchBool;
+
+            btnEdit.DataBindings.Add(bind);
 
             // Rafraichissement des boutons 
             RefreshInterface();
@@ -101,6 +107,10 @@ namespace ProbPotes.pages
 
         }
 
+        private void SwitchBool(object sender, ConvertEventArgs e)
+        {
+            e.Value = !((bool)e.Value);
+        }
 
         private void AddBinding(Label lbl, string name)
         {

@@ -241,7 +241,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="services\Colors.cs" />
-    <Compile Include="services\DropShadow.cs" />
+    <Compile Include="services\FormDropShadow.cs" />
     <Compile Include="services\Fonts.cs" />
     <Compile Include="services\HoverController.cs" />
     <Compile Include="services\NavigationController.cs" />

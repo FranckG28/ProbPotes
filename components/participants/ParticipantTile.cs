@@ -77,6 +77,6 @@ namespace ProbPotes.components.participants
                 ClickAction(participant);
             }
         }
-        
+
     }
 }

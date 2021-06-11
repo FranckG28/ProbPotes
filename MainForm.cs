@@ -38,7 +38,7 @@ namespace ProbPotes
             InitializeComponent();
 
             // Ajout de l'ombre
-            new DropShadow().ApplyShadows(this);
+            new FormDropShadow().ApplyShadows(this);
 
             // Assigne la fonction closeApp à l'action Click du bouton fermer
             closeBtn1.ClickEvent = CloseApp;

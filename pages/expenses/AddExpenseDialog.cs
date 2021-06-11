@@ -34,7 +34,7 @@ namespace ProbPotes.pages.events
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
             // Styles
-            List<Label> labels = new List<Label>() { lblDescription, lblEndDate, lblAmount, lblTitle, txtSuccessfulDescription, lblEuro };
+            List<Label> labels = new List<Label>() { lblDescription, lblEndDate, lblAmount, lblTitle, txtSuccessfulDescription};
             foreach(Label lbl in labels)
             {
                 ProbPotesDialog.ApplyLabelStyle(lbl);
@@ -65,6 +65,9 @@ namespace ProbPotes.pages.events
                 lbl.Font = new Font(Fonts.book, 12);
                 lbl.Visible = false;
             }
+
+            lblEuro.Font = new Font(Fonts.medium, 14);
+            lblEuro.ForeColor = Colors.grey;
 
             // Icones
             iconDate.Text = char.ConvertFromUtf32(59161);
@@ -138,9 +141,12 @@ namespace ProbPotes.pages.events
             {
                 if (value == 2)
                 {
+
                     txtWarningTitle.Visible = boxTitle.Text == "";
                     if (boxTitle.Text != "")
                     {
+                        // Ne pas afficher les participants qui ne font pas parti de l'évènement et celui qui paie la 
+                        psPayer.SetExcludedParticipant(GetExcludedParticipant());
                         tabControl1.SelectedIndex = value;
                     }
                 } else if (value == 3)
@@ -148,6 +154,12 @@ namespace ProbPotes.pages.events
                     txtWarningCreator.Visible = psPayer.SelectedParticipants.Count == 0;
                     if (psPayer.SelectedParticipants.Count > 0)
                     {
+
+                        // Ne pas afficher les participants qui ne font pas parti de l'évènement et celui qui paie la dépense
+                        List<Participant> excluded = new List<Participant>() { psPayer.SelectedParticipants.First() };
+                        excluded.AddRange(GetExcludedParticipant());
+                        psRecipients.SetExcludedParticipant(excluded);
+
                         tabControl1.SelectedIndex = value;
                     }
                 } else if (value == 4)
@@ -165,6 +177,17 @@ namespace ProbPotes.pages.events
                     tabControl1.SelectedIndex = value;
                 }
             }
+        }
+
+        private List<Participant> GetExcludedParticipant()
+        {
+            List<Participant> excluded = new List<Participant>();
+            foreach (Participant p in DatabaseManager.Participants.Participants)
+            {
+                if (!SelectedEvent.Guests.Contains(p.Code))
+                    excluded.Add(p);
+            }
+            return excluded;
         }
 
         public int PageCount

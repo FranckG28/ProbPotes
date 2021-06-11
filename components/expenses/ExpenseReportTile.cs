@@ -66,7 +66,7 @@ namespace ProbPotes.components.expenses
                 txtDescription.Font = new Font(Fonts.regular, 11);
                 txtPrice.Font = new Font(Fonts.bold, 15);
                 txtCreator.Font = new Font(Fonts.regular, 10);
-                txtBalanceTotal.Font = new Font(Fonts.bold, 10);
+                txtBalanceTotal.Font = new Font(Fonts.book, 10);
                 txtLblDescription.Font = new Font(Fonts.bold, 10);
             }
 
@@ -83,7 +83,7 @@ namespace ProbPotes.components.expenses
                     Participant creator = DatabaseManager.Participants.GetParticipant(expense.creatorCode);
                     txtTitle.Text = expense.description;
                     txtDescription.Text = expense.comment;
-                    txtBalanceTotal.Text = "Coût total : " + expense.sum.ToString() + " €";
+                    txtBalanceTotal.Text = "Coût total : " + Decimal.Round(expense.sum, 2).ToString() + " €";
                     txtCreator.Text = "par " + creator.FirstName + " " + creator.Name.ToUpper() + " le " + expense.date.ToShortDateString();
                     
                 }
@@ -97,7 +97,7 @@ namespace ProbPotes.components.expenses
             set 
             {
                 val = value;
-                txtPrice.Text = val.ToString() + " €";
+                txtPrice.Text = Decimal.Round(val, 2).ToString() + " €";
             }
             get => val;
         }
