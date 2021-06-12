@@ -136,7 +136,8 @@ namespace ProbPotes.pages.reports
         private void btnExportToPDF_Click(object sender, EventArgs e)
         {
             // TODO: Générer un PDF pour le participant Participant dans Event
-            GeneratePDF(Event);
+            GeneratePDF pdf = new GeneratePDF();
+            pdf.PDFEvent(Event, Participant);
         }
     }
 }
