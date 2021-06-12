@@ -169,7 +169,6 @@ namespace ProbPotes.pages.events
                     // SI REUSSITE 
                     if (result)
                     {
-                        // TODO : ENVOYER UN EMAIL A TOUT LE MONDE !!!! OU juste les nouveaux si modificaiton
                              
                         if (editMode)
                         {
