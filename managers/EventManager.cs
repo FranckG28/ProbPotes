@@ -521,6 +521,16 @@ namespace ProbPotes.managers
                 {
                     count++;
                 }
+<<<<<<< HEAD
+                cdBilanPart.ExecuteNonQuery();
+
+                Debug.WriteLine(dtBilan.Rows[indexDonneur]["Solde"]);
+                //AJOUTE LE RECEVEUR ET LE DONNEUR DANS LA BASE dtBilan  AVEC LES SOLDES MODIFIER
+                //dtBilan.Rows[indexDonneur] = donneur;
+                //dtBilan.Rows[indexReceveur] = receveur;//JSP D'OU CA VIENT CA LA , COMMENT CA LECTURE SEUL ?????
+                //Debug.WriteLine(dtBilan.Rows[indexDonneur]["Solde"]);
+=======
+>>>>>>> 814bd14d746fe1da68d054bcd26e1d96d0673a77
             }
             return count;
         }
