@@ -1,7 +1,9 @@
 using ProbPotes.components;
+using ProbPotes.components.participants;
 using ProbPotes.managers;
 using ProbPotes.models;
 using ProbPotes.pages.events;
+using ProbPotes.pages.participants;
 using ProbPotes.services;
 using System;
 using System.Collections.Generic;
@@ -27,35 +29,46 @@ namespace ProbPotes.pages
 
             // Icones 
             iconParticipants.Text = char.ConvertFromUtf32(0xE716);
-            iconSoldOut.Text = char.ConvertFromUtf32(0xE895);
+            iconCreator.Text = char.ConvertFromUtf32(59642);
 
             // Polices
-            txtTitle.Font = new Font(Fonts.bold, 18);
-            txtDateStart.Font = new Font(Fonts.book, 13);
-            txtDatesSeparator.Font = new Font(Fonts.book, 13);
-            txtDateEnd.Font = new Font(Fonts.book, 13);
+            txtTitle.Font = new Font(Fonts.bold, 24);
+            txtDateStart.Font = new Font(Fonts.book, 16);
+            txtDatesSeparator.Font = new Font(Fonts.book, 16);
+            txtDateEnd.Font = new Font(Fonts.book, 16);
             txtDescription.Font = new Font(Fonts.regular, 11);
-            txtParticipants.Font = new Font(Fonts.regular, 11);
-            chkSold.Font = new Font(Fonts.regular, 11);
-            txtCreator.Font = new Font(Fonts.book, 11);
+            
+            chkSold.Font = new Font(Fonts.bold, 14);
+            txtDetails.Font = new Font(Fonts.medium, 14);
+
+            Font fnt1 = new Font(Fonts.bold, 12);
+
+            lblCreator.Font = fnt1;
+            lblParticipants.Font = fnt1;
+
             txtIndex.Font = new Font(Fonts.medium, 14);
             txtCount.Font = new Font(Fonts.medium, 14);
+            
 
             // Couleurs
-            pnlEvent.BackColor = Colors.lightGrey;
             txtTitle.ForeColor = Colors.blue;
             txtDateStart.ForeColor = Colors.blue;
             txtDatesSeparator.ForeColor = Colors.blue;
             txtDateEnd.ForeColor = Colors.blue;
-            txtCreator.ForeColor = Colors.blue;
+            
             txtDescription.ForeColor = Colors.black;
             txtIndex.ForeColor = Colors.black;
             txtCount.ForeColor = Colors.black;
-            txtParticipants.ForeColor = Colors.black;
+            lblParticipants.ForeColor = Colors.black;
             chkSold.ForeColor = Colors.black;
-            iconParticipants.ForeColor = Colors.black;
-            iconSoldOut.ForeColor = Colors.black;
+            
+            txtDetails.ForeColor = Colors.black;
+            iconCreator.ForeColor = Colors.black;
 
+            lblCreator.ForeColor = Colors.black;
+            iconParticipants.ForeColor = Colors.black;
+            iconCreator.ForeColor = Colors.black;
+            lblParticipants.ForeColor = Colors.black;
 
             // Supprimer les couleurs de fond
             pnlDates.BackColor = Color.Transparent;
@@ -109,7 +122,8 @@ namespace ProbPotes.pages
 
         private void SwitchBool(object sender, ConvertEventArgs e)
         {
-            e.Value = !((bool)e.Value);
+            e.Value = !(bool)e.Value;
+            chkSold.Text = !(bool)e.Value ? "Soldé" : "Non soldé";
         }
 
         private void AddBinding(Label lbl, string name)
@@ -130,11 +144,34 @@ namespace ProbPotes.pages
             btnLast.Visible = showNext;
 
             // Affichage du créateur de l'evènement
-            txtCreator.Text = "crée par " + nav.CreatorName;
+            participantCreator.Participant = nav.Creator;
+            participantCreator.IsSelectable = false;
+            participantCreator.SelectAction = EditParticipant;
 
             // Affichage des participants à l'évènement
-            txtParticipants.Text = nav.ParticipantList;
+            pnlParticipants.Controls.Clear();
+            foreach(Participant p in nav.ParticipantList)
+            {
+                ParticipantSelectionTile tile = new ParticipantSelectionTile();
+                tile.Participant = p;
+                tile.Width = pnlParticipants.Width / 2 - 20;
+                tile.IsSelectable = false;
+                tile.SelectAction = EditParticipant;
+                pnlParticipants.Controls.Add(tile);
+            }
 
+            // Affichage des détails
+            EventClass evt = nav.Event;
+            Decimal expenseAmount = evt.Expenses.GetExpenseSum(); 
+            int expenseCount = evt.Expenses.Expenses.Count;
+            txtDetails.Text = expenseCount + (expenseCount == 1 ? " dépense " : " dépenses ") + "pour un total de " + expenseAmount + " €";
+
+        }
+
+        private void EditParticipant(Participant p)
+        {
+            ProbPotesDialog dialog = new ProbPotesDialog("Modifier un participant", 59642, new AddParticipantDialog(((MainForm)ParentForm).navigation.RefreshActualPage, p), this.ParentForm);
+            DialogResult result = dialog.Open();
         }
 
         private void ButtonNext()
@@ -167,5 +204,14 @@ namespace ProbPotes.pages
             DialogResult result = dialog.Open();
         }
 
+        private void iconParticipants_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblParticipants_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

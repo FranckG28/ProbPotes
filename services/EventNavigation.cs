@@ -57,7 +57,7 @@ namespace ProbPotes.models
             get => eventBs.Position+1;
         }
 
-        public string CreatorName
+        public Participant Creator
         {
             get
             {
@@ -65,27 +65,35 @@ namespace ProbPotes.models
                 DataRow[] eventResult = data.Tables["Evenements"].Select("codeEvent = " + Index);
 
                 // Recherche du participant :
-                Participant creator = participants.GetParticipant((int)eventResult.First()["codeCreateur"]);
-                return creator.FirstName + " " + creator.Name;
+                return participants.GetParticipant((int)eventResult.First()["codeCreateur"]);
             }
         }
 
-        public string ParticipantList
+        public List<Participant> ParticipantList
         {
             get
             {
                 // Recherche des numéros de participant :
                 DataRow[] participantCodes = data.Tables["Invites"].Select("codeEvent = " + Index);
 
-                List<int> guests = new List<int>();
+                List<Participant> guests = new List<Participant>();
 
                 // Recherches des participants correspondants :
                 foreach (DataRow row in participantCodes)
                 {
-                    guests.Add((int)row["codePart"]);
+                    guests.Add(DatabaseManager.Participants.GetParticipant((int)row["codePart"]));
                 }
 
-                return DatabaseManager.Participants.GetStringFromList(guests);
+                return guests;
+            }
+        }
+
+        public EventClass Event
+        {
+            get
+            {
+                // Recherche des numéros de participant :
+                return DatabaseManager.Events.GetEvent(Index);
             }
         }
 

@@ -46,14 +46,20 @@ namespace ProbPotes.components.participants
         }
 
         // Getter/Setter du participant à afficher
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Participant Participant
         {
             get => participant;
             set
             {
                 participant = value;
-                txtFirstName.Text = participant.FirstName;
-                txtName.Text = participant.Name.ToUpper();
+                if (participant != null)
+                {
+                    txtFirstName.Text = participant.FirstName;
+                    txtName.Text = participant.Name.ToUpper();
+                }
             }
         }
 
