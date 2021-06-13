@@ -31,6 +31,7 @@ namespace ProbPotes.pages.events
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtWarningDescription = new System.Windows.Forms.Label();
             this.txtWarningTitle = new System.Windows.Forms.Label();
             this.lblDescription = new System.Windows.Forms.Label();
             this.boxDescription = new System.Windows.Forms.TextBox();
@@ -47,15 +48,15 @@ namespace ProbPotes.pages.events
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtWarningCreator = new System.Windows.Forms.Label();
             this.txtTitle2 = new System.Windows.Forms.Label();
+            this.psCreator = new ProbPotes.components.participants.ParticipantSelector();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.txtTip = new System.Windows.Forms.Label();
             this.txtTitle3 = new System.Windows.Forms.Label();
+            this.psGuests = new ProbPotes.components.participants.ParticipantSelector();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.txtSuccessfulDescription = new System.Windows.Forms.Label();
             this.iconSuccessful = new System.Windows.Forms.Label();
             this.txtTitleSuccess = new System.Windows.Forms.Label();
-            this.psCreator = new ProbPotes.components.participants.ParticipantSelector();
-            this.psGuests = new ProbPotes.components.participants.ParticipantSelector();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -79,6 +80,7 @@ namespace ProbPotes.pages.events
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage1.Controls.Add(this.txtWarningDescription);
             this.tabPage1.Controls.Add(this.txtWarningTitle);
             this.tabPage1.Controls.Add(this.lblDescription);
             this.tabPage1.Controls.Add(this.boxDescription);
@@ -99,11 +101,20 @@ namespace ProbPotes.pages.events
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             // 
+            // txtWarningDescription
+            // 
+            this.txtWarningDescription.Location = new System.Drawing.Point(498, 332);
+            this.txtWarningDescription.Name = "txtWarningDescription";
+            this.txtWarningDescription.Size = new System.Drawing.Size(260, 24);
+            this.txtWarningDescription.TabIndex = 34;
+            this.txtWarningDescription.Text = "Veuillez entrer une description";
+            this.txtWarningDescription.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // txtWarningTitle
             // 
-            this.txtWarningTitle.Location = new System.Drawing.Point(174, 114);
+            this.txtWarningTitle.Location = new System.Drawing.Point(497, 126);
             this.txtWarningTitle.Name = "txtWarningTitle";
-            this.txtWarningTitle.Size = new System.Drawing.Size(583, 17);
+            this.txtWarningTitle.Size = new System.Drawing.Size(260, 24);
             this.txtWarningTitle.TabIndex = 34;
             this.txtWarningTitle.Text = "Veuillez entrer un titre";
             this.txtWarningTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -138,16 +149,16 @@ namespace ProbPotes.pages.events
             // 
             // dateEnd
             // 
-            this.dateEnd.Location = new System.Drawing.Point(413, 158);
+            this.dateEnd.Location = new System.Drawing.Point(429, 158);
             this.dateEnd.Name = "dateEnd";
-            this.dateEnd.Size = new System.Drawing.Size(344, 20);
+            this.dateEnd.Size = new System.Drawing.Size(328, 20);
             this.dateEnd.TabIndex = 29;
             // 
             // dateStart
             // 
             this.dateStart.Location = new System.Drawing.Point(55, 158);
             this.dateStart.Name = "dateStart";
-            this.dateStart.Size = new System.Drawing.Size(344, 20);
+            this.dateStart.Size = new System.Drawing.Size(328, 20);
             this.dateStart.TabIndex = 28;
             // 
             // boxTitle
@@ -161,7 +172,7 @@ namespace ProbPotes.pages.events
             // txtTitle1
             // 
             this.txtTitle1.AutoSize = true;
-            this.txtTitle1.Location = new System.Drawing.Point(6, 14);
+            this.txtTitle1.Location = new System.Drawing.Point(4, 3);
             this.txtTitle1.Name = "txtTitle1";
             this.txtTitle1.Size = new System.Drawing.Size(141, 13);
             this.txtTitle1.TabIndex = 19;
@@ -189,7 +200,7 @@ namespace ProbPotes.pages.events
             // lblEndDate
             // 
             this.lblEndDate.AutoSize = true;
-            this.lblEndDate.Location = new System.Drawing.Point(410, 134);
+            this.lblEndDate.Location = new System.Drawing.Point(426, 134);
             this.lblEndDate.Name = "lblEndDate";
             this.lblEndDate.Size = new System.Drawing.Size(19, 13);
             this.lblEndDate.TabIndex = 24;
@@ -239,11 +250,20 @@ namespace ProbPotes.pages.events
             // txtTitle2
             // 
             this.txtTitle2.AutoSize = true;
-            this.txtTitle2.Location = new System.Drawing.Point(6, 14);
+            this.txtTitle2.Location = new System.Drawing.Point(4, 3);
             this.txtTitle2.Name = "txtTitle2";
             this.txtTitle2.Size = new System.Drawing.Size(177, 13);
             this.txtTitle2.TabIndex = 20;
             this.txtTitle2.Text = "Qui est le créateur de l\'évènement ?";
+            // 
+            // psCreator
+            // 
+            this.psCreator.BackColor = System.Drawing.Color.Transparent;
+            this.psCreator.Location = new System.Drawing.Point(3, 50);
+            this.psCreator.MultiSelection = false;
+            this.psCreator.Name = "psCreator";
+            this.psCreator.Size = new System.Drawing.Size(776, 301);
+            this.psCreator.TabIndex = 21;
             // 
             // tabPage3
             // 
@@ -270,11 +290,19 @@ namespace ProbPotes.pages.events
             // txtTitle3
             // 
             this.txtTitle3.AutoSize = true;
-            this.txtTitle3.Location = new System.Drawing.Point(6, 14);
+            this.txtTitle3.Location = new System.Drawing.Point(4, 3);
             this.txtTitle3.Name = "txtTitle3";
             this.txtTitle3.Size = new System.Drawing.Size(146, 13);
             this.txtTitle3.TabIndex = 21;
             this.txtTitle3.Text = "Qui est invité à l\'évènement ?";
+            // 
+            // psGuests
+            // 
+            this.psGuests.Location = new System.Drawing.Point(5, 50);
+            this.psGuests.MultiSelection = true;
+            this.psGuests.Name = "psGuests";
+            this.psGuests.Size = new System.Drawing.Size(776, 304);
+            this.psGuests.TabIndex = 22;
             // 
             // tabPage4
             // 
@@ -316,23 +344,6 @@ namespace ProbPotes.pages.events
             this.txtTitleSuccess.TabIndex = 4;
             this.txtTitleSuccess.Text = "Évènement ajouté !";
             this.txtTitleSuccess.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // psCreator
-            // 
-            this.psCreator.BackColor = System.Drawing.Color.Transparent;
-            this.psCreator.Location = new System.Drawing.Point(3, 50);
-            this.psCreator.MultiSelection = false;
-            this.psCreator.Name = "psCreator";
-            this.psCreator.Size = new System.Drawing.Size(776, 301);
-            this.psCreator.TabIndex = 21;
-            // 
-            // psGuests
-            // 
-            this.psGuests.Location = new System.Drawing.Point(5, 50);
-            this.psGuests.MultiSelection = true;
-            this.psGuests.Name = "psGuests";
-            this.psGuests.Size = new System.Drawing.Size(776, 304);
-            this.psGuests.TabIndex = 22;
             // 
             // AddEventDialog
             // 
@@ -382,5 +393,6 @@ namespace ProbPotes.pages.events
         private components.participants.ParticipantSelector psGuests;
         private System.Windows.Forms.Label txtWarningCreator;
         private System.Windows.Forms.Label txtTip;
+        private System.Windows.Forms.Label txtWarningDescription;
     }
 }

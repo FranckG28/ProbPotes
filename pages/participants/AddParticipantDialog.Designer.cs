@@ -95,12 +95,12 @@ namespace ProbPotes.pages.participants
             // 
             // txtWarning
             // 
-            this.txtWarning.AutoSize = true;
-            this.txtWarning.Location = new System.Drawing.Point(7, 338);
+            this.txtWarning.Location = new System.Drawing.Point(402, 324);
             this.txtWarning.Name = "txtWarning";
-            this.txtWarning.Size = new System.Drawing.Size(171, 13);
+            this.txtWarning.Size = new System.Drawing.Size(377, 27);
             this.txtWarning.TabIndex = 16;
             this.txtWarning.Text = "Veuillez completer tous les champs";
+            this.txtWarning.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // lblMail
             // 
@@ -208,7 +208,7 @@ namespace ProbPotes.pages.participants
             // txtTitle1
             // 
             this.txtTitle1.AutoSize = true;
-            this.txtTitle1.Location = new System.Drawing.Point(6, 12);
+            this.txtTitle1.Location = new System.Drawing.Point(4, 3);
             this.txtTitle1.Name = "txtTitle1";
             this.txtTitle1.Size = new System.Drawing.Size(144, 13);
             this.txtTitle1.TabIndex = 0;

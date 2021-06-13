@@ -108,7 +108,7 @@ namespace ProbPotes.pages.events
                 ProbPotesDialog.ApplyDatePickerStyle(date);
             }
 
-            List<Label> warnings = new List<Label>() { txtWarningCreator, txtWarningTitle };
+            List<Label> warnings = new List<Label>() { txtWarningCreator, txtWarningTitle, txtWarningMontant };
             foreach (Label lbl in warnings)
             {
                 lbl.ForeColor = Colors.red;
@@ -176,7 +176,8 @@ namespace ProbPotes.pages.events
                 {
 
                     txtWarningTitle.Visible = boxTitle.Text == "";
-                    if (boxTitle.Text != "")
+                    txtWarningMontant.Visible = boxAmount.Text == "";
+                    if (boxTitle.Text != "" && boxAmount.Text != "")
                     {
                         // Ne pas afficher les participants qui ne font pas parti de l'évènement et celui qui paie la 
                         psPayer.SetExcludedParticipant(GetExcludedParticipant());

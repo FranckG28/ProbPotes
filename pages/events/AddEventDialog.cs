@@ -86,7 +86,7 @@ namespace ProbPotes.pages.events
                 ProbPotesDialog.ApplyDatePickerStyle(date);
             }
 
-            List<Label> warnings = new List<Label>() { txtWarningCreator, txtWarningTitle };
+            List<Label> warnings = new List<Label>() { txtWarningCreator, txtWarningTitle, txtWarningDescription };
             foreach (Label lbl in warnings)
             {
                 lbl.ForeColor = Colors.red;
@@ -130,7 +130,8 @@ namespace ProbPotes.pages.events
                 if (value == 1)
                 {
                     txtWarningTitle.Visible = boxTitle.Text == "";
-                    if (boxTitle.Text != "")
+                    txtWarningDescription.Visible = boxDescription.Text == "";
+                    if (boxTitle.Text != "" && boxDescription.Text != "")
                     {
                         tabControl1.SelectedIndex = value;
                     }
