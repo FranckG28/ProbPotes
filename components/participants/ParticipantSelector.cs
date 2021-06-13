@@ -108,6 +108,7 @@ namespace ProbPotes.components.participants
         public void RefreshParticipantList()
         {
             flowLayoutPanel1.Controls.Clear();
+            int width = flowLayoutPanel1.Width / 2 - 20;
             foreach (Participant p in DatabaseManager.Participants.Participants)
             {
                 if (!excluded.Contains(p.Code))
@@ -116,6 +117,7 @@ namespace ProbPotes.components.participants
                     tile.Participant = p;
                     tile.Selected = ParticipantList.Contains(p.Code);
                     tile.SelectAction = Selection;
+                    tile.Width = width;
                     flowLayoutPanel1.Controls.Add(tile);
                 }
             }

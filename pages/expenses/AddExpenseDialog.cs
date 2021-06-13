@@ -39,12 +39,14 @@ namespace ProbPotes.pages.events
             // Affichage de la liste des évènements
             List<EventClass> eventList = DatabaseManager.Events.Events;
             eventList.Reverse();
+            int width = pnlEvents.Width / 2 - 20;
             foreach (EventClass e in eventList)
             {
                 if (!e.SoldeOn)
                 {
                     EventPreview ep = new EventPreview();
                     ep.EventClass = e;
+                    ep.Width = width;
                     ep.ClickAction = EventClick;
                     pnlEvents.Controls.Add(ep);
                 }
@@ -108,7 +110,7 @@ namespace ProbPotes.pages.events
                 ProbPotesDialog.ApplyDatePickerStyle(date);
             }
 
-            List<Label> warnings = new List<Label>() { txtWarningCreator, txtWarningTitle };
+            List<Label> warnings = new List<Label>() { txtWarningCreator, txtWarningTitle, txtWarningMontant };
             foreach (Label lbl in warnings)
             {
                 lbl.ForeColor = Colors.red;
@@ -176,7 +178,8 @@ namespace ProbPotes.pages.events
                 {
 
                     txtWarningTitle.Visible = boxTitle.Text == "";
-                    if (boxTitle.Text != "")
+                    txtWarningMontant.Visible = boxAmount.Text == "";
+                    if (boxTitle.Text != "" && boxAmount.Text != "")
                     {
                         // Ne pas afficher les participants qui ne font pas parti de l'évènement et celui qui paie la 
                         psPayer.SetExcludedParticipant(GetExcludedParticipant());

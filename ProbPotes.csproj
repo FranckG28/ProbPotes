@@ -374,7 +374,6 @@
     <Content Include="bdEvents.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="BilanPDF\test.txt" />
     <Content Include="images\addIcon.png" />
     <Content Include="images\doneIcon.png" />
     <Content Include="images\Navbar Background.png" />
@@ -399,6 +398,8 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="BilanPDF\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

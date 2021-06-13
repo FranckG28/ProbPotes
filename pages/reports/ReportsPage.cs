@@ -135,6 +135,9 @@ namespace ProbPotes.pages
             txtParticipants.Text = DatabaseManager.Participants.GetStringFromList(eventClass.Guests);
             txtTitle.Text = eventClass.Title;
 
+            // Calcul de la largeur des cases de chaque participant :
+            int width = pnlGuests.Width / 2 - 20;
+
             // Affichage des participants à l'évènement
             pnlGuests.Controls.Clear();
             foreach(int pCode in eventClass.Guests)
@@ -143,6 +146,7 @@ namespace ProbPotes.pages
                 ParticipantSelectionTile tile = new ParticipantSelectionTile();
                 tile.Participant = p;
                 tile.SelectAction = OpenParticipantDetail;
+                tile.Width = width;
                 tile.IsSelectable = false;
                 pnlGuests.Controls.Add(tile);
             }

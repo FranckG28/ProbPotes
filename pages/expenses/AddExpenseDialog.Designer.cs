@@ -34,6 +34,7 @@ namespace ProbPotes.pages.events
             this.pnlEvents = new System.Windows.Forms.FlowLayoutPanel();
             this.txtTitle0 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtWarningMontant = new System.Windows.Forms.Label();
             this.txtWarningTitle = new System.Windows.Forms.Label();
             this.lblDescription = new System.Windows.Forms.Label();
             this.boxDescription = new System.Windows.Forms.TextBox();
@@ -113,6 +114,7 @@ namespace ProbPotes.pages.events
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage1.Controls.Add(this.txtWarningMontant);
             this.tabPage1.Controls.Add(this.txtWarningTitle);
             this.tabPage1.Controls.Add(this.lblDescription);
             this.tabPage1.Controls.Add(this.boxDescription);
@@ -134,11 +136,20 @@ namespace ProbPotes.pages.events
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             // 
+            // txtWarningMontant
+            // 
+            this.txtWarningMontant.Location = new System.Drawing.Point(119, 197);
+            this.txtWarningMontant.Name = "txtWarningMontant";
+            this.txtWarningMontant.Size = new System.Drawing.Size(246, 19);
+            this.txtWarningMontant.TabIndex = 34;
+            this.txtWarningMontant.Text = "Veuillez entrer un montant";
+            this.txtWarningMontant.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // txtWarningTitle
             // 
-            this.txtWarningTitle.Location = new System.Drawing.Point(174, 114);
+            this.txtWarningTitle.Location = new System.Drawing.Point(481, 122);
             this.txtWarningTitle.Name = "txtWarningTitle";
-            this.txtWarningTitle.Size = new System.Drawing.Size(583, 17);
+            this.txtWarningTitle.Size = new System.Drawing.Size(295, 26);
             this.txtWarningTitle.TabIndex = 34;
             this.txtWarningTitle.Text = "Veuillez entrer un titre";
             this.txtWarningTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -199,7 +210,7 @@ namespace ProbPotes.pages.events
             // txtTitle1
             // 
             this.txtTitle1.AutoSize = true;
-            this.txtTitle1.Location = new System.Drawing.Point(6, 14);
+            this.txtTitle1.Location = new System.Drawing.Point(4, 3);
             this.txtTitle1.Name = "txtTitle1";
             this.txtTitle1.Size = new System.Drawing.Size(136, 13);
             this.txtTitle1.TabIndex = 19;
@@ -286,7 +297,7 @@ namespace ProbPotes.pages.events
             // txtTitle2
             // 
             this.txtTitle2.AutoSize = true;
-            this.txtTitle2.Location = new System.Drawing.Point(6, 14);
+            this.txtTitle2.Location = new System.Drawing.Point(4, 3);
             this.txtTitle2.Name = "txtTitle2";
             this.txtTitle2.Size = new System.Drawing.Size(67, 13);
             this.txtTitle2.TabIndex = 20;
@@ -295,10 +306,10 @@ namespace ProbPotes.pages.events
             // psPayer
             // 
             this.psPayer.BackColor = System.Drawing.Color.Transparent;
-            this.psPayer.Location = new System.Drawing.Point(3, 50);
+            this.psPayer.Location = new System.Drawing.Point(0, 43);
             this.psPayer.MultiSelection = false;
             this.psPayer.Name = "psPayer";
-            this.psPayer.Size = new System.Drawing.Size(776, 301);
+            this.psPayer.Size = new System.Drawing.Size(782, 308);
             this.psPayer.TabIndex = 21;
             // 
             // tabPage3
@@ -315,16 +326,16 @@ namespace ProbPotes.pages.events
             // 
             // psRecipients
             // 
-            this.psRecipients.Location = new System.Drawing.Point(5, 50);
+            this.psRecipients.Location = new System.Drawing.Point(0, 43);
             this.psRecipients.MultiSelection = true;
             this.psRecipients.Name = "psRecipients";
-            this.psRecipients.Size = new System.Drawing.Size(776, 304);
+            this.psRecipients.Size = new System.Drawing.Size(782, 308);
             this.psRecipients.TabIndex = 22;
             // 
             // txtTitle3
             // 
             this.txtTitle3.AutoSize = true;
-            this.txtTitle3.Location = new System.Drawing.Point(6, 14);
+            this.txtTitle3.Location = new System.Drawing.Point(4, 3);
             this.txtTitle3.Name = "txtTitle3";
             this.txtTitle3.Size = new System.Drawing.Size(157, 13);
             this.txtTitle3.TabIndex = 21;
@@ -424,5 +435,6 @@ namespace ProbPotes.pages.events
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.Label txtTitle0;
         private System.Windows.Forms.FlowLayoutPanel pnlEvents;
+        private System.Windows.Forms.Label txtWarningMontant;
     }
 }
