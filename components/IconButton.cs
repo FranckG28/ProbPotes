@@ -29,8 +29,10 @@ namespace ProbPotes.components
             
         }
 
+        // Code de l'icone
         private int iconInt = 0xE008;
 
+        // Getter/Setter de l'icone
         public int Icon
         {
             get => iconInt;
@@ -41,6 +43,7 @@ namespace ProbPotes.components
             }
         }
 
+        // Procédure de changement de la couleur de fond du bouton
         public void SetBgColor(Color defaultColor, Color hoverColor, Color pressedColor)
         {
             hover.Colors[0].Default = defaultColor;
@@ -48,6 +51,7 @@ namespace ProbPotes.components
             hover.Colors[0].Pressed = pressedColor;
         }
 
+        // Procédure de changement de la couleur de l'icone du bouton
         public void SetFgColor(Color defaultColor, Color hoverColor, Color pressedColor)
         {
             hover.Colors[1].Default = defaultColor;
@@ -55,6 +59,7 @@ namespace ProbPotes.components
             hover.Colors[1].Pressed = pressedColor;
         }
 
+        // Action à effectuer au clic
         public delegate void Del();
         public object Argument;
         public Del ClickAction;

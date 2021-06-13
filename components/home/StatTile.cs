@@ -37,10 +37,13 @@ namespace ProbPotes.components.home
 
     }
 
+        // Page de destination
         public Pages DestinationPage;
 
+        // Code de l'icone à afficher
         private int iconInt = 0xE711;
 
+        // Getter/Setter de l'icone
         public int Icon
         {
             get => iconInt;
@@ -51,23 +54,27 @@ namespace ProbPotes.components.home
             }
         }
 
+        // Getter/Setter de la valeur à afficher
         public String Number
         {
             get => txtNumber.Text;
             set => txtNumber.Text = value;
         }
 
+        // Getter/Setter de la description à afficher
         public String Description
         {
             get => txtDescription.Text;
             set => txtDescription.Text = value;
         }
 
+        // Evènement clic
         private void StatTile_Click(object sender, EventArgs e)
         {
                 // Recuperation du controlleur de la navigation
                 NavigationController navigation = ((MainForm) this.FindForm()).navigation;
-
+                
+                // Navigation à la page demandée
                 navigation.NavigateTo(DestinationPage);
         }
 

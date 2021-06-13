@@ -18,9 +18,9 @@ namespace ProbPotes.components
     {
 
         private EventClass eventClass;
-
         private HoverController hover;
 
+        // Constructeur par défaut
         public EventPreview()
         {
             InitializeComponent();
@@ -28,6 +28,7 @@ namespace ProbPotes.components
             init();
         }
 
+        // Constructeur avec un évènement donné
         public EventPreview(EventClass eventClass)
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace ProbPotes.components
             this.EventClass = eventClass;
         }
 
+        // Initialisation du controle
         private void init()
         {
             // Initialisation des icones :
@@ -64,6 +66,7 @@ namespace ProbPotes.components
             }
         }
 
+        // Getter/Setter de l'event à afficher
         public EventClass EventClass
         {
             get => eventClass;
@@ -72,6 +75,7 @@ namespace ProbPotes.components
                 eventClass = value;
                 if (eventClass != null)
                 {
+                    // Définition des textes aux données de l'évènement
                     txtTitle.Text = eventClass.Title;
                     txtDate.Text = eventClass.StartDate.ToShortDateString() + " - " + eventClass.EndDate.ToShortDateString();
                     txtParticipants.Text = DatabaseManager.Participants.GetStringFromList(eventClass.Guests);
@@ -79,10 +83,11 @@ namespace ProbPotes.components
             }
         }
 
+        // Delegate de l'action à affectuer au clic
         public delegate void Del(EventClass e);
-
         public Del ClickAction;
 
+        // evènement click
         private void EventPreview_Click(object sender, EventArgs e)
         {
             if (ClickAction != null)

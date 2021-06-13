@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace ProbPotes.pages
 {
+
+    // Composant contenant les pages du programme
     public partial class PageTemplate : UserControl
     {
         public PageTemplate()
@@ -42,6 +44,7 @@ namespace ProbPotes.pages
             set => pageTitle.Icon = value;
         }
 
+        // Action à donner au bouton ajouter
         public delegate void AddButtonDelegate();
 
         public AddButtonDelegate AddButtonAction
@@ -52,13 +55,12 @@ namespace ProbPotes.pages
             }
         }
 
+        // Lors du chargement du composant
         private void PageTemplate_Load(object sender, EventArgs e)
         {
             // Implémentation du déplacement de la fenêtre sur le title de la page
             MainForm mainForm = ((MainForm)this.FindForm());
-
             mainForm.AddDraggableControl(pageTitle);
-
             foreach(Control ctrl in pageTitle.Controls)
             {
                 mainForm.AddDraggableControl(ctrl);

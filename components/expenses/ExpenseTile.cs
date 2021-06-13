@@ -20,6 +20,7 @@ namespace ProbPotes.components.expenses
         private Expense expense;
         private HoverController hover;
 
+        // Delegate de l'action à effectuer au clic
         public delegate void Del(Expense e);
         public Del ClickAction;
 
@@ -36,6 +37,8 @@ namespace ProbPotes.components.expenses
             Expense = expense;
         }
 
+
+        // Procédure d'initialisation du composant
         private void Init()
         {
             // Création de l'effet de survol
@@ -63,6 +66,8 @@ namespace ProbPotes.components.expenses
 
         }
 
+
+        // Getter/Setter de la dépense à afficher
         public Expense Expense
         {
             get => expense;
@@ -71,6 +76,7 @@ namespace ProbPotes.components.expenses
                 expense = value;
                 if (expense != null)
                 {
+                    // Affichage des données de la dépense
                     Participant creator = DatabaseManager.Participants.GetParticipant(expense.creatorCode);
                     txtTitle.Text = expense.description;
                     txtDescription.Text = expense.comment;
@@ -83,6 +89,7 @@ namespace ProbPotes.components.expenses
             }
         }
 
+        // Evènement clic
         private void ExpenseTile_Click(object sender, EventArgs e)
         {
             ClickAction?.DynamicInvoke(Expense);

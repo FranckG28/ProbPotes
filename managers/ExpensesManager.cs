@@ -27,6 +27,7 @@ namespace ProbPotes.managers
             get => ExpensesList;
         }
 
+        // Obtenir une dépense par son ID
         public Expense GetExpense(int id)
         {
             return Expenses.Where(e => e.code == id).FirstOrDefault(null);
@@ -40,6 +41,7 @@ namespace ProbPotes.managers
             RefreshExpenses();
         }
 
+        // Fonction de calcul de la somme de toutes les dépenses de l'évènement
         public Decimal GetExpenseSum()
         {
             Decimal sum = 0;
@@ -176,11 +178,13 @@ namespace ProbPotes.managers
 
         // Procédure de suppression d'une dépense
         // Retourne true si la suppression a reussi
-        public Boolean DeleteExpense(int expenseId)
-        {
-            return false;
-        }
+        //public Boolean DeleteExpense(int expenseId)
+        //{
+        //    return false;
+        //}
 
+
+        // Procédure de mise à jour de la liste des dépenses de l'évènement
         public Boolean RefreshExpenses()
         {
 
@@ -188,15 +192,24 @@ namespace ProbPotes.managers
             {
                 //RECHERCHE DES DEPENSES DE L'EVENEMENT
                 OleDbCommand cdExpense = new OleDbCommand("SELECT * FROM Depenses WHERE codeEvent=" + EventId, DatabaseManager.db);
+
+                // Ouverture de la connexion si nécessaire
                 if (DatabaseManager.db.State == System.Data.ConnectionState.Closed)
                     DatabaseManager.db.Open();
 
+                // Execution de la requete
                 OleDbDataReader drExpense = cdExpense.ExecuteReader();
+
+                // Création d'une liste vide
                 List<Expense> rowExpense = new List<Expense>();
 
+                // Pour chaque dépense
                 while (drExpense.Read())
                 {
+                    // Création d'une liste de bénéficiaires
                     List<int> listRecipients = new List<int>();
+
+                    // Obtention des bénéficiaires
                     OleDbCommand cdRecipients = new OleDbCommand("SELECT codePart FROM Beneficiaires WHERE numDepense=" + drExpense[0].ToString(), DatabaseManager.db);
                     OleDbDataReader drRecipients = cdRecipients.ExecuteReader();
 
@@ -206,9 +219,12 @@ namespace ProbPotes.managers
                     }
 
                     DateTime debutExpense = (DateTime)drExpense[3];
+
+                    // Création de la dépense à partir des données de la ligne
                     rowExpense.Add(new Expense(Convert.ToInt32(drExpense[0].ToString()), EventId, drExpense[1].ToString(), (decimal)drExpense[2], listRecipients, Convert.ToInt32(drExpense[6].ToString()), debutExpense, drExpense[4].ToString()));
                 }
 
+                // Remplacement de la liste des dépenses
                 ExpensesList = rowExpense;
 
                 return true;

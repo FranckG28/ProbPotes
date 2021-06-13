@@ -20,22 +20,27 @@ namespace ProbPotes.components.expenses
         private Expense expense;
         private HoverController hover;
 
+        // Constructeur par défaut
         public ExpenseReportTile()
         {
             InitializeComponent();
             Init();
+            txtBalanceTotal.Visible = false;
         }
 
-
+        // Constructeur avec une dépense donnée
         public ExpenseReportTile(Expense expense)
         {
             InitializeComponent();
             Init();
+
+            // Définition des champs
             Expense = expense;
             RecipientValue = expense.sum;
             txtBalanceTotal.Visible = false;
         }
 
+        // Constructeur avec une dépense donnée et avec un montant total à afficher
         public ExpenseReportTile(Expense expense, Decimal amount)
         { 
             InitializeComponent();
@@ -44,6 +49,7 @@ namespace ProbPotes.components.expenses
             RecipientValue = amount;
         }
 
+        // Procédure d'initialisation du composant
         private void Init()
         {
             // Création de l'effet de survol
@@ -54,7 +60,7 @@ namespace ProbPotes.components.expenses
             hover = new HoverController(new List<HoverColor>() {hoverBg, hoverForeBlue, hoverGreyFg }, this);
 
 
-            // Polices :
+            // Définition des polices :
             if (LicenseManager.UsageMode == LicenseUsageMode.Runtime)
             {
                 txtTitle.Font = new Font(Fonts.bold, 16);
@@ -66,6 +72,7 @@ namespace ProbPotes.components.expenses
 
         }
 
+        // Getter/Setter de la dépense à afficher
         public Expense Expense
         {
             get => expense;
@@ -74,6 +81,7 @@ namespace ProbPotes.components.expenses
                 expense = value;
                 if (expense != null)
                 {
+                    // Définition des textes aux données de l'évènement
                     Participant creator = DatabaseManager.Participants.GetParticipant(expense.creatorCode);
                     txtTitle.Text = expense.description;
                     txtDescription.Text = expense.comment;
@@ -84,8 +92,10 @@ namespace ProbPotes.components.expenses
             }
         }
 
+
         private Decimal val = 0;
 
+        // Getter/Setter du montant à afficher
         public Decimal RecipientValue
         {
             set 

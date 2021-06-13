@@ -16,18 +16,20 @@ namespace ProbPotes.managers
     {
 
         // CLASSE DE GESTION DES ÉVÈNEMENTS PROBPOTES
+        // Un évènement inclus les dépenses et la liste des participants
+        // --> A gérer lors de l'obtention, l'ajout et la suppression d'évènements
 
+
+        // Liste des évènements privée
         private List<EventClass> EventsList = new List<EventClass>();
 
+        // Getter de la liste des évènement
         public List<EventClass> Events
         {
             get => EventsList;
         }
 
-        // Un évènement inclus les dépenses et la liste des participants
-        // --> A gérer lors de l'obtention, l'ajout et la suppression d'évènements
-
-
+        // Constructeur du gestionnaire, déclenche le rafraichissement de la liste des participants
         public EventManager()
         {
             RefreshEvents();
@@ -38,12 +40,15 @@ namespace ProbPotes.managers
         public Boolean AddEvent(EventClass eventclass) {
             try
             {
+                // Ouverture de la connexion si elle ne l'est pas déjà
                 if (DatabaseManager.db.State != ConnectionState.Open)
                     DatabaseManager.db.Open();
 
+                // Création de la commande
                 OleDbCommand insertEvent = new OleDbCommand(@"INSERT INTO Evenements(codeEvent,titreEvent,dateDebut,dateFin,description,soldeON,codeCreateur)
                                                        	VALUES(?,?,?,?,?,?,?)", DatabaseManager.db);
 
+                // Ajout des paramètres
                 insertEvent.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = eventclass.Code;
                 insertEvent.Parameters.Add(new OleDbParameter("titreEvent", OleDbType.WChar)).Value = eventclass.Title;
                 insertEvent.Parameters.Add(new OleDbParameter("dateDebut", OleDbType.Date)).Value = eventclass.StartDate;
@@ -55,11 +60,11 @@ namespace ProbPotes.managers
                 //AJOUT DANS LA TABLE Evenement
                 int resultInsertEvent = insertEvent.ExecuteNonQuery();
 
-
                 Boolean resultInsertPart = true;
                 //AJOUT DES PARTICIPANTS DANS LA TABLE Invites
                 foreach(int codePart in eventclass.Guests)
                 {
+                    // Création de la commande et des paramètres
                     OleDbCommand insertPart = new OleDbCommand("INSERT INTO invites (codeEvent,codePart) VALUES (?,?)", DatabaseManager.db);
                     insertPart.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = eventclass.Code;
                     insertPart.Parameters.Add(new OleDbParameter("codePart", OleDbType.Integer)).Value = codePart;
@@ -71,6 +76,7 @@ namespace ProbPotes.managers
                     }
                 }
 
+                // Retourne vrai si lers lignes ont biens été ajoutés
                 return resultInsertEvent > 0 && resultInsertPart;
                 
             }
@@ -81,6 +87,7 @@ namespace ProbPotes.managers
             }
             finally
             {
+                // Fermeture de la connexion et rafraichissement de la liste des évènements
                 DatabaseManager.db.Close();
                 RefreshEvents();
             }
@@ -92,11 +99,14 @@ namespace ProbPotes.managers
         {
             try
             {
+                // Ouverture de la connexion si elle ne l'est pas déjà
                 if (DatabaseManager.db.State != ConnectionState.Open)
                     DatabaseManager.db.Open();
+
+                // Création de la commande
                 OleDbCommand update = new OleDbCommand("UPDATE Evenements SET titreEvent = ? ,dateDebut = ? , dateFin= ? , description = ? ,soldeON = ? , codeCreateur = ? WHERE codeEvent = ?", DatabaseManager.db);
 
-                
+                // Ajout des paramètres
                 update.Parameters.Add(new OleDbParameter("titreEvent", OleDbType.WChar)).Value = eventclass.Title;
                 update.Parameters.Add(new OleDbParameter("dateDebut", OleDbType.Date)).Value = eventclass.StartDate;
                 update.Parameters.Add(new OleDbParameter("dateFin", OleDbType.Date)).Value = eventclass.EndDate;
@@ -105,25 +115,30 @@ namespace ProbPotes.managers
                 update.Parameters.Add(new OleDbParameter("codeCreateur", OleDbType.Integer)).Value = eventclass.CreatorCode;
                 update.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = eventclass.Code;
 
+                // Update de l'évènement
                 int result = update.ExecuteNonQuery();
 
+                // Si la mise à jour n'a pas eu lieu, déclencher une exception
                 if (result != 1) throw new Exception("Impossible de mettre à jour l'évènement (" + result + ")");
 
-                //UPDATE DES PARTICIPANTS
+                //Suppression de tous les PARTICIPANTS à l'évènement
                 OleDbCommand deleteAllPartEvent = new OleDbCommand("DELETE FROM Invites WHERE codeEvent=" + eventclass.Code, DatabaseManager.db);
                 int resultDelete=deleteAllPartEvent.ExecuteNonQuery();
 
                 //AJOUT DES PARTICIPANTS DANS LA TABLE Invites
                 foreach (int codePart in eventclass.Guests)
                 {
+                    // Création de la commande et des paramètres
                     OleDbCommand insertPart = new OleDbCommand("INSERT INTO Invites (codeEvent,codePart) VALUES (?,?)", DatabaseManager.db);
                     insertPart.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = eventclass.Code;
                     insertPart.Parameters.Add(new OleDbParameter("codePart", OleDbType.Integer)).Value = codePart;
 
+                    // Ajout des particiapnts
                     int insertResult = insertPart.ExecuteNonQuery();
                     if (insertResult != 1) throw new Exception("Impossible d'ajouter les participants");
                 }
 
+                // Si le code arrive jusqu'ici sans déclencher d'erreur, la mise à jour à réussie.
                 return true;
             }
             catch (Exception e)
@@ -133,6 +148,7 @@ namespace ProbPotes.managers
             }
             finally
             {
+                // Fermeture de la connexion et rafraichissement de la liste des évènements
                 DatabaseManager.db.Close();
                 RefreshEvents();
             }
@@ -140,60 +156,67 @@ namespace ProbPotes.managers
 
         // Procédure de suppression d'un évènement
         // Retourne true si la suppression a reussi
-        public Boolean DeleteEvent(int eventId)
-        {
-            try
-            {
-                if (DatabaseManager.db.State != ConnectionState.Open)
-                    DatabaseManager.db.Open();
+        //public Boolean DeleteEvent(int eventId)
+        //{
+        //    try
+        //    {
+        //        if (DatabaseManager.db.State != ConnectionState.Open)
+        //            DatabaseManager.db.Open();
 
-                //DELETE L'EVENT
-                OleDbCommand delete = new OleDbCommand(@"DELETE FROM Evenements WHERE codeEvent = @codeEvent;", DatabaseManager.db);
-                delete.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventId;
-                int result = delete.ExecuteNonQuery();
+        //        //DELETE LES INVITES DE L'EVENT
+        //        OleDbCommand deleteInvites = new OleDbCommand(@"DELETE FROM invites WHERE codeEvent=@codeEvent", DatabaseManager.db);
+        //        deleteInvites.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventId;
+        //        deleteInvites.ExecuteNonQuery();
 
-                //DELETE LES EXPENSE DE L'EVENT
-                OleDbCommand deleteExpense = new OleDbCommand(@"DELETE FROM Depenses WHERE codeEvent=@codeEvent", DatabaseManager.db);
-                deleteExpense.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventId;
-                deleteExpense.ExecuteNonQuery();
+        //        //DELETE LES EXPENSE DE L'EVENT
+        //        OleDbCommand deleteExpense = new OleDbCommand(@"DELETE FROM Depenses WHERE codeEvent=@codeEvent", DatabaseManager.db);
+        //        deleteExpense.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventId;
+        //        deleteExpense.ExecuteNonQuery();
 
-                //DELETE LES INVITES DE L'EVENT
-                OleDbCommand deleteInvites = new OleDbCommand(@"DELETE FROM invites WHERE codeEvent=@codeEvent", DatabaseManager.db);
-                deleteInvites.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventId;
-                deleteInvites.ExecuteNonQuery();
+        //        //DELETE L'EVENT
+        //        OleDbCommand delete = new OleDbCommand(@"DELETE FROM Evenements WHERE codeEvent = @codeEvent;", DatabaseManager.db);
+        //        delete.Parameters.Add(new OleDbParameter("@codeEvent", OleDbType.Integer)).Value = eventId;
+        //        int result = delete.ExecuteNonQuery();
 
-                return result > 0;
-            } 
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.ToString());
-                return false;
-            }
-            finally
-            {
-                DatabaseManager.db.Close();
-                RefreshEvents();
-            }
-        }
+                
+
+                
+
+        //        return result > 0;
+        //    } 
+        //    catch (Exception e)
+        //    {
+        //        Debug.WriteLine(e.ToString());
+        //        return false;
+        //    }
+        //    finally
+        //    {
+        //        DatabaseManager.db.Close();
+        //        RefreshEvents();
+        //    }
+        //}
 
         // Fonction qui retourne la liste de tous les participants de la base :
         public Boolean RefreshEvents()
         {
             try
             {
+                // Création d'une liste vide
                 List<EventClass> res = new List<EventClass>();
 
+                // Création de la commande
                 OleDbCommand cdGetEvent = new OleDbCommand("SELECT * FROM Evenements", DatabaseManager.db);
 
+                // Ouverture de la connexion si elle ne l'est pas déjà
                 if (DatabaseManager.db.State == ConnectionState.Closed)
                     DatabaseManager.db.Open();
                 OleDbDataReader dr = cdGetEvent.ExecuteReader();
 
+                // Pour chaque ligne :
                 while (dr.Read())
                 {
                     DateTime debut = (DateTime)dr[2];
                     DateTime fin = (DateTime)dr[3];
-
 
                     //RECHERCHE LES PARTICIPANTS A L'EVENEMENT
                     OleDbCommand cdGuest = new OleDbCommand("SELECT codePart FROM Invites WHERE codeEvent=" + dr[0].ToString(), DatabaseManager.db);
@@ -202,13 +225,15 @@ namespace ProbPotes.managers
 
                     while (drGuest.Read())
                     {
+                        // Pour chaque participant, ajouter son code à la liste
                         guest.Add(Convert.ToInt32(drGuest[0].ToString()));
                     }
 
-
+                    // Création de l'évènement correspondant à la ligne et ajout à la liste
                     res.Add(new EventClass(Convert.ToInt32(dr[0].ToString()), dr[1].ToString(), Convert.ToInt32(dr[6].ToString()), (Boolean)dr[5], dr[4].ToString(), debut, fin, guest));
                 }
                 
+                // Remplacement de la liste des évènements
                 EventsList = res;
 
                 return true;
@@ -218,6 +243,7 @@ namespace ProbPotes.managers
                 return false;
             } finally
             {
+                // Fermeture de la connexion
                 DatabaseManager.db.Close();
             }
         }
@@ -235,39 +261,48 @@ namespace ProbPotes.managers
 
             DataSet data = new DataSet();
 
+            // Création des Binding sources
             BindingSource eventBs = new BindingSource();
             BindingSource participantBs = new BindingSource();
-
             BindingNavigator bn = new BindingNavigator();
 
+            // Récupération de la table Evenements
             OleDbDataAdapter adapter5 = new OleDbDataAdapter(@"SELECT * FROM Evenements", DatabaseManager.db);
             adapter5.Fill(data, "Evenements");
             new OleDbCommandBuilder(adapter5);
 
+            // Récupération de la table Invites
             OleDbDataAdapter adapter6 = new OleDbDataAdapter(@"SELECT * FROM Invites", DatabaseManager.db);
             adapter6.Fill(data, "Invites");
             new OleDbCommandBuilder(adapter6);
 
+            // Récupération de la table Participants
             OleDbDataAdapter adapter7 = new OleDbDataAdapter(@"SELECT * FROM Participants", DatabaseManager.db);
             adapter7.Fill(data, "Participants");
             new OleDbCommandBuilder(adapter7);
 
+            // Réglage des bindingsources
             eventBs.DataSource = data.Tables["Evenements"];
             participantBs.DataSource = data.Tables["Participants"]; //relation entre table-bindingsource
             bn.BindingSource = eventBs;
 
+            // Création de la classe EventNavigation contenant les évènement necessaires
             return new EventNavigation(data, eventBs, participantBs, bn);
 
         }
 
+        // Procédure de cloture d'un évènement
         public void CreateReport(EventClass evt)
         {
 
+            // Ouverture de la connexion si elle ne l'est pas déjà
             if (DatabaseManager.db.State == ConnectionState.Closed)
                 DatabaseManager.db.Open();
 
+            // Création d'une DataTable vide
             DataTable dtBilan = new DataTable();
 
+            // Ajout des données
             dtBilan.Columns.Add("codeParticipant", typeof(int));
             dtBilan.Columns.Add("Personne", typeof(string));
             dtBilan.Columns.Add("Plus", typeof(double));
@@ -512,24 +547,30 @@ namespace ProbPotes.managers
             return res;
         }
 
+
+        // Fonction de calcul du nombre total de dépenses tout évènements confondus
         public int GetExpenseCount()
         {
+            // Variable compteur
             int count = 0;
+
+            // Pour chaque évènement
             foreach (EventClass e in EventsList)
             {
-                foreach (Expense expense in e.Expenses.Expenses)
-                {
-                    count++;
-                }
+                // Ajout de son nombre de dépenses
+                count += e.Expenses.Expenses.Count;
             }
             return count;
         }
 
         public Decimal GetExpenseSum()
         {
+            // Variable somme
             Decimal count = 0;
+            // Pour chaque évènement
             foreach (EventClass e in EventsList)
             {
+                // Ajout de la somme de ses dépense
                 count += e.Expenses.GetExpenseSum();
             }
             return count;

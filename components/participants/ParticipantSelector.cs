@@ -14,6 +14,8 @@ using System.Windows.Forms;
 
 namespace ProbPotes.components.participants
 {
+
+    // Gestionnaire de sélection de participants
     public partial class ParticipantSelector : UserControl
     {
 
@@ -23,8 +25,8 @@ namespace ProbPotes.components.participants
 
         private Boolean multiSelect = false;
 
+        // Delegate de l'action à effectuer lors d'une sélection
         public delegate void Del(int pCode);
-
         public Del SelectAction;
 
         public ParticipantSelector()
@@ -54,6 +56,7 @@ namespace ProbPotes.components.participants
 
         }
 
+        // Getter/Setter de la liste des participant sélectionnés
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -62,6 +65,7 @@ namespace ProbPotes.components.participants
             get => ParticipantList;
             set
             {
+                // Pour chaque participant, le sélectionner si il est dans la liste
                 foreach (Control c in flowLayoutPanel1.Controls)
                 {
                     ParticipantSelectionTile tile = (ParticipantSelectionTile)c;
@@ -71,17 +75,20 @@ namespace ProbPotes.components.participants
             }
         }
 
+        // Setter de la liste des participants à ne pas afficher
         public void SetExcludedParticipant(List<int> value)
         { 
                 excluded = value;
                 RefreshParticipantList();
         }
 
+        // Getter de la liste des participants à ne pas afficher
         public List<int> GetExcludedParticipants()
         {
             return excluded;
         }
 
+        // Propriété définissant si le sélecteur accepte plusieurs choix
         public Boolean MultiSelection
         {
             get => multiSelect;
@@ -92,27 +99,37 @@ namespace ProbPotes.components.participants
             }
         }
 
+        // Procédure de rafraichissement de la liste des participants
         public void RefreshSelection()
         {
+            // Création d'une nouvelle liste
             ParticipantList = new List<int>();
+
+            // Pour chaque participant affiché
             foreach(Control c in flowLayoutPanel1.Controls)
             {
                 ParticipantSelectionTile tile = (ParticipantSelectionTile)c;
                 if (tile.Selected)
                 {
+                    // Si il est sélectionné, l'ajouter à la liste
                     ParticipantList.Add(tile.Participant.Code);
                 }
             }
         }
 
+        // Procédure de rafraichissement de la liste des participants
         public void RefreshParticipantList()
         {
+            // Nettoyage de la liste
             flowLayoutPanel1.Controls.Clear();
+
+            // Calcul de la taile d'un participant
             int width = flowLayoutPanel1.Width / 2 - 20;
             foreach (Participant p in DatabaseManager.Participants.Participants)
             {
                 if (!excluded.Contains(p.Code))
                 {
+                    // Affichage de tous les participants sauf les exclus
                     ParticipantSelectionTile tile = new ParticipantSelectionTile();
                     tile.Participant = p;
                     tile.Selected = ParticipantList.Contains(p.Code);
@@ -123,6 +140,7 @@ namespace ProbPotes.components.participants
             }
         }
 
+        // Procédure lancé lorsqu'un participant est sélectionné
         public void Selection(Participant p )
         {
             // Tout décocher sauf le sélectionné si pas de multi sélection
@@ -138,19 +156,24 @@ namespace ProbPotes.components.participants
                 }
 
             }
-
+            
+            // Rafraichir la liste des participants sélectionnés
             RefreshSelection();
 
+            // Déclenchement de l'action si elle est définie
             if (SelectAction != null)
             {
                 SelectAction(p.Code);
             }
         }
 
+        // Bouton "Tout sélectionner"
         private void btnSelectAll_Click(object sender, EventArgs e)
         {
+            // TRUE Si il faut tout sélectionner, sinon il, faut tout désélectionner
             Boolean select = ParticipantList.Count != (DatabaseManager.Participants.Participants.Count-excluded.Count);
 
+            // Changement du texte du bouton en conséquence
             if (select)
             {
                 btnSelectAll.Text = "Tout déselectionner";
@@ -158,11 +181,15 @@ namespace ProbPotes.components.participants
             {
                 btnSelectAll.Text = "Tout sélectionner";
             }
+
+            // Pour chaque participant :
             foreach (Control c in flowLayoutPanel1.Controls)
             {
                 ParticipantSelectionTile tile = (ParticipantSelectionTile)c;
-                tile.Selected = select;
+                tile.Selected = select; // Le cocher ou le décocher selon l'action choisir
             }
+
+            // Rafraichissement de la liste des participants sélectionnés
             RefreshSelection();
 
         }

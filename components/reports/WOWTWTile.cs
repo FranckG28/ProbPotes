@@ -13,6 +13,8 @@ using System.Windows.Forms;
 
 namespace ProbPotes.components.reports
 {
+
+    // Affichage d'un participant dans un Qui doit quoi a qui
     public partial class WOWTWTile : UserControl
     {
         public WOWTW WOWTW;
@@ -23,6 +25,7 @@ namespace ProbPotes.components.reports
 
             this.WOWTW = wOWTW;
 
+            // Couleur de fond
             BackColor = Colors.lightGrey;
 
             // Polices
@@ -43,16 +46,19 @@ namespace ProbPotes.components.reports
             Decimal totalDebts = 0;
             Decimal totalReceivables = 0;
 
+            // Calcul de la dette totale
             foreach(KeyValuePair<int, Decimal> kvp in WOWTW.GiveTo)
             {
                 totalDebts += kvp.Value;
             }
 
+            // Calcul de la somme totale à perçevoir
             foreach (KeyValuePair<int, Decimal> kvp in WOWTW.ReceiveFrom)
             {
                 totalReceivables += kvp.Value;
             }
 
+            // Affichage des totaux
             selectDebts.Title = "Dettes (" + Decimal.Round(totalDebts, 2) + " €)";
             selectReceivable.Title = "À percevoir (" + Decimal.Round(totalReceivables, 2) + " €)";
 
@@ -63,6 +69,7 @@ namespace ProbPotes.components.reports
             // Affichage des dêttes au démarrage 
             if (totalReceivables != 0 && totalDebts == 0)
             {
+                // Si il n'y a pas de dettes mais seulement des créances, les afficher à la place: 
                 selectReceivable.Selected = true;
                 ShowReceivables(null);
             } else
@@ -72,15 +79,21 @@ namespace ProbPotes.components.reports
 
         }
 
+        // Affichage des dettes
         private void ShowDebts(Object e)
         {
+            // Décoche l'autre case
             selectReceivable.Selected = false;
+
+            // Nettoie la liste
             flowLayoutPanel1.Controls.Clear();
 
             if (WOWTW.GiveTo.Count == 0)
             {
+                // Afficher aucun résultat
                 ShowEmptyLabel();
             } else {
+                // Afficher les transactions 
                 foreach (KeyValuePair<int, Decimal> kvp in WOWTW.GiveTo)
                 {
                     flowLayoutPanel1.Controls.Add(MakeItem(kvp.Value, "à rembourser à", kvp.Key));
@@ -89,16 +102,23 @@ namespace ProbPotes.components.reports
 
         }
 
+        // Affichage des créances
         private void ShowReceivables(Object e)
         {
+            // Décoche l'autre case
             selectDebts.Selected = false;
+
+            // Nettoie la liste
             flowLayoutPanel1.Controls.Clear();
+
             if (WOWTW.ReceiveFrom.Count == 0)
             {
+                // Afficher aucun résultat
                 ShowEmptyLabel();
             }
             else
             {
+                // Afficher les transactions 
                 foreach (KeyValuePair<int, Decimal> kvp in WOWTW.ReceiveFrom)
                 {
                     flowLayoutPanel1.Controls.Add(MakeItem(kvp.Value, "à recevoir de", kvp.Key));
@@ -106,10 +126,12 @@ namespace ProbPotes.components.reports
             }
         }
 
+        // Fonction de création du control d'une ligne de transaction
         private Control MakeItem(Decimal amount, string str, int pCode)
         {
             CheckBox lbl = new CheckBox();
 
+            // Définition des propriétés
             lbl.AutoSize = false;
             lbl.Size = new Size(flowLayoutPanel1.Width - 10, 30);
             lbl.TextAlign = ContentAlignment.MiddleLeft;
@@ -126,6 +148,7 @@ namespace ProbPotes.components.reports
             return lbl;
         }
 
+        // Fonction de création du control du label à afficher si il n'y a pas de transaction
         private void ShowEmptyLabel()
         {
             Label lbl = new Label();

@@ -20,16 +20,18 @@ namespace ProbPotes.components
         {
             InitializeComponent();
 
+            // Création de l'effet de survol
             HoverColor hoverBg = new HoverColor(new List<Control>() { this }, false, Color.Transparent, Colors.red, Colors.lightRed);
             HoverColor hoverFg = new HoverColor(new List<Control>() { icon }, true, Colors.black, Colors.white, Colors.white);
 
             hover = new HoverController(new List<HoverColor>() { hoverBg, hoverFg }, this);
 
+            // Affichage de l'icone
             icon.Text = Char.ConvertFromUtf32(0xE711);
         }
 
+        // Delegate de l'évènement au clic
         public delegate void CloseDel();
-
         public CloseDel ClickEvent;
 
         private void CloseBtn_Click(object sender, EventArgs e)

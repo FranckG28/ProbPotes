@@ -38,12 +38,14 @@ namespace ProbPotes.components.participants
             hover = new SelectableHoverController(new List<HoverColor>() { hoverBg, hoverBlue }, this);
         }
 
+        // Getter/Setter de l'état de la sélection du composant
         public bool Selected
         {
             get => hover.Selected;
             set => hover.Selected = value;
         }
 
+        // Getter/Setter du participant à afficher
         public Participant Participant
         {
             get => participant;
@@ -55,6 +57,7 @@ namespace ProbPotes.components.participants
             }
         }
 
+        // Delegate de l'action à effectuer au clic
         public delegate void Del(Participant p);
         public Del SelectAction;
 

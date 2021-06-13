@@ -44,23 +44,27 @@ namespace ProbPotes.components
             set => txtTitle.Text = value;
         }
 
-        public delegate void NavbarAction(NavigationTemplate destination);
-
-        public NavbarAction action;
-        public NavigationTemplate page;
+        // Code de l'icone
         private int iconInt = 0xE711;
 
+        // TRUE si l'élément est sélectionné
         public bool Selected
         {
             get => hover.Selected;
             set { hover.Selected = value; }
         }
 
+        // Getter/Setter de l'icone
         public int Icon
         {
             get => iconInt;
             set { iconInt = value; txtIcon.Text = char.ConvertFromUtf32(iconInt); }
         }
+
+        // Action au clic 
+        public delegate void NavbarAction(NavigationTemplate destination);
+        public NavbarAction action;
+        public NavigationTemplate page;
 
         private void NavBarItem_Click(object sender, EventArgs e)
         {

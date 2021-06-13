@@ -49,6 +49,7 @@ namespace ProbPotes.components.participants
 
         }
 
+        // Getter/Setter d'un participant
         public Participant Participant
         {
             get => participant;
@@ -57,6 +58,7 @@ namespace ProbPotes.components.participants
                 participant = value;
                 if (participant != null)
                 {
+                    // Affichage des données du participant
                     txtFirstName.Text = participant.FirstName;
                     txtName.Text = participant.Name;
                     txtPhone.Text = participant.Phone;
@@ -66,10 +68,9 @@ namespace ProbPotes.components.participants
             }
         }
 
+        // Délégate de l'action à effectuer au clic
         public delegate void Del(Participant p);
-
         public Del ClickAction;
-        public Del RefreshDelegate;
 
         private void ParticipantTile_Click(object sender, EventArgs e)
         {
@@ -78,6 +79,8 @@ namespace ProbPotes.components.participants
                 ClickAction(participant);
             }
         }
+
+        public Del RefreshDelegate;
 
 
         #region Arrondissement des coins du UserControl
