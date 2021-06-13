@@ -11,7 +11,7 @@ namespace ProbPotes.managers
     {
         
         // INSTANCE STATIQUE DE LA BASE DE DONNÉE, AVEC CHEMIN D'ACCES RELATIF
-        public static OleDbConnection db = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\bdEvents.mdb") + ";Persist Security Info=True");
+        public static OleDbConnection db = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=bdEvents.mdb ;Persist Security Info=True");
 
         // ACCES AUX INSTANCES STATIQUES DES GESTIONNAIRES D'EVENEMENTS ET DE DEPENSES
         public static EventManager Events = new EventManager();

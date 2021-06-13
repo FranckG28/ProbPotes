@@ -18,7 +18,7 @@ namespace ProbPotes.services
         {
             try
             {
-                string path = Path.Combine(Environment.CurrentDirectory + @"\\..\\..\\BilanPDF\\"+evt.Title);
+                string path = Path.Combine(Environment.CurrentDirectory + @"\\BilanPDF\\"+evt.Title);
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
 
