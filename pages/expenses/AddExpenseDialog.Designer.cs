@@ -34,6 +34,7 @@ namespace ProbPotes.pages.events
             this.pnlEvents = new System.Windows.Forms.FlowLayoutPanel();
             this.txtTitle0 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtWarningMontant = new System.Windows.Forms.Label();
             this.txtWarningTitle = new System.Windows.Forms.Label();
             this.lblDescription = new System.Windows.Forms.Label();
             this.boxDescription = new System.Windows.Forms.TextBox();
@@ -59,7 +60,6 @@ namespace ProbPotes.pages.events
             this.txtSuccessfulDescription = new System.Windows.Forms.Label();
             this.iconSuccessful = new System.Windows.Forms.Label();
             this.txtTitleSuccess = new System.Windows.Forms.Label();
-            this.txtWarningMontant = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -135,6 +135,15 @@ namespace ProbPotes.pages.events
             this.tabPage1.Size = new System.Drawing.Size(782, 354);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
+            // 
+            // txtWarningMontant
+            // 
+            this.txtWarningMontant.Location = new System.Drawing.Point(119, 197);
+            this.txtWarningMontant.Name = "txtWarningMontant";
+            this.txtWarningMontant.Size = new System.Drawing.Size(246, 19);
+            this.txtWarningMontant.TabIndex = 34;
+            this.txtWarningMontant.Text = "Veuillez entrer un montant";
+            this.txtWarningMontant.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtWarningTitle
             // 
@@ -297,10 +306,10 @@ namespace ProbPotes.pages.events
             // psPayer
             // 
             this.psPayer.BackColor = System.Drawing.Color.Transparent;
-            this.psPayer.Location = new System.Drawing.Point(3, 50);
+            this.psPayer.Location = new System.Drawing.Point(0, 43);
             this.psPayer.MultiSelection = false;
             this.psPayer.Name = "psPayer";
-            this.psPayer.Size = new System.Drawing.Size(776, 301);
+            this.psPayer.Size = new System.Drawing.Size(782, 308);
             this.psPayer.TabIndex = 21;
             // 
             // tabPage3
@@ -317,10 +326,10 @@ namespace ProbPotes.pages.events
             // 
             // psRecipients
             // 
-            this.psRecipients.Location = new System.Drawing.Point(5, 50);
+            this.psRecipients.Location = new System.Drawing.Point(0, 43);
             this.psRecipients.MultiSelection = true;
             this.psRecipients.Name = "psRecipients";
-            this.psRecipients.Size = new System.Drawing.Size(776, 304);
+            this.psRecipients.Size = new System.Drawing.Size(782, 308);
             this.psRecipients.TabIndex = 22;
             // 
             // txtTitle3
@@ -372,15 +381,6 @@ namespace ProbPotes.pages.events
             this.txtTitleSuccess.TabIndex = 4;
             this.txtTitleSuccess.Text = "Dépense ajoutée !";
             this.txtTitleSuccess.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtWarningMontant
-            // 
-            this.txtWarningMontant.Location = new System.Drawing.Point(119, 197);
-            this.txtWarningMontant.Name = "txtWarningMontant";
-            this.txtWarningMontant.Size = new System.Drawing.Size(246, 19);
-            this.txtWarningMontant.TabIndex = 34;
-            this.txtWarningMontant.Text = "Veuillez entrer un montant";
-            this.txtWarningMontant.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // AddExpenseDialog
             // 

@@ -50,22 +50,26 @@ namespace ProbPotes.components.participants
             // 
             // txtFirstName
             // 
-            this.txtFirstName.AutoSize = true;
+            this.txtFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFirstName.AutoEllipsis = true;
             this.txtFirstName.BackColor = System.Drawing.Color.Transparent;
             this.txtFirstName.Location = new System.Drawing.Point(57, 11);
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(54, 13);
+            this.txtFirstName.Size = new System.Drawing.Size(264, 19);
             this.txtFirstName.TabIndex = 6;
             this.txtFirstName.Text = "FirstName";
             this.txtFirstName.Click += new System.EventHandler(this.ParticipantSelectionTile_Click);
             // 
             // txtName
             // 
-            this.txtName.AutoSize = true;
+            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtName.AutoEllipsis = true;
             this.txtName.BackColor = System.Drawing.Color.Transparent;
             this.txtName.Location = new System.Drawing.Point(58, 30);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(35, 13);
+            this.txtName.Size = new System.Drawing.Size(263, 19);
             this.txtName.TabIndex = 5;
             this.txtName.Text = "Name";
             this.txtName.Click += new System.EventHandler(this.ParticipantSelectionTile_Click);
@@ -82,7 +86,6 @@ namespace ProbPotes.components.participants
             this.Click += new System.EventHandler(this.ParticipantSelectionTile_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

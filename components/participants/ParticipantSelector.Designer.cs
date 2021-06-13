@@ -52,7 +52,7 @@ namespace ProbPotes.components.participants
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 32);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(767, 281);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(776, 272);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // ParticipantSelector

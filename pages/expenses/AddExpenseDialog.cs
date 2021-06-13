@@ -39,12 +39,14 @@ namespace ProbPotes.pages.events
             // Affichage de la liste des évènements
             List<EventClass> eventList = DatabaseManager.Events.Events;
             eventList.Reverse();
+            int width = pnlEvents.Width / 2 - 20;
             foreach (EventClass e in eventList)
             {
                 if (!e.SoldeOn)
                 {
                     EventPreview ep = new EventPreview();
                     ep.EventClass = e;
+                    ep.Width = width;
                     ep.ClickAction = EventClick;
                     pnlEvents.Controls.Add(ep);
                 }

@@ -259,10 +259,10 @@ namespace ProbPotes.pages.events
             // psCreator
             // 
             this.psCreator.BackColor = System.Drawing.Color.Transparent;
-            this.psCreator.Location = new System.Drawing.Point(3, 50);
+            this.psCreator.Location = new System.Drawing.Point(0, 43);
             this.psCreator.MultiSelection = false;
             this.psCreator.Name = "psCreator";
-            this.psCreator.Size = new System.Drawing.Size(776, 301);
+            this.psCreator.Size = new System.Drawing.Size(782, 308);
             this.psCreator.TabIndex = 21;
             // 
             // tabPage3
@@ -298,10 +298,10 @@ namespace ProbPotes.pages.events
             // 
             // psGuests
             // 
-            this.psGuests.Location = new System.Drawing.Point(5, 50);
+            this.psGuests.Location = new System.Drawing.Point(0, 43);
             this.psGuests.MultiSelection = true;
             this.psGuests.Name = "psGuests";
-            this.psGuests.Size = new System.Drawing.Size(776, 304);
+            this.psGuests.Size = new System.Drawing.Size(782, 308);
             this.psGuests.TabIndex = 22;
             // 
             // tabPage4
