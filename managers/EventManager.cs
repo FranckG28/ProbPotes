@@ -309,8 +309,10 @@ namespace ProbPotes.managers
             dtBilan.Columns.Add("Moins", typeof(double));
             dtBilan.Columns.Add("Solde", typeof(double));
 
+            //Dictionnaire avec le num du part et son nb de parts
             Dictionary<int, int> partShare = new Dictionary<int, int>();
 
+            //Remplissage de partShare
             for (int i = 0; i < evt.Guests.Count; i++)
             {
                 OleDbCommand cdPartShare = new OleDbCommand("SELECT * FROM Participants WHERE codeParticipant=" + evt.Guests[i], DatabaseManager.db);
@@ -322,9 +324,10 @@ namespace ProbPotes.managers
                 partShare.Add(Convert.ToInt32(dr["codeParticipant"].ToString()), Convert.ToInt32(dr["nbParts"].ToString()));
             }
 
+            //Remplissage de la table dtBilan 
             foreach (KeyValuePair<int, int> val in partShare)
             {
-                //PARTI MOINS
+                //PARTI Colonne MOINS
                 double moins = 0;
 
                 OleDbCommand cdMoins = new OleDbCommand
@@ -351,7 +354,7 @@ namespace ProbPotes.managers
                 }
 
 
-                //PARTI PLUS
+                //PARTI Colonne PLUS
                 OleDbCommand cdPlus = new OleDbCommand
                 {
                     Connection = DatabaseManager.db,
@@ -483,6 +486,7 @@ namespace ProbPotes.managers
                     allSoldeAt0 = false;
                 }
             }
+            //Passe l'événement a soldé
             evt.SoldeOn = true;
             this.UpdateEvent(evt);
             DatabaseManager.db.Close();
@@ -503,6 +507,8 @@ namespace ProbPotes.managers
 
             OleDbCommand cdBilanPart = new OleDbCommand("SELECT * FROM BilanPart WHERE codeEvent=" + evt.Code, DatabaseManager.db);
             OleDbDataReader dr = cdBilanPart.ExecuteReader();
+
+            //recupération des transaction pour l'événement donné
             while (dr.Read())
             {
                 //PARTI POUR LES INVITES
@@ -521,6 +527,7 @@ namespace ProbPotes.managers
             return res.Values.ToList();
         }
 
+        //Pareil que pour la méthode d'au dessus mais pour un événement ET un PARTICIPANT donné
         public WOWTW GetWOWTWsPart(EventClass evt, Participant part)
         {
             Dictionary<int, Decimal> giveTo = new Dictionary<int, decimal>();
