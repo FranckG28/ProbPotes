@@ -42,7 +42,7 @@ namespace ProbPotes.pages
             txtTitle.ForeColor = Colors.blue;
             icon.ForeColor = Colors.blue;
 
-            List<Label> labels = new List<Label>() { txtDescription, txtParticipants, txtHelp, txtDetails };
+            List<Label> labels = new List<Label>() { txtDescription, txtHelp, txtDetails };
             foreach (Label lbl in labels)
             {
                 lbl.ForeColor = Colors.black;
@@ -52,21 +52,15 @@ namespace ProbPotes.pages
             List<Label> tips = new List<Label>() { txtSoldTip, txtDetails };
             foreach(Label lbl in tips)
             {
-                lbl.Font = new System.Drawing.Font(Fonts.medium, 11);
+                lbl.Font = new System.Drawing.Font(Fonts.medium, 12);
                 lbl.ForeColor = Colors.grey;
             }
-            
 
-            List<Panel> lines = new List<Panel>() { pnlLine1, pnlLine2 };
-            foreach(Panel pnl in lines)
-            {
-                pnl.Size = new Size(pnl.Width, 1);
-                pnl.BackColor = Colors.grey;
-            }
+            pnlLine1.BackColor = Colors.lightGrey;
+            txtSoldTip.BackColor = Color.Transparent;
 
             // Icones
             icon.Text = char.ConvertFromUtf32(59271);
-            iconParticipants.Text = char.ConvertFromUtf32(59158);
 
             // Boutton
             btnQDQAQ.Font = new System.Drawing.Font(Fonts.medium, 14);
@@ -132,7 +126,6 @@ namespace ProbPotes.pages
             txtDateEnd.Text = eventClass.EndDate.ToShortDateString();
             txtDateStart.Text = eventClass.StartDate.ToShortDateString();
             txtDescription.Text = eventClass.Description;
-            txtParticipants.Text = DatabaseManager.Participants.GetStringFromList(eventClass.Guests);
             txtTitle.Text = eventClass.Title;
 
             // Calcul de la largeur des cases de chaque participant :

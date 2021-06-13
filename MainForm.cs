@@ -29,6 +29,8 @@ namespace ProbPotes
 
         public NavigationController navigation;
 
+        public static int borderRadius = 25;
+
         public MainForm()
         {
             // Initialisation des polices

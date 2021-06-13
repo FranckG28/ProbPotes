@@ -40,6 +40,16 @@ namespace ProbPotes.managers
             RefreshExpenses();
         }
 
+        public Decimal GetExpenseSum()
+        {
+            Decimal sum = 0;
+            foreach(Expense e in ExpensesList)
+            {
+                sum += e.sum;
+            }
+            return sum;
+        }
+
         // Procédure de mise à jour de la liste des dépenses
 
         // Procédure d'ajout d'une dépense 

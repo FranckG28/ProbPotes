@@ -33,8 +33,8 @@ namespace ProbPotes.pages
             this.txtHelp = new System.Windows.Forms.Label();
             this.pnlEvents = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnExportToPDF = new System.Windows.Forms.Button();
             this.pnlLine1 = new System.Windows.Forms.Panel();
-            this.pnlLine2 = new System.Windows.Forms.Panel();
             this.txtSoldTip = new System.Windows.Forms.Label();
             this.pnlGuests = new System.Windows.Forms.FlowLayoutPanel();
             this.txtDetails = new System.Windows.Forms.Label();
@@ -44,19 +44,17 @@ namespace ProbPotes.pages
             this.txtDateStart = new System.Windows.Forms.Label();
             this.txtDatesSeparator = new System.Windows.Forms.Label();
             this.txtDateEnd = new System.Windows.Forms.Label();
-            this.txtParticipants = new System.Windows.Forms.Label();
-            this.iconParticipants = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.Label();
             this.txtTitle = new System.Windows.Forms.Label();
-            this.btnExportToPDF = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            this.pnlLine1.SuspendLayout();
             this.pnlDates.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtHelp
             // 
             this.txtHelp.AutoSize = true;
-            this.txtHelp.Location = new System.Drawing.Point(0, 12);
+            this.txtHelp.Location = new System.Drawing.Point(-3, 0);
             this.txtHelp.Name = "txtHelp";
             this.txtHelp.Size = new System.Drawing.Size(139, 13);
             this.txtHelp.TabIndex = 1;
@@ -65,24 +63,19 @@ namespace ProbPotes.pages
             // pnlEvents
             // 
             this.pnlEvents.AutoScroll = true;
-            this.pnlEvents.Location = new System.Drawing.Point(0, 28);
+            this.pnlEvents.Location = new System.Drawing.Point(0, 16);
             this.pnlEvents.Name = "pnlEvents";
-            this.pnlEvents.Size = new System.Drawing.Size(344, 528);
+            this.pnlEvents.Size = new System.Drawing.Size(344, 540);
             this.pnlEvents.TabIndex = 2;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnExportToPDF);
             this.panel1.Controls.Add(this.pnlLine1);
-            this.panel1.Controls.Add(this.pnlLine2);
-            this.panel1.Controls.Add(this.txtSoldTip);
             this.panel1.Controls.Add(this.pnlGuests);
-            this.panel1.Controls.Add(this.txtDetails);
-            this.panel1.Controls.Add(this.btnQDQAQ);
             this.panel1.Controls.Add(this.icon);
             this.panel1.Controls.Add(this.pnlDates);
-            this.panel1.Controls.Add(this.txtParticipants);
-            this.panel1.Controls.Add(this.iconParticipants);
+            this.panel1.Controls.Add(this.txtDetails);
             this.panel1.Controls.Add(this.txtDescription);
             this.panel1.Controls.Add(this.txtTitle);
             this.panel1.Location = new System.Drawing.Point(350, 0);
@@ -90,25 +83,35 @@ namespace ProbPotes.pages
             this.panel1.Size = new System.Drawing.Size(597, 556);
             this.panel1.TabIndex = 3;
             // 
+            // btnExportToPDF
+            // 
+            this.btnExportToPDF.FlatAppearance.BorderSize = 0;
+            this.btnExportToPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportToPDF.ForeColor = System.Drawing.Color.White;
+            this.btnExportToPDF.Image = ((System.Drawing.Image)(resources.GetObject("btnExportToPDF.Image")));
+            this.btnExportToPDF.Location = new System.Drawing.Point(348, 133);
+            this.btnExportToPDF.Name = "btnExportToPDF";
+            this.btnExportToPDF.Size = new System.Drawing.Size(243, 35);
+            this.btnExportToPDF.TabIndex = 33;
+            this.btnExportToPDF.Text = "      Tout exporter en PDF";
+            this.btnExportToPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnExportToPDF.UseVisualStyleBackColor = true;
+            this.btnExportToPDF.Click += new System.EventHandler(this.btnExportToPDF_Click);
+            // 
             // pnlLine1
             // 
-            this.pnlLine1.Location = new System.Drawing.Point(6, 162);
+            this.pnlLine1.Controls.Add(this.btnQDQAQ);
+            this.pnlLine1.Controls.Add(this.txtSoldTip);
+            this.pnlLine1.Location = new System.Drawing.Point(6, 411);
             this.pnlLine1.Name = "pnlLine1";
-            this.pnlLine1.Size = new System.Drawing.Size(586, 10);
+            this.pnlLine1.Size = new System.Drawing.Size(585, 101);
             this.pnlLine1.TabIndex = 32;
-            // 
-            // pnlLine2
-            // 
-            this.pnlLine2.Location = new System.Drawing.Point(6, 254);
-            this.pnlLine2.Name = "pnlLine2";
-            this.pnlLine2.Size = new System.Drawing.Size(586, 10);
-            this.pnlLine2.TabIndex = 31;
             // 
             // txtSoldTip
             // 
-            this.txtSoldTip.Location = new System.Drawing.Point(3, 175);
+            this.txtSoldTip.Location = new System.Drawing.Point(26, 18);
             this.txtSoldTip.Name = "txtSoldTip";
-            this.txtSoldTip.Size = new System.Drawing.Size(588, 24);
+            this.txtSoldTip.Size = new System.Drawing.Size(530, 24);
             this.txtSoldTip.TabIndex = 30;
             this.txtSoldTip.Text = "ou choisissez un participant pour lequel vous souhaitez obtenir les détails";
             this.txtSoldTip.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -116,15 +119,15 @@ namespace ProbPotes.pages
             // pnlGuests
             // 
             this.pnlGuests.AutoScroll = true;
-            this.pnlGuests.Location = new System.Drawing.Point(6, 305);
+            this.pnlGuests.Location = new System.Drawing.Point(6, 172);
             this.pnlGuests.Name = "pnlGuests";
-            this.pnlGuests.Size = new System.Drawing.Size(585, 248);
+            this.pnlGuests.Size = new System.Drawing.Size(588, 233);
             this.pnlGuests.TabIndex = 29;
             // 
             // txtDetails
             // 
             this.txtDetails.AutoSize = true;
-            this.txtDetails.Location = new System.Drawing.Point(9, 274);
+            this.txtDetails.Location = new System.Drawing.Point(3, 144);
             this.txtDetails.Name = "txtDetails";
             this.txtDetails.Size = new System.Drawing.Size(109, 13);
             this.txtDetails.TabIndex = 28;
@@ -135,9 +138,9 @@ namespace ProbPotes.pages
             this.btnQDQAQ.FlatAppearance.BorderSize = 0;
             this.btnQDQAQ.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQDQAQ.ForeColor = System.Drawing.Color.White;
-            this.btnQDQAQ.Location = new System.Drawing.Point(6, 202);
+            this.btnQDQAQ.Location = new System.Drawing.Point(26, 45);
             this.btnQDQAQ.Name = "btnQDQAQ";
-            this.btnQDQAQ.Size = new System.Drawing.Size(585, 40);
+            this.btnQDQAQ.Size = new System.Drawing.Size(530, 40);
             this.btnQDQAQ.TabIndex = 27;
             this.btnQDQAQ.Text = "Qui doit quoi à qui ?";
             this.btnQDQAQ.UseVisualStyleBackColor = true;
@@ -190,29 +193,11 @@ namespace ProbPotes.pages
             this.txtDateEnd.TabIndex = 10;
             this.txtDateEnd.Text = "dates";
             // 
-            // txtParticipants
-            // 
-            this.txtParticipants.Location = new System.Drawing.Point(49, 128);
-            this.txtParticipants.Name = "txtParticipants";
-            this.txtParticipants.Size = new System.Drawing.Size(542, 39);
-            this.txtParticipants.TabIndex = 24;
-            this.txtParticipants.Text = "Participants";
-            // 
-            // iconParticipants
-            // 
-            this.iconParticipants.AutoSize = true;
-            this.iconParticipants.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconParticipants.Location = new System.Drawing.Point(1, 128);
-            this.iconParticipants.Name = "iconParticipants";
-            this.iconParticipants.Size = new System.Drawing.Size(47, 19);
-            this.iconParticipants.TabIndex = 23;
-            this.iconParticipants.Text = "label1";
-            // 
             // txtDescription
             // 
             this.txtDescription.Location = new System.Drawing.Point(3, 75);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(588, 46);
+            this.txtDescription.Size = new System.Drawing.Size(588, 55);
             this.txtDescription.TabIndex = 22;
             this.txtDescription.Text = "Description";
             // 
@@ -225,21 +210,6 @@ namespace ProbPotes.pages
             this.txtTitle.TabIndex = 21;
             this.txtTitle.Text = "Titre de l\'évènement";
             // 
-            // btnExportToPDF
-            // 
-            this.btnExportToPDF.FlatAppearance.BorderSize = 0;
-            this.btnExportToPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExportToPDF.ForeColor = System.Drawing.Color.White;
-            this.btnExportToPDF.Image = ((System.Drawing.Image)(resources.GetObject("btnExportToPDF.Image")));
-            this.btnExportToPDF.Location = new System.Drawing.Point(348, 267);
-            this.btnExportToPDF.Name = "btnExportToPDF";
-            this.btnExportToPDF.Size = new System.Drawing.Size(243, 35);
-            this.btnExportToPDF.TabIndex = 33;
-            this.btnExportToPDF.Text = "      Tout exporter en PDF";
-            this.btnExportToPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnExportToPDF.UseVisualStyleBackColor = true;
-            this.btnExportToPDF.Click += new System.EventHandler(this.btnExportToPDF_Click);
-            // 
             // ReportsPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -249,9 +219,10 @@ namespace ProbPotes.pages
             this.Controls.Add(this.pnlEvents);
             this.Controls.Add(this.txtHelp);
             this.Name = "ReportsPage";
-            this.Size = new System.Drawing.Size(950, 559);
+            this.Size = new System.Drawing.Size(950, 862);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.pnlLine1.ResumeLayout(false);
             this.pnlDates.ResumeLayout(false);
             this.pnlDates.PerformLayout();
             this.ResumeLayout(false);
@@ -272,12 +243,9 @@ namespace ProbPotes.pages
         private System.Windows.Forms.Label txtDateStart;
         private System.Windows.Forms.Label txtDatesSeparator;
         private System.Windows.Forms.Label txtDateEnd;
-        private System.Windows.Forms.Label txtParticipants;
-        private System.Windows.Forms.Label iconParticipants;
         private System.Windows.Forms.Label txtDescription;
         private System.Windows.Forms.Label txtTitle;
         private System.Windows.Forms.Label txtSoldTip;
-        private System.Windows.Forms.Panel pnlLine2;
         private System.Windows.Forms.Panel pnlLine1;
         private System.Windows.Forms.Button btnExportToPDF;
     }

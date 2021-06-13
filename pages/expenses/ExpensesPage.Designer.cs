@@ -29,34 +29,24 @@ namespace ProbPotes.pages
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtDescription = new System.Windows.Forms.Label();
             this.pnlExpenses = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlEvents = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
-            // txtDescription
-            // 
-            this.txtDescription.AutoSize = true;
-            this.txtDescription.Location = new System.Drawing.Point(0, 0);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(61, 13);
-            this.txtDescription.TabIndex = 1;
-            this.txtDescription.Text = "Évènement";
-            // 
             // pnlExpenses
             // 
             this.pnlExpenses.AutoScroll = true;
-            this.pnlExpenses.Location = new System.Drawing.Point(242, 26);
+            this.pnlExpenses.Location = new System.Drawing.Point(350, 3);
             this.pnlExpenses.Name = "pnlExpenses";
-            this.pnlExpenses.Size = new System.Drawing.Size(708, 533);
+            this.pnlExpenses.Size = new System.Drawing.Size(600, 556);
             this.pnlExpenses.TabIndex = 3;
             // 
             // pnlEvents
             // 
             this.pnlEvents.AutoScroll = true;
-            this.pnlEvents.Location = new System.Drawing.Point(3, 26);
+            this.pnlEvents.Location = new System.Drawing.Point(0, 3);
             this.pnlEvents.Name = "pnlEvents";
-            this.pnlEvents.Size = new System.Drawing.Size(233, 533);
+            this.pnlEvents.Size = new System.Drawing.Size(344, 556);
             this.pnlEvents.TabIndex = 4;
             // 
             // ExpensesPage
@@ -66,16 +56,13 @@ namespace ProbPotes.pages
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.pnlEvents);
             this.Controls.Add(this.pnlExpenses);
-            this.Controls.Add(this.txtDescription);
             this.Name = "ExpensesPage";
             this.Size = new System.Drawing.Size(950, 559);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label txtDescription;
         private System.Windows.Forms.FlowLayoutPanel pnlExpenses;
         private System.Windows.Forms.FlowLayoutPanel pnlEvents;
     }

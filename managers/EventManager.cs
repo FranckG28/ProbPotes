@@ -530,10 +530,7 @@ namespace ProbPotes.managers
             Decimal count = 0;
             foreach (EventClass e in EventsList)
             {
-                foreach (Expense expense in e.Expenses.Expenses)
-                {
-                    count+= expense.sum;
-                }
+                count += e.Expenses.GetExpenseSum();
             }
             return count;
         }

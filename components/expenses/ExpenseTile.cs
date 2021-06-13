@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,14 +40,10 @@ namespace ProbPotes.components.expenses
         {
             // Création de l'effet de survol
             HoverColor hoverBg = new HoverColor(new List<Control>() { this }, false, Colors.lightGrey, Colors.lightBlue2, Colors.blue);
-            HoverColor hoverForeBlue = new HoverColor(new List<Control>() { txtTitle, txtCreator }, true, Colors.blue, Colors.blue, Colors.white);
-            HoverColor hoverForeBlack = new HoverColor(new List<Control>() { txtRecipients, iconRecipients, txtLblParticipants, txtLblDescription, iconDescription }, true, Colors.black, Colors.black, Colors.white);
-            HoverColor hoverPriceFg = new HoverColor(new List<Control>() { txtPrice }, true, Colors.white, Colors.white, Colors.white);
-            HoverColor hoverPriceBg = new HoverColor(new List<Control>() { txtPrice }, false, Colors.blue, Colors.blue, Colors.lightBlue);
-            HoverColor hoverGreyBg = new HoverColor(new List<Control>() { pnlLine, pnlLine2 }, false, Colors.lightGrey, Colors.lightGrey, Colors.white);
-            HoverColor hoverGreyFg = new HoverColor(new List<Control>() { txtDescription }, true, Colors.grey, Colors.grey, Colors.white);
+            HoverColor hoverForeBlue = new HoverColor(new List<Control>() { txtTitle, txtCreator, txtPrice }, true, Colors.blue, Colors.blue, Colors.white);
+            HoverColor hoverForeBlack = new HoverColor(new List<Control>() { txtDescription, txtRecipients, iconRecipients, txtLblParticipants, txtLblDescription, iconDescription }, true, Colors.grey, Colors.black, Colors.white);
 
-            hover = new HoverController(new List<HoverColor>() {hoverBg, hoverForeBlue, hoverForeBlack, hoverPriceFg, hoverPriceBg, hoverGreyBg, hoverGreyFg }, this);
+            hover = new HoverController(new List<HoverColor>() {hoverBg, hoverForeBlue, hoverForeBlack}, this);
 
             // Icones :
             iconRecipients.Text = char.ConvertFromUtf32(0xE716);
@@ -55,13 +52,13 @@ namespace ProbPotes.components.expenses
             // Polices :
             if (LicenseManager.UsageMode == LicenseUsageMode.Runtime)
             {
-                txtTitle.Font = new Font(Fonts.bold, 14);
-                txtDescription.Font = new Font(Fonts.regular, 11);
-                txtPrice.Font = new Font(Fonts.bold, 15);
+                txtTitle.Font = new Font(Fonts.bold, 16);
+                txtDescription.Font = new Font(Fonts.regular, 10);
+                txtPrice.Font = new Font(Fonts.bold, 18);
                 txtRecipients.Font = new Font(Fonts.book, 10);
-                txtCreator.Font = new Font(Fonts.regular, 10);
-                txtLblParticipants.Font = new Font(Fonts.bold, 10);
-                txtLblDescription.Font = new Font(Fonts.bold, 10);
+                txtCreator.Font = new Font(Fonts.book, 12);
+                txtLblParticipants.Font = new Font(Fonts.bold, 9);
+                txtLblDescription.Font = new Font(Fonts.bold, 9);
             }
 
         }
@@ -78,7 +75,7 @@ namespace ProbPotes.components.expenses
                     txtTitle.Text = expense.description;
                     txtDescription.Text = expense.comment;
                     txtPrice.Text = expense.sum.ToString()+" €";
-                    txtCreator.Text = "par " + creator.FirstName + " " + creator.Name.ToUpper() + " le " + expense.date.ToShortDateString();
+                    txtCreator.Text = "payé par " + creator.FirstName + " " + creator.Name.ToUpper() + " le " + expense.date.ToShortDateString();
 
                     // Génération d'une liste des participants 
                     txtRecipients.Text = DatabaseManager.Participants.GetStringFromList(expense.recipients);
@@ -90,5 +87,62 @@ namespace ProbPotes.components.expenses
         {
             ClickAction?.DynamicInvoke(Expense);
         }
+
+
+
+        #region Arrondissement des coins du UserControl
+
+        // Source originale : https://stackoverflow.com/questions/32987649/how-to-create-a-user-control-with-rounded-corners
+
+        // getter du rayon
+        public int Radius
+        {
+            get { return MainForm.borderRadius; }
+        }
+
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect,
+            int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
+
+        // Fonction de création d'un rectangle arrondi
+        private GraphicsPath GetRoundRectagle(Rectangle bounds, int radius)
+        {
+            // Définition du rayon
+            float r = radius;
+            // Création de la forme
+            GraphicsPath path = new GraphicsPath();
+            // Début du dessin
+            path.StartFigure();
+            // Ajout des 4 coins
+            path.AddArc(bounds.Left, bounds.Top, r, r, 180, 90);
+            path.AddArc(bounds.Right - r, bounds.Top, r, r, 270, 90);
+            path.AddArc(bounds.Right - r, bounds.Bottom - r, r, r, 0, 90);
+            path.AddArc(bounds.Left, bounds.Bottom - r, r, r, 90, 90);
+            // Arrêt du dessin
+            path.CloseFigure();
+            // Retour de la forme
+            return path;
+        }
+
+        // Procédure de regénération de la forme
+        private void RecreateRegion()
+        {
+            // Récupération du rectangle du control
+            var bounds = ClientRectangle;
+
+            // Remplacement de la forme du control par celle générée
+            this.Region = Region.FromHrgn(CreateRoundRectRgn(bounds.Left, bounds.Top,
+                bounds.Right, bounds.Bottom, Radius, Radius));
+            this.Invalidate();
+        }
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            // Recréation de la forme en cas de changement de taille
+            base.OnSizeChanged(e);
+            this.RecreateRegion();
+        }
+        #endregion
+
     }
 }

@@ -48,10 +48,12 @@ namespace ProbPotes.components
             // 
             // txtDate
             // 
-            this.txtDate.AutoSize = true;
+            this.txtDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDate.AutoEllipsis = true;
             this.txtDate.Location = new System.Drawing.Point(12, 37);
             this.txtDate.Name = "txtDate";
-            this.txtDate.Size = new System.Drawing.Size(28, 13);
+            this.txtDate.Size = new System.Drawing.Size(250, 18);
             this.txtDate.TabIndex = 1;
             this.txtDate.Text = "date";
             // 
@@ -61,7 +63,7 @@ namespace ProbPotes.components
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtParticipants.AutoEllipsis = true;
             this.txtParticipants.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtParticipants.Location = new System.Drawing.Point(51, 65);
+            this.txtParticipants.Location = new System.Drawing.Point(50, 64);
             this.txtParticipants.Name = "txtParticipants";
             this.txtParticipants.Size = new System.Drawing.Size(211, 37);
             this.txtParticipants.TabIndex = 2;
@@ -72,7 +74,7 @@ namespace ProbPotes.components
             // 
             this.iconParticipants.AutoSize = true;
             this.iconParticipants.Font = new System.Drawing.Font("Segoe MDL2 Assets", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconParticipants.Location = new System.Drawing.Point(14, 73);
+            this.iconParticipants.Location = new System.Drawing.Point(13, 72);
             this.iconParticipants.Name = "iconParticipants";
             this.iconParticipants.Size = new System.Drawing.Size(35, 19);
             this.iconParticipants.TabIndex = 3;
@@ -87,7 +89,7 @@ namespace ProbPotes.components
             this.Controls.Add(this.txtTitle);
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "EventPreview";
-            this.Size = new System.Drawing.Size(265, 120);
+            this.Size = new System.Drawing.Size(265, 114);
             this.Click += new System.EventHandler(this.EventPreview_Click);
             this.ResumeLayout(false);
             this.PerformLayout();

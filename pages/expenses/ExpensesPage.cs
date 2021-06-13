@@ -25,22 +25,22 @@ namespace ProbPotes.pages
         {
             InitializeComponent();
 
-            // Polices et couleurs
-            txtDescription.Font = new Font(Fonts.bold, 12);
-            txtDescription.ForeColor = Colors.black;
-
             // Affichage du choix des évènements
-            
+
+            int width = pnlEvents.Width - 10;
+
             ProbPotesSelector all = new ProbPotesSelector("Tous", null);
             all.Icon = 59198;
             all.action = EventSelection;
             all.Selected = true;
+            all.Width = width;
             pnlEvents.Controls.Add(all);
 
             foreach (EventClass e in DatabaseManager.Events.Events)
             {
-                ProbPotesSelector selector = new ProbPotesSelector(e.Title, e);
+                ProbPotesSelector selector = new ProbPotesSelector(e.Title + " (" + e.Expenses.Expenses.Count+")", e);
                 selector.action = EventSelection;
+                selector.Width = width;
                 pnlEvents.Controls.Add(selector);
             }
 
@@ -89,6 +89,7 @@ namespace ProbPotes.pages
                             {
                                 pnlExpenses.Controls.Add(MakeExpenseTile(exp));
                             }
+ 
                         }
                     }
                 }
@@ -107,6 +108,9 @@ namespace ProbPotes.pages
                     {
                         pnlExpenses.Controls.Add(MakeExpenseTile(e));
                     }
+                    int expCount = SelectedEvent.Expenses.Expenses.Count;
+                    pnlExpenses.Controls.Add(MakeLabel(expCount.ToString() + ((expCount == 1) ? " dépense pour un total de " : " dépenses pour un total de ") + SelectedEvent.Expenses.GetExpenseSum() + " €"));
+
                 }
             }
         }
@@ -116,8 +120,24 @@ namespace ProbPotes.pages
             ExpenseTile tile = new ExpenseTile();
             tile.Expense = e;
             tile.ClickAction = EditExpense;
+            tile.Width = pnlExpenses.Width - 20;
             return tile;
         }   
+
+        private Control MakeLabel(string content)
+        {
+            // Ajout d'un petit texte récapitulatif
+            
+            Label lbl = new Label();
+            lbl.Font = new Font(Fonts.regular, 12);
+            lbl.Width = pnlExpenses.Width - 25;
+            lbl.AutoSize = false;
+            lbl.Margin = new Padding(0,20,0,50);
+            lbl.ForeColor = Color.FromArgb(100,100,100);
+            lbl.TextAlign = ContentAlignment.MiddleCenter;
+            lbl.Text = content;
+            return lbl;
+        }
 
         private void ShowEmptyLabel()
         {

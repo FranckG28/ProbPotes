@@ -76,7 +76,7 @@ namespace ProbPotes.pages
             // 
             // tileTotal
             // 
-            this.tileTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(7)))), ((int)(((byte)(7)))), ((int)(((byte)(7)))));
+            this.tileTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.tileTotal.Description = "total dépensé";
             this.tileTotal.Icon = 60156;
             this.tileTotal.Location = new System.Drawing.Point(720, 3);
@@ -87,7 +87,7 @@ namespace ProbPotes.pages
             // 
             // tileEvents
             // 
-            this.tileEvents.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(7)))), ((int)(((byte)(7)))), ((int)(((byte)(7)))));
+            this.tileEvents.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.tileEvents.Description = "évènements";
             this.tileEvents.Icon = 59271;
             this.tileEvents.Location = new System.Drawing.Point(480, 3);
@@ -98,7 +98,7 @@ namespace ProbPotes.pages
             // 
             // tileExpenses
             // 
-            this.tileExpenses.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(7)))), ((int)(((byte)(7)))), ((int)(((byte)(7)))));
+            this.tileExpenses.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.tileExpenses.Description = "dépenses";
             this.tileExpenses.Icon = 59161;
             this.tileExpenses.Location = new System.Drawing.Point(240, 3);
@@ -109,7 +109,7 @@ namespace ProbPotes.pages
             // 
             // tileParticipants
             // 
-            this.tileParticipants.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(7)))), ((int)(((byte)(7)))), ((int)(((byte)(7)))));
+            this.tileParticipants.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.tileParticipants.Description = "participants";
             this.tileParticipants.Icon = 59158;
             this.tileParticipants.Location = new System.Drawing.Point(0, 3);

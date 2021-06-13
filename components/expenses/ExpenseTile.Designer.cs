@@ -33,10 +33,8 @@ namespace ProbPotes.components.expenses
             this.txtTitle = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.Label();
             this.txtCreator = new System.Windows.Forms.Label();
-            this.pnlLine = new System.Windows.Forms.Panel();
             this.txtLblDescription = new System.Windows.Forms.Label();
             this.iconDescription = new System.Windows.Forms.Label();
-            this.pnlLine2 = new System.Windows.Forms.Panel();
             this.iconRecipients = new System.Windows.Forms.Label();
             this.txtLblParticipants = new System.Windows.Forms.Label();
             this.txtRecipients = new System.Windows.Forms.Label();
@@ -44,21 +42,24 @@ namespace ProbPotes.components.expenses
             // 
             // txtPrice
             // 
+            this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPrice.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.txtPrice.Location = new System.Drawing.Point(510, 16);
+            this.txtPrice.Location = new System.Drawing.Point(491, 12);
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(145, 35);
+            this.txtPrice.Size = new System.Drawing.Size(164, 63);
             this.txtPrice.TabIndex = 0;
             this.txtPrice.Text = "label1";
-            this.txtPrice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.txtPrice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.txtPrice.Click += new System.EventHandler(this.ExpenseTile_Click);
             // 
             // txtTitle
             // 
+            this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTitle.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.txtTitle.Location = new System.Drawing.Point(15, 9);
+            this.txtTitle.Location = new System.Drawing.Point(15, 12);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(489, 35);
+            this.txtTitle.Size = new System.Drawing.Size(470, 35);
             this.txtTitle.TabIndex = 0;
             this.txtTitle.Text = "label1";
             this.txtTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -66,36 +67,32 @@ namespace ProbPotes.components.expenses
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(64, 151);
+            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescription.Location = new System.Drawing.Point(64, 143);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(581, 31);
+            this.txtDescription.Size = new System.Drawing.Size(591, 31);
             this.txtDescription.TabIndex = 0;
             this.txtDescription.Text = "label1";
             this.txtDescription.Click += new System.EventHandler(this.ExpenseTile_Click);
             // 
             // txtCreator
             // 
+            this.txtCreator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCreator.BackColor = System.Drawing.SystemColors.GrayText;
-            this.txtCreator.Location = new System.Drawing.Point(15, 37);
+            this.txtCreator.Location = new System.Drawing.Point(15, 40);
             this.txtCreator.Name = "txtCreator";
-            this.txtCreator.Size = new System.Drawing.Size(489, 35);
+            this.txtCreator.Size = new System.Drawing.Size(470, 35);
             this.txtCreator.TabIndex = 0;
             this.txtCreator.Text = "label1";
             this.txtCreator.Click += new System.EventHandler(this.ExpenseTile_Click);
-            // 
-            // pnlLine
-            // 
-            this.pnlLine.Location = new System.Drawing.Point(17, 68);
-            this.pnlLine.Name = "pnlLine";
-            this.pnlLine.Size = new System.Drawing.Size(638, 1);
-            this.pnlLine.TabIndex = 2;
-            this.pnlLine.Click += new System.EventHandler(this.ExpenseTile_Click);
             // 
             // txtLblDescription
             // 
             this.txtLblDescription.AutoSize = true;
             this.txtLblDescription.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.txtLblDescription.Location = new System.Drawing.Point(64, 137);
+            this.txtLblDescription.Location = new System.Drawing.Point(64, 128);
             this.txtLblDescription.Name = "txtLblDescription";
             this.txtLblDescription.Size = new System.Drawing.Size(60, 13);
             this.txtLblDescription.TabIndex = 0;
@@ -106,7 +103,7 @@ namespace ProbPotes.components.expenses
             // 
             this.iconDescription.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.iconDescription.Font = new System.Drawing.Font("Segoe MDL2 Assets", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconDescription.Location = new System.Drawing.Point(13, 129);
+            this.iconDescription.Location = new System.Drawing.Point(13, 123);
             this.iconDescription.Name = "iconDescription";
             this.iconDescription.Size = new System.Drawing.Size(51, 39);
             this.iconDescription.TabIndex = 0;
@@ -114,19 +111,11 @@ namespace ProbPotes.components.expenses
             this.iconDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.iconDescription.Click += new System.EventHandler(this.ExpenseTile_Click);
             // 
-            // pnlLine2
-            // 
-            this.pnlLine2.Location = new System.Drawing.Point(17, 124);
-            this.pnlLine2.Name = "pnlLine2";
-            this.pnlLine2.Size = new System.Drawing.Size(636, 1);
-            this.pnlLine2.TabIndex = 2;
-            this.pnlLine2.Click += new System.EventHandler(this.ExpenseTile_Click);
-            // 
             // iconRecipients
             // 
             this.iconRecipients.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.iconRecipients.Font = new System.Drawing.Font("Segoe MDL2 Assets", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconRecipients.Location = new System.Drawing.Point(13, 76);
+            this.iconRecipients.Location = new System.Drawing.Point(13, 73);
             this.iconRecipients.Name = "iconRecipients";
             this.iconRecipients.Size = new System.Drawing.Size(51, 39);
             this.iconRecipients.TabIndex = 0;
@@ -138,19 +127,21 @@ namespace ProbPotes.components.expenses
             // 
             this.txtLblParticipants.AutoSize = true;
             this.txtLblParticipants.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.txtLblParticipants.Location = new System.Drawing.Point(64, 81);
+            this.txtLblParticipants.Location = new System.Drawing.Point(64, 75);
             this.txtLblParticipants.Name = "txtLblParticipants";
-            this.txtLblParticipants.Size = new System.Drawing.Size(62, 13);
+            this.txtLblParticipants.Size = new System.Drawing.Size(67, 13);
             this.txtLblParticipants.TabIndex = 0;
-            this.txtLblParticipants.Text = "Participants";
+            this.txtLblParticipants.Text = "Bénéficiaires";
             this.txtLblParticipants.Click += new System.EventHandler(this.ExpenseTile_Click);
             // 
             // txtRecipients
             // 
+            this.txtRecipients.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRecipients.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.txtRecipients.Location = new System.Drawing.Point(64, 94);
+            this.txtRecipients.Location = new System.Drawing.Point(64, 85);
             this.txtRecipients.Name = "txtRecipients";
-            this.txtRecipients.Size = new System.Drawing.Size(581, 34);
+            this.txtRecipients.Size = new System.Drawing.Size(591, 34);
             this.txtRecipients.TabIndex = 0;
             this.txtRecipients.Text = "label1";
             this.txtRecipients.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -160,8 +151,6 @@ namespace ProbPotes.components.expenses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.pnlLine2);
-            this.Controls.Add(this.pnlLine);
             this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.iconDescription);
             this.Controls.Add(this.iconRecipients);
@@ -173,7 +162,7 @@ namespace ProbPotes.components.expenses
             this.Controls.Add(this.txtTitle);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.Name = "ExpenseTile";
-            this.Size = new System.Drawing.Size(670, 183);
+            this.Size = new System.Drawing.Size(670, 174);
             this.Click += new System.EventHandler(this.ExpenseTile_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -185,10 +174,8 @@ namespace ProbPotes.components.expenses
         private System.Windows.Forms.Label txtTitle;
         private System.Windows.Forms.Label txtDescription;
         private System.Windows.Forms.Label txtCreator;
-        private System.Windows.Forms.Panel pnlLine;
         private System.Windows.Forms.Label txtLblDescription;
         private System.Windows.Forms.Label iconDescription;
-        private System.Windows.Forms.Panel pnlLine2;
         private System.Windows.Forms.Label iconRecipients;
         private System.Windows.Forms.Label txtLblParticipants;
         private System.Windows.Forms.Label txtRecipients;
