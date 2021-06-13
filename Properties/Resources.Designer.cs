@@ -103,6 +103,16 @@ namespace ProbPotes.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap PDFBG {
+            get {
+                object obj = ResourceManager.GetObject("PDFBG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap PDFIcon {
             get {
                 object obj = ResourceManager.GetObject("PDFIcon", resourceCulture);

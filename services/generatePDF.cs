@@ -49,19 +49,18 @@ namespace ProbPotes.services
 
                 //PAGE
                 Paragraph space = new Paragraph("\n");
-
+                doc.Add(space);
                 //HEADER
-                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(@"C:\Users\hsche\Desktop\ProbPotes.png");
-                logo.ScalePercent(15);
-                logo.Alignment = Element.ALIGN_RIGHT;
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(Properties.Resources.PDFBG, System.Drawing.Imaging.ImageFormat.Png);
+                logo.ScalePercent(25);
+                logo.Alignment = Element.ALIGN_CENTER;
                 doc.Add(logo);
 
-                Paragraph titre = new Paragraph("Bilan", title);
-                titre.Alignment = Element.ALIGN_CENTER;
-                doc.Add(titre);
+                doc.Add(space);
 
                 Paragraph eventName = new Paragraph(evt.Title, pBlue);
-                eventName.Alignment = Element.ALIGN_LEFT;
+                eventName.Font = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 30f, iTextSharp.text.Font.BOLD, noir);
+                eventName.Alignment = Element.ALIGN_CENTER;
                 doc.Add(eventName);
 
 
@@ -73,7 +72,7 @@ namespace ProbPotes.services
                 Chunk startDateRes = new Chunk(evt.StartDate.ToString() + "\n", response);
                 doc.Add(startDateRes);
 
-                Chunk endDate = new Chunk("\t Date de Fin: ", pBlack);
+                Chunk endDate = new Chunk("\t Date de fin: ", pBlack);
                 doc.Add(endDate);
 
                 Chunk endDateRes = new Chunk(evt.EndDate.ToString()+"\n", response);
@@ -140,7 +139,7 @@ namespace ProbPotes.services
                 int cptIsEmpty = 0;
 
 
-                Paragraph titleDepense = new Paragraph("Dépense payé: ", h3);
+                Paragraph titleDepense = new Paragraph("Dépenses payées: ", h3);
                 doc.Add(titleDepense);
 
                 doc.Add(space);
@@ -178,7 +177,7 @@ namespace ProbPotes.services
                 doc.Add(space);
 
                 //TABLEAU DEPENSE BENEFICIARE
-                Paragraph titlebeneficiaire = new Paragraph("Dépense bénéficié: ", h3);
+                Paragraph titlebeneficiaire = new Paragraph("Dépenses bénéficiées: ", h3);
                 doc.Add(titlebeneficiaire);
 
                 doc.Add(space);
@@ -283,8 +282,9 @@ namespace ProbPotes.services
                 Process.Start(@"cmd.exe ", @"/c " + outFile);
                 return true;
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine("Erreur génération PDF : " + e.ToString());
                 return false;
             }
         }
