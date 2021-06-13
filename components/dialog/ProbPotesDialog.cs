@@ -287,6 +287,7 @@ namespace ProbPotes.components
             pnl.Size = new Size(txtBox.Width + TEXTBOX_PADDING, txtBox.Height + TEXTBOX_PADDING);
             pnl.Location = txtBox.Location;
             pnl.BackColor = Color.White;
+            pnl.TabIndex = txtBox.TabIndex;
 
             Parent.Controls.Remove(txtBox);
             pnl.Controls.Add(txtBox);
@@ -309,6 +310,7 @@ namespace ProbPotes.components
             pnl.Size = new Size(picker.Width + TEXTBOX_PADDING, picker.Height + TEXTBOX_PADDING);
             pnl.Location = picker.Location;
             pnl.BackColor = Color.White;
+            pnl.TabIndex = picker.TabIndex;
 
             Parent.Controls.Remove(picker);
             pnl.Controls.Add(picker);
