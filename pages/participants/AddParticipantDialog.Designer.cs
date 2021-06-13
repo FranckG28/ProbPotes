@@ -117,7 +117,7 @@ namespace ProbPotes.pages.participants
             this.boxMail.Location = new System.Drawing.Point(56, 234);
             this.boxMail.Name = "boxMail";
             this.boxMail.Size = new System.Drawing.Size(703, 20);
-            this.boxMail.TabIndex = 10;
+            this.boxMail.TabIndex = 4;
             this.boxMail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxEmail_KeyPress);
             // 
             // iconMail
@@ -146,7 +146,7 @@ namespace ProbPotes.pages.participants
             this.boxPhone.MaxLength = 10;
             this.boxPhone.Name = "boxPhone";
             this.boxPhone.Size = new System.Drawing.Size(703, 20);
-            this.boxPhone.TabIndex = 7;
+            this.boxPhone.TabIndex = 3;
             this.boxPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxPhone_KeyPress);
             // 
             // iconPhone
@@ -174,7 +174,7 @@ namespace ProbPotes.pages.participants
             this.boxName.Location = new System.Drawing.Point(429, 85);
             this.boxName.Name = "boxName";
             this.boxName.Size = new System.Drawing.Size(330, 20);
-            this.boxName.TabIndex = 4;
+            this.boxName.TabIndex = 2;
             this.boxName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxFirstName_KeyPress);
             // 
             // lblFirstName
@@ -192,7 +192,7 @@ namespace ProbPotes.pages.participants
             this.boxFirstName.Location = new System.Drawing.Point(56, 85);
             this.boxFirstName.Name = "boxFirstName";
             this.boxFirstName.Size = new System.Drawing.Size(330, 20);
-            this.boxFirstName.TabIndex = 2;
+            this.boxFirstName.TabIndex = 1;
             this.boxFirstName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxName_KeyPress);
             // 
             // iconName
@@ -239,7 +239,8 @@ namespace ProbPotes.pages.participants
             this.boxShares.Location = new System.Drawing.Point(56, 305);
             this.boxShares.Name = "boxShares";
             this.boxShares.Size = new System.Drawing.Size(330, 20);
-            this.boxShares.TabIndex = 17;
+            this.boxShares.TabIndex = 5;
+            this.boxShares.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxShares_KeyPress);
             // 
             // tabPage2
             // 

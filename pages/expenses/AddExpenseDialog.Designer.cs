@@ -185,6 +185,8 @@ namespace ProbPotes.pages.events
             this.boxAmount.Name = "boxAmount";
             this.boxAmount.Size = new System.Drawing.Size(302, 20);
             this.boxAmount.TabIndex = 26;
+            this.boxAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxAmount_KeyPress);
+            this.boxAmount.Leave += new System.EventHandler(this.boxAmount_Leave);
             // 
             // boxTitle
             // 

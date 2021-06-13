@@ -171,44 +171,97 @@ namespace ProbPotes.pages.participants
         }
 
         //KeyPress
+        //fonction qui verifie les caractères sont valides
         private void boxPhone_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // on refuse tout 
             e.Handled = true;
-
-            if (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space)
+            // accepte les chiffres, lettres, les retours arrières et les espaces.
+            if (char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space)
             {
+                // on accepte 
                 e.Handled = false;
             }
         }
-
+        //fonction qui verifie les caractères sont valides
         private void boxFirstName_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // on refuse tout 
             e.Handled = true;
-
+            // accepte les chiffres, lettres, les retours arrières et les espaces.
             if (char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space)
             {
+                // on accepte 
                 e.Handled = false;
             }
         }
-
+        //fonction qui verifie les caractères sont valides
         private void boxName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = true;
 
+            // on refuse tout 
+            e.Handled = true;
+            // accepte les chiffres, lettres, les retours arrières et les espaces.
             if (char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space)
             {
+                // on accepte 
                 e.Handled = false;
             }
         }
 
+        //fonction qui verifie les caractères sont valides
         private void boxEmail_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = true;
+            // on accepte tout 
+            e.Handled = false;
+        }
 
-            if (char.IsDigit(e.KeyChar)||char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == '@' || e.KeyChar =='.')
+        //fonction qui verifie les caractères sont valides
+        private void boxShares_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // on refuse tout 
+            e.Handled = true;
+            // accepte les chiffres, lettres, les retours arrières et les espaces.
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space)
             {
+                // on accepte
                 e.Handled = false;
             }
+            
+        }
+
+
+        // fonction qui permet de déterminer si un caractère est valide pour un champ de saisies de nombre floattant
+        private bool CheckChar(char xChar, TextBox box)
+        {
+            // mets le boolean a faux par défault on dit que les caractères ne sont pas valide
+            bool isValid = false;
+            // si le caractère est un chiffre
+            if (char.IsDigit(xChar))
+            {
+                // alors on accepte
+                isValid = true;
+            }
+            // si c'est une virgule
+            else if (xChar == ',')
+            {
+                // on accepte le caractere si la textBox ne contient pas de virgule
+                isValid = !box.Text.Contains(',');
+            }
+            // si c'est un @
+            else if (xChar == '@')
+            {
+                // on accepte le caractere si la textBox ne contient pas de @
+                isValid = !box.Text.Contains('@');
+            }
+            // si c'est un controle
+            else if (char.IsControl(xChar))
+            {
+                // alors on accepte
+                isValid = true;
+            }
+            // on retourne 
+            return isValid;
         }
     }
 }

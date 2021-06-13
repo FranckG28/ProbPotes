@@ -267,7 +267,71 @@ namespace ProbPotes.pages.events
             boxTitle.Select();
         }
 
-        // TODO: Ajouter vérification des champs
+        private void boxAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //verifie si il y a un point et si oui il remplace un point en virgule
+            if (e.KeyChar == '.')
+            {
+                e.KeyChar = ',';
+            }
+            e.Handled = !CheckChar(e.KeyChar, (TextBox)sender);
 
+        }
+
+
+      // fonction qui permet de déterminer si un caractère est valide pour un champ de saisies de nombre floattant
+    private bool CheckChar(char xChar, TextBox box)
+        {
+            // mets le boolean a faux par défault on dit que les caractères ne sont pas valide
+            bool isValid = false;
+            // si le caractère est un chiffre
+            if (char.IsDigit(xChar))
+            {
+                // alors on accepte
+                isValid = true;
+            }
+            // si c'est une virgule
+            else if (xChar == ',')
+            {
+                // on accepte le caractere si la textBox ne contient pas de virgule
+                isValid = !box.Text.Contains(',');
+            }
+            // si c'est un controle
+            else if (char.IsControl(xChar))
+            {
+                // alors on accepte
+                isValid = true;
+            }
+            // on retourne 
+            return isValid;
+        }
+
+        // fonction qui reformater le montant lors de la perte du focus
+        private void boxAmount_Leave(object sender, EventArgs e)
+        {
+            //recupération de la texBox
+            TextBox box = (TextBox)sender;
+            //si la textbox commence par une virgule
+            if (box.Text.StartsWith(","))
+            {
+                // on remplace le texte par 0 et ce qu'il y avait dans la texBox
+                box.Text = "0" + box.Text;
+            }
+            // si la longueur une fois trim c'est 0 
+
+            if (box.Text.Trim().Length == 0)
+            {
+                //on mets 0 dans la box afin qu'elle en soit pas vide
+                box.Text = "0";
+            }
+            // on transforme le texte en double
+            double montant = double.Parse(box.Text);
+            //on fait un arrondis au centième
+            montant = Math.Round(montant, 2);
+            // on remet le texte avec la valeurs arrondis
+            box.Text = montant.ToString();
+        }
+
+ 
     }
 }
