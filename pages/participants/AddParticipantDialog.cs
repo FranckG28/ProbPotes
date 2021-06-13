@@ -176,8 +176,8 @@ namespace ProbPotes.pages.participants
         {
             // on refuse tout 
             e.Handled = true;
-            // accepte les chiffres, lettres, les retours arrières et les espaces.
-            if (char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space)
+            // accepte les chiffres, les retours arrières et les espaces.
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space)
             {
                 // on accepte 
                 e.Handled = false;
