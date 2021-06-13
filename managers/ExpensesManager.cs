@@ -62,9 +62,11 @@ namespace ProbPotes.managers
                 if (DatabaseManager.db.State != System.Data.ConnectionState.Open)
                     DatabaseManager.db.Open();
 
+                //Requête SQL
                 OleDbCommand insertExpense = new OleDbCommand("INSERT INTO Depenses (numDepense,description,montant,dateDepense,commentaire,codeEvent,codePart)" +
                     "                                       VALUES(?,?,?,?,?,?,?)", DatabaseManager.db);
 
+                //AJOUT des paramètres
                 insertExpense.Parameters.Add(new OleDbParameter("numDepense", OleDbType.Integer)).Value = expense.code;
                 insertExpense.Parameters.Add(new OleDbParameter("description", OleDbType.WChar)).Value = expense.description;
                 insertExpense.Parameters.Add(new OleDbParameter("montant", OleDbType.Currency)).Value = expense.sum;
@@ -73,11 +75,14 @@ namespace ProbPotes.managers
                 insertExpense.Parameters.Add(new OleDbParameter("codeEvent", OleDbType.Integer)).Value = expense.eventCode;
                 insertExpense.Parameters.Add(new OleDbParameter("codePart", OleDbType.Integer)).Value = expense.creatorCode;
 
+                //Ajout dans la base
                 int resultInsertExpense = insertExpense.ExecuteNonQuery();
 
+                //Requête pour les bénéficiaire de la dépense
                 OleDbCommand insertBeneficiaire = new OleDbCommand("INSERT INTO Beneficiaires(numDepense,codePart)" +
  "                                             VALUES(?,?)", DatabaseManager.db);
 
+                //AJOUT de tous les bénéficiaires de la dépense dans la abse
                 foreach(int part in expense.recipients)
                 {
                     insertBeneficiaire.Parameters.Clear();
@@ -118,8 +123,10 @@ namespace ProbPotes.managers
                 if (DatabaseManager.db.State != System.Data.ConnectionState.Open)
                     DatabaseManager.db.Open();
 
+                //Requête pour modifier la dépense
                 OleDbCommand updateExpense = new OleDbCommand("UPDATE Depenses SET description = ? , montant = ?, dateDepense= ? , commentaire = ? , codeEvent = ? , codePart = ? WHERE numDepense = ?", DatabaseManager.db);
 
+                //AJOUT des paramètres
                 updateExpense.Parameters.Add(new OleDbParameter("description", OleDbType.WChar)).Value = expense.description;
                 updateExpense.Parameters.Add(new OleDbParameter("montant", OleDbType.Currency)).Value = expense.sum;
                 updateExpense.Parameters.Add(new OleDbParameter("dateDepense", OleDbType.Date)).Value = expense.date;
@@ -128,19 +135,24 @@ namespace ProbPotes.managers
                 updateExpense.Parameters.Add(new OleDbParameter("codePart", OleDbType.Integer)).Value = expense.creatorCode;
                 updateExpense.Parameters.Add(new OleDbParameter("numDepense", OleDbType.Integer)).Value = expense.code;
 
+                //Ajout dans la abse
                 int resultUpdateExpense = updateExpense.ExecuteNonQuery();
 
+                //Gestion de l'erreur pour l'ajout dans la base
                 if(resultUpdateExpense!=1) throw new Exception("Impossible de mettre à jour la dépense (" + resultUpdateExpense + ")");
 
+                //Suppression de tous les bénéficiaires
                 OleDbCommand deletePart = new OleDbCommand("DELETE FROM Beneficiaires WHERE numDepense=" + expense.code, DatabaseManager.db);
                 int resultDeletePart = deletePart.ExecuteNonQuery();
 
+                //Gestion de l'erreur pour la suppression des bénéficiaires
                 if(resultDeletePart==0) throw new Exception("Impossible de supprimer les Participant a la dépense (" + resultUpdateExpense + ")");
 
-
+                //requête pour ajouter les nouveau bénéficiares de la dépense
                 OleDbCommand insertBeneficiaire = new OleDbCommand("INSERT INTO Beneficiaires(numDepense,codePart)" +
     "                                             VALUES(?,?)", DatabaseManager.db);
 
+                //On rajoute la nouvelle liste des bénéficiare pour la mettre a jour
                 foreach (int part in expense.recipients)
                 {
                     insertBeneficiaire.Parameters.Clear();
