@@ -184,9 +184,9 @@ namespace ProbPotes.services
                 
       <div style=""font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:1.5;text-align:left;color:#000000;""><p><span style=""font-family: Poppins, sans-serif; font-size: 15px;"">Bonjour " + p.FirstName + " " + p.Name.ToUpper() + @",</span></p>
 <p>&nbsp;</p>
-<p><span style=""font-family: Poppins, sans-serif; font-size: 18px;"">" + Creator.FirstName + " " + Creator.Name.ToUpper() + @" vous &agrave; invit&eacute; &agrave; l'&eacute;v&egrave;nement " + e.Title + @" !</span></p>
+<p><span style=""font-family: Poppins, sans-serif; font-size: 18px;"">" + Creator.FirstName + " " + Creator.Name.ToUpper() + @" vous a invit&eacute; &agrave; l'&eacute;v&egrave;nement " + e.Title + @" !</span></p>
 <p>&nbsp;</p>
-<p><span style=""font-family: Poppins, sans-serif; font-size: 18px;"">T&eacute;l&eacute;chargez ProbPotes d&egrave;s maitenant pour le rejoindre :</span></p></div>
+<p><span style=""font-family: Poppins, sans-serif; font-size: 18px;"">T&eacute;l&eacute;chargez ProbPotes d&egrave;s maintenant pour le rejoindre :</span></p></div>
     
               </td>
             </tr>

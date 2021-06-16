@@ -189,7 +189,7 @@ namespace ProbPotes.pages.participants
             // on refuse tout 
             e.Handled = true;
             // accepte les  lettres, les retours arrières et les espaces.
-            if (char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space)
+            if (char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space || e.KeyChar == (char)Keys.OemQuotes)
             {
                 // on accepte 
                 e.Handled = false;
@@ -202,7 +202,7 @@ namespace ProbPotes.pages.participants
             // on refuse tout 
             e.Handled = true;
             // accepte les lettres, les retours arrières et les espaces.
-            if (char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space)
+            if (char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space || e.KeyChar == (char)Keys.OemQuotes)
             {
                 // on accepte 
                 e.Handled = false;
